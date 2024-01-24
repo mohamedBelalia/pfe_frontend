@@ -7,7 +7,7 @@ import { IoSearchSharp } from "react-icons/io5";
 const PhoneNavbar = () => {
   return (
     <div className="flex items-center justify-between w-full">
-
+        
         <Link to="/" className="w-[80px] p-2 flex flex-col justify-between items-center rounded-md">
             <AiFillHome className="text-2xl"/>
             Home

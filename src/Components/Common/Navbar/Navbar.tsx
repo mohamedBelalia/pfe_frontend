@@ -49,6 +49,7 @@ const Navbar = () => {
 
                 </div>
             </div>
+            {/* Content Of Guides */}
             <div className={`${isClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-24 md:-mt-3 duration-200 ease-in-out w-full bg-white overflow-hidden rounded-b-lg`}>
                     <ShowedContent/>
             </div>
