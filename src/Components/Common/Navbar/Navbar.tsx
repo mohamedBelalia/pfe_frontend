@@ -14,8 +14,8 @@ const Navbar = () => {
     }
 
   return (
-    <div className="w-[90%] md:w-[70%] mx-auto relative ">
-        <div className="fixed mx-auto mt-5 w-[90%] md:w-[70%] sm:shadow-xl">
+    <div className="w-[90%] md:w-[70%] mx-auto relative z-50 bg-[#414E5F]">
+        <div className="fixed mx-auto mt-5 w-[90%] md:w-[70%] sm:shadow-xl mb-10">
             <div className="px-6 py-5 rounded-xl bg-transparent md:bg-white">
                 <div className="flex md:justify-between justify-end items-center">
                     <div className="gap-2 items-center hidden md:flex cursor-pointer">

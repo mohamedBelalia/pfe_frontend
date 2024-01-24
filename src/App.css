@@ -7,3 +7,7 @@
 .ourBorder{
     border: solid 1px red;
 }
+
+.hideScrollBar::-webkit-scrollbar {
+    display: none;
+}
