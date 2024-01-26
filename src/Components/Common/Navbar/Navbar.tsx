@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className="w-[90%] md:w-[70%] mx-auto relative z-50 bg-[#414E5F]">
         <div className="fixed mx-auto mt-5 w-[90%] md:w-[70%] sm:shadow-xl mb-10">
-            <div className="px-6 py-5 rounded-xl bg-transparent md:bg-white">
+            <div className="px-6 py-5 rounded-xl bg-transparent md:bg-white md:w-auto w-[50px]">
                 <div className="flex md:justify-between justify-end items-center">
                     <div className="gap-2 items-center hidden md:flex cursor-pointer">
                         <RxFramerLogo className="text-4xl text-green-700"/>
@@ -34,7 +34,7 @@ const Navbar = () => {
                             <Button label="Become a tasker" bg="#199AFF" color="white"/>
                         </div>
 
-                        <div className="bg-[#D0D3DA] p-2 rounded-md cursor-pointer"
+                        <div className="bg-[#d0d3dab6] p-2 rounded-md cursor-pointer md:static absolute right-0"
                             onClick={showNavBox}
                         >   
                         {
@@ -50,7 +50,7 @@ const Navbar = () => {
                 </div>
             </div>
             {/* Content Of Guides */}
-            <div className={`${isClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-24 md:-mt-3 duration-200 ease-in-out w-full bg-white overflow-hidden rounded-b-lg`}>
+            <div className={`${isClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-20 md:-mt-3 duration-200 ease-in-out shadow-xl w-full bg-white overflow-hidden rounded-b-lg`}>
                     <ShowedContent/>
             </div>
 
