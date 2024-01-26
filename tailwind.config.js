@@ -16,6 +16,7 @@
       width: {
         container: "70%"
       },
+      
      
       
      },
