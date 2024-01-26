@@ -24,7 +24,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
   return (
     <div className={`w-full ${isSmallPhone ? "h-[90vh]" : "h-[65vh]"} md:h-[90vh] bg-[#414E5F]`}>
-      <div className="h-[100%] ourContainer flex flex-col gap-10 md:gap-40 justify-center md:justify-end items-center">
+      <div className="h-[100%] relative ourContainer flex flex-col gap-10 md:gap-40 justify-center md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
           <div className="w-full flex flex-col gap-10 justify-center items-center">
@@ -41,7 +41,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
           </div> 
 
           {/* The Part Of The Jobs to choose */}
-          <div className="w-full mb-10 md:mb-12">
+          <div className="w-full md:static absolute bottom-0 mb-8 md:mb-12">
             <div className="flex justify-between gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar">
                 {
                   jobs.map((job , _)=>(

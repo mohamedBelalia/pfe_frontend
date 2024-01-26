@@ -1,0 +1,21 @@
+{
+    "btnsExplain": [
+      {
+        "id": "1",
+        "title" : "Choose a Tasker by price,skills, and reviews.",
+        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+      },
+      {
+        "id": "2",
+        "title" : "Schedule a Tasker as early as today.",
+        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+      },
+      {
+        "id": "3",
+        "title" : "Chat, pay, tip, and review all in one place",
+        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+      }
+      
+    ]
+  }
+  

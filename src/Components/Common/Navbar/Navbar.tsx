@@ -57,7 +57,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile navbar */}
-        <div className="fixed mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-8 shadow-xl bg-white rounded-md flex md:hidden">
+        <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-8 shadow-xl bg-white rounded-md flex md:hidden">
             <PhoneNavbar/>
         </div>
 

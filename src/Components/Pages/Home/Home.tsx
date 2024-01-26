@@ -1,6 +1,7 @@
 import { useState } from "react"
 import LandingPage from "./LandingPage"
 import JobsDetails from "./JobsDetails"
+import HowWeWork from "./HowWeWork"
 
 const Home = () => {
 
@@ -11,6 +12,7 @@ const Home = () => {
     <div className="bg-white mb-40">
         <LandingPage getTheCoosenJob={setChoosenJob}/>
         <JobsDetails idJob={choosenJob}/>
+        <HowWeWork/>
     </div>
   )
 }
