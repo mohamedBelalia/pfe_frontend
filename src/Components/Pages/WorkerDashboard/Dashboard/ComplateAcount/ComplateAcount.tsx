@@ -2,7 +2,7 @@
 import { BsFillPersonCheckFill } from "react-icons/bs";
 import { PiXCircleFill } from "react-icons/pi";
 import { FaCheckCircle } from "react-icons/fa";
-const Card = () => {
+const CompleteAcount = () => {
 
   return (
     
@@ -33,4 +33,4 @@ const Card = () => {
   )
 }
 
-export default Card
+export default CompleteAcount
