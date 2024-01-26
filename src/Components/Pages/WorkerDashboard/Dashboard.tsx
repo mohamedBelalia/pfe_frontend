@@ -7,7 +7,7 @@ const Dashboard = () => {
     
   return (
     <div>
-       <div className='container flex  justify-center my-10 mx-auto bg-gray-50 '>
+       <div className='container flex flex-col items-center md:flex-row  my-10 mx-auto bg-gray-50 '>
           <div className="w-2/5" >
               <Card />
               <ComplateAcount/>

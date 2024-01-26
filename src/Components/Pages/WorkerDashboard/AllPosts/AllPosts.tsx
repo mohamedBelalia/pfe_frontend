@@ -1,19 +1,19 @@
-import ToolType from "../ToolsTypes/ToolType";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { useRef, RefObject , useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import ToolType from "./ToolsTypes/ToolType";
  const data = [
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},    {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta."},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
-  {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"1",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},    {img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta."},
+  {id:"2",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"3",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"4",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"5",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"6",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"7",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"10",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"8",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
+  {id:"9",img:"imgUsed/wall.jpg", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus molestias beatae unde amet molestiae Dicta.",date:"12/02/2024"},
 ]
 
 const card_width = 300;
@@ -21,9 +21,10 @@ const card_height = 300;
  
 
 
-const AllPosts  = () => {
+const AllPosts = () => {
   const containerRef: RefObject<HTMLDivElement> = useRef(null);
   const [scrollEnabled, setScrollEnabled] = useState(false);
+  const [enable, setEnable] = useState<boolean>(false);
   const handleScroll = (amount: number) => {
     if(containerRef.current){
       setScrollEnabled(true);
@@ -42,7 +43,7 @@ const AllPosts  = () => {
         }}
       >
         
-        {data.map((item, index) => (
+        {data.map((item,index) => (
           <div 
             key={index} style={{minWidth: card_width, minHeight: card_height}} className=" m-10 relative shadow-xl rounded-xl    ">
             <img className="rounded-t-xl" src={item.img} alt="img" />
@@ -50,11 +51,16 @@ const AllPosts  = () => {
               <p className="p-2">{item.text}</p>
               <div className="flex  items-center justify-between">
                 {item.date}
-                <HiDotsHorizontal className="text-4xl mr-5 text-teal500" />
+                <button onClick={()=>{
+                  setEnable(true);
+                }}>
+
+                  <HiDotsHorizontal  className="text-4xl mr-5 cursor-pointer text-teal500" />
+                </button>
               </div>
+            <ToolType  isEnable={enable}/>
 
             </div>
-                <ToolType isEnable={true}/>
           </div>
         ))}
       </div>
