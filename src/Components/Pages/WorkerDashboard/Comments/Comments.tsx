@@ -1,6 +1,9 @@
 import { FaStar } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
 import data from "./data.json"
+import ReplayTool from "./ReplayTool";
+import Btn from "../BTN/Btn";
+import ReplayCard from "./ReplayCard";
 
 
 
@@ -9,8 +12,7 @@ const Comments = () => {
     <div className="mt-16">
         <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">Clients Reviews</p>
         {data.map((item)=>{
-             var count = item.starsNumber;
-            return <div className="mx-56  rounded-xl border-2 px-16 py-5 my-10 border-teal500">
+            return <div className="mx-56 relative rounded-xl border-2 px-16 py-5 my-10 border-teal500">
                 
                 <div>
                     <div className="flex justify-between" >
@@ -23,14 +25,12 @@ const Comments = () => {
                         </div>
                         <div className="flex ">
                             {[...Array(item.starsNumber)].map(()=>{
-                                count++;
                                 
                                 return <FaStar className="text-yellow-500 m-1" />
                             })}
                             {[...Array(Math.max(6-item.starsNumber,0))].map((_,index)=>{
                                 return <FaStar key={index} className="text-gray-300 m-1" />
                             })}
-                           
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,13 @@ const Comments = () => {
                 <div className="flex cursor-pointer  justify-end ">
                     <HiDotsHorizontal className="text-teal500   text-3xl"/>
                 </div>
-                
+                <ReplayCard />
             </div>
         })}
+        <ReplayTool  />
+        <div className="flex justify-center my-6 ">
+            <Btn  text="More"/>
+        </div>        
     </div>
   )
 }
