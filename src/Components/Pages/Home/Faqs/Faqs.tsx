@@ -8,7 +8,7 @@ const Faqs = () => {
     const [clickedId , setClickedId] = useState<string>("non")
     
   return (
-    <div className="md:w-[80%] mx-auto mt-24 pt-3">
+    <div className="md:w-[80%] w-[90%] mx-auto mt-24 pt-3">
         <h1 className="text-center text-4xl font-bold text-[#349292]">Frequently Asked Questions</h1>
 
         <div className="mt-11 flex flex-col gap-5">

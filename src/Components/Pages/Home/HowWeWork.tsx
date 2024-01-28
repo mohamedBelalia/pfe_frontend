@@ -29,13 +29,13 @@ const HowWeWork = () => {
   return (
     <div className="w-[80%] mx-auto pt-12">
         <h1 className="text-center text-4xl font-bold text-[#349292]">How We Work</h1>
-        <div className="flex flex-col md:flex-row gap-6 mt-20">
+        <div className="flex flex-col tab:flex-row items-start gap-6 mt-20">
 
-            <div className="md:w-1/2 w-full">
+            <div className="tab:w-1/2 w-full">
                 <ExplainerVideo id={number}/>
             </div>
 
-            <div className="md:w-1/2 mt-6 md:mt-0 w-full ">
+            <div className="tab:w-1/2 mt-6 md:mt-0 w-full ">
                 <div className="md:w-[70%] mx-auto flex flex-col justify-start gap-14">
                     {   
                         btnsExplain.map((btn , _)=>(
@@ -104,7 +104,7 @@ const ExplainerVideo = ({id}:ExplainerVideo) => {
     }
 
     return (
-        <div className="w-full h-[200px] md:h-[370px] border-2 border-[#349292] rounded-md overflow-hidden">
+        <div className="w-full h-full border-2 border-[#349292] rounded-md overflow-hidden">
             <img src={path} alt="" className="w-full h-full object-cover" />
         </div>
     )

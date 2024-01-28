@@ -12,7 +12,7 @@ const Home = () => {
   
 
   return (
-    <div className="bg-white mb-40">
+    <div className="bg-white mb-20">
         <LandingPage getTheCoosenJob={setChoosenJob}/>
         <JobsDetails idJob={choosenJob}/>
         <HowWeWork/>
