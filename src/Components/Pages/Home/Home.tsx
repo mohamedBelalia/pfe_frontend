@@ -3,6 +3,8 @@ import LandingPage from "./LandingPage"
 import JobsDetails from "./JobsDetails"
 import HowWeWork from "./HowWeWork"
 import DemandedJobs from "./DemandedJobs/DemandedJobs"
+import WhereWeAre from "./whereWeAre/WhereWeAre"
+import Faqs from "./Faqs/Faqs"
 
 const Home = () => {
 
@@ -15,6 +17,8 @@ const Home = () => {
         <JobsDetails idJob={choosenJob}/>
         <HowWeWork/>
         <DemandedJobs/>
+        <WhereWeAre/>
+        <Faqs/>
     </div>
   )
 }

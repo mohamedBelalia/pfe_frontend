@@ -21,12 +21,44 @@
     animation: changeTimer 7s infinite linear;
 }
 
+.zelijeBg{
+    background-image: url("../public/imgUsed/bg5.png");
+}
+
+.citiesScrollLeft{
+    animation: 120s citySlideLeft infinite linear;
+}
+
+.citiesScrollRight{
+    animation: 120s citySlideRight infinite linear;
+}
+
+@keyframes citySlideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(calc(-24 * 190px));
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes citySlideRight {
+    0% {
+        transform: translateX(calc(-24 * 190px));
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-24 * 190px));
+    }
+}
+
 @keyframes changeTimer {
     100% {
         transform: rotate(2turn);
      }
-}
-
-.zelijeBg{
-    background-image: url("../public/imgUsed/bg5.png");
 }
