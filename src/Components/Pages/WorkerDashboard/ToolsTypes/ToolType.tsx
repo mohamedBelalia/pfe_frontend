@@ -4,14 +4,18 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 
+interface TOOLPROPS {
+  id:number,
+  onClose: () => void,
+}
 
-const ToolType = () => {
+const ToolType = ({id,onClose}:TOOLPROPS) => {
 
   return (
-    <div className="absolute flex-col w-52 ml-14 -mt-[340px]  bg-teal500 bg-opacity-85  border-gray-300 p-4 rounded-lg ">
+    <div className="absolute flex-col w-52 ml-10 -mt-[350px]  bg-teal500 bg-opacity-85  border-gray-300 p-4 rounded-lg ">
             
-        <button className="flex justify-end  text-white">
-            <IoCloseSharp className=" text-xl -mt-3 mb-4" />
+        <button className="flex justify-end w-full text-white">
+            <IoCloseSharp />
         </button >
 
 

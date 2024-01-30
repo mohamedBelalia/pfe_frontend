@@ -29,7 +29,7 @@ const OtherInfos = () => {
                 <div className="w-1/4 rounded"><img className="rounded-xl object-cover w-11/12  h-40" src="public\imgUsed\portrait-man-laughing.jpg" alt="img" /></div>
                 <button className="w-1/4 rounded relative">
                     <img className="rounded-xl object-cover  relative w-11/12 h-40" src="public\imgUsed\portrait-man-laughing.jpg" alt="" />
-                    <div className="absolute flex items-center justify-center text-3xl bg-black w-11/12 h-40 -mt-40 opacity-50 rounded-xl text-white">+25 Posts</div>
+                    <div className="absolute flex items-center justify-center text-3xl bg-black w-11/12 h-40 -mt-40 bg-opacity-50 rounded-xl text-white">+25 Posts</div>
                 </button>
             </div>
         </div>
@@ -45,12 +45,12 @@ const OtherInfos = () => {
         <div className="flex justify-between mt-2">
             <button className="w-2/4 relative rounded">
                 <img className="rounded-xl w-10/12 object-cover  h-40" src="public/imgUsed/tubes.jpg" alt="" />
-                <div className="absolute w-10/12 rounded-xl h-40  opacity-50 z-10 -mt-40 bg-black text-white flex justify-center items-center  text-3xl">Mejme3 Lplumyen</div>
+                <div className="absolute w-10/12 rounded-xl h-40  bg-opacity-70 z-10 -mt-40 bg-black text-white flex justify-center items-center  text-3xl">Mejme3 Lplumyen</div>
             </button>
            
             <button className="w-2/4 rounded relative">
                 <img className="rounded-xl w-10/12 h-40 object-cover" src="public/imgUsed/tubes.jpg" alt="" />
-                <div className="absolute w-10/12 rounded-xl h-40  opacity-50  -mt-40 bg-black text-white flex justify-center items-center  text-3xl">+3 Groups</div>
+                <div className="absolute w-10/12 rounded-xl h-40  bg-opacity-70  -mt-40 bg-black text-white flex justify-center items-center  text-3xl">+3 Groups</div>
             </button>
         </div>
          

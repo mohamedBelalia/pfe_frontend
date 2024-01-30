@@ -13,11 +13,6 @@ const card_height = 300;
 
 const AllPosts = () => {
 
-
- 
-
-
-
   const containerRef: RefObject<HTMLDivElement> = useRef(null);
   const [scrollEnabled, setScrollEnabled] = useState(false);
   const handleScroll = (amount: number) => {
@@ -32,18 +27,19 @@ const AllPosts = () => {
   
 
   return (
-    <div className="container m-auto" >
+    <div className=" m-auto" >
       <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">All Posts</p>
-      <div ref={containerRef} className=" flex justify-center items-center"
+      <div ref={containerRef} className=" flex   items-center"
         style={{
           scrollBehavior: "smooth",
            overflowX: scrollEnabled ? 'auto' : 'hidden'
         }}
       >
-
-        {data.map((item,index) => (
+        
+        {data.map((item) => (
           <div
-            key={index} style={{minWidth: card_width, minHeight: card_height}} className=" m-10 relative shadow-xl rounded-xl    ">
+          key={item.id} style={{minWidth: card_width, minHeight: card_height}} 
+          className=" m-10 relative shadow-xl rounded-xl    ">
             <img className="rounded-t-xl" src={item.img} alt="img" />
             <div className="border-x-2 border-gray-400 px-2 pb-2 border-b-2 rounded-b-xl">
               <p className="p-2">{item.text}</p>
@@ -57,8 +53,8 @@ const AllPosts = () => {
         ))}
       </div>
       <div className="flex justify-center ">
-        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(-card_width)}><GrFormPrevious /></button>
-        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(card_width)}><MdNavigateNext /></button>
+        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(-card_width-50)}><GrFormPrevious /></button>
+        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(card_width+50)}><MdNavigateNext /></button>
       </div>
 
     </div>
