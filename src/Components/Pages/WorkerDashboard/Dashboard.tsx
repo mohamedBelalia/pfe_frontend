@@ -8,8 +8,8 @@ const Dashboard = () => {
     
   return (
     <div>
-        <div className='px-16 flex flex-col items-center md:flex-row  my-10 mx-auto bg-gray-50 '>
-          <div className="w-2/5" >
+        <div className='md:px-24 px-2 items-center md:flex  my-10 mx-auto bg-gray-50 '>
+          <div className="md:w-2/5" >
               <Card />
               <ComplateAcount/>
           </div>

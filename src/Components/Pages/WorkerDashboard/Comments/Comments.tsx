@@ -12,15 +12,15 @@ const Comments = () => {
     <div className="mt-16">
         <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">Clients Reviews</p>
         {data.map((item)=>{
-            return <div key={item.id} className="mx-56 relative rounded-xl border-2 px-16 py-5 my-10 border-teal500">
+            return <div key={item.id} className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
                 
                 <div>
                     <div className="flex justify-between" >
                         <div className="flex">
                             <img className="w-14 rounded-full" src={item.img} alt="" />
-                            <div className="mx-3 text-xl font-semibold">
+                            <div className="mx-3 text-sm md:text-xl font-semibold">
                                 <div>{item.theName}</div>
-                                <div className="text-sm  text-gray-400">{item.date}</div>
+                                <div className="text-[12px] md:text-sm  text-gray-400">{item.date}</div>
                             </div>
                         </div>
                         <div className="flex ">
@@ -34,9 +34,9 @@ const Comments = () => {
                         </div>
                     </div>
                 </div>
-                <div className="my-10 font-semibold text-lg">{item.text}</div>
+                <div className="md:my-10 my-4 font-semibold text-sm md:text-lg">{item.text}</div>
                 <div className="flex cursor-pointer  justify-end ">
-                    <HiDotsHorizontal className="text-teal500   text-3xl"/>
+                    <HiDotsHorizontal className="text-teal-500 object-cover border rounded-lg w-16 h-10  text-xl  md:text-3xl"/>
                 </div>
                 <ReplayCard />
             </div>

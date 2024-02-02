@@ -1,8 +1,5 @@
-import ToolType from "../ToolsTypes/ToolType";
-import ChildToolType from "../ToolsTypes/ChildToolType";
 import ChildComponent from "./ChildComponent";
 import CardComponent from "./CardComponent";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { useRef, RefObject, useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
@@ -41,18 +38,14 @@ const AllPosts = () => {
     }
   };
 
-  const sharedRef = useRef('Initial Value');
-  const [isChildOpen, setChildOpen] = useState(false);
-
-
 
 
 
 
   return (
-    <div className=" m-auto" >
+    <div className="" >
       <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">All Posts</p>
-      <div ref={containerRef} className=" flex   items-center"
+      <div ref={containerRef} className=" flex  items-center"
         style={{
           scrollBehavior: "smooth",
           overflowX: scrollEnabled ? 'auto' : 'hidden'
@@ -62,12 +55,12 @@ const AllPosts = () => {
         {data.map((item) => (
           <div
             key={item.id} style={{ minWidth: card_width, minHeight: card_height }}
-            className=" m-10 relative shadow-xl rounded-xl    ">
-            <img className="rounded-t-xl" src={item.img} alt="img" />
+            className=" md:m-10 m-4 shadow-xl rounded-xl    ">
+            <img className=" rounded-t-xl" src={item.img} alt="img" />
             <div className="border-x-2 border-gray-400 px-2 pb-2 border-b-2 rounded-b-xl">
               <p className="p-2">{item.text}</p>
-              <div className="flex p-2 items-center justify-between">
-                {item.date}
+              <div className="flex  p-2 items-center justify-between">
+                <div className="opacity-50 ">{item.date}</div>
 
               <div  key={parseInt(item.id)}>
                 <CardComponent index={parseInt(item.id)} onCardClick={handleCardClick} />

@@ -1,14 +1,16 @@
 
 
     interface BTNtext{
-        text:string
+        text:string,
+        
     }
 const Btn = ({text}:BTNtext) => {
 
 
 
     return (
-        <button  className=" rounded-lg w-1/6 bg-teal500 py-3 text-xl text-white ">{text}</button>
+        <button
+        className=" rounded-lg md:w-1/6 w-28 bg-teal500 py-3 text-sm md:text-xl text-white ">{text}</button>
     )
 }
 

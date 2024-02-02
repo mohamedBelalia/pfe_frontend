@@ -6,7 +6,7 @@ const CompleteAcount = () => {
 
   return (
     
-            <div className='border p-4 mb-8 md:mb-0  bg-gray-100 rounded-xl'>
+            <div className='border p-6  mb-8 md:mb-0  bg-gray-100 rounded-xl'>
                 <div className='flex flex-nowrap font-bold text-blue500 '>
                     <BsFillPersonCheckFill className="text-3xl font-semibold"/>
                     <div className=' ml-2  text-md md:text-lg'>Complete Your Acount</div>
