@@ -1,8 +1,11 @@
+import ToolType from "../ToolsTypes/ToolType";
+import ChildToolType from "../ToolsTypes/ChildToolType";
+import ChildComponent from "./ChildComponent";
+import CardComponent from "./CardComponent";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { useRef, RefObject , useState } from "react";
+import { useRef, RefObject, useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import ToolType from "../ToolsTypes/ToolType";
 import data from "./data.json"
 
 
@@ -15,16 +18,36 @@ const AllPosts = () => {
 
   const containerRef: RefObject<HTMLDivElement> = useRef(null);
   const [scrollEnabled, setScrollEnabled] = useState(false);
+  const [openCards, setOpenCards] = useState<number[]>([]);
+
+
+
+
+  const handleCardClick = (index: number) => {
+    setOpenCards((prevOpenCards) =>
+      prevOpenCards.includes(index) ? prevOpenCards.filter((i) => i !== index) : [...prevOpenCards, index]
+    );
+  };
+
+
+
+
   const handleScroll = (amount: number) => {
-    if(containerRef.current){
+    if (containerRef.current) {
       setScrollEnabled(true);
       const newPosition = containerRef.current.scrollLeft + amount || 300;
-      containerRef.current.scrollLeft = newPosition ;
+      containerRef.current.scrollLeft = newPosition;
       setScrollEnabled(false);
     }
   };
 
-  
+  const sharedRef = useRef('Initial Value');
+  const [isChildOpen, setChildOpen] = useState(false);
+
+
+
+
+
 
   return (
     <div className=" m-auto" >
@@ -32,29 +55,35 @@ const AllPosts = () => {
       <div ref={containerRef} className=" flex   items-center"
         style={{
           scrollBehavior: "smooth",
-           overflowX: scrollEnabled ? 'auto' : 'hidden'
+          overflowX: scrollEnabled ? 'auto' : 'hidden'
         }}
       >
-        
+
         {data.map((item) => (
           <div
-          key={item.id} style={{minWidth: card_width, minHeight: card_height}} 
-          className=" m-10 relative shadow-xl rounded-xl    ">
+            key={item.id} style={{ minWidth: card_width, minHeight: card_height }}
+            className=" m-10 relative shadow-xl rounded-xl    ">
             <img className="rounded-t-xl" src={item.img} alt="img" />
             <div className="border-x-2 border-gray-400 px-2 pb-2 border-b-2 rounded-b-xl">
               <p className="p-2">{item.text}</p>
               <div className="flex p-2 items-center justify-between">
                 {item.date}
-                  <HiDotsHorizontal className="text-4xl border px-2 w-14 rounded-lg mr-5 cursor-pointer text-teal500" />
+
+              <div  key={parseInt(item.id)}>
+                <CardComponent index={parseInt(item.id)} onCardClick={handleCardClick} />
+                {openCards.includes(parseInt(item.id)) && (
+                  <ChildComponent onClose={() => handleCardClick(parseInt(item.id))} />
+                  )}
+                  </div>
               </div>
-            <ToolType  />
+
             </div>
           </div>
         ))}
       </div>
       <div className="flex justify-center ">
-        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(-card_width-50)}><GrFormPrevious /></button>
-        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(card_width+50)}><MdNavigateNext /></button>
+        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(-card_width - 50)}><GrFormPrevious /></button>
+        <button className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white  transition duration-300 ease-in-out " onClick={() => handleScroll(card_width + 50)}><MdNavigateNext /></button>
       </div>
 
     </div>
@@ -62,3 +91,4 @@ const AllPosts = () => {
 };
 
 export default AllPosts;
+
