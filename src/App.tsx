@@ -1,8 +1,9 @@
 import './App.css'
 import Footer from './Components/Common/Footer/Footer'
-import Navbar from './Components/Common/Navbar/Navbar'
 import Home from './Components/Pages/Home/Home'
 import {BrowserRouter as Router , Routes , Route} from "react-router-dom"
+import ProcessStepOne from './Components/Pages/Search/Process/ProcessStepOne'
+import Filter from './Components/Pages/Search/Filter/Filter'
 
 
 function App() {
@@ -10,9 +11,10 @@ function App() {
   return (
     <div >
       <Router>
-        <Navbar/>
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/search/step_one' element={<ProcessStepOne/>}/>
+            <Route path='/search/filter' element={<Filter/>}/>
           </Routes>
         <Footer/>
       </Router>

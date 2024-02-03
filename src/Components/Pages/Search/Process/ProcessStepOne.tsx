@@ -1,0 +1,239 @@
+import StepsPath from "../stepsPath/StepsPath"
+import citiesGets from "../../../../assets/jsonUsed/cities.json"
+import React, { useState } from "react";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
+import ErrorAlert from "../../../Common/Alerts/ErrorAlert";
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../Store/store";
+import { useDispatch } from "react-redux";
+import { setTheSearchStepOne } from "../../../Store/Slices/StepOneSlice";
+import { useNavigate } from "react-router-dom";
+
+// This is The Type The object that contains The "Task city" and "The Task Description"
+type stepOneInfoTypes = {
+    taskCity : string 
+    taskDescription : string
+}
+
+const ProcessStepOne = () => {
+
+
+    const selectedTask :string = useSelector((state:RootState)=> state.selectedTask.selectedTask)
+
+    const dispatch = useDispatch<AppDispatch>()
+
+    const navigate = useNavigate()
+
+
+    // Task Info ("Task city" , "The Task Description") State
+    const [stepOneInfo , setStepOneInfo] = useState<stepOneInfoTypes>({
+        taskCity : "" ,
+        taskDescription : ""
+    })
+
+    // This is The State of the city name
+    const [cityName , setCityName] = useState<string>("") ;
+    // This is The State of the Task Description
+    const [description , setDescription] = useState<string>("") ;
+
+    // This state is to confirm if a "city name" is correct or not
+    const [isCityCorrect , setIsCityCorrect] = useState<boolean | undefined>()
+
+    /* when the user start writing in the "city_name" field , this state(searchedCities) 
+    is store the matched cities to display them in the searched cities box */
+    const [searchedCities , setSearchedCities] = useState<string[]>([])
+
+    // to get the city name value onchange 
+    const getCityName = (event : React.ChangeEvent<HTMLInputElement>)=>{
+        setCityName(event.target.value)
+        // passing the city name value that written in the "citySearchedName()"
+        citySearchedName(event.target.value)
+    }
+
+    /*
+        this function accept "cityName" value and loop throw the "citiesGets.cities" that 
+        includs all morrocan cities , and 
+        1#if the passed value length is bigger then 0 (because all cities in the json file includes empty string)
+        2#if there is a city in the "citiesGets.cities" includes the passed value then this city stored in the "citiesArray"
+    */
+    const citySearchedName = (cityName : string) => {
+        let citiesArray : string[] | undefined = citiesGets.cities.filter((city) => 
+            cityName.length > 0 &&
+            city.toLowerCase().includes(cityName.toLowerCase())
+        )
+        setSearchedCities(citiesArray)
+    }
+
+    /*
+        this function checks if the enterd value "city_name" is in the cities array that imported from
+        the json file , when clicking the "Continue" btn below the field of "Your Task Address" 
+    */
+    const handleCityName = () => {
+        if(citiesGets.cities.includes(cityName)){
+            setStepOneInfo({...stepOneInfo , taskCity : cityName})
+            setIsCityCorrect(true)
+        }
+        else{
+            setIsCityCorrect(false)
+        }
+    }
+        
+    // to get the Description value onchange
+    const getDescription = (event : React.ChangeEvent<HTMLTextAreaElement>)=>{
+        setDescription(event.target.value)
+    }
+
+    /* to clear the filtred array when clicking on a "city name"
+        it's just passed in the "SearchedCityDiv" component
+    */
+    const clearCitiesBox = () => {
+        setSearchedCities([]) ;
+    }
+
+    /* to save the entred data in the "stepOneInfo" object after passing the "handleCityName()"
+        and clicking the "Continue" btn below the field of "Your Task Description "
+    */
+    const handleFieldsValues = () => {
+        setStepOneInfo({
+            taskCity : cityName ,
+            taskDescription : description
+        })
+
+        dispatch(setTheSearchStepOne({stepOneInfo : {
+                    cityTask : stepOneInfo.taskCity ,
+                    disciptionTask : stepOneInfo.taskDescription
+                    }}))
+
+        navigate("/search/filter") ; 
+    }
+    
+    
+    
+  return (
+    <>
+        {/* The Process in the top of the page */}
+        <StepsPath/>
+
+        <div className="ourContainer mb-6 mt-12">
+            <h1 className="text-2xl font-semibold text-center text-[#2D62FE]">
+                Complate The Process To Find The Best {selectedTask}
+            </h1>
+
+            <div className="w-[80%] mx-auto mt-6">
+                {/* check the uncorrect city name "!== undefined" because the initaile state of "isCityCorrect" is undefined
+                    and the alert shouldn't display */}
+                {isCityCorrect !== undefined && !isCityCorrect && 
+                    <ErrorAlert message="Enter a Correct City Name" width="80%" height="30px"/>
+                }
+            </div>
+
+            <div className="w-[60%] mx-auto mt-12">
+                <form onSubmit={(e)=>e.preventDefault()} className="flex flex-col gap-10 mb-20">
+                    <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
+                        <h1 className="font-semibold text-lg text-[#414E5F]">Your Task Address<span className="text-red-600">*</span></h1>
+
+                    {!isCityCorrect 
+                    
+                    ?
+                    <>
+                        <div className="relative">
+                            <div>
+                                <input 
+                                    onChange={getCityName}
+                                    value={cityName}
+                                    type="text" 
+                                    placeholder="Your Adress"
+                                    className="w-full p-3 border outline-none border-gray-500 h-[60px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]"
+                                />
+                            </div>
+                        
+                        {
+                            searchedCities.length > 0 &&                         
+                            <div className="w-full overflow-hidden  rounded-xl bg-white border border-gray-500 mt-1 absolute">
+                                {
+                                    searchedCities.map((city , index)=> index < 5 &&(
+                                        <SearchedCityDiv city={city} key={index} 
+                                            setClickedCityName={setCityName}
+                                            clearCitiesBox={clearCitiesBox}
+                                            />
+                                    ))
+                                }
+                            </div>
+                        }
+
+                        </div>
+
+                        <div className="mt-4 flex justify-center items-center">
+                            <button onClick={handleCityName} className="px-5 py-1 rounded-md text-white bg-[#51bebe]">Continue</button>
+                        </div>
+                    </>
+                    :
+                        <div className="flex justify-between">
+                            <div className="flex gap-2 items-center text-lg font-bold mt-5 text-gray-500">
+                                <FaLocationDot/>  {cityName}
+                            </div>
+                            <div onClick={()=>setIsCityCorrect(false)}>
+                                <FaEdit className="text-3xl text-[#349292] cursor-pointer"/>
+                            </div>
+                        </div>
+                    }  
+
+                    </div>
+
+
+                    <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
+                        <h1 className="font-semibold text-lg text-[#414E5F]">Your Task Description <span className="text-sm text-gray-500 font-normal">(optional)</span></h1>
+
+                       {
+                        isCityCorrect 
+                        &&
+                        <>
+                        <div>
+                            <textarea 
+                                value={description}
+                                onChange={getDescription}
+                                placeholder="start the conversation ...."
+                                className="w-full p-3 border outline-none border-gray-500 h-[120px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]"
+                            ></textarea>
+                        </div>
+
+                        <div className="mt-4 flex justify-center items-center">
+                            <button onClick={handleFieldsValues} className="px-5 py-1 rounded-md text-white bg-[#51bebe]">Continue</button>
+                        </div>
+                        </>
+                        }
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        
+    </>
+  )
+}
+
+export default ProcessStepOne
+
+interface searchedCityDivTypes {
+    city : string ,
+    setClickedCityName : (city : string) => void ,
+    clearCitiesBox : () => void
+}
+
+const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox}:searchedCityDivTypes) => {
+
+    const cityClicked = (city : string) => {
+        setClickedCityName(city)
+        clearCitiesBox()
+    }
+
+    return (
+        <div 
+            onClick={()=>cityClicked(city)}
+            className="w-full cursor-pointer h-[60px] px-6 border-b border-gray-500 
+            flex justify-start text-lg items-center hover:bg-gray-200"
+        >{city}</div>
+    )
+}

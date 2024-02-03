@@ -5,6 +5,7 @@ import HowWeWork from "./HowWeWork"
 import DemandedJobs from "./DemandedJobs/DemandedJobs"
 import WhereWeAre from "./whereWeAre/WhereWeAre"
 import Faqs from "./Faqs/Faqs"
+import Navbar from "../../Common/Navbar/Navbar"
 
 const Home = () => {
 
@@ -12,6 +13,8 @@ const Home = () => {
   
 
   return (
+    <>
+    <Navbar/>
     <div className="bg-white mb-20">
         <LandingPage getTheCoosenJob={setChoosenJob}/>
         <JobsDetails idJob={choosenJob}/>
@@ -20,6 +23,7 @@ const Home = () => {
         <WhereWeAre/>
         <Faqs/>
     </div>
+    </>
   )
 }
 

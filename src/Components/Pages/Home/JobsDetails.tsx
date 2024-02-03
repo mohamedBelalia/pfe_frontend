@@ -1,5 +1,9 @@
+import { Link, useNavigate } from "react-router-dom"
 import DetailsJob from "../../../assets/jsonUsed/usedData.json"
 import Button from "../../Common/Button/Button"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../../Store/store"
+import SelectedTask, { setSelectedTask } from "../../Store/Slices/SelectedTask"
 
 type JobDetailsTypes = {
     idJob : string
@@ -56,8 +60,19 @@ type CategoryBtnTypes = {
     label : string
 }
 const CategoryBtn = ({label}:CategoryBtnTypes) => {
+
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch<AppDispatch>()
+
+    const goTo = () =>{
+        window.scrollTo(0,0)
+        dispatch(setSelectedTask({selectedTask : label}))
+        navigate("/search/step_one")
+    }
+
     return (
-        <button className="px-3 py-2 bg-[#d4fff7cc] w-full rounded-2xl font-semibold md:font-bold text-[#414e5fb3] text-lg md:text-xl border-2 border-green-700">
+         <button onClick={goTo} className="px-3 py-2 bg-[#d4fff7cc] w-full rounded-2xl font-semibold md:font-bold text-[#414e5fb3] text-lg md:text-xl border-2 border-green-700">
             {label}
         </button>
     )
