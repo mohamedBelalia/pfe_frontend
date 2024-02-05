@@ -33,6 +33,7 @@
     animation: 120s citySlideRight infinite linear;
 }
 
+
 @keyframes citySlideLeft {
     0% {
         transform: translateX(0);

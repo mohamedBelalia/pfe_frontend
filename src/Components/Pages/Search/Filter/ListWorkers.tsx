@@ -1,6 +1,8 @@
 const ListWorkers = () => {
   return (
-    <div>ListWorkers</div>
+    <div className="">
+      ListWorkers
+    </div>
   )
 }
 

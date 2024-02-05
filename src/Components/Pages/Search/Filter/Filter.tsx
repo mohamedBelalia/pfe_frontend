@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
 import StepsPath from "../stepsPath/StepsPath"
 import { RootState } from "../../../Store/store"
-import SideCriterias from "./SideCriterias"
+import SideCriterias from "./sideFilter/SideCriterias"
 import SortedBy from "./SortedBy"
 import ListWorkers from "./ListWorkers"
+import "./filterStyles.css"
 
 const Filter = () => {
 
@@ -21,12 +22,12 @@ const Filter = () => {
                     in {selectTaskCity}</h1>
             </div>
 
-            <div className="ourBorder flex gap-6 mt-10">
-                <div className="w-1/2">
+            <div className="flex gap-10 mt-10 ">
+                <div className="w-1/3">
                     <SideCriterias/>
                 </div>
 
-                <div className="w-1/2">
+                <div className="w-full">
                     <SortedBy/>
                     <ListWorkers/>
                 </div>
