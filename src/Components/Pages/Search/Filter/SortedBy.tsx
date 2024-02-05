@@ -24,7 +24,7 @@ const SortedBy = () => {
               </div>
 
               <div 
-                className={`${isClicked ? 'h-[200px] border border-gray-400' : 'h-0'} bg-gray-200 absolute w-full top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
+                className={`${isClicked ? 'h-[200px] border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg absolute w-full top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
                   <div className="p-5 text-center flex flex-col gap-5">
                     <div 
                       onClick={()=>handleClickedSortedBy('Recommended')}
