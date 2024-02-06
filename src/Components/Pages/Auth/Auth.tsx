@@ -1,11 +1,11 @@
-import {Login} from "./login/Login"
-import {Signup} from "./Signup/Signup"
+import Signup from "./Signup/Signup"
+import Login from "./login/Login"
 
 export const Auth = () => {
   return (
     <>
-        <Login />
         <Signup />
+        <Login />
     </>
   )
 }
