@@ -1,38 +1,94 @@
 import workers from "../../../../../assets/jsonTemp/cardsInfoFil.json"
+import Button from "../../../../Common/Button/Button"
 import { workerDataProps } from "../WorkerCard"
+import { IoIosStar } from "react-icons/io";
+import { SlBadge } from "react-icons/sl";
+import Reviews from "./Reviews";
+
 
 type workerPopUpTypes = {
     idWorker : string ,
-    idWorkerSetter : (id : string) => void
 }
 
-const WorkerProfilePopUp = ({idWorker , idWorkerSetter}:workerPopUpTypes) => {
+const skillsTemp = ["Storytelling" , "Editing" , "Teaching"]
+const DiplomsTemp = ["Couture traditionnelle" , "Tapis" ]
+
+const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
 
     const clickedWorkerData : workerDataProps= workers.workers.filter((worker)=> worker.id == idWorker)[0] ;
 
   return (
-    <div className="w-[50%] h-[80%] rounded-lg py-4 px-8 bg-white overflow-y-scroll overflow-x-hidden">
-        <div className="flex justify-end text-3xl font-semibold text-gray-600">
-            <h1 
-                onClick={()=>idWorkerSetter("")}
-                className="w-[20px] cursor-pointer">X</h1>
+    <div className="md:w-[50%] w-[95%] h-[80%] rounded-lg pt-4 pb-10 px-6 bg-white overflow-y-scroll overflow-x-hidden">
+
+        <div className="flex flex-col gap-7">
+
+        <div className="flex justify-between items-start mt-3">
+            <div className="flex gap-4">
+                <div className="w-[80px] h-[80px] rounded-full overflow-hidden">
+                    <img className="w-full h-full object-cover" src={clickedWorkerData.imgProfile} alt="" />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <div className="flex gap-2">
+                        <p className="font-bold text-lg text-teal500">{clickedWorkerData.name }</p> 
+                    </div>
+                    <div className="flex items-center gap-1 text-gray700 font-semibold ">   
+                        <IoIosStar/> {clickedWorkerData.rate} <span className="text-xs">(832 reviews)</span>
+                    </div>
+                    <div className="border-dashed border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] py-0.5 px-1 text-sm  flex gap-3 items-center justify-center">
+                        <SlBadge/>
+                        {clickedWorkerData.badge}
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col gap-2">
+                <div>
+                    <h1 className="text-xl font-bold text-end text-[#2d7d7d]">{clickedWorkerData.price} Dh/Day</h1>
+                </div>
+                <div>
+                    <Button bg="#349292" color="white" label={`Continue with ${clickedWorkerData.name}`}/>
+                </div>
+            </div>
         </div>
 
+
         <div>
-            <div>
-                <img src={clickedWorkerData.imgProfile} alt="" />
+            <h1 className="font-bold text-lg text-gray700">How Can I Help You</h1>
+            <p className=" text-gray700">
+                {clickedWorkerData.description}
+            </p>
+        </div>
+
+        <div className="flex flex-col gap-1">
+            <h1 className="font-bold text-lg text-gray700">Skills</h1>
+            <div className="flex flex-wrap gap-2">
+            {
+                skillsTemp.map((skill,index)=>(
+                    <div key={index} className="px-4 py-1 rounded-md bg-blue500 text-white">
+                        {skill}
+                    </div>
+                ))
+            }
             </div>
-            <div>
-                <div>
-                    {clickedWorkerData.name } {clickedWorkerData.badge}
-                </div>
-                <div>   
-                    {clickedWorkerData.rate} (832 reviews)
-                </div>
+        </div>
+
+        <div className="flex flex-col gap-1">
+            <h1 className="font-bold text-lg text-gray700">Diploms</h1>
+            <div className="flex flex-wrap gap-2">
+            {
+                DiplomsTemp.map((skill,index)=>(
+                    <div key={index} className="px-4 py-1 rounded-md bg-teal-600 text-white">
+                        {skill}
+                    </div>
+                ))
+            }
             </div>
-            <div>
-                <h1>{clickedWorkerData.price} Dh/Day</h1>
-            </div>
+        </div>
+
+        <div className="flex flex-col gap-2">
+            <h1 className="font-bold text-lg text-gray700">Reviews</h1>
+            <Reviews idWorker={idWorker}/>
+        </div>
+
         </div>
 
     </div>

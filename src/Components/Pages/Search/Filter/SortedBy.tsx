@@ -14,10 +14,10 @@ const SortedBy = () => {
 
   return (
     <div className="flex justify-end">
-        <div className="flex gap-5">
-            <h1 className="text-xl font-semibold text-[#414E5F]">Sorted By : </h1>
+        <div className="flex gap-5 md:justify-normal justify-center">
+            <h1 className="md:block hidden text-xl font-semibold text-[#414E5F]">Sorted By : </h1>
 
-            <div className="w-[250px] relative">
+            <div className="w-[250px] relative z-50">
               <div onClick={()=>setIsClicked(!isClicked)} className="bg-gray-200 border border-gray-400 rounded-md h-[37px] flex justify-center gap-4 items-center cursor-pointer select-none">
                 <p className="text-[#414E5F] font-semibold">{sortedByValue}</p>
                 <IoIosArrowDown className="text-[#414E5F] text-2xl"/>

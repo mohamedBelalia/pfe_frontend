@@ -1,6 +1,6 @@
 import StepsPath from "../stepsPath/StepsPath"
 import citiesGets from "../../../../assets/jsonUsed/cities.json"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 import ErrorAlert from "../../../Common/Alerts/ErrorAlert";
@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "../../../Store/store";
 import { useDispatch } from "react-redux";
 import { setTheSearchStepOne } from "../../../Store/Slices/StepOneSlice";
 import { useNavigate } from "react-router-dom";
+import LoadingPage from "../../../Common/Loading/LoadingPage";
 
 // This is The Type The object that contains The "Task city" and "The Task Description"
 type stepOneInfoTypes = {
@@ -20,6 +21,22 @@ const ProcessStepOne = () => {
 
 
     const selectedTask :string = useSelector((state:RootState)=> state.selectedTask.selectedTask)
+
+    // pour assuree que l'use est selectionee le nom de task
+    const [isAuthorized , setIsAuthorized] = useState<boolean>(false)
+
+    useEffect(()=>{
+        if(selectedTask.length ==0){
+            setIsAuthorized(false)
+            // if the user don't select a task and want to enter this script 
+            // he will redirect to the page he came from using window.history.back()
+            window.history.back()
+        }
+        else{
+            setIsAuthorized(true)
+        }
+        
+    },[window.location.href])
 
     const dispatch = useDispatch<AppDispatch>()
 
@@ -105,6 +122,8 @@ const ProcessStepOne = () => {
                     disciptionTask : stepOneInfo.taskDescription
                     }}))
 
+        window.scroll(0,0);
+
         navigate("/search/filter") ; 
     }
     
@@ -112,24 +131,28 @@ const ProcessStepOne = () => {
     
   return (
     <>
+    {
+        isAuthorized ? 
+    
+    <>
         {/* The Process in the top of the page */}
         <StepsPath/>
 
-        <div className="ourContainer mb-6 mt-12">
+        <div className="w-[90%] md:w-[80%] mx-auto mb-6 mt-12">
             <h1 className="text-2xl font-semibold text-center text-[#2D62FE]">
                 Complate The Process To Find The Best {selectedTask}
             </h1>
 
-            <div className="w-[80%] mx-auto mt-6">
+            <div className="md:w-[80%] mx-auto mt-6">
                 {/* check the uncorrect city name "!== undefined" because the initaile state of "isCityCorrect" is undefined
                     and the alert shouldn't display */}
                 {isCityCorrect !== undefined && !isCityCorrect && 
-                    <ErrorAlert message="Enter a Correct City Name" width="80%" height="30px"/>
+                    <ErrorAlert message="Enter a Correct City Name" width="md:w-[80%]" height="h-[30px]"/>
                 }
             </div>
 
-            <div className="w-[60%] mx-auto mt-12">
-                <form onSubmit={(e)=>e.preventDefault()} className="flex flex-col gap-10 mb-20">
+            <div className="md:w-[60%] mx-auto md:mt-12 mt-5">
+                <form onSubmit={(e)=>e.preventDefault()} className="flex flex-col md:gap-10 gap-5 mb-20">
                     <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
                         <h1 className="font-semibold text-lg text-[#414E5F]">Your Task Address<span className="text-red-600">*</span></h1>
 
@@ -210,6 +233,12 @@ const ProcessStepOne = () => {
 
         </div>
         
+    </>
+        :
+        <div className="w-full h-[100vh] flex justify-center items-center">
+        <LoadingPage/>
+        </div>
+    }
     </>
   )
 }
