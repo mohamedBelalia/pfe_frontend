@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ShowedContent from "./ShowedContent";
 import PhoneNavbar from "./PhoneNavbar";
+import { IoSearchSharp } from "react-icons/io5";
 
 const Navbar = () => {
 
@@ -30,6 +31,7 @@ const Navbar = () => {
                             <ul className="flex items-center gap-6 font-bold text-base text-[#414E5F]">
                                 <Link to="/Signup">Signup</Link>
                                 <Link to="/Login">Login</Link>
+                                <Link to="/search"><IoSearchSharp className="text-2xl"/></Link>
                             </ul>
                             <Button label="Become a tasker" bg="#199AFF" color="white"/>
                         </div>
@@ -57,7 +59,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile navbar */}
-        <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-8 shadow-xl bg-white rounded-md flex md:hidden">
+        <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-4 shadow-xl bg-white rounded-md flex md:hidden">
             <PhoneNavbar/>
         </div>
 

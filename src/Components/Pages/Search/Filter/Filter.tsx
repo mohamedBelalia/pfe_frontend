@@ -16,8 +16,9 @@ const Filter = () => {
 
     const [isAuthorized , setIsAuthorized] = useState<boolean>(false)
 
+
     useEffect(()=>{
-        if(selectTaskCity.length == 0 || selectTaskName.length ==0){
+        if(selectTaskCity.trim().length == 0 || selectTaskName.trim().length ==0){
             setIsAuthorized(false)
             window.history.back()
         }

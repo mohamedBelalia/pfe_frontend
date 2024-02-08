@@ -1,6 +1,10 @@
 import { IoSearchSharp } from "react-icons/io5";
 import { jobs } from "../../../assets/jsonUsed/JobsIconsNames";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../Store/store";
+import { setSelectedTask } from "../../Store/Slices/SelectedTask";
 
 type LandingPageTypes = {
   getTheCoosenJob : (idJob:string) => void
@@ -8,8 +12,22 @@ type LandingPageTypes = {
 
 const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
-  const [jobClicked , setJobClicked] = useState<string>("1")
-  const [isSmallPhone , setIsSmallPhone] = useState<boolean>(false) ;
+    const navigate = useNavigate()
+    const dispatch = useDispatch<AppDispatch>()
+
+    const [jobClicked , setJobClicked] = useState<string>("1")
+    const [isSmallPhone , setIsSmallPhone] = useState<boolean>(false) ;
+
+    const [searchedTask , setSearchedTask] = useState<string>("");
+
+
+    const searchBtn = () => {
+      if(searchedTask.trim().length > 0){
+        window.scrollTo(0,0)
+        dispatch(setSelectedTask({selectedTask:searchedTask}))
+        navigate("/search/step_one")
+      }
+    }
 
     const clicked = (id : string) => {
         setJobClicked(id)
@@ -30,17 +48,20 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
       <div className="h-[100%] relative ourContainer flex flex-col gap-10 md:gap-40 justify-center md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
-          <div className="w-full flex flex-col gap-10 justify-center items-center">
+          <div className="w-full flex flex-col gap-10 justify-center items-center relative">
+            
             <h1 className="font-bold text-4xl md:text-5xl text-white text-center">Find Your Expert Worker</h1>
             <div className="w-full flex justify-center">
                 <input 
+                  onChange={(e)=>setSearchedTask(e.target.value)}
                   className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
                   type="text" 
-                  placeholder="What do you want to help in ?"/>
-                <button className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
+                  placeholder="Search By Task Name"/>
+                <button onClick={searchBtn} className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
                   <IoSearchSharp className="text-3xl text-white"/>
                 </button>
             </div> 
+            
           </div> 
 
           {/* The Part Of The Jobs to choose */}

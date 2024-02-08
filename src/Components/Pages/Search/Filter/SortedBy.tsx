@@ -42,12 +42,8 @@ const SortedBy = () => {
                       onClick={()=>handleClickedSortedBy('High To Low Price')}
                       className={`${sortedByValue=='High To Low Price' ? 'bg-green-200' : 'bg-white'}  p-2 rounded-md cursor-pointer`}>
                          High To Low Price
-                    </div>
+                    </div>className={`${sortedByValue=='High To Low Price' ? 'bg-green-200' : 'bg-white'}  p-2 rounded-md cursor-pointer`}
                   </div>
-              </div>
-
-              <div>
-
               </div>
             </div>
             

@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import DetailsJob from "../../../assets/jsonUsed/usedData.json"
 import Button from "../../Common/Button/Button"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../../Store/store"
-import SelectedTask, { setSelectedTask } from "../../Store/Slices/SelectedTask"
+import { setSelectedTask } from "../../Store/Slices/SelectedTask"
 
 type JobDetailsTypes = {
     idJob : string

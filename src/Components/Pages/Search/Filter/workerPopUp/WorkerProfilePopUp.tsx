@@ -22,9 +22,9 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
 
         <div className="flex flex-col gap-7">
 
-        <div className="flex justify-between items-start mt-3">
-            <div className="flex gap-4">
-                <div className="w-[80px] h-[80px] rounded-full overflow-hidden">
+        <div className="flex flex-col md:flex-row justify-between items-start mt-3">
+            <div className="flex md:flex-row flex-col gap-4 md:mx-0 mx-auto">
+                <div className="md:w-[80px] w-[100px] md:h-[80px] h-[100px] mx-auto md:mx-0 rounded-full overflow-hidden">
                     <img className="w-full h-full object-cover" src={clickedWorkerData.imgProfile} alt="" />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -38,10 +38,13 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                         <SlBadge/>
                         {clickedWorkerData.badge}
                     </div>
+                    <div className="block md:hidden mt-2">
+                        <h1 className="text-xl font-bold text-end text-[#2d7d7d]">{clickedWorkerData.price} Dh/Day</h1>
+                    </div>
                 </div>
             </div>
-            <div className="flex flex-col gap-2">
-                <div>
+            <div className="flex flex-col md:mx-0 mx-auto md:mt-0 mt-5 gap-2">
+                <div className="hidden md:block">
                     <h1 className="text-xl font-bold text-end text-[#2d7d7d]">{clickedWorkerData.price} Dh/Day</h1>
                 </div>
                 <div>

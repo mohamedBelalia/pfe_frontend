@@ -20,7 +20,7 @@ export default Reviews
 const ReviewUi = () => {
 
     return (
-        <div className="w-[80%] mx-auto flex flex-col gap-2 px-5 py-4 rounded-md border-2 border-teal500">
+        <div className="md:w-[80%] mx-auto flex flex-col gap-2 px-5 py-4 rounded-md border-2 border-teal500">
             <div className="flex justify-between">
                 <div className="flex gap-2 items-center">
                     <div className="w-[60px] h-[60px] rounded-full overflow-hidden">

@@ -4,6 +4,7 @@ import Home from './Components/Pages/Home/Home'
 import {BrowserRouter as Router , Routes , Route} from "react-router-dom"
 import ProcessStepOne from './Components/Pages/Search/Process/ProcessStepOne'
 import Filter from './Components/Pages/Search/Filter/Filter'
+import SearchPage from './Components/Pages/Search/SearchPage/SearchPage'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Router>
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/search' element={<SearchPage/>}/>
             <Route path='/search/step_one' element={<ProcessStepOne/>}/>
             <Route path='/search/filter' element={<Filter/>}/>
           </Routes>
