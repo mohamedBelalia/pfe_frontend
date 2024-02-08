@@ -1,7 +1,7 @@
    import ComplateAcount from "./ComplateAcount/ComplateAcount"
    import Card from "./Card/Card";
    import OtherInfos from "./OtherInfos/OtherInfos";
- import AllPosts from "./AllPosts/AllPosts";
+  import AllPosts from "./AllPosts/AllPosts";
 import Comments from "./Comments/Comments"
 const Dashboard = () => {
     

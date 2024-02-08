@@ -15,7 +15,7 @@ const Login = () => {
         </div>
         <form className=" w-[60%]   justify-center items-center" action="">
 
-          <Input labelText="email" lien="pass" />
+          <Input labelText="email" lien="email" />
           <Input labelText="password" lien="confPass" />
           <button type="submit" className=" ml-16 mt-10 transition-all ease-in-out  duration-300 bg-teal-600 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   w-48 rounded-2xl py-3 px-8">Login up</button>
 

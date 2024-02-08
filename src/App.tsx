@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-     <Dashboard /> 
-     <Auth/> 
+      <Dashboard />
+      <Auth />
     </>
   )
 }

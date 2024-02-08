@@ -1,20 +1,43 @@
 // CardComponent.tsx
-import React from 'react';
 import { HiDotsHorizontal } from "react-icons/hi";
+import ChildComponent from './ChildComponent';
+import { useState,useEffect } from "react";
 
-interface CardProps {
-  index: number;
-  onCardClick: (index: number) => void;
-}
 
-const CardComponent: React.FC<CardProps> = ({ index, onCardClick }) => {
+
+const CardComponent = () => {
+  const [showChildCard, setShowChildCard] = useState<boolean>(false);
+
+  // Effect hook to handle scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowChildCard(false); // Hide child component when scrolling occurs
+    };
+
+    // Add scroll event listener to window
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup function to remove scroll event listener when component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll); // Remove scroll event listener
+    };
+  }, []); // Empty dependency array ensures the effect runs only once when the component mounts
+
+  // Function to handle click event on the card
   const handleClick = () => {
-    onCardClick(index);
+    setShowChildCard(true); // Show child component when the card is clicked
   };
 
   return (
-      <button onClick={handleClick}><HiDotsHorizontal className='text-4xl border px-2 w-14 rounded-lg mr-5 cursor-pointer text-teal500' /></button>
+    <div>
+      {/* Button to show child component */}
+      <button onClick={handleClick}>
+        <HiDotsHorizontal className='text-4xl border px-2 w-14 rounded-lg mr-5 cursor-pointer text-teal500' />
+      </button>
+      {/* Render child component if showChildCard is true */}
+      {showChildCard && <ChildComponent onClose={() => setShowChildCard(false)} />}
+    </div>
   );
 };
 
-export default CardComponent;
+export default CardComponent;
