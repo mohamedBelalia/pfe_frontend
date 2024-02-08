@@ -1,44 +1,35 @@
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut as DOU } from "react-chartjs-2"
-import { ChartOptions } from 'chart.js';
+import React from 'react';
+import Chart from 'react-apexcharts';
+import { Options } from 'react-apexcharts';
 
-const Doughnut = () => {
-
-    Chart.register(
-        ArcElement,
-        Tooltip,
-        Legend
-    )
-
-    const data = {
-        datasets: [
-            {
-                data: [91, 9],
-                backgroundColor: [
-                    '#349292',
-                    '#D0D3DA',
-                ],
-                borderWidth: 3,
-            },
-        ],
-    };
-    const options: ChartOptions<'doughnut'> = {
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Doughnut Chart',
-            },
+const Doughnut: React.FC = () => {
+    const options: Options = {
+        chart: {
+            type: 'donut',
+            toolbar: {
+                show: false // Hides the toolbar
+            }
         },
+        stroke: {
+            colors: ['transparent'], // Set the border color to transparent
+        },
+        colors: ['#349292', '#D0D3DA'],
+        legend: {
+            show: false // Hides the legend
+        },
+        labels: [], // Empty labels array
     };
 
+    const series = [91, 9];
 
     return (
+        <Chart
+            options={options}
+            series={series}
+            type="donut"
+            width="200"
+        />
+    );
+};
 
-        <DOU className='w-24' data={data} options={options} />
-    )
-}
-
-export default Doughnut
+export default Doughnut;

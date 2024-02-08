@@ -54,7 +54,7 @@ const Signup = () => {
               </div>
               <div className=" pl-6 h-40 overflow-auto text-teal-500  rounded-lg  bg-transparent flex flex-col "  >
                 {data.map((item) => {
-                  return <label htmlFor={item.name} className="flex items-center">
+                  return <label key={item.id} htmlFor={item.name} className="flex items-center">
                     <input type="checkbox" id={item.name} className=" mr-2" />
                     <span className="text-sm">{item.name}</span>
                   </label>

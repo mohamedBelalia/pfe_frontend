@@ -9,7 +9,7 @@ const OtherInfos = () => {
 
             {/* Rates */}
             <div className='rates p-6 flex items-center justify-center  text-teal500 '>
-                <div className=" w-full flex flex-col justify-center items-center">
+                <div className="  flex flex-col justify-center items-center">
                     <img className="text-4xl w-16 ml-2" src="icons/starsRate.png" />
                     <div className=" relative flex justify-center items-center ">
                         <Doughnut />
