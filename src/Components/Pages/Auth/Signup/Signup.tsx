@@ -1,11 +1,18 @@
 import { IoCloseSharp } from "react-icons/io5";
 import data from "./dataSignup.json"
 import Input from "./Input";
+import { useState } from "react";
 
 
 const Signup = () => {
 
+  const [ professions, setProfessions ] = useState<string[]>([]);
 
+  const addProfessions = (item:string) => {
+    // Use the spread operator to create a new array with the existing items and the new item
+    ; // Replace "New Item" with your actual item
+    setProfessions([...professions, item]);
+  };
 
   return (
     <div className='w-[80%]  flex m-auto mt-[1%] ' >
@@ -23,8 +30,9 @@ const Signup = () => {
       </div>
 
 
-      {/* Create acount side  side */}
-      {/* <input type="text" class="border border-gray-300 p-2 rounded-md outline-none focus:border-blue-500"> */}
+     
+
+
 
       <div className='w-[60%] border-2 rounded-xl rounded-l-none border-l-0 pt-4'>
         <div className="text-center ">
@@ -46,16 +54,17 @@ const Signup = () => {
             <div className="border-2 rounded-lg border-t-0 ">
               <div className="h-10 relative px-2 rounded-lg border-2  border-x-0  bg-transparent">
                 <small className="text-[8px] text-teal-500 font-semibold absolute">Selected Job</small>
-                <div className="flex ">
-                  <small className="border flex cursor-pointer mx-1 mt-4 px-2 bg-slate-300 text-[10px] rounded-full">Painter <IoCloseSharp className="mt-1 ml-1 text-teal-500" /></small>
-                  <small className="border flex cursor-pointer mx-1 mt-4 px-2 bg-slate-300 text-[10px] rounded-full">Blacksmith <IoCloseSharp className="mt-1 ml-1 text-teal-500" /></small>
-                  <small className="border flex cursor-pointer mx-1 mt-4 px-2 bg-slate-300 text-[10px] rounded-full">Barber <IoCloseSharp className="mt-1 ml-1 text-teal-500" /></small>
+                <div className="flex overflow-auto ">
+                  {professions.map((item)=>(
+                  <small className="border flex cursor-pointer mx-1 mt-4 px-2 bg-slate-300 text-[10px] rounded-full">{item} <IoCloseSharp className="mt-1 ml-1 text-teal-500" /></small>
+
+                  ))}
                 </div>
               </div>
               <div className=" pl-6 h-40 overflow-auto text-teal-500  rounded-lg  bg-transparent flex flex-col "  >
                 {data.map((item) => {
                   return <label key={item.id} htmlFor={item.name} className="flex items-center">
-                    <input type="checkbox" id={item.name} className=" mr-2" />
+                    <input value={item.name} onClick={()=>addProfessions(item.name)} type="checkbox" id={item.name} className=" mr-2" />
                     <span className="text-sm">{item.name}</span>
                   </label>
                 })}

@@ -33,7 +33,7 @@ const ParentReplayCard = () => {
         <HiDotsHorizontal className="  text-teal-500 object-cover border rounded-lg w-16 h-10  text-xl  md:text-3xl" />
       </button>
       {/* Render child component if showChildCard is true */}
-      {showChildCard && <ReplayCard  onClose={() => setShowChildCard(false)} isReplay={false} />}
+      {showChildCard && <ReplayCard isOpen={false}  onClose={() => setShowChildCard(false)} />}
     </div>
   )
 }
