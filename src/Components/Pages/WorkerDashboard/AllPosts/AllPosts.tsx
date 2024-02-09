@@ -61,9 +61,9 @@ const AllPosts = () => {
               <div className="flex p-2 items-center justify-between">
                 <div className="opacity-50">{item.date}</div>
                 
-                {/* Render CardComponent and ChildComponent */}
+                {/* Bring CardComponent and ChildComponent */}
                 <div className="relative" key={parseInt(item.id)}>
-                  <CardComponent /> {/* Pass index prop to CardComponent */}
+                  <CardComponent />
                   {openCards.includes(parseInt(item.id)) && (
                     <ChildComponent onClose={() => handleCardClick(parseInt(item.id))} />
                   )}
@@ -75,6 +75,7 @@ const AllPosts = () => {
       </div>
       
       {/* Buttons for horizontal scrolling */}
+      
       <div className="flex justify-center">
         <button
           className="text-4xl text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white transition duration-300 ease-in-out"

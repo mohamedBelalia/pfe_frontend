@@ -10,9 +10,8 @@ interface ChildProps {
   onClose: () => void; // Function to close the child component
 }
 
-// Define ChildComponent function component
 const ChildComponent: React.FC<ChildProps> = ({ onClose }) => {
-  // State to track if the page is scrolled
+  // State if the page is scrolled
   const [isScroll, setIsScroll] = useState(false);
 
   // Effect hook to add scroll event listener
@@ -40,7 +39,7 @@ const ChildComponent: React.FC<ChildProps> = ({ onClose }) => {
   return (
     <div className={`absolute flex-col w-52 -ml-40 -mt-[350px] bg-teal-500 bg-opacity-85 border-gray-300 p-4 rounded-lg ${isScroll ? 'hidden' : ''}`}>
       <div>
-        <button onClick={handleClick} className="flex-end w-full text-white">
+        <button onClick={handleClick} className=" flex justify-end w-full text-white">
           <IoCloseSharp />
         </button>
 

@@ -1,18 +1,38 @@
 import { FaStar } from "react-icons/fa";
-import { HiDotsHorizontal } from "react-icons/hi";
 import data from "./data.json"
-import ReplayTool from "./ReplayTool";
 import Btn from "../BTN/Btn";
 import ReplayCard from "./ReplayCard";
+import { useState } from "react";
+import ParentReplayCard from "./ParentReplayCard";
+import ReplayTool from "./ReplayTool";
 
 
 
 const Comments = () => {
+
+    const [openCards, setOpenCards] = useState<number[]>([]);
+    
+
+  
+    // Function to handle card click event
+    const handleCardClick = (index: number) => {
+      setOpenCards((prevOpenCards) =>
+        prevOpenCards.includes(index) ? prevOpenCards.filter((i) => i !== index) : [...prevOpenCards, index]
+      );
+    };
+
+    
+
   return (
     <div className="mt-16">
         <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">Clients Reviews</p>
-        {data.map((item)=>{
-            return <div key={item.id} className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
+        {data.map((item,index)=>{
+            return(
+
+            
+            <div>
+
+            <div key={item.id} className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
                 
                 <div>
                     <div className="flex justify-between" >
@@ -35,13 +55,19 @@ const Comments = () => {
                     </div>
                 </div>
                 <div className="md:my-10 my-4 font-semibold text-sm md:text-lg">{item.text}</div>
-                <div className="flex cursor-pointer  justify-end ">
-                    <HiDotsHorizontal className="text-teal-500 object-cover border rounded-lg w-16 h-10  text-xl  md:text-3xl"/>
+                
+                {/* Bring CardComponent and ChildComponent */}
+                <div className="relative" key={item.id}>
+                  <ParentReplayCard />
+                  {openCards.includes(index) && (
+                    <ReplayCard  onClose={() => handleCardClick(index)} isOpen={false} />
+                  )}
                 </div>
-                <ReplayCard />
             </div>
-        })}
-        <ReplayTool  />
+               <ReplayTool  />
+                    
+            </div>
+        )})}
         <div className="flex justify-center my-6 ">
             <Btn  text="More"/>
         </div>        
