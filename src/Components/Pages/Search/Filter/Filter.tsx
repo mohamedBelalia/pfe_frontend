@@ -66,11 +66,13 @@ const Filter = () => {
             clickedWorkerId != "" &&
         <div className="w-full h-screen bg-[#00000062] fixed top-0 z-50">
             
-            <div className="flex flex-col justify-center items-center h-full">
+            <div className="md:w-[50%] w-[95%] mx-auto flex flex-col justify-center items-center h-full">
                 
-                <div onClick={()=>setClickedWorkerId("")} 
-                    className="hover:bg-red-100 cursor-pointer flex justify-center items-center w-[60px] h-[30px] bg-white rounded-t-full text-xl font-bold">
-                    <h1>X</h1>
+                <div className="flex justify-end w-full">
+                    <div onClick={()=>setClickedWorkerId("")} 
+                        className="hover:bg-red-100 cursor-pointer flex justify-center items-center w-[60px] h-[30px] bg-white rounded-t-lg text-xl font-bold">
+                        <h1>X</h1>
+                    </div>
                 </div>
 
                 <WorkerProfilePopUp idWorker={clickedWorkerId}/>

@@ -3,13 +3,13 @@
       {
         "id": "1",
         "img" : "./imgUsed/Plumber.jpg",
-        "jobName" : "Furniture Assembly",
+        "jobName" : "Zlije",
         "smallDescription" : "Furniture Assembly"
       },
       {
         "id": "2",
         "img" : "./imgUsed/Plumber.jpg",
-        "jobName" : "Furniture Assembly",
+        "jobName" : "Trisyan",
         "smallDescription" : "Furniture Assembly"
       },
       {

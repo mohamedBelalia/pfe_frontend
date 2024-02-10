@@ -72,7 +72,7 @@ const CategoryBtn = ({label}:CategoryBtnTypes) => {
     }
 
     return (
-         <button onClick={goTo} className="px-3 py-2 bg-[#d4fff7cc] w-full rounded-2xl font-semibold md:font-bold text-[#414e5fb3] text-lg md:text-xl border-2 border-green-700">
+         <button onClick={goTo} className="px-3 py-2 bg-[#d4fff7cc] w-full rounded-2xl font-semibold text-gray-600 text-lg  border-2 border-green-700">
             {label}
         </button>
     )

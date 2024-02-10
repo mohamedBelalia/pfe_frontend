@@ -1,6 +1,6 @@
 import { RxFramerLogo , RxHamburgerMenu , RxCross1 } from "react-icons/rx";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ShowedContent from "./ShowedContent";
 import PhoneNavbar from "./PhoneNavbar";
@@ -9,9 +9,15 @@ import { IoSearchSharp } from "react-icons/io5";
 const Navbar = () => {
 
     const [isClicked , setIsClicked] = useState<boolean>(false)
-
+    const navigate = useNavigate()
     const showNavBox = ()=>{
         setIsClicked(!isClicked)
+    }
+
+    // to go to the specific path in addition go to the top of the page
+    const goTo = (path : string) => {
+        window.scroll(0,0)
+        navigate(path)
     }
 
   return (
@@ -19,7 +25,7 @@ const Navbar = () => {
         <div className="fixed mx-auto mt-5 w-[90%] md:w-[70%] sm:shadow-xl mb-10">
             <div className="px-6 py-5 rounded-xl bg-transparent md:bg-white md:w-auto w-[50px]">
                 <div className="flex md:justify-between justify-end items-center">
-                    <div className="gap-2 items-center hidden md:flex cursor-pointer">
+                    <div onClick={()=>goTo("/")} className="gap-2 items-center hidden md:flex cursor-pointer">
                         <RxFramerLogo className="text-4xl text-green-700"/>
                         <p className="text-xl text-green-700">Tasker</p>
                     </div>
@@ -29,9 +35,9 @@ const Navbar = () => {
                         {/* Grouping The ul and the "Become a tasker" btn to make the respnsive mechanism easy */}
                         <div className="items-center gap-6 hidden md:flex">
                             <ul className="flex items-center gap-6 font-bold text-base text-[#414E5F]">
-                                <Link to="/Signup">Signup</Link>
-                                <Link to="/Login">Login</Link>
-                                <Link to="/search"><IoSearchSharp className="text-2xl"/></Link>
+                                <div className="cursor-pointer" onClick={()=>goTo("/Signup")}>Signup</div>
+                                <div className="cursor-pointer" onClick={()=>goTo("/Login")}>Login</div>
+                                <div className="cursor-pointer" onClick={()=>goTo("/search")}><IoSearchSharp className="text-2xl"/></div>
                             </ul>
                             <Button label="Become a tasker" bg="#199AFF" color="white"/>
                         </div>

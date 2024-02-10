@@ -10,7 +10,7 @@ const ListWorkers = ({getClickedWorkerId}:listWorkersProps) => {
     <div className="">
           <div className="flex flex-col gap-8">
               {
-                workersInfo.workers.map((worker,index)=>(
+                workersInfo.workers.map((worker,_)=>(
                   <WorkerCard key={worker.id} workerInf={worker} getClickedWorkerId={getClickedWorkerId}/>
                 ))
               }

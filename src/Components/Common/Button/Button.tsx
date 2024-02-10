@@ -7,7 +7,7 @@ interface ButtonTypes {
 
 const Button = ({label , color , bg}:ButtonTypes) => {
   return (
-    <button className="px-5 py-3 rounded-md font-bold" style={{color:color , backgroundColor:bg}}>
+    <button className="px-5 py-2 rounded-md font-bold" style={{color:color , backgroundColor:bg}}>
         {label}
     </button>
   )

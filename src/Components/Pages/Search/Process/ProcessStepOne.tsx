@@ -262,7 +262,9 @@ const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox}:searchedCi
         <div 
             onClick={()=>cityClicked(city)}
             className="w-full cursor-pointer h-[60px] px-6 border-b border-gray-500 
-            flex justify-start text-lg items-center hover:bg-gray-200"
-        >{city}</div>
+            flex justify-start gap-3 text-lg items-center hover:bg-gray-200"
+        >
+           <FaLocationDot className="text-gray-700"/> {city}
+        </div>
     )
 }

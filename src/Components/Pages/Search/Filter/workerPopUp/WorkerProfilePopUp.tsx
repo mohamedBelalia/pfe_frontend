@@ -18,7 +18,7 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
     const clickedWorkerData : workerDataProps= workers.workers.filter((worker)=> worker.id == idWorker)[0] ;
 
   return (
-    <div className="md:w-[50%] w-[95%] h-[80%] rounded-lg pt-4 pb-10 px-6 bg-white overflow-y-scroll overflow-x-hidden">
+    <div className="w-full h-[80%] rounded-lg pt-4 pb-10 px-6 bg-white overflow-y-scroll overflow-x-hidden">
 
         <div className="flex flex-col gap-7">
 

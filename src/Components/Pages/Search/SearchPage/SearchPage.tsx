@@ -7,12 +7,17 @@ import { useNavigate } from "react-router-dom"
 import { setSelectedTask } from "../../../Store/Slices/SelectedTask"
 import {devJobs , devTasks} from "../../../../assets/jsonTemp/tempData.json"
 import { IoIosArrowDown } from "react-icons/io"
+import NearWorkers from "./NearWorkers"
+import WorkerProfilePopUp from "../Filter/workerPopUp/WorkerProfilePopUp"
 
 const SearchPage = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
     const [searchedTask , setSearchedTask] = useState<string>("")
+
+    // to handle the clicked worker popup profile
+    const [workerClickedId , setWorkerClickedId] = useState<string>("")
 
     const searchBtn = () => {
         if(searchedTask.trim().length > 0){
@@ -69,10 +74,10 @@ const SearchPage = () => {
         <div className="border">
             <Navbar/>
         </div>
-        <div className="py-36 mb-20 w-[80%] mx-auto flex flex-col gap-8">
+        <div className="pt-36 mb-20 mx-auto flex flex-col gap-8">
             <h1 className="text-center text-2xl font-semibold text-teal-700">Search For Your Specific Task</h1>
 
-            <div className="w-full flex justify-center">
+            <div className="md:w-full w-[80%] mx-auto md:mx-0 flex justify-center">
                 <input 
                   onChange={(e)=>setSearchedTask(e.target.value)}
                   className="h-[55px] md:h-[70px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 border-[#199AFF] focus:border-teal-700"
@@ -136,7 +141,31 @@ const SearchPage = () => {
             </div>
 
             </div>
-        
+
+
+            <div className="md:w-[80%] md:mx-auto mx-0">
+              <NearWorkers getWorkerId={setWorkerClickedId}/>
+            </div>
+
+            {/* worker profile popup */}
+            {
+            workerClickedId != "" &&
+            <div className="w-full h-screen bg-[#00000062] fixed top-0 z-50">
+                
+                <div className="md:w-[50%] w-[95%] mx-auto flex flex-col justify-center items-center h-full">
+                    
+                    <div className="flex justify-end w-full">
+                      <div onClick={()=>setWorkerClickedId("")} 
+                          className="hover:bg-red-100 cursor-pointer flex justify-center items-center w-[60px] h-[30px] bg-white rounded-t-lg text-xl font-bold">
+                          <h1>X</h1>
+                      </div>
+                    </div>
+
+                    <WorkerProfilePopUp idWorker={workerClickedId}/>
+                </div>
+            </div>
+            }
+                        
         </div>
     </div>
   )
