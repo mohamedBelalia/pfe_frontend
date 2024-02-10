@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 interface ChildProps {
   onClose: () => void; // Function to close the child component
-  isOpen:boolean; // var to open The tool component
+   // var to open The tool component
 }
 
 
@@ -52,7 +52,7 @@ const ReplayCard: React.FC<ChildProps> = ({ onClose }) => {
 
 
       <div className="flex flex-col ">
-        <button onClick={handleClick} className="mb-3 flex items-center md:ml-14  px-2 md:text-xl  text-white rounded-md"><BsFillReplyFill className="mr-2 md:text-2xl" />Replay</button>
+        <button className="mb-3 flex items-center md:ml-14  px-2 md:text-xl  text-white rounded-md"><BsFillReplyFill className="mr-2 md:text-2xl" />Replay</button>
         <button onClick={handleClick} className="mb-3 flex items-center md:ml-14  px-2 md:text-xl  text-white rounded-md"><GrClear className="mr-2 md:text-2xl" /> Report</button>
 
       </div>

@@ -37,9 +37,9 @@ const Comments = () => {
         return (
 
 
-          <div>
+          <div key={item.id}>
 
-            <div key={item.id} className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
+            <div  className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
 
               <div>
                 <div className="flex justify-between" >
@@ -67,11 +67,11 @@ const Comments = () => {
               <div className="relative" key={item.id}>
                 <ParentReplayCard />
                 {openCards.includes(index) && (
-                  <ReplayCard isOpen={false} onClose={() => handleCardClick(index)}  />
+                  <ReplayCard onClose={() => handleCardClick(index)}  />
                 )}
               </div>
             </div>
-             <ReplayTool />
+            <ReplayTool />
           </div>
         )
       })}
