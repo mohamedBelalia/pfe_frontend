@@ -1,6 +1,6 @@
 import { RxFramerLogo } from "react-icons/rx"
 import { FaCheck } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../Store/store";
 import { addTheReachedStepName } from "../../../Store/Slices/StepsFilterFollowSlice";
