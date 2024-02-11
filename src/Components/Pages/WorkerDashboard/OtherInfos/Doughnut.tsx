@@ -12,12 +12,18 @@ const Doughnut: React.FC = () => {
         },
         stroke: {
             colors: ['transparent'], // Set the border color to transparent
+            // lineCap="3"
+           
         },
+        
+
         colors: ['#349292', '#D0D3DA'],
         legend: {
             show: false // Hides the legend
         },
         labels: [], // Empty labels array
+        
+
     };
 
     const series = [91, 9];
@@ -27,7 +33,8 @@ const Doughnut: React.FC = () => {
             options={options}
             series={series}
             type="donut"
-            width="200"
+            width="150"
+            
         />
     );
 };

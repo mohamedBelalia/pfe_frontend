@@ -13,14 +13,16 @@ export default {
       'tab': '1170px',
       'lg': '1440px',
     },
+
+
     extend: {
       colors: {
-        blue500: '#199AFF', 
-        blue600: '#2D62FE', 
-        teal500: '#349292', 
-        gray300: '#D0D3DA', 
-        gray500: '#717E91', 
-        gray700: '#414E5F', 
+        blue500: '#199AFF',
+        blue600: '#2D62FE',
+        teal500: '#349292',
+        gray300: '#D0D3DA',
+        gray500: '#717E91',
+        gray700: '#414E5F',
       },
       width: {
         container: "70%"
@@ -29,7 +31,14 @@ export default {
      
       
      },
-   },
-   plugins: [],
- }
+  
  
+
+
+
+  },
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
+}
+
