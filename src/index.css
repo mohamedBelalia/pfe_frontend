@@ -1,12 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-<<<<<<< HEAD
 
 @layer utilities {
     .no-scrollbar {
         scrollbar-width: none;
     }
 }
-=======
->>>>>>> 8ad8dccf5f7a121795de259bf5e520473ef03963
+
