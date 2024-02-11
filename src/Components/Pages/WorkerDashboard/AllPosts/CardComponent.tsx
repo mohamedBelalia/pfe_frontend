@@ -32,7 +32,7 @@ const CardComponent = () => {
     <div>
       {/* Button to show child component */}
       <button onClick={handleClick}>
-        <HiDotsHorizontal className='text-4xl border px-2 w-14 rounded-lg mr-5 cursor-pointer text-teal500' />
+        <HiDotsHorizontal className=' text-x px-2 w-14 rounded-lg mr-5 cursor-pointer text-teal500' />
       </button>
       {/* Render child component if showChildCard is true */}
       {showChildCard && <ChildComponent onClose={() => setShowChildCard(false)} />}
