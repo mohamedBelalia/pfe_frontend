@@ -1,11 +1,81 @@
 {
-    "cities": [
-      {
-        "name": "Marrakech"
-      },
-      {
-        "name": "Casablanca"
-      }
-    ]
-  }
-  
+  "devJobs": [
+    {
+      "id_job": "1",
+      "jobTitle": "Front-end Developer"
+    },
+    {
+      "id_job": "2",
+      "jobTitle": "Back-end Developer"
+    },
+    {
+      "id_job": "3",
+      "jobTitle": "Full Stack Developer"
+    },
+    {
+      "id_job": "4",
+      "jobTitle": "UI/UX Designer"
+    },
+    {
+      "id_job": "5",
+      "jobTitle": "DevOps Engineer"
+    }
+  ],
+  "devTasks": [
+    {
+      "id_task": "1",
+      "taskTitle": "Implement responsive user interfaces",
+      "id_job": "1"
+    },
+    {
+      "id_task": "2",
+      "taskTitle": "Collaborate with UX/UI designers",
+      "id_job": "1"
+    },
+    {
+      "id_task": "3",
+      "taskTitle": "Optimize web applications",
+      "id_job": "1"
+    },
+    {
+      "id_task": "4",
+      "taskTitle": "Develop server-side logic",
+      "id_job": "2"
+    },
+    {
+      "id_task": "5",
+      "taskTitle": "Design and implement database schemas",
+      "id_job": "2"
+    },
+    {
+      "id_task": "6",
+      "taskTitle": "Combine front-end and back-end development",
+      "id_job": "3"
+    },
+    {
+      "id_task": "7",
+      "taskTitle": "Work on both server-side and client-side development",
+      "id_job": "3"
+    },
+    {
+      "id_task": "8",
+      "taskTitle": "Create visually appealing user interfaces",
+      "id_job": "4"
+    },
+    {
+      "id_task": "9",
+      "taskTitle": "Conduct user research",
+      "id_job": "4"
+    },
+    {
+      "id_task": "10",
+      "taskTitle": "Automate deployment processes",
+      "id_job": "5"
+    },
+    {
+      "id_task": "11",
+      "taskTitle": "Manage and configure cloud infrastructure",
+      "id_job": "5"
+    }
+  ]
+}

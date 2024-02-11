@@ -1,0 +1,29 @@
+{
+    "faQuestions" : [
+        {   
+            "id" : "Q1" ,
+            "question" : "What types of projects do your builders undertake?" ,
+            "answer" : "Our skilled builders are experienced in a wide range of construction projects, including residential homes, commercial spaces, renovations, and more. Whether you're looking to build a new structure or update an existing one"
+        },
+        {   
+            "id" : "Q2" ,
+            "question" : "How long does a typical construction project take?" ,
+            "answer" : "The duration of a construction project varies based on factors such as project size, complexity, and weather conditions. Our team works diligently to provide accurate project timelines during the initial consultation"
+        },
+        {   
+            "id" : "Q3" ,
+            "question" : "What makes your builders stand out?" ,
+            "answer" : "Our builders are committed to delivering exceptional craftsmanship, attention to detail, and superior customer service. We prioritize open communication throughout the entire construction process."
+        },
+        {   
+            "id" : "Q4" ,
+            "question" : "How is pricing structured for your construction services?" ,
+            "answer" : "Our pricing is transparent and tailored to each specific project. During the consultation phase, we provide a detailed estimate outlining the costs associated with labor, materials, permits, and any other relevant expenses."
+        },
+        {   
+            "id" : "Q5" ,
+            "question" : "Do your builders handle permits and approvals?" ,
+            "answer" : "Yes, our team is well-versed in navigating the regulatory landscape. We take care of obtaining the required permits and approvals to ensure that your construction project complies with local building codes and regulations. "
+        }
+    ]
+}

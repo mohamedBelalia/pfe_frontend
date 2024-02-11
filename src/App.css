@@ -1,0 +1,65 @@
+.ourContainer{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ourBorder{
+    border: solid 1px red;
+}
+
+.hideScrollBar::-webkit-scrollbar {
+    display: none;
+}
+
+.circleTimer {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: solid 3px #349292;
+    border-left: solid 3px #ffffff;
+    animation: changeTimer 7s infinite linear;
+}
+
+.zelijeBg{
+    background-image: url("../public/imgUsed/bg5.png");
+}
+
+.citiesScrollLeft{
+    animation: 120s citySlideLeft infinite linear;
+}
+
+.citiesScrollRight{
+    animation: 120s citySlideRight infinite linear;
+}
+
+
+@keyframes citySlideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(calc(-24 * 190px));
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes citySlideRight {
+    0% {
+        transform: translateX(calc(-24 * 190px));
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-24 * 190px));
+    }
+}
+
+@keyframes changeTimer {
+    100% {
+        transform: rotate(2turn);
+     }
+}
