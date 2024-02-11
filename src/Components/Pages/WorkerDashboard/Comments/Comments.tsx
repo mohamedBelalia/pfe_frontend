@@ -35,11 +35,8 @@ const Comments = () => {
       <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">Clients Reviews</p>
       {data.map((item, index) => {
         return (
-
-
           <div key={item.id}>
-
-            <div  className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
+            <div  className="lg:mx-56 mx-10 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
 
               <div>
                 <div className="flex justify-between" >
@@ -71,10 +68,10 @@ const Comments = () => {
                 )}
               </div>
             </div>
-            <ReplayTool />
           </div>
         )
       })}
+      <ReplayTool />
       <div className="flex justify-center my-6 ">
         <Btn text="More" />
       </div>
