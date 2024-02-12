@@ -14,7 +14,7 @@ const Login = () => {
     <div className='flex my-6 mt-[5%]  justify-between   lg:w-[70%] w-[90%] m-auto' >
       <div className="flex flex-col border-2 rounded-xl rounded-r-none border-r-0 justify-center items-center w-[60%]">
 
-        <div className="">
+        <div className="flex flex-col items-center">
           <h1 className="text-teal-500 text-3xl font-semibold">Login To Account</h1>
           <small className="text-red-500">*use your active number to conecting with you</small>
         </div>
@@ -22,7 +22,7 @@ const Login = () => {
 
           <Input labelText="email" lien="email" />
           <Input labelText="password" lien="confPass" />
-          <button  type="submit" className=" lg:ml-16 lg:mt-10 mt-6 flex justify-center transition-all ease-in-out  duration-300 bg-teal-600 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   w-48 rounded-2xl py-3 px-8">Login up</button>
+          <button type="submit" className=" lg:ml-16 lg:mt-10 mt-6 flex justify-center transition-all ease-in-out  duration-300 bg-teal-600 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   w-48 rounded-2xl py-3 px-8">Login up</button>
 
         </form>
       </div>

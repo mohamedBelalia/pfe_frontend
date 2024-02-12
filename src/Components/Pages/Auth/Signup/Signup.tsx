@@ -10,18 +10,7 @@ const Signup = () => {
   const [professions, setProfessions] = useState<string[]>([]);
 
 
-  const addProfessions = (item: string) => {
-    const isElementInArray = professions.includes(item);
-    { !isElementInArray && (setProfessions([...professions, item])) }
-
-  };
-
-  const deleteProfession = (index: number) => {
-    const updateProfession = [...professions];
-    updateProfession.splice(index, 1);
-    setProfessions(updateProfession);
-  }
-
+ 
 
   const navigate = useNavigate();
 
@@ -36,7 +25,7 @@ const Signup = () => {
 
   return (
     // lg:w-[80%]  flex items-center  m-auto mt-[1%] 
-    <div className='flex m-auto w-[95%] my-10 lg:w-[80%]' >
+    <div className='flex  m-auto w-[95%] my-10 lg:w-[80%]' >
       {/* welcome side */}
       <div className='tab:flex  tab:justify-center tab:items-center w-[60%] relative hidden overflow-hidden text-white rounded-l-xl flex-col ' style={{ background: "#414F5F" }}>
         <h1 className="lg:text-4xl text-xl font-bold">Welcome Back !</h1>
