@@ -50,13 +50,13 @@ const AllPosts = () => {
           <div
             key={item.id}
             style={{ minWidth: card_width, minHeight: card_height }}
-            className="md:m-10 m-4 l rounded-xl"
+            className="md:m-10 m-4  rounded-xl"
           >
             {/* Card image */}
             <img className="rounded-t-xl" src={item.img} alt="img" />
             
             {/* Card content */}
-            <div className="border border-black border-t-0 bg-gray-100 px-2  rounded-b-xl">
+            <div className="border border-black border-t-0 bg-gray-200 px-2  rounded-b-xl">
               <p className="p-2">{item.text}</p>
               <div className="flex p-2 items-center justify-between">
                 <div className="opacity-30">{item.date}</div>

@@ -1,12 +1,9 @@
 import Input from "../Signup/Input"
 
-
 const Login = () => {
 
-
-
   return (
-    <div className='flex  mt-[5%]  justify-between   lg:w-[70%] w-[90%] m-auto' >
+    <div className='flex my-6 mt-[5%]  justify-between   lg:w-[70%] w-[90%] m-auto' >
       <div className="flex flex-col border-2 rounded-xl rounded-r-none border-r-0 justify-center items-center w-[60%]">
 
         <div className="">

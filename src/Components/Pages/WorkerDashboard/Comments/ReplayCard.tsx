@@ -6,13 +6,13 @@ import { useState, useEffect } from "react";
 
 interface ChildProps {
   onClose: () => void; // Function to close the child component
-   // var to open The tool component
+  // var to open The tool component
 }
 
 
 const ReplayCard: React.FC<ChildProps> = ({ onClose }) => {
 
-   const [isScroll, setIsScroll] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
 
 
 
@@ -44,7 +44,7 @@ const ReplayCard: React.FC<ChildProps> = ({ onClose }) => {
 
 
   return (
-    <div className="absolute lg:-mt-[185px]  md:w-56 md:h-46 h-38 sm:ml-48 md:pb-10 lg:ml-[40%] ml-[30%] p-4 -mt-36 md:ml-60 md:-mt-52  bg-teal500 bg-opacity-85  border-gray-300 md:p-2 rounded-xl ">
+    <div className="absolute tab:-mt-[207px]  md:w-56 md:h-46 h-38 sm:ml-48 md:pb-10 tab:ml-[40%] ml-[30%] p-4 -mt-36 md:ml-60 md:-mt-52  bg-teal500 bg-opacity-85  border-gray-300 md:p-2 rounded-xl ">
       <button className="flex w-full   md:mr-6 md:mt-6 md:mb-4 md:px-4  justify-end text-white">
         <IoCloseSharp onClick={handleClick} className="text-xl md:text-3xl" />
       </button >
