@@ -26,7 +26,7 @@ const Doughnut: React.FC = () => {
 
     };
 
-    const series = [91, 9];
+    const series = [45, 45];
 
     return (
         <Chart

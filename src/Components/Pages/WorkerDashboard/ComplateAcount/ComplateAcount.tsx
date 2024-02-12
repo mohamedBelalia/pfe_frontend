@@ -13,20 +13,20 @@ const CompleteAcount = () => {
                 </div>
                 <div className="px-4 py-4">
                     <div className="flex py-3 font-700 text-teal500">
-                        <FaCheckCircle className="text-2xl mr-2 font-700"/>
-                        <p className="text-xl -mt-1 font-semibold">Image Profile</p>
+                        <FaCheckCircle className="text-xl mr-1 font-700"/>
+                        <p className="text-xl md:text-lg md:font-semibold -mt-1 font-semibold">Image Profile</p>
                     </div>
                     <div className="flex font-700 text-red-500" >
-                        <PiXCircleFill className="text-2xl mr-2 font-700" />
-                        <p className="text-xl font-semibold  -mt-1">City or Region</p>
+                        <PiXCircleFill className="text-2xl -ml-1 mr-2 font-700" />
+                        <p className="md:text-lg md:font-semibold  -mt-1">City or Region</p>
                     </div>
                     <div className="flex py-3 font-700 text-red-500">
-                        <PiXCircleFill className="text-2xl mr-2 font-700"/>
-                        <p className="text-xl font-semibold  -mt-1">Paiment Price</p>
+                        <PiXCircleFill className="text-2xl -ml-1 mr-2 font-700"/>
+                        <p className=" md:text-lg md:font-semibold   -mt-1">Paiment Price</p>
                     </div>
                     <div className="flex font-700 text-teal500">
-                        <FaCheckCircle className="text-2xl mr-2 font-700"/>
-                        <p className="text-xl font-semibold  -mt-1">Description</p>
+                        <FaCheckCircle className="text-xl mr-2 font-700"/>
+                        <p className="md:text-lg md:font-semibold  -mt-1">Description</p>
                     </div>
                 </div>
             </div>
