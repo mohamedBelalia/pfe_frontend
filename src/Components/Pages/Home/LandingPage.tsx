@@ -45,24 +45,24 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
       <div className="w-full h-full absolute top-0 left-0 overflow-hidden zelijeBg"></div>
 
-      <div className="h-[100%] relative ourContainer flex flex-col gap-10 md:gap-40 justify-center md:justify-end items-center">
+      <div className="h-[100%] relative ourContainer flex flex-col gap-10 md:gap-32 justify-center md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
-          <div className="w-full flex flex-col gap-10 justify-center items-center relative">
-            
-            <h1 className="font-bold text-4xl md:text-5xl text-white text-center">Find Your Expert Worker</h1>
-            <div className="w-full flex justify-center">
-                <input 
-                  onChange={(e)=>setSearchedTask(e.target.value)}
-                  className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
-                  type="text" 
-                  placeholder="Search By Task Name"/>
-                <button onClick={searchBtn} className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
-                  <IoSearchSharp className="text-3xl text-white"/>
-                </button>
+            <div className="w-full flex  flex-col gap-10 justify-center items-center relative">
+              
+              <h1 className="font-bold text-4xl md:text-5xl text-white text-center">Find Your Expert Worker</h1>
+              <div className="w-full flex justify-center">
+                  <input 
+                    onChange={(e)=>setSearchedTask(e.target.value)}
+                    className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
+                    type="text" 
+                    placeholder="Search By Task Name"/>
+                  <button onClick={searchBtn} className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
+                    <IoSearchSharp className="text-3xl text-white"/>
+                  </button>
+              </div> 
+              
             </div> 
-            
-          </div> 
 
           {/* The Part Of The Jobs to choose */}
           <div className=" md:w-full w-[95vw] md:static absolute bottom-0 mb-8 md:mb-12">

@@ -32,7 +32,7 @@ const Comments = () => {
             
             <div>
 
-            <div key={item.id} className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 md:px-16 py-5 my-10 border-teal500">
+            <div key={item.id} className="md:mx-56 mx-4 relative rounded-xl border-2 px-10 py-5 my-10 border-teal500">
                 
                 <div>
                     <div className="flex justify-between" >
@@ -46,10 +46,10 @@ const Comments = () => {
                         <div className="flex ">
                             {[...Array(item.starsNumber)].map((_,index)=>{
                                 
-                                return <FaStar key={index} className="text-yellow-500 m-1" />
+                                return <FaStar key={index} className="text-yellow-500 m-1 text-xl" />
                             })}
                             {[...Array(Math.max(6-item.starsNumber,0))].map((_,index)=>{
-                                return <FaStar key={index} className="text-gray-300 m-1" />
+                                return <FaStar key={index} className="text-gray-300 m-1 text-xl" />
                             })}
                         </div>
                     </div>
