@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Input from "../Signup/Input"
+import Navbar from "../../../Common/Navbar/Navbar";
 
 const Login = () => {
 
@@ -11,7 +12,9 @@ const Login = () => {
   };
 
   return (
-    <div className='flex my-6 mt-[5%]  justify-between   lg:w-[70%] w-[90%] m-auto' >
+    <div className="border">
+    <Navbar/>
+    <div className='flex my-6 justify-between mt-40 lg:w-[70%] w-[90%] m-auto' >
       <div className="flex flex-col border-2 rounded-xl rounded-r-none border-r-0 justify-center items-center w-[60%]">
 
         <div className="flex flex-col items-center">
@@ -42,7 +45,7 @@ const Login = () => {
 
 
     </div>
-
+    </div>
 
 
 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeadlessUI from "./HeadlessUI";
 import Input from "./Input";
 import { useState } from "react";
+import Navbar from "../../../Common/Navbar/Navbar";
 
 
 const Signup = () => {
@@ -24,8 +25,10 @@ const Signup = () => {
 
 
   return (
-    // lg:w-[80%]  flex items-center  m-auto mt-[1%] 
-    <div className='flex  m-auto w-[95%] my-10 lg:w-[80%]' >
+    <div className="border">
+      <Navbar/>
+    {/* // lg:w-[80%]  flex items-center  m-auto mt-[1%]  */}
+    <div className='flex mt-32 m-auto w-[95%] my-10 lg:w-[80%]' >
       {/* welcome side */}
       <div className='tab:flex  tab:justify-center tab:items-center w-[60%] relative hidden overflow-hidden text-white rounded-l-xl flex-col ' style={{ background: "#414F5F" }}>
         <h1 className="lg:text-4xl text-xl font-bold">Welcome Back !</h1>
@@ -81,7 +84,7 @@ const Signup = () => {
 
 
     </div>
-
+    </div>
   )
 }
 
