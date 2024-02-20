@@ -1,17 +1,46 @@
 import { RxFramerLogo , RxHamburgerMenu , RxCross1 } from "react-icons/rx";
 import Button from "../Button/Button";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import ShowedContent from "./ShowedContent";
 import PhoneNavbar from "./PhoneNavbar";
 import { IoSearchSharp } from "react-icons/io5";
 
 const Navbar = () => {
 
-    const [isClicked , setIsClicked] = useState<boolean>(false)
+    // To handle the guids part in the navbar by hide and show it throw the state below
+    const [isQuidsClicked , setIsQuidsClicked] = useState<boolean>(false)
+
+    const [isBecomeTaskerClicked , setIsBecomeTaskerClicked] = useState<boolean>(false)
+
+    const taskerRegesterBtnsPopupRef = useRef<HTMLDivElement | null>(null)
+
+    useEffect(()=>{
+        const taskerBtnsClickOutSide = (event: MouseEvent): void => {
+            if (taskerRegesterBtnsPopupRef.current && !taskerRegesterBtnsPopupRef.current.contains(event.target as Node)) {
+              setIsBecomeTaskerClicked(false)
+            }
+          };
+
+          document.addEventListener('click' , taskerBtnsClickOutSide)
+
+          return () => {removeEventListener('click' , taskerBtnsClickOutSide)}
+
+    },[])
+
     const navigate = useNavigate()
-    const showNavBox = ()=>{
-        setIsClicked(!isClicked)
+
+    // handle the guids part hide/show btn
+    const showGuidsBox = ()=>{
+        setIsQuidsClicked(!isQuidsClicked)
+        // when the show is clicked and if the BecomeTasker btns are showen , we should hide it
+        setIsBecomeTaskerClicked(false) 
+    }
+
+
+    const showTaskerBtnRegester = () => {
+        setIsBecomeTaskerClicked(!isBecomeTaskerClicked)
+        setIsQuidsClicked(false)
     }
 
     // to go to the specific path in addition go to the top of the page
@@ -39,14 +68,16 @@ const Navbar = () => {
                                 <div className="cursor-pointer" onClick={()=>goTo("/Login")}>Login</div>
                                 <div className="cursor-pointer" onClick={()=>goTo("/search")}><IoSearchSharp className="text-2xl"/></div>
                             </ul>
-                            <Button label="Become a tasker" bg="#199AFF" color="white"/>
+                            <div ref={taskerRegesterBtnsPopupRef} onClick={showTaskerBtnRegester}>
+                                <Button label="Become a tasker" bg="#199AFF" color="white"/>
+                            </div>
                         </div>
 
                         <div className="bg-[#d0d3dab6] p-2 rounded-md cursor-pointer md:static absolute right-0"
-                            onClick={showNavBox}
+                            onClick={showGuidsBox}
                         >   
                         {
-                            isClicked ? 
+                            isQuidsClicked ? 
                             <RxCross1 className="text-3xl font-bold text-[#020409]"/>
                             :
                             <RxHamburgerMenu className="text-3xl font-bold text-[#020409]"/>
@@ -58,8 +89,13 @@ const Navbar = () => {
                 </div>
             </div>
             {/* Content Of Guides */}
-            <div className={`${isClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-20 md:-mt-3 duration-200 ease-in-out shadow-xl w-full bg-white overflow-hidden rounded-b-lg`}>
+            <div className={`${isQuidsClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-20 md:-mt-3 duration-200 ease-in-out shadow-xl w-full bg-white overflow-hidden rounded-b-lg`}>
                     <ShowedContent/>
+            </div>
+
+            {/* The Worker Btns to regester that Handle by setIsBecomeTaskerClicked state */}
+            <div className={`w-full ${isBecomeTaskerClicked ? "h-[140px]" : "h-0"} bg-teal-50 rounded-b-md absolute left-0 shadow-lg -z-10 transition-all duration-200 ease-in-out`}>
+                        
             </div>
 
         </div>
@@ -68,6 +104,7 @@ const Navbar = () => {
         <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-4 shadow-xl bg-white rounded-md flex md:hidden">
             <PhoneNavbar/>
         </div>
+
 
     </div>
   )

@@ -90,16 +90,16 @@ type ExplainerVideo = {
     id : number ;
 }
 const ExplainerVideo = ({id}:ExplainerVideo) => {
-    let path = "./icons/explain.jpg" ;
+    let path = "./imgTemp/explain.jpg" ;
 
     switch (id) {
-        case 1 : path = "./icons/explain.jpg" ;
+        case 1 : path = "./imgTemp/explain.jpg" ;
             break ;
-        case 2 : path = "./icons/explain2.jpg" ;
+        case 2 : path = "./imgTemp/explain2.jpg" ;
             break ;
-        case 3 : path = "./icons/explain3.jpg" ;
+        case 3 : path = "./imgTemp/explain3.jpg" ;
             break ;
-        default : path = "./icons/explain.jpg" ;
+        default : path = "./imgTemp/explain.jpg" ;
             break ;
     }
 
