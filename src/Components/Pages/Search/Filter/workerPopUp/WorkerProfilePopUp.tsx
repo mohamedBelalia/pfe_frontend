@@ -1,6 +1,7 @@
 import workers from "../../../../../assets/jsonTemp/cardsInfoFil.json"
 import Button from "../../../../Common/Button/Button"
 import { workerDataProps } from "../WorkerCard"
+import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { SlBadge } from "react-icons/sl";
 import Reviews from "./Reviews";
@@ -43,10 +44,13 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col md:mx-0 mx-auto md:mt-0 mt-5 gap-2">
-                <div className="hidden md:block">
-                    <h1 className="text-xl font-bold text-end text-[#2d7d7d]">{clickedWorkerData.price} Dh/Day</h1>
-                </div>
+            <div className="flex flex-col md:mx-0 mx-auto md:mt-0 mt-5 gap-4">
+                <a href="tel:+212 632-602326">
+                    <div className="hidden md:flex justify-end gap-3 items-center text-xl font-semibold text-end text-[#2d7d7d]">
+                        <FaPhoneAlt/>
+                        +212 789-761589
+                    </div>
+                </a>
                 <div>
                     <Button bg="#349292" color="white" label={`Continue with ${clickedWorkerData.name}`}/>
                 </div>

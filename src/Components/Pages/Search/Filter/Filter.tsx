@@ -2,7 +2,6 @@ import { useSelector } from "react-redux"
 import StepsPath from "../stepsPath/StepsPath"
 import { RootState } from "../../../Store/store"
 import SideCriterias from "./sideFilter/SideCriterias"
-import SortedBy from "./SortedBy"
 import ListWorkers from "./ListWorkers"
 import "./filterStyles.css"
 import { useEffect, useState } from "react"
@@ -39,16 +38,13 @@ const Filter = () => {
         <StepsPath/>
 
         <div className="w-[90%] md:w-[80%] mx-auto my-16">
-            <div>
+            <div className="mb-10">
                 <h1 className="text-center text-xl font-semibold text-[#414E5F]">There is 
                     <span className="text-[#349292]"> 207 {selectTaskName} Worker </span> 
                     in {selectTaskCity}</h1>
             </div>
 
             <div className="flex flex-col gap-8 mt-5">
-                <div>
-                    <SortedBy/>
-                </div>
                 <div className="flex flex-col md:flex-row gap-16">
                     <div className="md:w-1/3">
                         <SideCriterias/>

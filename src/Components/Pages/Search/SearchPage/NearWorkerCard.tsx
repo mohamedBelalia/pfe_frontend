@@ -43,7 +43,7 @@ const NearWorkerCard = ({workerInfo , getClickedWorkerId}:WorkerCardProps) => {
         </div>
 
         <div className="px-5 flex flex-col gap-2">
-            <h1 className="font-medium text-gray-700">Top Skills</h1>
+            <h1 className="font-medium text-gray-700">Top Skill</h1>
             <div className="flex flex-wrap gap-2">
                 {
                     skillsTemp.map((skill,index)=>(
