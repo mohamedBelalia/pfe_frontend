@@ -51,7 +51,7 @@ function HeadlessUI() {
             {({ open }) => (
                 <>
                     {/* Dropdown button MELK */}
-                    <Listbox.Button className="bg-white w-[300px] my-2 ml-4 overflow-auto  scrollbar-thin   flex border rounded-md py-2">
+                    <Listbox.Button className="bg-white md:w-[400px] my-2 ml-4 overflow-auto  scrollbar-thin   flex border rounded-md py-2">
                         {/* Display selected options or placeholder */}
                         {selectedOptions.length > 0
                             ? selectedOptions.map(e => (

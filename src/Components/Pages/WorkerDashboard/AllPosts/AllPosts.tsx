@@ -1,5 +1,5 @@
 // AllPosts.tsx
-import  { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import CardComponent from './CardComponent';
 import ChildComponent from './ChildComponent';
 import { MdNavigateNext } from "react-icons/md";
@@ -10,8 +10,7 @@ const card_width = 300;
 const card_height = 300;
 
 const AllPosts = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollEnabled, setScrollEnabled] = useState(false);
+  const cardsContainer = useRef<HTMLDivElement>(null)
   const [openCards, setOpenCards] = useState<number[]>([]);
 
   // Function to handle card click event
@@ -21,28 +20,31 @@ const AllPosts = () => {
     );
   };
 
-  // Function to handle horizontal scrolling
-  const handleScroll = (amount: number) => {
-    if (containerRef.current) {
-      setScrollEnabled(true);
-      const newPosition = containerRef.current.scrollLeft + amount || 300;
-      containerRef.current.scrollLeft = newPosition;
-      setScrollEnabled(false);
+
+
+  const scrollToLeft = () => {
+    if (cardsContainer.current?.scrollLeft != undefined) {
+      cardsContainer.current.scrollLeft -= 500
     }
-  };
+  }
+
+  const scrollToRight = () => {
+    if (cardsContainer.current?.scrollLeft != undefined) {
+      cardsContainer.current.scrollLeft += 500
+    }
+  }
 
   return (
-    <div>
+    <div >
       {/* Title */}
       <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">All Posts</p>
-      
+
       {/* Container for cards */}
       <div
-        ref={containerRef}
-        className="flex items-center"
+        ref={cardsContainer}
+        className="flex overflow-x-scroll no-scrollbar scroll-smooth items-center"
         style={{
           scrollBehavior: "smooth",
-          overflowX: scrollEnabled ? 'auto' : 'hidden'
         }}
       >
         {/* Map through data to render cards */}
@@ -50,17 +52,17 @@ const AllPosts = () => {
           <div
             key={item.id}
             style={{ minWidth: card_width, minHeight: card_height }}
-            className="md:m-10 m-4  rounded-xl"
+            className=" m-4 rounded-md"
           >
             {/* Card image */}
-            <img className="rounded-t-xl" src={item.img} alt="img" />
-            
+            < img className="rounded-t-md" src={item.img} alt="img" />
+
             {/* Card content */}
-            <div className="border border-black border-t-0 bg-gray-200 px-2  rounded-b-xl">
+            < div className="border border-black border-t-0  px-2  rounded-b-md" >
               <p className="p-2">{item.text}</p>
               <div className="flex p-2 items-center justify-between">
                 <div className="opacity-30">{item.date}</div>
-                
+
                 {/* Bring CardComponent and ChildComponent */}
                 <div className="relative" key={parseInt(item.id)}>
                   <CardComponent />
@@ -71,26 +73,27 @@ const AllPosts = () => {
               </div>
             </div>
           </div>
-        ))}
-      </div>
-      
+        ))
+        }
+      </div >
+
       {/* Buttons for horizontal scrolling */}
-      
-      <div className="flex justify-center">
+
+      < div className="flex justify-center" >
         <button
           className="text-4xl hidden md:block text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white transition duration-200 ease-in-out"
-          onClick={() => handleScroll(-card_width - 50)}
+          onClick={scrollToLeft}
         >
           <GrFormPrevious />
         </button>
         <button
           className="text-4xl hidden md:block text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white transition duration-300 ease-in-out"
-          onClick={() => handleScroll(card_width + 50)}
+          onClick={scrollToRight}
         >
           <MdNavigateNext />
         </button>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

@@ -1,27 +1,15 @@
 
 import { useNavigate } from "react-router-dom";
-import HeadlessUI from "./HeadlessUI";
 import Input from "./Input";
-import { useState } from "react";
 
 
 const Signup = () => {
 
-  const [professions, setProfessions] = useState<string[]>([]);
-
-
- 
-
   const navigate = useNavigate();
-
   const handleClick = () => {
     // Navigate to a login page
     navigate('/login');
   };
-
-
-
-
 
   return (
     // lg:w-[80%]  flex items-center  m-auto mt-[1%] 
@@ -41,24 +29,16 @@ const Signup = () => {
 
       {/* Login side */}
 
-      <div className='w-[90%] md:flex md:flex-col md:items-center border-2 rounded-xl tab:rounded-l-none lg:border-l-0 tab:pt-4'>
+      <div className='w-[70%] md:flex md:flex-col m-auto md:items-center border-2 rounded-xl tab:rounded-l-none lg:border-l-0 tab:pt-4'>
         <div className="text-center ">
           <h1 className="text-teal-500 text-3xl font-semibold">Create Account</h1>
           <small className="text-red-500">*use your active number to conecting with you</small>
         </div>
-        <form className=" " action="" method="post">
-          <div className="md:flex md:py-4 ">
+        <form action="" method="post">
+          <div className="md:grid flex flex-col  items-center w-full md:grid-cols-2 md:py-4 ">
             <Input labelText="first name" lien="fname" />
             <Input labelText="last name" lien="lname" />
-          </div>
-          <div className="md:flex md:py-4 ">
-            <Input labelText="email" lien="email" />
-            <div>
-              <label className="flex flex-col text-sm font-semibold ml-4 " htmlFor="job">Selected Job</label>
-              <HeadlessUI />
-            </div>
-          </div>
-          <div className="md:flex md:py-4 ">
+            <Input labelText="phone" lien="phone" />
             <Input labelText="Password" lien="pass" />
             <Input labelText="confirm password" lien="confPass" />
           </div>
@@ -75,7 +55,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="my-4 flex justify-center">
-          <button  type="submit" className="px-16 transition-all ease-in-out py-4 duration-300 bg-teal-600 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   rounded-2xl ">Sign Up</button>
+          <button type="submit" className="px-16 transition-all ease-in-out py-4 duration-300 bg-teal-600 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   rounded-2xl ">Sign Up</button>
         </div>
       </div>
 

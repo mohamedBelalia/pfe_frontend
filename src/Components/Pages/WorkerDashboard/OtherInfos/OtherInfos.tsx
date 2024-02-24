@@ -1,18 +1,17 @@
-import Doughnut from "./Doughnut";
-import { MdOutlineGroupAdd } from "react-icons/md";
-
 const OtherInfos = () => {
+    
     return (
-
-        <div className='lg:px-10 text-center w-full md:ml-10'>
-            <div className='w-full py-5 rounded-2xl bg-red-300 text-sm lg:text-xl text-center text-red-700 font-semibold'>Complete You Profile Informations To Get Clients</div>
+        <div className='lg:px-10 w-full md:ml-10'>
+          
+           {/* Complete You Profile Informations To Get Clients */}
+            <div className='w-full py-5 md:-mt-0 rounded-md bg-red-300 text-sm lg:text-xl text-center text-red-700 font-semibold'>Complete You Profile Informations To Get Clients</div>
 
             {/* Rates */}
-            <div className='p-6 flex items-center justify-center  text-teal500 '>
+            <div className='p-6 flex items-center justify-center text-teal500 '>
                 <div className=" flex flex-col justify-center items-center">
                     <img className="lg:w-16 w-12 ml-2" src="icons/starsRate.png" />
                     <div className=" relative flex justify-center items-center ">
-                        <Doughnut />
+                        
                         <div className="absolute ">91.5</div>
                     </div>
                     <div  >47 person rated you</div>
@@ -41,29 +40,12 @@ const OtherInfos = () => {
                 </div>
             </div>
 
-            {/* Groups */}
-            <div className="flex justify-between mt-10 text-teal-500 font-semibold  pt-4">
-                <div className="flex items-center">
-                    <img className="w-12 lg:w-14  " src="icons/group.png" />
-                    <div className=" lg:text-xl">Groups</div>
-                </div>
-                <MdOutlineGroupAdd className="lg:text-4xl  text-2xl rounded-md w-14" />
-                {/* <button><img  className="text-4xl object-cover  w-20 border-2 h-10 rounded-xl" src="icons/addGroup.png"/></button> */}
-            </div>
-            <div className="flex w-full mt-4">
-                <button className="w-1/2 relative rounded">
-                    <img className="rounded-xl w-10/12 object-cover  h-40" src="public/imgUsed/tubes.jpg" alt="" />
-                    <div className="absolute w-10/12 rounded-xl h-40  bg-opacity-70  -mt-40 bg-black text-white flex justify-center items-center md:text-2xl">Mejme3 Lplumyen</div>
-                </button>
-
-                <button className="w-1/2 rounded relative">
-                    <img className="rounded-xl w-10/12 h-40 object-cover" src="public/imgUsed/tubes.jpg" alt="" />
-                    <div className="absolute w-10/12 rounded-xl h-40  bg-opacity-70  -mt-40 bg-black text-white flex justify-center items-center text-lg  md:text-3xl">+3 Groups</div>
-                </button>
-            </div>
+        
+           
 
         </div>
     )
 }
 
 export default OtherInfos
+

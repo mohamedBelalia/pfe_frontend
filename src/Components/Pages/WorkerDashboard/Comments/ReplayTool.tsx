@@ -1,13 +1,23 @@
 
 import Btn from "../BTN/Btn.tsx"
+interface TOOLPROPS {
+  onClose: () => void;
+}
+const ReplayTool = ({ onClose }: TOOLPROPS) => {
 
-const ReplayTool = () => {
+  // Function to handle close button click
+  const handleClick = () => {
+    onClose(); // Call onClose function to close the child component
+
+  };
+
+
 
   return (
 
-    <div className="flex  w-[80%] justify-between m-auto lg:m-2  lg:mx-56 ">
-      <input className="border outline-teal500 text-sm md:text-lg px-10  lg:w-[80%]  w-9/12  rounded-xl" placeholder="Replay" type="text" />
-      <Btn text="Replay" />
+    <div className="flex md:mt-2 mt-1 w-full justify-between lg:m-2  lg:mx-10 ">
+      <input className="border-2 outline-teal500 mr-[2%] text-sm md:text-lg px-10 border-teal500  w-[80%]  rounded-md" placeholder="Replay" type="text" />
+      <div onClick={handleClick} className="w-[20%] px-10 flex justify-center bg-teal500 rounded-md" ><Btn text="Replay" /></div>
     </div>
   )
 }
