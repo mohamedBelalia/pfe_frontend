@@ -2,13 +2,13 @@ import Progress from "./Progress"
 
 const OtherInfos = () => {
     return (
-        <div className='lg:px-10 w-full md:ml-10'>
+        <div className='lg:px-10  w-full md:ml-10'>
 
             {/* Complete You Profile Informations To Get Clients */}
             <div className='w-full py-5 md:-mt-0 rounded-md bg-red-300 text-sm lg:text-xl text-center text-red-700 font-semibold'>Complete You Profile Informations To Get Clients</div>
-            
-          
-        <Progress />
+
+
+            <Progress />
             {/* Rates */}
             <div className='flex items-center justify-center text-teal500 '>
                 <div className=" flex flex-col justify-center items-center">
@@ -32,10 +32,10 @@ const OtherInfos = () => {
                 <div className="w-full flex  flex-wrap">
                     <div className="w-32 md:w-48 m-1 rounded"><img className="rounded-xl object-cover h-26 md:h-40  " src="public\imgUsed\portrait-man-laughing.jpg" alt="img" /></div>
                     <div className="md:w-48 w-32 m-1 rounded"><img className="rounded-xl object-cover h-26  md:h-40" src="public\imgUsed\portrait-man-laughing.jpg" alt="img" /></div>
+                    <div className="md:w-48 w-32 m-1 rounded"><img className="rounded-xl object-cover h-26  md:h-40" src="public\imgUsed\portrait-man-laughing.jpg" alt="img" /></div>
                     <div className="md:w-44 w-32 m-1 relative bg-black rounded-xl">
                         <img className="rounded-xl object-cover w-full opacity-50 h-26 md:h-40" src="public\imgUsed\portrait-man-laughing.jpg" alt="img" />
                         <div className="absolute text-white top-12 right-8 md:text-xl lg:-mt-24 lg:ml-12 ">+25 Posts</div>
-
                     </div>
 
 

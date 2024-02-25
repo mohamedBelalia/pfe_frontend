@@ -37,7 +37,7 @@ const AllPosts = () => {
   return (
     <div >
       {/* Title */}
-      <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">All Posts</p>
+      <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">All Posts</p>
 
       {/* Container for cards */}
       <div

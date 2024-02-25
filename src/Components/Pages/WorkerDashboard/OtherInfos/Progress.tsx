@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import "./Progress.css"
 
 const Progress = () => {
     var [progressContent, setProgressContent] = useState<number>(0);
-    const endProgressContent = 90;
+    const endProgressContent = 50;
     const speed = 10;
 
 

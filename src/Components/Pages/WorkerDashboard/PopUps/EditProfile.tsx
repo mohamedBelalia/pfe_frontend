@@ -22,7 +22,7 @@ const EditProfile = ({ isOpen, onClose }: PROPSPopUp) => {
                 // Container for the popup, positioned in the center of the screen
                 <div className="fixed  z-40 flex flex-col  inset-0 items-center justify-center bg-black bg-opacity-60">
                     <div className='flex flex-col items-end '>
-                        <button className='text-3xl bg-blue500   border-2 mb-1 rounded-sm text-gray-200' onClick={onClose}><IoClose /></button>
+                        <button className='text-3xl bg-teal500   border-2 mb-1 rounded-sm text-gray-200' onClick={onClose}><IoClose /></button>
                         <EditPopUp />
                     </div>
                 </div>
