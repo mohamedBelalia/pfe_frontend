@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../Store/store";
-import { setSelectedTask } from "../../Store/Slices/SelectedTask";
+import { setSelectedJobName } from "../../Store/Slices/SelectedTask";
 
 type LandingPageTypes = {
   getTheCoosenJob : (idJob:string) => void
@@ -24,7 +24,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
     const searchBtn = () => {
       if(searchedTask.trim().length > 0){
         window.scrollTo(0,0)
-        dispatch(setSelectedTask({selectedTask:searchedTask}))
+        dispatch(setSelectedJobName({selectedTask:searchedTask}))
         navigate("/search/step_one")
       }
     }

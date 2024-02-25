@@ -1,5 +1,9 @@
+import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { SlBadge } from "react-icons/sl";
+
+// temp
+const workerSills = ["home page" , "about" , "contact us"]
 
 export interface workerDataProps {
     id: string;
@@ -35,7 +39,7 @@ const WorkerCard = ({workerInf , getClickedWorkerId}:workerCardProps) => {
          
                 <div 
                   onClick={()=>getClickedWorkerId(workerInf.id)}
-                  className="w-[150px] h-[150px] mx-auto md:mx-0 rounded-full overflow-hidden">
+                  className="w-[150px] h-[150px] mx-auto md:mx-0 rounded-full overflow-hidden ">
                   <img className="w-full h-full object-cover" src={workerInf.imgProfile} alt="" />
                 </div>
                 <div className="flex flex-col md:gap-5 gap-2">
@@ -58,32 +62,54 @@ const WorkerCard = ({workerInf , getClickedWorkerId}:workerCardProps) => {
             </div>
 
             <div className="flex flex-col gap-1 w-full">
-                <div className="flex justify-between text-2xl font-bold text-[#2d7d7d]">
+                <div className="flex flex-col justify-center gap-5 md:hidden text-2xl font-bold text-[#2d7d7d]">
 
-                    <div className="flex md:hidden mx-auto gap-1 items-center text-gray-600 text-base">
+                    <div className="flex mx-auto gap-1 items-center text-gray-600 text-base">
                         <IoIosStar/>
                         <p className="font-semibold">{workerInf.rate} <span className="text-xs">(143 Reviews)</span></p>
                     </div>
+                    <div className="text-center">
+                        <a 
+                            className="font-bold text-2xl text-[#2d7d7d] flex gap-3 items-center justify-center"
+                            href="tel:000">
+                                <FaPhoneAlt/>
+                                +212 6-78 13 56 14
+                        </a>
+                    </div>
 
                 </div>
-                <div className="hidden md:flex flex-col gap-3 ">
-                    <div className="flex gap-2 items-center text-gray-600">
-                        <IoIosStar className="text-2xl"/>
-                        <p className="font-semibold text-lg">{workerInf.rate} (143 Reviews)</p>
+                <div className="hidden md:flex justify-between items-start gap-3">
+                    <div className="flex flex-col gap-3">
+                        <div className="flex gap-2 items-center text-gray-600">
+                            <IoIosStar className="text-2xl"/>
+                            <p className="font-semibold text-lg">{workerInf.rate} (143 Reviews)</p>
+                        </div>
+                        <div className="border-dashed border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] p-1 w-[120px] flex items-center justify-around">
+                            <SlBadge className="text-xl"/>
+                            {workerInf.badge}
+                        </div>
+                        <p className="text-sm font-bold text-gray-500">{"Marrakech"}</p>
                     </div>
-                    <div className="border-dashed border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] p-1 w-[120px] flex items-center justify-around">
-                        <SlBadge className="text-xl"/>
-                        {workerInf.badge}
-                    </div>
-                    <p className="text-sm font-bold text-gray-500">{"Marrakech"}</p>
+                    <a 
+                        className="text-xl font-bold text-end text-[#2d7d7d] flex gap-3 items-center"
+                        href="tel:000">
+                            <FaPhoneAlt/>
+                            +212 6-78 13 56 14
+                    </a>
+
                 </div>
 
-                <div className="mt-5 p-5 bg-white rounded-xl flex flex-col gap-3">
-                    <h1 className="text-lg font-semibold text-[#414E5F]">I can help you in</h1>
-                    <p className="text-gray-500 text-[14px]">
-                      {workerInf.description}
-                      <a href="" className="text-[#2d7d7d]  font-semibold">...More</a>
-                    </p>
+                <div className="mt-5 p-5 bg-white rounded-xl flex flex-col gap-4">
+                    <h1>Top Skills</h1>
+                    <div className="flex gap-3 flex-wrap">
+                    {
+                        workerSills.map((skill , index)=>(
+                            <div className="px-4 py-1 rounded-md bg-blue-500 text-white" key={index}>
+                                {skill}
+                            </div>
+                        ))
+                    }
+                    </div>
                 </div>
 
             </div>

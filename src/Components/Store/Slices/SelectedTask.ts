@@ -13,12 +13,12 @@ export const SelectedTaskSlice = createSlice({
     name : "selected_task",
     initialState ,
     reducers : {
-        setSelectedTask : (state , action:PayloadAction<SelectedTask>)=>{
+        setSelectedJobName : (state , action:PayloadAction<SelectedTask>)=>{
                 state.selectedTask = action.payload.selectedTask
         }
     }
 })
 
-export const { setSelectedTask } = SelectedTaskSlice.actions
+export const { setSelectedJobName } = SelectedTaskSlice.actions
 
 export default SelectedTaskSlice.reducer

@@ -3,7 +3,7 @@ import DetailsJob from "../../../assets/jsonUsed/usedData.json"
 import Button from "../../Common/Button/Button"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../../Store/store"
-import { setSelectedTask } from "../../Store/Slices/SelectedTask"
+import { setSelectedJobName } from "../../Store/Slices/SelectedTask"
 
 type JobDetailsTypes = {
     idJob : string
@@ -67,7 +67,7 @@ const CategoryBtn = ({label}:CategoryBtnTypes) => {
 
     const goTo = () =>{
         window.scrollTo(0,0)
-        dispatch(setSelectedTask({selectedTask : label}))
+        dispatch(setSelectedJobName({selectedTask : label}))
         navigate("/search/step_one")
     }
 

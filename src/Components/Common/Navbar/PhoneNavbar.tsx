@@ -1,10 +1,15 @@
-import { RiAccountCircleLine } from "react-icons/ri"
-import { TbLogout } from "react-icons/tb"
-import { Link, useNavigate } from "react-router-dom"
+import { GrUserWorker } from "react-icons/gr";
+import { useNavigate } from "react-router-dom"
 import { AiFillHome } from "react-icons/ai";
 import { IoSearchSharp } from "react-icons/io5";
 
-const PhoneNavbar = () => {
+
+type PhoneNavbarTypes = {
+    getTheBecomeATaskerBox : (isClicked : boolean) => void ,
+    isTheBecomeATaskerBoxClicked : boolean 
+}
+
+const PhoneNavbar = ({getTheBecomeATaskerBox , isTheBecomeATaskerBoxClicked}:PhoneNavbarTypes) => {
 
     const navigate = useNavigate()
 
@@ -18,22 +23,19 @@ const PhoneNavbar = () => {
     <div className="flex items-center justify-between w-full z-50">
         <div onClick={()=>navigateTo('/')} className="w-[80px] p-2 flex flex-col justify-between items-center rounded-md">
             <AiFillHome className="text-2xl"/>
-            Home
+            <p className="text-sm">Home</p>
         </div>
 
         <div onClick={()=>navigateTo('/search')} className="w-[80px] p-2 flex flex-col justify-between items-center rounded-md">
             <IoSearchSharp className="text-2xl"/>
-            Search
+            <p className="text-sm">Search</p>
         </div>
 
-        <div onClick={()=>navigateTo('/Signup')} className="w-[80px] p-2 flex flex-col justify-between items-center rounded-md">
-            <RiAccountCircleLine className="text-2xl"/>
-            Signup
-        </div>
-
-        <div onClick={()=>navigateTo('/Login')} className="w-[80px] p-2 flex flex-col justify-between items-center rounded-md">
-            <TbLogout className="text-2xl"/>
-            Login
+        <div onClick={()=>getTheBecomeATaskerBox(!isTheBecomeATaskerBoxClicked)} 
+            className={`w-1/2 p-2 flex flex-col justify-between items-center rounded-md 
+                ${!isTheBecomeATaskerBoxClicked ? 'bg-sky-200' : 'bg-sky-300'}`}>
+            <GrUserWorker className="text-2xl"/>
+            <p className="text-sm">Become a Tasker</p>
         </div>
     </div>
   )

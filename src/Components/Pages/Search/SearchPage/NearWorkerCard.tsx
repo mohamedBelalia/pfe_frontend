@@ -38,7 +38,7 @@ const NearWorkerCard = ({workerInfo , getClickedWorkerId}:WorkerCardProps) => {
                <p className="font-semibold text-lg">{workerInfo.rate}.0 <span className="text-xs">(67 reviews)</span> </p>
             </div>
             <div>
-                <p className="text-[#2d7d7d] text-xl font-bold">{workerInfo.price} Dh/Day</p>
+                <p className="text-[#2d7d7d] text-xl font-bold">+212 667328756</p>
             </div>
         </div>
 

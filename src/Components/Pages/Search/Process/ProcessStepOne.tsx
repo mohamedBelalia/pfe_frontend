@@ -11,18 +11,12 @@ import { setTheSearchStepOne } from "../../../Store/Slices/StepOneSlice";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "../../../Common/Loading/LoadingPage";
 
-// This is The Type The object that contains The "Task city" and "The Task Description"
-type stepOneInfoTypes = {
-    taskCity : string 
-    taskDescription : string
-}
 
 const ProcessStepOne = () => {
 
-
     const selectedTask :string = useSelector((state:RootState)=> state.selectedTask.selectedTask)
 
-    // pour assuree que l'use est selectionee le nom de task
+    // pour assuree que l'user est selectionee le nom de task
     const [isAuthorized , setIsAuthorized] = useState<boolean>(false)
 
     useEffect(()=>{
@@ -43,16 +37,9 @@ const ProcessStepOne = () => {
     const navigate = useNavigate()
 
 
-    // Task Info ("Task city" , "The Task Description") State
-    const [stepOneInfo , setStepOneInfo] = useState<stepOneInfoTypes>({
-        taskCity : "" ,
-        taskDescription : ""
-    })
-
     // This is The State of the city name
     const [cityName , setCityName] = useState<string>("") ;
-    // This is The State of the Task Description
-    const [description , setDescription] = useState<string>("") ;
+
 
     // This state is to confirm if a "city name" is correct or not
     const [isCityCorrect , setIsCityCorrect] = useState<boolean | undefined>()
@@ -88,18 +75,23 @@ const ProcessStepOne = () => {
     */
     const handleCityName = () => {
         if(citiesGets.cities.includes(cityName)){
-            setStepOneInfo({...stepOneInfo , taskCity : cityName})
+
             setIsCityCorrect(true)
+
+            dispatch(setTheSearchStepOne({stepOneInfo : {
+                cityTask : cityName ,
+                }}))
+
+            window.scroll(0,0);
+
+            navigate("/search/filter") ; 
+
         }
         else{
             setIsCityCorrect(false)
         }
     }
-        
-    // to get the Description value onchange
-    const getDescription = (event : React.ChangeEvent<HTMLTextAreaElement>)=>{
-        setDescription(event.target.value)
-    }
+
 
     /* to clear the filtred array when clicking on a "city name"
         it's just passed in the "SearchedCityDiv" component
@@ -107,26 +99,6 @@ const ProcessStepOne = () => {
     const clearCitiesBox = () => {
         setSearchedCities([]) ;
     }
-
-    /* to save the entred data in the "stepOneInfo" object after passing the "handleCityName()"
-        and clicking the "Continue" btn below the field of "Your Task Description "
-    */
-    const handleFieldsValues = () => {
-        setStepOneInfo({
-            taskCity : cityName ,
-            taskDescription : description
-        })
-
-        dispatch(setTheSearchStepOne({stepOneInfo : {
-                    cityTask : stepOneInfo.taskCity ,
-                    disciptionTask : stepOneInfo.taskDescription
-                    }}))
-
-        window.scroll(0,0);
-
-        navigate("/search/filter") ; 
-    }
-    
     
     
   return (
@@ -203,31 +175,7 @@ const ProcessStepOne = () => {
                     }  
 
                     </div>
-
-
-                    <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
-                        <h1 className="font-semibold text-lg text-[#414E5F]">Your Task Description <span className="text-sm text-gray-500 font-normal">(optional)</span></h1>
-
-                       {
-                        isCityCorrect 
-                        &&
-                        <>
-                        <div>
-                            <textarea 
-                                value={description}
-                                onChange={getDescription}
-                                placeholder="start the conversation ...."
-                                className="w-full p-3 border outline-none border-gray-500 h-[120px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]"
-                            ></textarea>
-                        </div>
-
-                        <div className="mt-4 flex justify-center items-center">
-                            <button onClick={handleFieldsValues} className="px-5 py-1 rounded-md text-white bg-[#51bebe]">Continue</button>
-                        </div>
-                        </>
-                        }
-
-                    </div>
+                    
                 </form>
             </div>
 
@@ -245,6 +193,9 @@ const ProcessStepOne = () => {
 
 export default ProcessStepOne
 
+
+
+// Searched Cities
 interface searchedCityDivTypes {
     city : string ,
     setClickedCityName : (city : string) => void ,

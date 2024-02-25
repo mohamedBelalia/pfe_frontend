@@ -1,10 +1,11 @@
 import { RxFramerLogo , RxHamburgerMenu , RxCross1 } from "react-icons/rx";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ShowedContent from "./ShowedContent";
 import PhoneNavbar from "./PhoneNavbar";
 import { IoSearchSharp } from "react-icons/io5";
+import RegesterBar from "./RegesterBar";
 
 const Navbar = () => {
 
@@ -12,21 +13,6 @@ const Navbar = () => {
     const [isQuidsClicked , setIsQuidsClicked] = useState<boolean>(false)
 
     const [isBecomeTaskerClicked , setIsBecomeTaskerClicked] = useState<boolean>(false)
-
-    const taskerRegesterBtnsPopupRef = useRef<HTMLDivElement | null>(null)
-
-    useEffect(()=>{
-        const taskerBtnsClickOutSide = (event: MouseEvent): void => {
-            if (taskerRegesterBtnsPopupRef.current && !taskerRegesterBtnsPopupRef.current.contains(event.target as Node)) {
-              setIsBecomeTaskerClicked(false)
-            }
-          };
-
-          document.addEventListener('click' , taskerBtnsClickOutSide)
-
-          return () => {removeEventListener('click' , taskerBtnsClickOutSide)}
-
-    },[])
 
     const navigate = useNavigate()
 
@@ -37,6 +23,13 @@ const Navbar = () => {
         setIsBecomeTaskerClicked(false) 
     }
 
+    useEffect(()=>{
+
+        if(isBecomeTaskerClicked){
+            setIsQuidsClicked(false)
+        }
+
+    },[isBecomeTaskerClicked])
 
     const showTaskerBtnRegester = () => {
         setIsBecomeTaskerClicked(!isBecomeTaskerClicked)
@@ -64,11 +57,14 @@ const Navbar = () => {
                         {/* Grouping The ul and the "Become a tasker" btn to make the respnsive mechanism easy */}
                         <div className="items-center gap-6 hidden md:flex">
                             <ul className="flex items-center gap-6 font-bold text-base text-[#414E5F]">
-                                <div className="cursor-pointer" onClick={()=>goTo("/Signup")}>Signup</div>
-                                <div className="cursor-pointer" onClick={()=>goTo("/Login")}>Login</div>
-                                <div className="cursor-pointer" onClick={()=>goTo("/search")}><IoSearchSharp className="text-2xl"/></div>
+                                <div title="Find the best worker for your task" 
+                                    className="cursor-pointer flex items-center gap-2 bg-teal-200 p-2 rounded-md" onClick={()=>goTo("/search")}>
+                                    <p className="font-normal">search</p> 
+                                    <IoSearchSharp className="text-2xl"/>
+                                    {/* <p className="text-sm">بحث</p>  */}
+                                </div>
                             </ul>
-                            <div ref={taskerRegesterBtnsPopupRef} onClick={showTaskerBtnRegester}>
+                            <div onClick={showTaskerBtnRegester}>
                                 <Button label="Become a tasker" bg="#199AFF" color="white"/>
                             </div>
                         </div>
@@ -94,15 +90,15 @@ const Navbar = () => {
             </div>
 
             {/* The Worker Btns to regester that Handle by setIsBecomeTaskerClicked state */}
-            <div className={`w-full ${isBecomeTaskerClicked ? "h-[140px]" : "h-0"} bg-teal-50 rounded-b-md absolute left-0 shadow-lg -z-10 transition-all duration-200 ease-in-out`}>
-                        
+            <div className={`w-full ${isBecomeTaskerClicked ? "h-[40vh] md:h-[140px]" : "h-0"} bg-teal-50 flex flex-col justify-center items-center rounded-b-md absolute left-0 shadow-lg -z-10 transition-all duration-200 ease-in-out overflow-hidden`}>
+                <RegesterBar/>
             </div>
 
         </div>
 
         {/* Mobile navbar */}
-        <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-4 shadow-xl bg-white rounded-md flex md:hidden">
-            <PhoneNavbar/>
+        <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-2 shadow-xl bg-white rounded-md flex md:hidden">
+            <PhoneNavbar getTheBecomeATaskerBox={setIsBecomeTaskerClicked} isTheBecomeATaskerBoxClicked={isBecomeTaskerClicked}/>
         </div>
 
 
