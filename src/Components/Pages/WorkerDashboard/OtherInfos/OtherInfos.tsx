@@ -1,18 +1,20 @@
+import Progress from "./Progress"
+
 const OtherInfos = () => {
-    
     return (
         <div className='lg:px-10 w-full md:ml-10'>
-          
-           {/* Complete You Profile Informations To Get Clients */}
-            <div className='w-full py-5 md:-mt-0 rounded-md bg-red-300 text-sm lg:text-xl text-center text-red-700 font-semibold'>Complete You Profile Informations To Get Clients</div>
 
+            {/* Complete You Profile Informations To Get Clients */}
+            <div className='w-full py-5 md:-mt-0 rounded-md bg-red-300 text-sm lg:text-xl text-center text-red-700 font-semibold'>Complete You Profile Informations To Get Clients</div>
+            
+          
+        <Progress />
             {/* Rates */}
-            <div className='p-6 flex items-center justify-center text-teal500 '>
+            <div className='flex items-center justify-center text-teal500 '>
                 <div className=" flex flex-col justify-center items-center">
                     <img className="lg:w-16 w-12 ml-2" src="icons/starsRate.png" />
                     <div className=" relative flex justify-center items-center ">
-                        
-                        <div className="absolute ">91.5</div>
+
                     </div>
                     <div  >47 person rated you</div>
                 </div>
@@ -40,8 +42,8 @@ const OtherInfos = () => {
                 </div>
             </div>
 
-        
-           
+
+
 
         </div>
     )
