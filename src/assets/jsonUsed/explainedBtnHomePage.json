@@ -2,18 +2,24 @@
     "btnsExplain": [
       {
         "id": "1",
-        "title" : "Choose a Tasker by price,skills, and reviews.",
-        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+        "titleAr" : "اختر منفذ مهام بناءً على السعر والمهارات والتقييمات",
+        "titleEn" : "Choose a Tasker by price,skills, and reviews.",
+        "descriptionAr" : "تجميع أو تفكيك قطع الأثاث من خلال فتح الصندوق، البناء، وأي أعمال تنظيف إضافية",
+        "descriptionEn" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
       },
       {
         "id": "2",
-        "title" : "Schedule a Tasker as early as today.",
-        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+        "titleAr" : "جدولة منفذ مهام بأقرب وقت اليوم",
+        "titleEn" : "Schedule a Tasker as early as today.",
+        "descriptionAr" : "تجميع أو تفكيك قطع الأثاث من خلال فتح الصندوق، البناء، وأي أعمال تنظيف إضافية",
+        "descriptionEn" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
       },
       {
         "id": "3",
-        "title" : "Chat, pay, tip, and review all in one place",
-        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+        "titleAr" : "الدردشة، الدفع، البقشيش، وكتابة التقييم، كل ذلك في مكان واحد",
+        "titleEn" : "Chat, pay, tip, and review all in one place",
+        "descriptionAr" : "تجميع أو تفكيك قطع الأثاث من خلال فتح الصندوق، البناء، وأي أعمال تنظيف إضافية",
+        "descriptionEn" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
       }
       
     ]

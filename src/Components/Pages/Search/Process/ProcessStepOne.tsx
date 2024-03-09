@@ -62,7 +62,7 @@ const ProcessStepOne = () => {
         2#if there is a city in the "citiesGets.cities" includes the passed value then this city stored in the "citiesArray"
     */
     const citySearchedName = (cityName : string) => {
-        let citiesArray : string[] | undefined = citiesGets.cities.filter((city) => 
+        let citiesArray : string[] | undefined = citiesGets.citiesEn.filter((city) => 
             cityName.length > 0 &&
             city.toLowerCase().includes(cityName.toLowerCase())
         )
@@ -74,7 +74,7 @@ const ProcessStepOne = () => {
         the json file , when clicking the "Continue" btn below the field of "Your Task Address" 
     */
     const handleCityName = () => {
-        if(citiesGets.cities.includes(cityName)){
+        if(citiesGets.citiesEn.includes(cityName)){
 
             setIsCityCorrect(true)
 

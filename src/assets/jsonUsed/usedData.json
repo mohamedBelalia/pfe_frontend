@@ -1,12 +1,16 @@
 {
     "jobs": [
       {
-        "name": "Builder",
+        "nameEn": "Builder",
+        "nameAr": "بنّاء",
         "id" : "1",
         "imgPath" : "./imgUsed/builder.png",
-        "sentence1" : "Builders construct structures, manage projects, and ensure code compliance." ,
-        "sentence2" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
-        "sentence3" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
         "tasks" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures"
       },
       {

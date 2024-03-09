@@ -5,33 +5,39 @@ import { MdPlumbing } from "react-icons/md";
 
 export const jobs = [
     {
-        name: "Builder",
+        nameEn: "Builder",
+        nameAr: "بنّاء",
         id : "1",
         Icon : <GiConcreteBag/>
       },
       {
-        name: "Carpenter",
+        nameEn: "Carpenter",
+        nameAr: "نجار",
         id : "2",
         Icon : <FaHammer/>
       },
       {
-        name: "Dyer",
+        nameEn: "Dyer",
+        nameAr: "صباغ",
         id : "3",
         Icon : <GiLargePaintBrush/>
       },
       {
-        name: "Plumber",
+        nameEn: "Plumber",
+        nameAr: "سباك",
         id : "4",
         Icon : <MdPlumbing/>
       },
       {
-        name: "Transporter",
+        nameEn: "Transporter",
+        nameAr: "ناقل",
         id : "5",
         Icon : <FaTruck/>
       }
       ,
       {
-        name: "Trending",
+        nameEn: "Trending",
+        nameAr: "الاتجاه",
         id : "6",
         Icon : <FaArrowTrendUp/>
       }

@@ -6,8 +6,16 @@ import ShowedContent from "./ShowedContent";
 import PhoneNavbar from "./PhoneNavbar";
 import { IoSearchSharp } from "react-icons/io5";
 import RegesterBar from "./RegesterBar";
+import { AppDispatch, RootState } from "../../Store/store";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setIsArabicLanguageSelected } from "../../Store/Slices/ChangeLanguageSlice";
 
 const Navbar = () => {
+
+    // to change the language icon
+    const dispatch = useDispatch<AppDispatch>()
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     // To handle the guids part in the navbar by hide and show it throw the state below
     const [isQuidsClicked , setIsQuidsClicked] = useState<boolean>(false)
@@ -59,13 +67,41 @@ const Navbar = () => {
                             <ul className="flex items-center gap-6 font-bold text-base text-[#414E5F]">
                                 <div title="Find the best worker for your task" 
                                     className="cursor-pointer flex items-center gap-2 bg-teal-200 p-2 rounded-md" onClick={()=>goTo("/search")}>
-                                    <p className="font-normal">search</p> 
+                                   {
+                                    isArabicSelected 
+                                    ? <p className="text-sm">بحث</p> 
+                                    :  <p className="font-normal">search</p> 
+                                    }
+
+                                    
                                     <IoSearchSharp className="text-2xl"/>
-                                    {/* <p className="text-sm">بحث</p>  */}
                                 </div>
                             </ul>
                             <div onClick={showTaskerBtnRegester}>
-                                <Button label="Become a tasker" bg="#199AFF" color="white"/>
+                                <Button label={isArabicSelected ? "كن منفذ مهام" : "Become a tasker"} bg="#199AFF" color="white"/>
+                            </div>
+                            <div>
+                                {/* Language Button */}
+                                <div 
+                                    onClick={()=>dispatch(setIsArabicLanguageSelected({isArabicSelected : !isArabicSelected}))}
+                                    title="Change The Language" 
+                                    className="relative w-[100px] h-[40px] flex justify-between p-2 overflow-hidden items-center bg-slate-200 rounded-xl cursor-pointer">
+                                    <div className="w-[30px] h-[30px]">
+                                        <img src="./icons/Ar.png" alt="" className="w-full h-full" />
+                                    </div>
+                                    <div className="w-[26px] h-[26px]">
+                                        <img src="./icons/En.png" alt="" className="w-full h-full" />
+                                    </div>
+
+                                    <div className={`w-[50px] h-[38px] bg-blue-300 absolute top-0 ${isArabicSelected ? "left-0" : "left-[50px]"} flex justify-center items-center transition-all duration-400 ease-in-out`}>
+                                        {
+                                            isArabicSelected 
+                                            ? <img src="./icons/Ar.png" alt="" className="w-[26px] h-[26px]" />
+                                            : <img src="./icons/En.png" alt="" className="w-[26px] h-[26px]" />
+                                        }
+                                    </div>
+                                
+                                </div>
                             </div>
                         </div>
 

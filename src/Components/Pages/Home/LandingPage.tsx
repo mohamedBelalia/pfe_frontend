@@ -3,14 +3,18 @@ import { jobs } from "../../../assets/jsonUsed/JobsIconsNames";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../Store/store";
+import { AppDispatch, RootState } from "../../Store/store";
 import { setSelectedJobName } from "../../Store/Slices/SelectedTask";
+import { useSelector } from "react-redux";
 
 type LandingPageTypes = {
   getTheCoosenJob : (idJob:string) => void
 }
 
 const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
+
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     const navigate = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
@@ -50,13 +54,20 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
           {/* The Part Of The Title and the input */}
             <div className="w-full flex  flex-col gap-10 justify-center items-center relative">
               
-              <h1 className="font-bold text-4xl md:text-5xl text-white text-center">Find Your Expert Worker</h1>
+              <h1 className="font-bold text-4xl md:text-5xl text-white text-center">
+                {
+                  isArabicSelected 
+                  ? "ابحث عن عامل متخصص"
+                  : "Find Your Expert Worker" 
+                }
+                
+              </h1>
               <div className="w-full flex justify-center">
                   <input 
                     onChange={(e)=>setSearchedTask(e.target.value)}
                     className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
                     type="text" 
-                    placeholder="Search By Task Name"/>
+                    placeholder={isArabicSelected ? "البحث حسب اسم المهمة" : "Search By Task Name"}/>
                   <button onClick={searchBtn} className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
                     <IoSearchSharp className="text-3xl text-white"/>
                   </button>
@@ -70,7 +81,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                 {
                   jobs.map((job , _)=>(
                     <div onClick={()=>clicked(job.id)} key={job.id}>
-                      <JobBtn Icon={job.Icon} name={job.name} id={job.id} clickedId={jobClicked}/>
+                      <JobBtn Icon={job.Icon} name={isArabicSelected ? `${job.nameAr}` : `${job.nameEn}`} id={job.id} clickedId={jobClicked}/>
                     </div>
                   ))
                 }
