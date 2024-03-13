@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux"
 import { topRatedWorkers } from "../../../../assets/jsonUsed/topRatedWorkers.json"
 import JobCard from "./JobCard"
+import { RootState } from "../../../Store/store"
 
 type topWorkersType = {
     getWorkerId : (id :string) => void
@@ -9,9 +11,20 @@ type topWorkersType = {
 const workerSills = ["home page" , "about" , "contact us"]
 
 const DemandedJobs = ({getWorkerId}:topWorkersType) => {
+
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+
   return (
     <div className="px-1 md:px-0 md:w-[80%] w-full md:mx-auto mt-16 pt-12">
-        <h1 className="text-center text-4xl font-bold text-[#349292]">The Top 6 Rated Workers In Your Area</h1>
+        <h1 className="text-center text-4xl font-bold text-[#349292]">
+            {
+                isArabicSelected 
+                ? "أفضل 6 عمال تقييمًا في منطقتك"
+                : "The Top 6 Rated Workers In Your Area"
+            }
+            
+        </h1>
 
             {/* Phone screens seaction */}
         <div className="flex md:hidden gap-5 mt-14 overflow-scroll hideScrollBar">
