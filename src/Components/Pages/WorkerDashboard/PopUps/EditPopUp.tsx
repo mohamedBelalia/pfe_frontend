@@ -13,7 +13,7 @@ const EditPopUp = () => {
     }
 
     return (
-        <div className='flex mt-0 flex-col bg-teal500  border-2 rounded-sm w-[300px] md:w-[600px] h-[400px] md:h-[500px]'>
+        <div className='flex mt-0 flex-col bg-teal500  border-2 rounded-sm sm:w-[500px] w-[300px] md:w-[600px] h-[400px] md:h-[500px]'>
             <div className='  h-[15%]'></div>
             <div className=' bg-gray-100  rounded-sm   rounded-t-3xl  h-[85%]'>
                 <div className='flex   items-center flex-col w-[60%]  -mt-10  '>
@@ -28,19 +28,19 @@ const EditPopUp = () => {
                                 </button>
 
                                 <div className="flex flex-col w-full ">
-                                    <button  className="flex items-center  pt-2 text-lg text-white rounded-md"><BiEdit className="mr-2" /> Edit</button>
+                                    <button className="flex items-center  pt-2 text-lg text-white rounded-md"><BiEdit className="mr-2" /> Edit</button>
                                     <button className="flex items-center pt-2 text-lg text-white rounded-md "><RiDeleteBin5Line className="mr-2" />Delete</button>
                                 </div>
                             </div>
                         )}
-                        <FaCamera className='  z-10 -mt-7 absolute top-16 pb-4 w-6 ml-14 group-hover:hidden   h-full  text-black' />
+                        <FaCamera className='z-10 -mt-7 absolute top-16 pb-4 w-6 ml-14 group-hover:hidden   h-full  text-black' />
                     </div>
                     <h1 className='flex border-blue500 pb-2  border-b-2 font-bold '>Mohamed Belalia</h1>
                 </div>
-                <div className="overflow-y-scroll  justify-center flex flex-col items-center bg-gray-200 min-h-[335px] max-h-[335px] m-2 no-scrollbar scroll-smooth  ">
+                <div className="overflow-y-scroll  mt-3 pt-6 flex flex-col items-center bg-gray-200 md:min-h-[335px] md:max-h-[335px] m-2 no-scrollbar scroll-smooth  ">
                     <ChoiseCity />
                     <ChoiseOccupations />
-                    <textarea placeholder="Your Description Here" className="mt-4  pt-4 pl-2 rounded-md" name="description" cols={51} rows={5}></textarea>
+                    <textarea placeholder="Your Description Here" className="h-24 focus:outline-dashed pt-4 pl-4 md:h-28 w-[253px] text-black md:w-[400px] rounded-md mt-3 mb-3" name="description" ></textarea>
                 </div>
 
 

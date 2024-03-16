@@ -35,9 +35,68 @@ const AllPosts = () => {
   }
 
   return (
+    // <div >
+    //   {/* Title */}
+    //   <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">All Posts</p>
+
+    //   {/* Container for cards */}
+    //   <div
+    //     ref={cardsContainer}
+    //     className="flex overflow-x-scroll no-scrollbar scroll-smooth items-center"
+    //     style={{
+    //       scrollBehavior: "smooth",
+    //     }}
+    //   >
+    //     {/* Map through data to render cards */}
+    //     {data.map((item) => (
+    //       <div
+    //         key={item.id}
+    //         style={{ minWidth: card_width, minHeight: card_height }}
+    //         className=" m-4 rounded-md"
+    //       >
+    //         {/* Card image */}
+    //         < img className="rounded-t-md" src={item.img} alt="img" />
+
+    //         {/* Card content */}
+    //         < div className="border border-black border-t-0  px-2  rounded-b-md" >
+    //           <p className="p-2">{item.text}</p>
+    //           <div className="flex p-2 items-center justify-between">
+    //             <div className="opacity-30">{item.date}</div>
+
+    //             {/* Bring CardComponent and ChildComponent */}
+    //             <div className="relative" key={parseInt(item.id)}>
+    //               <CardComponent />
+    //               {openCards.includes(parseInt(item.id)) && (
+    //                 <ChildComponent onClose={() => handleCardClick(parseInt(item.id))} />
+    //               )}
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     ))
+    //     }
+    //   </div >
+
+    //   {/* Buttons for horizontal scrolling */}
+
+    //   < div className="flex justify-center" >
+    //     <button
+    //       className="text-4xl hidden md:block text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white transition duration-200 ease-in-out"
+    //       onClick={scrollToLeft}
+    //     >
+    //       <GrFormPrevious />
+    //     </button>
+    //     <button
+    //       className="text-4xl hidden md:block text-teal500 border-2 rounded-lg px-4 mx-4 hover:bg-teal500 hover:text-white transition duration-300 ease-in-out"
+    //       onClick={scrollToRight}
+    //     >
+    //       <MdNavigateNext />
+    //     </button>
+    //   </div >
+    // </div >
     <div >
       {/* Title */}
-      <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">All Posts</p>
+      <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">جميع المشاركات</p>
 
       {/* Container for cards */}
       <div
@@ -59,17 +118,17 @@ const AllPosts = () => {
 
             {/* Card content */}
             < div className="border border-black border-t-0  px-2  rounded-b-md" >
-              <p className="p-2">{item.text}</p>
+              <p className="p-2">{"قم بإنشاء متتبع مصاريف على الويب يسمح للمستخدمين بإدخال مصاريفهم، وتصنيفها، وإنشاء تقارير. يمكن أن يكون هذا مشروعًا رائعًا لتعلم إدارة قواعد البيانات وتصور البيانات"}</p>
               <div className="flex p-2 items-center justify-between">
-                <div className="opacity-30">{item.date}</div>
 
                 {/* Bring CardComponent and ChildComponent */}
                 <div className="relative" key={parseInt(item.id)}>
                   <CardComponent />
                   {openCards.includes(parseInt(item.id)) && (
                     <ChildComponent onClose={() => handleCardClick(parseInt(item.id))} />
-                  )}
+                    )}
                 </div>
+                    <div className="opacity-30">{item.date}</div>
               </div>
             </div>
           </div>

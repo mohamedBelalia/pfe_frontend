@@ -8,8 +8,20 @@ const Dashboard = () => {
 
 
   return (
+    // <div className="bg-gray-50">
+    //   <div className='md:px-24  px-2  md:flex  my-10 mx-auto'>
+    //     <div className="md:w-2/5" >
+    //       <Card />
+    //       <ComplateAcount />
+    //     </div>
+    //     <OtherInfos />
+    //   </div>
+    //   <AllPosts />
+    //   <Comments />
+
+    // </div>
     <div className="bg-gray-50">
-      <div className='md:px-24  px-2  md:flex  my-10 mx-auto'>
+      <div className='md:px-24  px-2  md:flex flex-row-reverse  my-10 mx-auto'>
         <div className="md:w-2/5" >
           <Card />
           <ComplateAcount />
