@@ -34,10 +34,11 @@ const AllPosts = () => {
     }
   }
 
+  const [isArabic,setIsArabic] = useState(true);
+
   return (
     // <div >
     //   {/* Title */}
-    //   <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">All Posts</p>
 
     //   {/* Container for cards */}
     //   <div
@@ -96,7 +97,10 @@ const AllPosts = () => {
     // </div >
     <div >
       {/* Title */}
+      {isArabic?(
       <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">جميع المشاركات</p>
+    //   <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">All Posts</p>
+      ):( <p className="flex justify-center pt-4 items-center text-4xl font-semibold text-gray-600">All Posts</p> )}
 
       {/* Container for cards */}
       <div
@@ -118,7 +122,9 @@ const AllPosts = () => {
 
             {/* Card content */}
             < div className="border border-black border-t-0  px-2  rounded-b-md" >
-              <p className="p-2">{"قم بإنشاء متتبع مصاريف على الويب يسمح للمستخدمين بإدخال مصاريفهم، وتصنيفها، وإنشاء تقارير. يمكن أن يكون هذا مشروعًا رائعًا لتعلم إدارة قواعد البيانات وتصور البيانات"}</p>
+            {isArabic ?( <p className="p-2">"قم بإنشاء متتبع مصاريف على الويب يسمح للمستخدمين بإدخال مصاريفهم، وتصنيفها، وإنشاء تقارير. يمكن أن يكون هذا مشروعًا رائعًا لتعلم إدارة قواعد البيانات وتصور البيانات"</p>)
+            :(<p className="p-2">{item.text}</p>)}
+            
               <div className="flex p-2 items-center justify-between">
 
                 {/* Bring CardComponent and ChildComponent */}
