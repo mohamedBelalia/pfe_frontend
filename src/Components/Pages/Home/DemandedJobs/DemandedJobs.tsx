@@ -29,8 +29,9 @@ const DemandedJobs = ({getWorkerId}:topWorkersType) => {
             {/* Phone screens seaction */}
         <div className="flex md:hidden gap-5 mt-14 overflow-scroll hideScrollBar">
             {
-                topRatedWorkers.map((job, _) => (
-                    <JobCard 
+                topRatedWorkers.map((job, index) => (
+                    <JobCard key={index}
+                  
                         // to handle the clicked profile
                         getClickedWorkerId={getWorkerId}
 
@@ -50,8 +51,9 @@ const DemandedJobs = ({getWorkerId}:topWorkersType) => {
             {/* PC screens seaction */}
         <div className="hidden md:flex justify-around md:flex-wrap gap-5 mt-14">
             {
-                topRatedWorkers.map((job, _) => (
+                topRatedWorkers.map((job, index) => (
                     <JobCard 
+                        key={index}
                         getClickedWorkerId={getWorkerId}
                         workerInfo={
                             {
