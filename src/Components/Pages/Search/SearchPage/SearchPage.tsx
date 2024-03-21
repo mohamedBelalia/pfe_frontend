@@ -1,17 +1,20 @@
 import { IoSearchSharp } from "react-icons/io5"
 import Navbar from "../../../Common/Navbar/Navbar"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../../../Store/store"
 import { useNavigate } from "react-router-dom"
 import { setSelectedJobName } from "../../../Store/Slices/SelectedTask"
-import {devJobs} from "../../../../assets/jsonTemp/tempData.json"
-import { IoIosArrowDown } from "react-icons/io"
 import NearWorkers from "./NearWorkers"
 import WorkerProfilePopUp from "../Filter/workerPopUp/WorkerProfilePopUp"
+import { ProfessionsType } from "../../../../TS"
+import api from "../../../../api/professions"
+import ProfessionBoxSearch from "../../../Common/ProfessionBoxSearch/ProfessionBoxSearch"
 
 const SearchPage = () => {
 
+    const [professions , setProfessions] = useState<ProfessionsType[]>([]);
+    const [professionName , setProfessionName] = useState<string>("");
 
     const navigate = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
@@ -20,28 +23,41 @@ const SearchPage = () => {
     // to handle the clicked worker popup profile
     const [workerClickedId , setWorkerClickedId] = useState<string>("")
 
-    const searchBtn = () => {
-        if(searchedTask.trim().length > 0){
-          window.scrollTo(0,0)
-          dispatch(setSelectedJobName({selectedTask:searchedTask}))
-          navigate("/search/step_one")
+
+    useEffect(()=>{
+      const fetchProfessions = async()=>{
+        try{
+          const response = await api.get("/professions/")
+
+          setProfessions(response.data);
+
+        }catch(error){
+          console.log(error);
         }
       }
 
-    // code && logic of the selected fields 
+      fetchProfessions()
 
-    // state to manage the behavior of the select box of Job Titles
-    const [isJobTitleClicked , setIsJobTitleClicked] = useState<boolean>(false)
+    },[])
 
-    // initailize the jobTitle in the select bar
-    const jobTitle = devJobs[0].jobTitle
+    const searchBtn = () => {
 
-    const handleSelectedJobTitle = (selectedJobId : string) => {
+      let professionsNamesArr = [] ;
+      for(let i=0 ; i< professions.length ; i++){
+        professionsNamesArr.push(professions[i].labelleProfession_AR)
+        professionsNamesArr.push(professions[i].labelleProfession_FR)
+      }
+  
+      if(professionsNamesArr.includes(professionName)){
         window.scrollTo(0,0)
-        dispatch(setSelectedJobName({selectedTask:selectedJobId}))
-        navigate("/search/step_one")    
-  }
-
+        dispatch(setSelectedJobName({selectedTask:professionName}))
+        navigate("/search/step_one")
+      }
+      else{
+        alert("Saisissez correctement le nom de la profession")
+      }
+        
+    }
 
   return (
     <div>
@@ -54,7 +70,8 @@ const SearchPage = () => {
 
             <div className="md:w-full w-[80%] mx-auto md:mx-0 flex justify-center">
                 <input 
-                  onChange={(e)=>setSearchedTask(e.target.value)}
+                  onChange={(e)=>setProfessionName(e.target.value)}
+                  value={professionName}
                   className="h-[55px] md:h-[70px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 border-[#199AFF] focus:border-teal-700"
                   type="text" 
                   placeholder="Search By Task Name"/>
@@ -63,38 +80,13 @@ const SearchPage = () => {
                 </button>
             </div>
 
-            <p className="text-center text-sm font-semibold text-gray-500">Or Select It</p>
-
-            <div className="flex flex-col md:flex-row justify-between gap-5 md:w-[50%] mx-auto">
-
-            <div className="w-[90vw] md:w-[30vw] mx-auto relative z-10">
-              <div onClick={()=>setIsJobTitleClicked(!isJobTitleClicked)} className="bg-gray-200 border border-gray-400 rounded-md h-[45px] flex justify-center gap-4 items-center cursor-pointer select-none">
-                <p className="text-[#414E5F] font-semibold">{jobTitle}</p>
-                <IoIosArrowDown className="text-[#414E5F] text-2xl"/>
-              </div>
-
-              <div 
-                className={`${isJobTitleClicked ? 'h-[200px] border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg absolute w-full top-14 transition-all ease-in-out duration-150 overflow-y-scroll`}>
-                  <div className="p-5 text-center flex flex-col gap-5">
-                    {
-                        devJobs.map((job,_)=>(
-                            <div 
-                            key={job.id_job}
-                            onClick={()=>handleSelectedJobTitle(job.jobTitle)}
-                            className={`${jobTitle == job.jobTitle ? 'bg-blue-200' : 'bg-white'}  p-2 rounded-md cursor-pointer`}>
-                                {job.jobTitle}
-                            </div>
-                        ))
-                    }
-                    
-                  </div>
+            <div className="md:w-[40%] w-[90%] mx-auto relative">
+              <div className="w-full absolute top-0 left-0">
+                <ProfessionBoxSearch getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
               </div>
             </div>
 
-            </div>
-
-
-            <div className="md:w-[80%] md:mx-auto mx-0">
+            <div className="md:w-[80%] md:mx-auto mx-0 mt-8">
               <NearWorkers getWorkerId={setWorkerClickedId}/>
             </div>
 

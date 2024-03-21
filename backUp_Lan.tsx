@@ -8,23 +8,30 @@ import { setSelectedJobName } from "../../Store/Slices/SelectedTask";
 import { useSelector } from "react-redux";
 import api from "../../../api/professions"
 import ProfessionBoxSearch from "../../Common/ProfessionBoxSearch/ProfessionBoxSearch";
-import { ProfessionsType } from "../../../TS";
 
 type LandingPageTypes = {
   getTheCoosenJob : (idJob:string) => void
 }
 
+export interface ProfessionsType {
+    idProfession: string,
+    labelleProfession_AR: string,
+    labelleProfession_FR: string
+}
+
+const arabicRegex = /[\u0600-\u06FF]/;
+const englishRegex = /^[a-zA-Z]*$/;
 
 const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
-    const [professions , setProfessions] = useState<ProfessionsType[]>([]);
+    const [professions , setProfessionsNames] = useState<ProfessionsType[]>([]);
     
     useEffect(()=>{
       const fetchProfessions = async()=>{
         try{
           const response = await api.get("/professions/")
 
-          setProfessions(response.data);
+          setProfessionsNames(response.data);
 
         }catch(error){
           console.log(error);
@@ -37,10 +44,32 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
     // Profession
     const [professionName , setProfessionName] = useState<string>("");
+    const [searchedProfessions , setSearchedProfessions] = useState<ProfessionsType[]>([]);
 
     const onProfessionNameChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+      professionNameSearched(event.target.value) 
       setProfessionName(event.target.value)
-    }    
+    }
+
+ 
+    
+      // to get the profession(that we get from database) that has the same name entred in the input
+    const professionNameSearched = (professionNameSearched : string) => {
+       let searchedProfessionArray : ProfessionsType[] = professions?.filter((pro)=>
+          professionNameSearched.length > 0 &&
+          (pro.labelleProfession_AR.toLowerCase().includes(professionNameSearched.toLowerCase()) 
+            || pro.labelleProfession_FR.toLowerCase().includes(professionNameSearched.toLowerCase()))
+        )
+
+       setSearchedProfessions(searchedProfessionArray);
+    }
+
+    const professionNameClicked = (profession : string) => {
+        setProfessionName(profession);
+        setSearchedProfessions([]);
+    }
+
+    
 
     // The Slice For Change The Language
     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
@@ -60,7 +89,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
         professionsNamesArr.push(professions[i].labelleProfession_FR)
       }
 
-      if(professionsNamesArr.includes(professionName.trim())){
+      if(professionsNamesArr.includes(professionName)){
         window.scrollTo(0,0)
         dispatch(setSelectedJobName({selectedTask:professionName}))
         navigate("/search/step_one")
@@ -68,7 +97,6 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
       else{
         alert("Saisissez correctement le nom de la profession")
       }
-      
     }
 
     const clicked = (id : string) => {
@@ -116,10 +144,33 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                   </button>
               </div> 
                
-              <div className="md:w-[40%] w-[90%] mx-auto relative">
-                <div className="w-full absolute z-40 top-0 left-0">
-                  <ProfessionBoxSearch getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
-                </div>
+              <div className={`md:w-[50%] ${searchedProfessions.length > 0 ? "h-[250px]" : "h-0"} overflow-y-scroll 
+                w-full absolute md:top-52 top-96 rounded-md bg-white z-40 transition-all ease-in-out duration-300`}>
+              {
+                 searchedProfessions.length > 0 && 
+                 searchedProfessions.map((pro , _)=>(
+                    
+                  <div 
+                      key={pro.idProfession}
+                      onClick={()=>professionNameClicked(
+                        arabicRegex.test(professionName) 
+                        ? pro.labelleProfession_AR
+                        : pro.labelleProfession_FR
+                      )}
+
+                      className="cursor-pointer h-[60px] px-6 border-b border-gray-500 
+                      flex justify-start gap-3 text-lg items-center hover:bg-gray-200"
+                  >
+                    <p className={`${arabicRegex.test(professionName) ? "text-right" : "text-left"} w-full`}>
+                    {
+                      arabicRegex.test(professionName) 
+                      ? pro.labelleProfession_AR
+                      : pro.labelleProfession_FR
+                    }
+                    </p>
+                  </div>
+                 ))
+              }
               </div>
               
             </div> 
