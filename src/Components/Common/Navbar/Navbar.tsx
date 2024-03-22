@@ -10,8 +10,12 @@ import { AppDispatch, RootState } from "../../Store/store";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setIsArabicLanguageSelected } from "../../Store/Slices/ChangeLanguageSlice";
+import { PiVideoFill } from "react-icons/pi";
 
 const Navbar = () => {
+
+    //get the url 
+    const [currentUrl , setCurrentUrl] = useState<string>("")
 
     // to change the language icon
     const dispatch = useDispatch<AppDispatch>()
@@ -39,6 +43,13 @@ const Navbar = () => {
 
     },[isBecomeTaskerClicked])
 
+    useEffect(()=>{
+        setCurrentUrl(window.location.href)
+    },[window.location.href])
+
+    console.log(currentUrl);
+    
+
     const showTaskerBtnRegester = () => {
         setIsBecomeTaskerClicked(!isBecomeTaskerClicked)
         setIsQuidsClicked(false)
@@ -65,19 +76,22 @@ const Navbar = () => {
                         {/* Grouping The ul and the "Become a tasker" btn to make the respnsive mechanism easy */}
                         <div className="items-center gap-6 hidden md:flex">
                             <ul className="flex items-center gap-6 font-bold text-base text-[#414E5F]">
-                                <div title="Find the best worker for your task" 
-                                    className="cursor-pointer flex items-center gap-2 bg-teal-200 p-2 rounded-md" onClick={()=>goTo("/search")}>
-                                   {
-                                    isArabicSelected 
-                                    ? <p className="text-sm">بحث</p> 
-                                    :  <p className="font-normal">search</p> 
-                                    }
-
-                                    
-                                    <IoSearchSharp className="text-2xl"/>
-                                </div>
+                                {
+                                    currentUrl != "http://localhost:5173/"
+                                    &&
+                                    <div title="Find the best worker for your task" 
+                                        className="cursor-pointer flex items-center gap-2 bg-teal-200 p-2 rounded-md" onClick={()=>goTo("/search")}>
+                                    {
+                                        isArabicSelected 
+                                        ? <p className="text-sm">بحث</p> 
+                                        :  <p className="font-normal">search</p> 
+                                        }
+                                        <IoSearchSharp className="text-2xl"/>
+                                    </div>
+                                }
                             </ul>
                             <div onClick={showTaskerBtnRegester}>
+                                <img src="./public/imgUsed/taskerAuth.png" className="w-[30px]" />
                                 <Button label={isArabicSelected ? "كن منفذ مهام" : "Become a tasker"} bg="#199AFF" color="white"/>
                             </div>
                             <div>
@@ -108,12 +122,15 @@ const Navbar = () => {
                         <div className="bg-[#d0d3dab6] p-2 rounded-md cursor-pointer md:static absolute right-0"
                             onClick={showGuidsBox}
                         >   
-                        {
-                            isQuidsClicked ? 
-                            <RxCross1 className="text-3xl font-bold text-[#020409]"/>
-                            :
-                            <RxHamburgerMenu className="text-3xl font-bold text-[#020409]"/>
-                        }
+                            <div>
+                            {/* {   
+                                isQuidsClicked ? 
+                                <RxCross1 className="text-3xl font-bold text-[#020409]"/>
+                                :
+                                <RxHamburgerMenu className="text-3xl font-bold text-[#020409]"/>
+                            } */}
+                                 <PiVideoFill className="text-3xl font-bold text-sky-700"/>
+                            </div>
                         </div>
 
                     </div>
@@ -122,7 +139,7 @@ const Navbar = () => {
             </div>
             {/* Content Of Guides */}
             <div className={`${isQuidsClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-20 md:-mt-3 duration-200 ease-in-out shadow-xl w-full bg-white overflow-hidden rounded-b-lg`}>
-                    <ShowedContent/>
+                    <ShowedContent />
             </div>
 
             {/* The Worker Btns to regester that Handle by setIsBecomeTaskerClicked state */}

@@ -4,12 +4,13 @@ import { ProfessionsType } from "../../../TS";
 
 export type professionBoxSearchProps = {
     professionNameProp : string 
-    getProfessionNameProp : (profession : string) => void
+    getProfessionNameProp : (profession : string) => void 
+    isTyping : boolean
 }
 
 const arabicRegex = /[\u0600-\u06FF]/;
 
-const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp}:professionBoxSearchProps) => {
+const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyping}:professionBoxSearchProps) => {
 
     const [isClicked , setIsClicked] = useState<boolean>(false)
     const [professions , setProfessions] = useState<ProfessionsType[]>([]);
@@ -32,9 +33,9 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp}:profes
     },[])
 
     useEffect(()=>{
-        // if(!isClicked){
+        if(!isClicked){
          professionNameSearched(professionNameProp)
-        // }
+        }
     },[professionNameProp])
 
     
@@ -52,12 +53,20 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp}:profes
     const professionNameClicked = (profession : string) => {
         getProfessionNameProp(profession);
         setSearchedProfessions([]);
-
-        // setIsClicked((prev)=>!prev)
     }    
 
+    useEffect(()=>{
+      if(isTyping){
+        setIsClicked(false)
+      }
+      else{
+        setIsClicked(true)
+      }
+    },[isTyping])
+    
+
   return (
-    <div className={`${searchedProfessions.length > 0 ? "h-[250px] border border-black" : "h-0"} overflow-y-scroll 
+    <div className={`${searchedProfessions.length > 0 && !isClicked ? "h-[260px] border border-black" : "h-0"} overflow-y-scroll 
     w-full  rounded-md bg-white z-40 transition-all ease-in-out duration-300`}>
   {
      searchedProfessions.length > 0 && 

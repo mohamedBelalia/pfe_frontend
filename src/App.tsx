@@ -13,7 +13,7 @@ import Signup from './Components/Pages/Auth/Signup/Signup'
 function App() {
 
   return (
-
+    
       <Router>
           <Routes>
             <Route path='/' element={<Home/>}/>

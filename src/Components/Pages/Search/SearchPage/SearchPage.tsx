@@ -13,6 +13,8 @@ import ProfessionBoxSearch from "../../../Common/ProfessionBoxSearch/ProfessionB
 
 const SearchPage = () => {
 
+    const [isTyping , setIsTyping] = useState<boolean>(false)
+
     const [professions , setProfessions] = useState<ProfessionsType[]>([]);
     const [professionName , setProfessionName] = useState<string>("");
 
@@ -71,6 +73,8 @@ const SearchPage = () => {
             <div className="md:w-full w-[80%] mx-auto md:mx-0 flex justify-center">
                 <input 
                   onChange={(e)=>setProfessionName(e.target.value)}
+                  onFocus={()=>setIsTyping(true)}
+                    onBlur={()=>setIsTyping(false)}
                   value={professionName}
                   className="h-[55px] md:h-[70px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 border-[#199AFF] focus:border-teal-700"
                   type="text" 
@@ -82,7 +86,7 @@ const SearchPage = () => {
 
             <div className="md:w-[40%] w-[90%] mx-auto relative">
               <div className="w-full absolute top-0 left-0">
-                <ProfessionBoxSearch getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
+                <ProfessionBoxSearch isTyping={isTyping} getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
               </div>
             </div>
 

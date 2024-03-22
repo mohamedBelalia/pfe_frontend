@@ -17,6 +17,7 @@ type LandingPageTypes = {
 
 const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
+    const [isTyping , setIsTyping] = useState<boolean>(false)
     const [professions , setProfessions] = useState<ProfessionsType[]>([]);
     
     useEffect(()=>{
@@ -87,7 +88,6 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
           justify-center items-end`}>
 
       <div className="w-full h-full absolute top-0 left-0 overflow-hidden zelijeBg"></div>
-
       <div className="md:h-[70%] h-full relative ourContainer flex flex-col gap-10 md:gap-32 justify-around md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
@@ -106,6 +106,8 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
               </div>
               <div className="w-full flex justify-center">
                   <input 
+                    onFocus={()=>setIsTyping(true)}
+                    onBlur={()=>setIsTyping(false)}
                     onChange={onProfessionNameChange}
                     className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
                     type="text" 
@@ -117,8 +119,8 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
               </div> 
                
               <div className="md:w-[40%] w-[90%] mx-auto relative">
-                <div className="w-full absolute z-40 top-0 left-0">
-                  <ProfessionBoxSearch getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
+                <div className="w-full absolute z-40 md:-top-5 -top-14 left-0">
+                  <ProfessionBoxSearch isTyping={isTyping} getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
                 </div>
               </div>
               

@@ -7,17 +7,26 @@ import WhereWeAre from "./whereWeAre/WhereWeAre"
 import Faqs from "./Faqs/Faqs"
 import Navbar from "../../Common/Navbar/Navbar"
 import WorkerProfilePopUp from "../Search/Filter/workerPopUp/WorkerProfilePopUp"
+import PlayVideo from "../../Common/PlayVideo/PlayVideo"
+import { useSelector } from "react-redux"
+import { RootState } from "../../Store/store"
 
 const Home = () => {
+
+  // for The Video Played
+  const isVideoPlayed : boolean = useSelector((state : RootState)=> state.videoPlayeSlice.isVideoPlayed)
+  const videoType : any = useSelector((state : RootState)=> state.videoPlayeSlice.videoType)
+
 
   const [choosenJob , setChoosenJob] = useState<string>("1")
   
    // to handle the clicked worker popup profile
    const [workerClickedId , setWorkerClickedId] = useState<string>("")
 
+
   return (
-    <>
-    <Navbar/>
+    <div className={`${isVideoPlayed && "fixed inset-0 overflow-hidden"}`}>
+    <Navbar />
     <div className="bg-white mb-20">
         <LandingPage getTheCoosenJob={setChoosenJob}/>
         <JobsDetails idJob={choosenJob}/>
@@ -25,6 +34,12 @@ const Home = () => {
         <DemandedJobs getWorkerId={setWorkerClickedId}/>
         <WhereWeAre/>
         <Faqs/>
+
+      {/* For The Video Played */}
+      {
+        isVideoPlayed &&
+        <PlayVideo videoType={videoType}/>
+      }
 
         {/* worker profile popup */}
         {
@@ -46,7 +61,7 @@ const Home = () => {
             }
 
     </div>
-    </>
+    </div>
   )
 }
 
