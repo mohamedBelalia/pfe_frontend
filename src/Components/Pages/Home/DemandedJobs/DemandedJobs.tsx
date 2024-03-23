@@ -21,7 +21,7 @@ const DemandedJobs = ({getWorkerId}:topWorkersType) => {
             {
                 isArabicSelected 
                 ? "أفضل 6 عمال تقييمًا في منطقتك"
-                : "The Top 6 Rated Workers In Your Area"
+                : "Les 6 meilleurs artisans évalués dans votre région."
             }
             
         </h1>

@@ -88,7 +88,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
           justify-center items-end`}>
 
       <div className="w-full h-full absolute top-0 left-0 overflow-hidden zelijeBg"></div>
-      <div className="md:h-[70%] h-full relative ourContainer flex flex-col gap-10 md:gap-32 justify-around md:justify-end items-center">
+      <div className="md:h-[70%] h-full relative ourContainer flex flex-col justify-around md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
             <div className="w-full h-full  flex flex-col gap-16 pb-36 md:pb-0 md:gap-10 justify-center items-center relative">
@@ -98,7 +98,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                   {
                     isArabicSelected 
                     ? "ابحث عن حرفيي متخصص"
-                    : "Find Your Expert Worker" 
+                    : "Trouvez votre travailleur expert" 
                   }
                   
                 </h1>
@@ -161,7 +161,7 @@ const JobBtn = ({Icon , name , id , clickedId} : JobBtnTypes) =>{
 
     return (
       <div className="flex flex-col items-center gap-3 cursor-pointer p-2 w-[60px] relative z-[-2px]">
-        <div className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} text-[35px] md:text-[40px]`}>
+        <div className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} text-[40px] md:text-[50px]`}>
           {Icon}
         </div>
         <p className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} font-bold text-lg`}>{name}</p>

@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { AppDispatch, RootState } from "../../Store/store"
 import { setSelectedJobName } from "../../Store/Slices/SelectedTask"
 import { useSelector } from "react-redux"
+import { FaSearch } from "react-icons/fa";
 
 type JobDetailsTypes = {
     idJob : string
@@ -16,20 +17,35 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     const jobDetails = DetailsJob.jobs.find((job)=>job.id == idJob)
-    const jobCategories : string[]|undefined = jobDetails?.tasks.split("|")
+    const jobCategoriesAr : string[]|undefined = jobDetails?.tasksAr.split("|")
+    const jobCategoriesFr : string[]|undefined = jobDetails?.tasksFr.split("|")
 
   return (
     <div className="bg-[#f0fffb] md:pb-10 pb-5">
         <div className=" w-[100%] md:w-[80%] mx-auto p-10">
-            <div className="flex flex-wrap gap-4">
+            {
+                isArabicSelected ? 
+                <div className="flex flex-wrap gap-4">
                 {
-                    jobCategories?.map((category , _)=>(
+                    jobCategoriesAr?.map((category , _)=>(
+                        <div key={category} className="md:w-auto w-full">
+                            <CategoryBtn label={category}/>
+                        </div>
+                    ))
+                }
+                </div>
+                :
+                <div className="flex flex-wrap gap-4">
+                {
+                    jobCategoriesFr?.map((category , _)=>(
                         <div key={category} className="md:w-auto w-full">
                             <CategoryBtn label={category}/>
                         </div>
                     ))
                 }
             </div>
+            }
+           
 
             <div className={`flex flex-col ${isArabicSelected ? "md:flex-row-reverse text-right" : "md:flex-row"} gap-2 mt-14 items-center`}>
                 <div className="w-full">
@@ -50,12 +66,15 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
                             {isArabicSelected ? jobDetails?.sentence3Ar : jobDetails?.sentence3En}
                         </p>
                     </div>
-                    <div className="md:block mt-10 md:mt-0 flex justify-center">
-                        <Button label={isArabicSelected ? `العثور على ${jobDetails?.nameAr}` : `Find ${jobDetails?.nameEn}`} bg="#199AFF" color="white"/>
+                    <div className={`mt-10 md:mt-0 flex ${isArabicSelected ? "md:justify-end" : "md:justify-start"} justify-center`}>
+                        <button className="flex gap-3 justify-center items-center px-5 py-2 rounded-md font-bold text-white bg-[#199AFF]">
+                                <FaSearch/>
+                                <span>{isArabicSelected ? "العثور على " + jobDetails?.nameAr : "trouver un " + jobDetails?.nameEn }</span>
+                        </button>
                     </div>
                 </div>
                 <div className="w-1/2 h-[450px] hidden md:flex overflow-hidden rounded-3xl border-2 border-green-600">
-                    <img className="w-full h-full object-cover" src={jobDetails?.imgPath} alt={jobDetails?.name} />
+                    <img className="w-full h-full object-cover" src={jobDetails?.imgPath} alt={jobDetails?.nameEn} />
                 </div>
             </div>
         </div>

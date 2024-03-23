@@ -1,29 +1,29 @@
 {
-    "faQuestions" : [
-        {   
-            "id" : "Q1" ,
-            "question" : "What types of projects do your builders undertake?" ,
-            "answer" : "Our skilled builders are experienced in a wide range of construction projects, including residential homes, commercial spaces, renovations, and more. Whether you're looking to build a new structure or update an existing one"
+    "faQuestions": [
+        {
+            "id": "Q1",
+            "question": "Types de projets réalisés?",
+            "answer": "Nos constructeurs expérimentés sont spécialisés dans divers projets de construction tels que les maisons résidentielles, les espaces commerciaux, les rénovations, etc."
         },
-        {   
-            "id" : "Q2" ,
-            "question" : "How long does a typical construction project take?" ,
-            "answer" : "The duration of a construction project varies based on factors such as project size, complexity, and weather conditions. Our team works diligently to provide accurate project timelines during the initial consultation"
+        {
+            "id": "Q2",
+            "question": "Durée moyenne d'un projet?",
+            "answer": "La durée varie selon la taille, la complexité et les conditions météorologiques. Nous fournissons des délais précis lors de la consultation."
         },
-        {   
-            "id" : "Q3" ,
-            "question" : "What makes your builders stand out?" ,
-            "answer" : "Our builders are committed to delivering exceptional craftsmanship, attention to detail, and superior customer service. We prioritize open communication throughout the entire construction process."
+        {
+            "id": "Q3",
+            "question": "Ce qui distingue nos constructeurs?",
+            "answer": "Notre engagement envers l'artisanat de qualité, l'attention aux détails et le service clientèle exceptionnel."
         },
-        {   
-            "id" : "Q4" ,
-            "question" : "How is pricing structured for your construction services?" ,
-            "answer" : "Our pricing is transparent and tailored to each specific project. During the consultation phase, we provide a detailed estimate outlining the costs associated with labor, materials, permits, and any other relevant expenses."
+        {
+            "id": "Q4",
+            "question": "Structure tarifaire?",
+            "answer": "Transparence dans la tarification, avec des estimations détaillées des coûts de main-d'œuvre, matériaux et permis."
         },
-        {   
-            "id" : "Q5" ,
-            "question" : "Do your builders handle permits and approvals?" ,
-            "answer" : "Yes, our team is well-versed in navigating the regulatory landscape. We take care of obtaining the required permits and approvals to ensure that your construction project complies with local building codes and regulations. "
+        {
+            "id": "Q5",
+            "question": "Gestion des permis et approbations?",
+            "answer": "Oui, notre équipe s'occupe de tous les permis et approbations nécessaires pour se conformer aux réglementations locales."
         }
     ]
 }

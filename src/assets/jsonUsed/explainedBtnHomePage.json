@@ -2,24 +2,24 @@
     "btnsExplain": [
       {
         "id": "1",
-        "titleAr" : "اختر منفذ مهام بناءً على السعر والمهارات والتقييمات",
-        "titleEn" : "Choose a Tasker by price,skills, and reviews.",
-        "descriptionAr" : "تجميع أو تفكيك قطع الأثاث من خلال فتح الصندوق، البناء، وأي أعمال تنظيف إضافية",
-        "descriptionEn" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+        "titleAr" : "مشاركة أعمال الحرفيين",
+        "titleFr" : "Partage des œuvres d'artisans",
+        "descriptionAr" : "يُمكن للحرفيين مشاركة صور لأعمالهم السابقة لتعزيز فرصهم في الحصول على مشاريع مستقبلية عبر منصتنا.",
+        "descriptionFr" : "Les artisans peuvent partager des photos de leurs travaux précédents pour augmenter leurs chances d'obtenir des projets futurs sur notre plateforme."
       },
       {
         "id": "2",
-        "titleAr" : "جدولة منفذ مهام بأقرب وقت اليوم",
-        "titleEn" : "Schedule a Tasker as early as today.",
-        "descriptionAr" : "تجميع أو تفكيك قطع الأثاث من خلال فتح الصندوق، البناء، وأي أعمال تنظيف إضافية",
-        "descriptionEn" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+        "titleAr" : "سهولة البحث و الاختيار",
+        "titleFr" : "Facilité de recherche et de sélection",
+        "descriptionAr" : "بسهولة يمكنك البحث عن الحرفيين الذين يتقنون الحرفة التي تبحث عنها عبر خطوات بسيطة وسهلة على منصتنا.",
+        "descriptionFr" : "Il est facile de rechercher les artisans qui maîtrisent le métier que vous recherchez grâce à des étapes simples et faciles sur notre plateforme."
       },
       {
         "id": "3",
-        "titleAr" : "الدردشة، الدفع، البقشيش، وكتابة التقييم، كل ذلك في مكان واحد",
-        "titleEn" : "Chat, pay, tip, and review all in one place",
-        "descriptionAr" : "تجميع أو تفكيك قطع الأثاث من خلال فتح الصندوق، البناء، وأي أعمال تنظيف إضافية",
-        "descriptionEn" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
+        "titleAr" : "فضاء سهل الاستعمال",
+        "titleFr" : "Un espace facile à utiliser",
+        "descriptionAr" : "نقدم فضاء سهل الاستخدام للحرفيين والزبائن يُسهّل عملية التواصل والتفاعل مع منصتنا",
+        "descriptionFr" : "Nous offrons un espace convivial pour les artisans et les clients, facilitant la communication et l'interaction avec notre plateforme"
       }
       
     ]

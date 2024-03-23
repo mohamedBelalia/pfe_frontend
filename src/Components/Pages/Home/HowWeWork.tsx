@@ -33,7 +33,7 @@ const HowWeWork = () => {
 
   return (
     <div className="w-[80%] mx-auto pt-12">
-        <h1 className="text-center text-4xl font-bold text-[#349292]">{isArabicSelected ? "كيف نعمل" : "How We Work"}</h1>
+        <h1 className="text-center text-4xl font-bold text-[#349292]">{isArabicSelected ? "كيف نعمل" : "Comment nous travaillons"}</h1>
         <div className="flex flex-col tab:flex-row items-start gap-6 mt-20">
 
             <div className="tab:w-1/2 w-full">
@@ -47,8 +47,8 @@ const HowWeWork = () => {
                             <div key={btn.id}>
                                 <ExplainedBtn 
                                     id={btn.id} 
-                                    title={isArabicSelected ? btn.titleAr : btn.titleEn} 
-                                    description={isArabicSelected ? btn.descriptionAr : btn.descriptionEn} 
+                                    title={isArabicSelected ? btn.titleAr : btn.titleFr} 
+                                    description={isArabicSelected ? btn.descriptionAr : btn.descriptionFr} 
                                     reachedId={number}/>
                             </div>
                         ))

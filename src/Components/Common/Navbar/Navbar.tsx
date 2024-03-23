@@ -91,8 +91,14 @@ const Navbar = () => {
                                 }
                             </ul>
                             <div onClick={showTaskerBtnRegester}>
-                                <img src="./public/imgUsed/taskerAuth.png" className="w-[30px]" />
-                                <Button label={isArabicSelected ? "كن منفذ مهام" : "Become a tasker"} bg="#199AFF" color="white"/>
+                                
+                                <button className="flex gap-3 justify-center items-center px-5 py-2 rounded-md font-bold text-white bg-[#199AFF]">
+                                    <span>
+                                    <img src="./public/imgUsed/taskerAuth.png" className="w-[40px]" />
+                                    </span>
+                                    <span>{isArabicSelected ? "كن حرفيي" : "Devenir un artisan"}</span>
+                                </button>
+                               
                             </div>
                             <div>
                                 {/* Language Button */}

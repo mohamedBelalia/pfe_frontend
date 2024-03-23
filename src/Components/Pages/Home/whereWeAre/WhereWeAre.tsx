@@ -10,7 +10,7 @@ const WhereWeAre = () => {
 
   return (
     <div className="mt-16 pt-3">
-        <h1 className="text-center text-4xl font-bold text-[#349292]">{isArabicSelected ? "أين نحن" : "Where We Are"}</h1>
+        <h1 className="text-center text-4xl font-bold text-[#349292]">{isArabicSelected ? "أين نحن" : "Où sommes-nous"}</h1>
         <div className="mx-auto text-center mt-5">
             <p className="text-lg text-[#414E5F]">
                 {
@@ -21,8 +21,8 @@ const WhereWeAre = () => {
                         يمكنك العثور على العمال في منطقتك بسهولة عبر منصتنا
                     </>
                     :<>
-                        We are in all the Moroccan Cities  <br/>
-                        You can find workers in our platform from you area easilly
+                        Nous sommes dans toutes les villes du Maroc  <br/>
+                        Vous pouvez facilement trouver des travailleurs dans votre région via notre plateforme"
                     </>
                 }
                 
