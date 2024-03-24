@@ -1,9 +1,6 @@
 import { useState } from "react";
-import Input from "./Input";
 
-interface PropsSignup {
-  validation: () => void
-}
+
 
 
 const Signup = () => {
@@ -25,14 +22,14 @@ const Signup = () => {
 
     <div className=' md:flex md:flex-col md:items-center  rounded-xl  tab:pt-4'>
       <div className="text-center ">
-        <h1 className="text-teal-500 text-3xl font-semibold">Personal Information</h1>
+        <h1 className="text-teal-500 text-3xl font-[50px]">Personal Information</h1>
         <small className="text-red-500">use your active number to conecting with you*</small>
       </div>
       <form action="" method="post" className=" w-[70%] md:py-4 ">
 
         <div className="flex py-4 justify-between">
           <div className="flex flex-col">
-            <label htmlFor="fname" className=" text-sm color text-teal500 font-semibol" >First Name</label>
+            <label htmlFor="fname" className=" text-sm color text-teal500 font-semibold" >First Name</label>
             <input type="text" onChange={handleChange} className="h-10 w-[400px]  pl-4 focus:outline-blue-500 border-teal500  rounded-lg border-2  bg-transparent" id="fname" />
           </div>
 

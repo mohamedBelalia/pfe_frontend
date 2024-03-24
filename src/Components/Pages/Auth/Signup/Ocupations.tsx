@@ -58,12 +58,12 @@ const Ocupations = () => {
                 <IoIosArrowDown className="text-[#414E5F] ml-16 text-2xl" />
             </div>
 
-            <div className={`${isClicked ? 'h-[260px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg ml-44  mt-[128px]   absolute w-[60%]  top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
+            <div className={`${isClicked ? 'h-[260px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg ml-44  mt-[143px]   absolute w-[60%]  top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
                 {data.map((Occu, index) => (
                     <div
                         key={index}
                         onClick={() => handleClickedOccupations(index, Occu)}
-                        className={`${cmpOccup.includes(index) ? 'bg-green-200' : ''}   h-[38px] w-full  border-b-2 flex justify-start items-center pl-6 font-semibold  border-gray-300 `}
+                        className={`${cmpOccup.includes(index) ? 'bg-green-200' : ''}   h-[38px] w-full  border-b-2 flex justify-start items-center pl-6   border-gray-300 `}
                     >
                         {Occu}
                     </div>
