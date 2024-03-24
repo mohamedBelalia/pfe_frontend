@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import EditPopUp from "./EditPopUp"
 import { IoClose } from "react-icons/io5";
 
@@ -10,8 +11,9 @@ interface PROPSPopUp {
 
 }
 
-const EditProfile = ({ isOpen, onClose }: PROPSPopUp) => {
 
+
+const EditProfile = ({ isOpen, onClose }: PROPSPopUp) => {
 
 
     return (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import cities from "./Cities.json";
 import { FaLocationDot } from "react-icons/fa6";
+import React from "react";
 
 const ChoiseCity = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);

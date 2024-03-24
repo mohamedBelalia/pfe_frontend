@@ -1,3 +1,4 @@
+import "./input.css"
 
 interface INPUTSPROPS {
     labelText: string,
@@ -6,9 +7,9 @@ interface INPUTSPROPS {
 
 const Input = ({ labelText, lien }: INPUTSPROPS) => {
     return (
-        <div className="flex  tab:px-4 px-2 md:py-2 w-full   flex-col">
+        <div className="flex py-1  flex-col">
             <label className=" text-sm   py-1" htmlFor={lien}>{labelText.charAt(0).toUpperCase() + labelText.slice(1)}</label>
-            <input type="text" className="h-10 sm:w-[400px] md:w-[300px] focus:outline-blue-500 border-teal500  rounded-lg border bg-transparent" id={lien} />
+            <input type="text" className="h-10 w-[400px]  pl-4 focus:outline-blue-500 border-teal500  rounded-lg border-2  bg-transparent" id={lien} />
         </div>
     )
 }

@@ -1,0 +1,7 @@
+.chooseFile::-webkit-file-upload-button{
+    background-color: red;
+    color: #fff;
+}
+label::after{
+    content: "";
+}
