@@ -19,7 +19,6 @@ if(!isArabic)
                  <div className=" flex flex-col justify-center items-center">
                      <img className="lg:w-16 w-12 ml-2" src="icons/starsRate.png" />
                      <div className=" relative flex justify-center items-center ">
-
                      </div>
                      <div  >47 person rated you</div>
                  </div>

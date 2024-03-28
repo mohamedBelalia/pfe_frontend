@@ -7,7 +7,7 @@ import Footer from './Components/Common/Footer/Footer'
  import Filter from './Components/Pages/Search/Filter/Filter'
  import SearchPage from './Components/Pages/Search/SearchPage/SearchPage'
  import Login from './Components/Pages/Auth/login/Login'
- import Process from './Components/Pages/Auth/Signup/ProcessSignup'
+ import ProcessSignup from './Components/Pages/Auth/Signup/ProcessSignup'
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
             <Route path='/search/step_one' element={<ProcessStepOne/>}/>
             <Route path='/search/filter' element={<Filter/>}/>
             <Route path="/Login" element={<Login />} />
-            <Route path="/Signup" element={<Process />} /> 
+            <Route path="/ProcessSignup" element={<ProcessSignup />} /> 
             <Route path="/Dashboard" element={<Dashboard />} />
           </Routes>
         <Footer/>

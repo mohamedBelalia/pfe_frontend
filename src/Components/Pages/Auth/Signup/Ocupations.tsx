@@ -5,24 +5,37 @@ import data from "./Occupations.json";
 import { PiXCircleFill } from "react-icons/pi";
 
 
+type userData = {
+    occupations: string[]
+}
 
-const Ocupations = () => {
+type OccupationsFormProps = userData & {
+    updateFields: (fields: Partial<userData>) => void
+}
+
+const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [cmpOccup, setCmpOccup] = useState<number[]>([]);
-    const [choosedOccupations, setChoosedOccupations] = useState<string[]>([]);
+    const [choosedOccupations, setChoosedOccupations] = useState<string[]>([...occupations]);
 
-    const handleClickedOccupations = (index: number, Occup: string) => {
 
-        if (cmpOccup.length < 3 && !choosedOccupations.includes(Occup)) {
+    const handleClickedOccupations = (index: number, Occup: string | undefined) => {
+        if (Occup && cmpOccup.length < 3 && !choosedOccupations.includes(Occup)) {
             setCmpOccup([...cmpOccup, index]);
             setChoosedOccupations([...choosedOccupations, Occup])
-            if (cmpOccup.length == 2) {
-                setIsClicked(!isClicked)
+
+            // Pass the updated state to updateFields
+            updateFields({ occupations: [...choosedOccupations, Occup] });
+
+            if (cmpOccup.length === 2) {
+                setIsClicked(!isClicked);
             }
-
         }
-
     };
+
+
+
+
     const deleteOccup = (indexToDelete: number) => {
 
         setChoosedOccupations(prevItems => {
@@ -44,7 +57,7 @@ const Ocupations = () => {
                     <div className='h-14'></div>
                     {choosedOccupations.map((occup, index) => {
                         return (
-                            <div className="flex  flex-col  text-sm font-700 mr-2 " >
+                            <div key={index} className="flex  flex-col  text-sm font-700 mr-2 " >
                                 <PiXCircleFill onClick={() => deleteOccup(index)} className="text-red-500 mb-1 text-2xl font-700" />
                                 <p className="text-teal500  border-teal500 border-2 px-4 py-1 rounded-md font-semibold  -mt-1">{occup}</p>
                             </div>

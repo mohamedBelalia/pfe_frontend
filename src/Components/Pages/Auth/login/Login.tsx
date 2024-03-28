@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Input from "../Signup/Input"
+import Input from "./Input"
 
 const Login = () => {
 

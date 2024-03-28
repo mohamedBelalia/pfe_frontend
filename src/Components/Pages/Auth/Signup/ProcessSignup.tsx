@@ -5,9 +5,9 @@ import Ocupations from "./Ocupations";
 import { FaCheckCircle } from "react-icons/fa";
 import AddProjects from "./AddProjects";
 import {   useState } from "react";
+import Forms from "./Forms";
 
-
-const Process = () => {
+const ProcessSignup = () => {
     const [countSteps, setCountSteps] = useState<number>(0);
     const [NextText, setNextText] = useState<string>("Next");
     const steps = [<Signup />, <Ocupations />, <Add_InfosAbout_You />,<AddProjects />]
@@ -71,7 +71,9 @@ const Process = () => {
                 return <>
                     
                     <div className="rounded-full w-8 h-8 border-gray-200 border-2  flex justify-center items-center font-semibold ">2</div>
-                    <div className="bg-gray-200 w-[20%] h-2 " />
+                    <div className="bg-gray-200 w-[20%] h-2 " /> 
+
+
                     
                 </>
                 break;
@@ -188,18 +190,19 @@ const Process = () => {
                 {step3(countSteps)}
                 {step4(countSteps)}
             </div>
-            <div className=" h-[400px] w-full">{steps[countSteps]}</div>
+            {/* <div className=" h-[400px] w-full">{steps[countSteps]}</div> */}
 
             <div className="my-4  w-[70%] flex justify-between m-auto  ">
-                <button onClick={backHandler} type="submit" className=" px-8 transition-all ease-in-out py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   rounded-lg  ">Back</button>
-                <div>
+                {/* <button onClick={backHandler} type="submit" className=" px-8 transition-all ease-in-out py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   rounded-lg  ">Back</button> */}
+                <Forms />
+                {/* <div>
                     <button onClick={nextHandler} type="submit" className="px-8 mr-4 transition-all ease-in-out py-1 duration-300 bg-gray-300 text-gray-400  font-semibold text-xl hover:bg-[#414F5F] hover:text-white   rounded-lg  ">Skip</button>
                     <button onClick={nextHandler} type="submit" className="px-8 transition-all ease-in-out py-1 duration-300 bg-teal500 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white   rounded-lg  ">{NextText}</button>
-                </div>
+                </div> */}
             </div>
         </div>
         </>
     )
 }
 
-export default Process
+export default ProcessSignup
