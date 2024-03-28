@@ -8,7 +8,7 @@ import { setSelectedJobName } from "../../../Store/Slices/SelectedTask"
 import NearWorkers from "./NearWorkers"
 import WorkerProfilePopUp from "../Filter/workerPopUp/WorkerProfilePopUp"
 import { ProfessionsType } from "../../../../TS"
-import api from "../../../../api/professions"
+import api from "../../../../api/Api"
 import ProfessionBoxSearch from "../../../Common/ProfessionBoxSearch/ProfessionBoxSearch"
 
 const SearchPage = () => {

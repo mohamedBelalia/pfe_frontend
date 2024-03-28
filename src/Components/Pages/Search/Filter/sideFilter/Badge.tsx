@@ -1,18 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
+import { IBadgeProps } from "../../../../../TS";
 
 type badgeTypes = {
     maalem : boolean
     khedam : boolean
 }
 
-const Badge = () => {
+const Badge = ({getBadgeNbr}:IBadgeProps) => {
     
     const [badgeTypes , setBadgeTypes] = useState<badgeTypes>({
         maalem : false ,
         khedam : false 
     })
 
+
+    useEffect(()=>{
+        
+       if(badgeTypes.maalem && !badgeTypes.khedam){
+            getBadgeNbr(["1"])
+       }
+       else if(!badgeTypes.maalem && badgeTypes.khedam){
+            getBadgeNbr(["2"])
+       }
+       else if(badgeTypes.maalem && badgeTypes.khedam){
+            getBadgeNbr(["1","2"])
+       }
+       else{
+            getBadgeNbr([])
+       }
+
+    },[badgeTypes.khedam , badgeTypes.maalem])
 
     const handleBadgeClicked = (typeName : "maalem" | "khedam") =>{
         switch(typeName){

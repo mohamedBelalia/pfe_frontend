@@ -6,9 +6,9 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../Store/store";
 import { setSelectedJobName } from "../../Store/Slices/SelectedTask";
 import { useSelector } from "react-redux";
-import api from "../../../api/professions"
+import Api from "../../../api/Api"
 import ProfessionBoxSearch from "../../Common/ProfessionBoxSearch/ProfessionBoxSearch";
-import { ProfessionsType } from "../../../TS";
+import { IProfessionsType } from "../../../TS";
 
 type LandingPageTypes = {
   getTheCoosenJob : (idJob:string) => void
@@ -18,12 +18,12 @@ type LandingPageTypes = {
 const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
     const [isTyping , setIsTyping] = useState<boolean>(false)
-    const [professions , setProfessions] = useState<ProfessionsType[]>([]);
+    const [professions , setProfessions] = useState<IProfessionsType[]>([]);
     
     useEffect(()=>{
       const fetchProfessions = async()=>{
         try{
-          const response = await api.get("/professions/")
+          const response = await Api.get("/professions/")
 
           setProfessions(response.data);
 
@@ -63,7 +63,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
 
       if(professionsNamesArr.includes(professionName.trim())){
         window.scrollTo(0,0)
-        dispatch(setSelectedJobName({selectedTask:professionName}))
+        dispatch(setSelectedJobName({selectedTask:professionName}))        
         navigate("/search/step_one")
       }
       else{

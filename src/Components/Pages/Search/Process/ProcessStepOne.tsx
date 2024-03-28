@@ -16,6 +16,10 @@ const ProcessStepOne = () => {
 
     const selectedTask :string = useSelector((state:RootState)=> state.selectedTask.selectedTask)
 
+     // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+  
+
     // pour assuree que l'user est selectionee le nom de task
     const [isAuthorized , setIsAuthorized] = useState<boolean>(false)
 
@@ -111,22 +115,42 @@ const ProcessStepOne = () => {
         <StepsPath/>
 
         <div className="w-[90%] md:w-[80%] mx-auto mb-6 mt-12">
-            <h1 className="text-2xl font-semibold text-center text-[#2D62FE]">
-                Complate The Process To Find The Best {selectedTask}
+            <h1 
+            className={`flex ${isArabicSelected && "flex-row-reverse"} gap-2 justify-center text-2xl font-semibold text-[#2D62FE]`}>
+                {
+                    isArabicSelected 
+                    ? " أكمل العملية للعثور على أفضل "
+                    : "Complétez le processus pour trouver le meilleur "
+                }
+                 <span className="text-teal-700 bg-amber-200 rounded-md px-3">{selectedTask} </span>
             </h1>
 
             <div className="md:w-[80%] mx-auto mt-6">
                 {/* check the uncorrect city name "!== undefined" because the initaile state of "isCityCorrect" is undefined
                     and the alert shouldn't display */}
                 {isCityCorrect !== undefined && !isCityCorrect && 
-                    <ErrorAlert message="Enter a Correct City Name" width="md:w-[80%]" height="h-[30px]"/>
+                    <ErrorAlert 
+                        message={
+                            isArabicSelected
+                            ? "أدخل اسم مدينة صحيحًا"
+                            : "Entrez un nom de ville correct"
+                        } 
+                        width="md:w-[80%]" height="h-[30px]"/>
                 }
             </div>
 
             <div className="md:w-[60%] mx-auto md:mt-12 mt-5">
                 <form onSubmit={(e)=>e.preventDefault()} className="flex flex-col md:gap-10 gap-5 mb-20">
                     <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
-                        <h1 className="font-semibold text-lg text-[#414E5F]">Your Task Address<span className="text-red-600">*</span></h1>
+                        <h1 className={`font-semibold flex gap-1 text-lg text-[#414E5F] ${isArabicSelected && "justify-end"}`}>
+                            {
+                                isArabicSelected && <span className="text-red-600">*</span>
+                            }
+                            {isArabicSelected ? "مدينة مهمتك" : "Votre ville de tâche"}
+                            {
+                                !isArabicSelected && <span className="text-red-600">*</span>
+                            }
+                        </h1>
 
                     {!isCityCorrect 
                     
@@ -138,8 +162,8 @@ const ProcessStepOne = () => {
                                     onChange={getCityName}
                                     value={cityName}
                                     type="text" 
-                                    placeholder="Your Adress"
-                                    className="w-full p-3 border outline-none border-gray-500 h-[60px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]"
+                                    placeholder={isArabicSelected ? "مدينتك" : "Votre ville"}
+                                    className={`${isArabicSelected && "rtl-input"} w-full p-3 border outline-none border-gray-500 h-[60px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]`}
                                 />
                             </div>
                         

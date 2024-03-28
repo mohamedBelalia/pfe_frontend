@@ -107,17 +107,17 @@ const Navbar = () => {
                                     title="Change The Language" 
                                     className="relative w-[100px] h-[40px] flex justify-between p-2 overflow-hidden items-center bg-slate-200 rounded-xl cursor-pointer">
                                     <div className="w-[30px] h-[30px]">
-                                        <img src="./icons/Ar.png" alt="" className="w-full h-full" />
+                                        <img src="./icons/Ar.png" alt="" className="w-full h-full select-none" />
                                     </div>
                                     <div className="w-[26px] h-[26px]">
-                                        <img src="./icons/En.png" alt="" className="w-full h-full" />
+                                        <img src="./icons/Fr.png" alt="" className="w-full h-full select-none" />
                                     </div>
 
                                     <div className={`w-[50px] h-[38px] bg-blue-300 absolute top-0 ${isArabicSelected ? "left-0" : "left-[50px]"} flex justify-center items-center transition-all duration-400 ease-in-out`}>
                                         {
                                             isArabicSelected 
-                                            ? <img src="./icons/Ar.png" alt="" className="w-[26px] h-[26px]" />
-                                            : <img src="./icons/En.png" alt="" className="w-[26px] h-[26px]" />
+                                            ? <img src="./icons/Ar.png" alt="" className="select-none w-[26px] h-[26px]" />
+                                            : <img src="./icons/Fr.png" alt="" className="select-none w-[26px] h-[26px]" />
                                         }
                                     </div>
                                 

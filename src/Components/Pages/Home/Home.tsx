@@ -2,7 +2,7 @@ import { useState } from "react"
 import LandingPage from "./LandingPage"
 import JobsDetails from "./JobsDetails"
 import HowWeWork from "./HowWeWork"
-import DemandedJobs from "./DemandedJobs/DemandedJobs"
+import BestWorkers from "./DemandedJobs/BestWorkers"
 import WhereWeAre from "./whereWeAre/WhereWeAre"
 import Faqs from "./Faqs/Faqs"
 import Navbar from "../../Common/Navbar/Navbar"
@@ -31,7 +31,7 @@ const Home = () => {
         <LandingPage getTheCoosenJob={setChoosenJob}/>
         <JobsDetails idJob={choosenJob}/>
         <HowWeWork/>
-        <DemandedJobs getWorkerId={setWorkerClickedId}/>
+        <BestWorkers getWorkerId={setWorkerClickedId}/>
         <WhereWeAre/>
         <Faqs/>
 

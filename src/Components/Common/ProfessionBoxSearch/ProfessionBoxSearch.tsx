@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../../api/professions"
+import api from "../../../api/Api"
 import { ProfessionsType } from "../../../TS";
 
 export type professionBoxSearchProps = {

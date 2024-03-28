@@ -7,6 +7,7 @@ import "./filterStyles.css"
 import { useEffect, useState } from "react"
 import WorkerProfilePopUp from "./workerPopUp/WorkerProfilePopUp"
 import LoadingPage from "../../../Common/Loading/LoadingPage"
+import { IFilterNeededData } from "../../../../TS"
 
 const Filter = () => {
 
@@ -15,6 +16,11 @@ const Filter = () => {
 
     const [isAuthorized , setIsAuthorized] = useState<boolean>(false)
 
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+
+    // to get the badge IDs
+    const [badgePassedValues , setBadgePassedValues] = useState<string[]>([""])
 
     useEffect(()=>{
         if(selectTaskCity.trim().length == 0 || selectTaskName.trim().length ==0){
@@ -29,6 +35,12 @@ const Filter = () => {
 
     const [clickedWorkerId , setClickedWorkerId] = useState<string>("")
 
+    const filterData : IFilterNeededData = {
+            profession : selectTaskName,
+            ville : selectTaskCity,   
+            badge : badgePassedValues
+        }
+
   return (
     <>
     {
@@ -39,19 +51,30 @@ const Filter = () => {
 
         <div className="w-[90%] md:w-[80%] mx-auto my-16">
             <div className="mb-10">
-                <h1 className="text-center text-xl font-semibold text-[#414E5F]">There is 
-                    <span className="text-[#349292]"> 207 {selectTaskName} Worker </span> 
-                    in {selectTaskCity}</h1>
+                {
+                    isArabicSelected
+                    ?
+                    <h1 className="text-center text-xl font-semibold text-[#3a5973]">
+                        <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskCity}</span> في <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span>
+                         {" "} هناك 207 عامل
+                    </h1>
+                    :
+                    <h1 className="text-center text-xl font-semibold text-[#3a5973]">
+                        Il y a 207 travailleurs {" "}
+                        <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span> à <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskCity}</span>
+                    </h1>
+                }
+                
             </div>
 
             <div className="flex flex-col gap-8 mt-5">
                 <div className="flex flex-col md:flex-row gap-16">
                     <div className="md:w-1/3">
-                        <SideCriterias/>
+                        <SideCriterias getBadgeNbr={setBadgePassedValues}/>
                     </div>
 
                     <div className="w-full">
-                        <ListWorkers getClickedWorkerId={setClickedWorkerId}/>
+                        <ListWorkers filterNeededData={filterData} getClickedWorkerId={setClickedWorkerId}/>
                     </div>
                 </div>
             </div>

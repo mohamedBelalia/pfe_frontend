@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import DetailsJob from "../../../assets/jsonUsed/usedData.json"
-import Button from "../../Common/Button/Button"
 import { useDispatch } from "react-redux"
 import { AppDispatch, RootState } from "../../Store/store"
 import { setSelectedJobName } from "../../Store/Slices/SelectedTask"
