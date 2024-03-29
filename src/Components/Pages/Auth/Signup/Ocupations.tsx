@@ -1,5 +1,5 @@
 // import React from 'react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
 import data from "./Occupations.json";
 import { PiXCircleFill } from "react-icons/pi";
@@ -53,13 +53,13 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
         <div className="w-[70%]  m-auto   relative ">
             <h1 className="text-teal-500 text-center p-4 text-3xl font-semibold">Your Occupations</h1>
             <div className=' flex justify-center'>
-                <div className='flex  w-[60%] pb-2'>
+                <div className='flex items-center px-2 border-2  m-1 rounded w-[60%] pb-2'>
                     <div className='h-14'></div>
                     {choosedOccupations.map((occup, index) => {
                         return (
                             <div key={index} className="flex  flex-col  text-sm font-700 mr-2 " >
                                 <PiXCircleFill onClick={() => deleteOccup(index)} className="text-red-500 mb-1 text-2xl font-700" />
-                                <p className="text-teal500  border-teal500 border-2 px-4 py-1 rounded-md font-semibold  -mt-1">{occup}</p>
+                                <p className="text-teal500  border-teal500 border-2 px-4  rounded-md font-semibold  -mt-1">{occup}</p>
                             </div>
                         )
                     })}
@@ -71,7 +71,7 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
                 <IoIosArrowDown className="text-[#414E5F] ml-16 text-2xl" />
             </div>
 
-            <div className={`${isClicked ? 'h-[260px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg ml-44  mt-[143px]   absolute w-[60%]  top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
+            <div className={`${isClicked ? 'h-[300px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg ml-40  mt-[155px]   absolute w-[60%]  top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
                 {data.map((Occu, index) => (
                     <div
                         key={index}

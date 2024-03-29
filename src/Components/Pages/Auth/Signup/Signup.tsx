@@ -23,7 +23,7 @@ const Signup = ({firstName, lastName, phone,password,confirmPassword, updateFiel
         <h1 className="text-teal-500 text-3xl font-[50px]">Personal Information</h1>
         <small className="text-red-500">use your active number to conecting with you*</small>
       </div>
-      <div className="  w-full ">
+      <div className="w-full ">
         <div className="flex py-2 justify-between">
           <div className="flex flex-col">
             <label htmlFor="fname" className=" text-sm color text-teal500 font-semibold" >First Name</label>
@@ -35,8 +35,8 @@ const Signup = ({firstName, lastName, phone,password,confirmPassword, updateFiel
             <input required type="text" onChange={e => updateFields({lastName: e.target.value})} value={lastName} className="h-10 w-[400px]  pl-4 focus:outline-blue-500 border-teal500  rounded-lg border-2  bg-transparent" id="lname" />
           </div>
         </div>
-        <div className="flex py-2 justify-between">
-          <div className="">
+        <div className="flex justify-between">
+          <div className="flex flex-col">
             <label htmlFor="phone" className=" text-sm text-teal500 font-semibold " >Phone Number</label>
             <input required type="text" onChange={e => updateFields({phone: e.target.value})} value={phone} className="h-10 w-[400px]  pl-4 focus:outline-blue-500 border-teal500  rounded-lg border-2  bg-transparent" id="phone" />
           </div>
@@ -47,7 +47,7 @@ const Signup = ({firstName, lastName, phone,password,confirmPassword, updateFiel
           </div>
         </div>
 
-        <div className="flex  flex-col">
+        <div className="flex py-2 flex-col">
           <label htmlFor="confpassword" className=" text-sm  text-teal500 font-semibold" >Confirm Password</label>
           <input required type="password" onChange={e => updateFields({confirmPassword: e.target.value})} value={confirmPassword} className="h-10 w-[400px]  pl-4 focus:outline-blue-500 border-teal500  rounded-lg border-2  bg-transparent" id="confpassword" />
         </div>

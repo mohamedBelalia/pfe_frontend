@@ -3,15 +3,6 @@ import { CiImageOn } from "react-icons/ci";
 import "./add_info_style.css"
 
 
-// type userData = {
-//     about_me: string
-//      image: File
-//   }
-  
-//   type infoFormProps = userData &{
-    
-//     updateFields: (fields: Partial<userData>) => void
-//   }
 const Add_InfosAbout_You = () => {
 
 const [choosedImage, setChoosedImage] = useState<File | null>(null);
@@ -31,7 +22,7 @@ const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                 <h1 className="text-teal-500 text-3xl font-semibold">Additional Information About You</h1>
                 <small className="text-red-500">More Information about you , More clients for you*</small>
             </div>
-            <form action="" method="post" className="flex justify-center  my-4 w-[70%] md:py-4 ">
+            <div className="flex justify-center  my-4 w-[70%] md:py-4 ">
                 <div className='mr-16'>
                     <label htmlFor="image">
                         <span className=''>Your Photo</span>
@@ -43,7 +34,7 @@ const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                     <label htmlFor='description'>Description About You</label>
                     <textarea  placeholder='Description' className='border-2 p-3 h-22 rounded-md bg-gray-200' name="description" id="description" cols={50} rows={6} />
                 </div>
-            </form>
+            </div>
 
         </div>
 

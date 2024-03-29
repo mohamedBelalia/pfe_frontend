@@ -64,7 +64,7 @@ const AddProjects = () => {
 
             <h1 className="text-teal-500 w-full text-center text-3xl font-[550]">Your Projects</h1>
             <div className='w-full  flex'>
-                <form onSubmit={(e) => { e.preventDefault(); }} action="" method="post" className="flex   w-[60%] md:py-4 ">
+                <div  className="flex   w-[60%] md:py-4 ">
                     <div className='mr-16'>
                         <label htmlFor="image">
                             <span className=''>Your Photo <span className='text-red-500'>*</span></span>
@@ -98,17 +98,17 @@ const AddProjects = () => {
                                 cols={30} rows={2} />
                         </div>
                     </div>
-                </form>
-                <div className='flex m-8  flex-wrap '>
+                </div>
+                <div className='flex m-8  flex-wrap  '>
                     {dataArray.map((data, index) => (
-                        <div key={index} className='border relative m-1 flex flex-col items-center h-36 p-1 w-38  justify-center    rounded-md'>
+                        <div key={index} className='border relative m-1 flex flex-col items-center min-h-36   w-38      rounded-md'>
                             <div className='absolute top-1 right-1  w-full flex  justify-end'>
                                 <PiXCircleFill onClick={() => deleteItem(index)} className='text-red-500 text-xl' />
                             </div>
-                            <img className='rounded-md w-24 h-12  object-cover  ' src={data.image ? URL.createObjectURL(data.image) : ''} alt="" />
+                            <img className='rounded-t-md w-36 h-20  object-cover  ' src={data.image ? URL.createObjectURL(data.image) : ''} alt="" />
                             <h1 className='text-sm'>{data.title}</h1>
-                            <p className='text-[10px] text-gray-400'>{data.title}</p>
-                            <input onClick={() => editItem(index)} className='bg-teal500 mt-1 text-center text-white w-[50%] text-[12px] h-4  rounded-md' value="edit" />
+                            <p className='text-[10px]  text-gray-400'>{data.description}</p>
+                            <input onClick={() => editItem(index)} type='button' className='bg-teal500 mt-1 text-center text-white w-[50%] text-[12px] h-4  rounded-md' value="edit" />
                         </div>
                     ))}
                 </div>
