@@ -8,6 +8,10 @@ import Reviews from "./Reviews";
 import { useEffect, useState } from "react";
 import Api from "../../../../../api/Api";
 import { IWorkerInfromation } from "../../../../../TS";
+import { Config } from "../../../../../../config/Local_Variables";
+import Professions from "../../../../Common/workerComponents/Professions";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../Store/store";
 
 
 type workerPopUpTypes = {
@@ -39,6 +43,12 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
     // for errors
     const [error , setError] = useState<boolean>(false)
 
+    // for the loading of data
+    const [isLoading , setIsLoading] = useState<boolean>(true)
+
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+
     const [isProjectHovered , setIsProjectHovered] = useState<boolean>(false)
     const [idProjectHovered , setIdProjectHovered] = useState<string>("")
 
@@ -50,45 +60,63 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                     setError(true)
               }
               else{
-                setWorkerDetails(response.data)
+                setWorkerDetails(response.data[0])                
               }
   
           }catch(exception){
               console.log(exception);
           }
+          finally{
+            setIsLoading(false)
+          }
+
         }
   
         fetchWorkerDetails()
+
+        
   
-    },[])
+    },[idWorker])
 
-    console.log(workerDetails);
-    
-
+    // for the projects
     const handleMouseOver = (idProject : string) => {
         setIsProjectHovered(true)
         setIdProjectHovered(idProject)
     }   
 
+    if(isLoading){
+        return (
+            <div>Loading ...</div>
+        )
+    }
+
+   
+    
+
   return (
     <div className="w-full h-[80%] rounded-lg pt-4 pb-10 px-6 bg-white overflow-y-scroll overflow-x-hidden">
+        
+        {
+        workerDetails != undefined 
+        ?
+    
         <div className="flex flex-col gap-7">
 
-        <div className="flex flex-col md:flex-row justify-between items-start mt-3">
-            <div className="flex md:flex-row flex-col gap-4 md:mx-0 mx-auto">
+        <div className={`flex flex-col ${isArabicSelected ? "md:flex-row-reverse" : "md:flex-row"} justify-between items-start mt-3`}>
+            <div className={`flex ${isArabicSelected ? "md:flex-row-reverse" : "md:flex-row"} flex-col gap-4 md:mx-0 mx-auto`}>
                 <div className="md:w-[80px] w-[100px] md:h-[80px] h-[100px] mx-auto md:mx-0 rounded-full overflow-hidden">
-                    <img className="w-full h-full object-cover" src={workerDetails?.imgProfile} alt="" />
+                    <img className="w-full h-full object-cover" src={Config.BaseImagesPath_Profiles  + workerDetails.imgProfile} alt="" />
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="flex gap-2">
-                        <p className="font-bold text-lg text-teal500">{workerDetails?.prenomOuvrier} {workerDetails?.nomOuvrier}</p> 
+                        <p className="font-bold text-lg text-teal500">{workerDetails.prenomOuvrier} {workerDetails.nomOuvrier}</p> 
                     </div>
                     <div className="flex items-center gap-1 text-gray700 font-semibold ">   
-                        <IoIosStar/> {workerDetails?.avgEtoile} <span className="text-xs">({workerDetails?.nbrCommentair} reviews)</span>
+                        <IoIosStar/> {workerDetails.avgEtoile} <span className="text-xs">({workerDetails.nbrCommentair} reviews)</span>
                     </div>
                     <div className="border-dashed border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] py-0.5 px-1 text-sm  flex gap-3 items-center justify-center">
                         <SlBadge/>
-                        {workerDetails?.labelleBadge_FR}
+                        {workerDetails.labelleBadge_FR}
                     </div>
                     {/* <div className="block md:hidden mt-2">
                         <h1 className="text-xl font-bold text-end text-[#2d7d7d]">{workerDetails?.phone}</h1>
@@ -99,40 +127,47 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                 <a href="tel:+212 632-602326">
                     <div className="hidden md:flex justify-end gap-3 items-center text-xl font-semibold text-end text-[#2d7d7d]">
                         <FaPhoneAlt/>
-                        {workerDetails?.phone}
+                        {workerDetails.phone}
                     </div>
                 </a>
                 <div>
-                    <Button bg="#349292" color="white" label={`Continue with ${workerDetails?.nomOuvrier}`}/>
+                    <Button bg="#349292" color="white" label={`Continue with ${workerDetails.nomOuvrier}`}/>
                 </div>
             </div>
         </div>
 
 
         <div>
-            <h1 className="font-bold text-lg text-gray700">How am</h1>
-            <p className=" text-gray700">
-                {workerDetails?.description_ouvrier}
+            {
+                isArabicSelected
+                ?
+                <h1 className="text-end font-bold text-lg text-gray700">وصف</h1>
+                :
+                <h1 className="font-bold text-lg text-gray700">description</h1>
+            }
+            <p className={`${isArabicSelected && "text-end"} text-gray700`}>
+                {workerDetails.description_ouvrier}
             </p>
         </div>
 
         <div className="flex flex-col gap-1">
-            <h1 className="font-bold text-lg text-gray700">Skills</h1>
-            <div className="flex flex-wrap gap-2">
             {
-                skillsTemp.map((skill,index)=>(
-                    <div key={index} className="px-4 py-1 rounded-md bg-blue500 text-white">
-                        {skill}
-                    </div>
-                ))
+                isArabicSelected
+                    ? <h1 className="font-bold text-lg text-gray700 text-end">المهن الرئيسية</h1>
+                    : <h1 className="font-bold text-lg text-gray700">Principales Professions</h1>
             }
-            </div>
+            <Professions idWorker={idWorker}/>
         </div>
 
         <div className="flex flex-col gap-1 my-5">
-            <h1 className="font-bold text-lg text-gray700">Projects</h1>
-            <div className="w-full h-[150px] flex gap-7">
-                
+            <h1 className={`font-bold text-lg text-gray700 ${isArabicSelected && "text-end"}`}>
+                {
+                    isArabicSelected
+                    ? "المشاريع"
+                    : "les projets"
+                }
+            </h1>
+            <div className={`w-full h-[150px] flex gap-7 ${isArabicSelected && "flex-row-reverse"}`}>
                 {
                     aaTest.map((project , index)=>(
                        aaTest.length == index+1 
@@ -184,6 +219,9 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
         </div>
 
         </div>
+
+        : <div>NO ONE</div>
+        }
 
     </div>
   )

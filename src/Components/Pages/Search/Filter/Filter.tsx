@@ -74,7 +74,11 @@ const Filter = () => {
                     </div>
 
                     <div className="w-full">
-                        <ListWorkers filterNeededData={filterData} getClickedWorkerId={setClickedWorkerId}/>
+                        <ListWorkers 
+                            filterNeededData={filterData} 
+                            getClickedWorkerId={setClickedWorkerId} 
+                            searchedCityName={selectTaskCity}
+                            searchedProfession={selectTaskName}/>
                     </div>
                 </div>
             </div>

@@ -7,9 +7,8 @@ import { useEffect, useState } from "react";
 import Api from "../../../../api/Api";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Store/store";
+import Professions from "../../../Common/workerComponents/Professions";
 
-// temp
-const workerSills = ["home page" , "about" , "contact us"]
 
 export interface workerDataProps {
     id: string;
@@ -39,6 +38,9 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
   // The Slice For Change The Language
   const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
+  // for the loading of professions
+  const [isProfessionsLoaded , setIsProfessionsLoaded] = useState<boolean>(false)
+
     useEffect(()=>{
         const fetchProfessions = async()=>{
           try{
@@ -53,6 +55,9 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
           }catch(exception){
               console.log(exception);
           }
+          finally{
+            setIsProfessionsLoaded(true)
+          }
         }
   
         fetchProfessions()
@@ -62,7 +67,6 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
   return (
     <div>
         <div className="flex flex-col relative md:flex-row md:gap-14 gap-4 border border-black bg-gray-200 px-5 md:px-10 py-7 rounded-xl overflow-hidden">
-            
             {/* This div only display on the small screen witout any content 
                 his only rol is to make the worker card clickable on small screens to display his pop-up profile */}
             <div
@@ -172,29 +176,9 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
                         ? <p className="font-medium text-end">المهن الرئيسية</p>
                         : <p className="font-medium">Principales Professions</p>
                     }
-        
-                    <div className={`flex flex-wrap gap-2 mt-2 ${isArabicSelected && "flex-row-reverse"}`}>
-                        {
-                            hadProfessions 
-                            ?
-                            professions?.map((profession , _)=>(
-                            <div className="px-10 py-1 rounded-md bg-blue-500 text-white" key={profession.idProfession}>
-                                {
-                                    isArabicSelected 
-                                    ? profession.labelleProfession_AR
-                                    : profession.labelleProfession_FR}
-                            </div>
-                            ))
-                            :
-                            <div className="px-4 py-1 rounded-md bg-gray-500 text-white">
-                            {
-                                isArabicSelected
-                                ? "بدون مهنة"
-                                : "Sans Profession"
-                            }
-                            </div>
-                        }
-                    </div>
+
+                    <Professions idWorker={workerInfo.idOuvrier} />
+                    
                 </div>
 
             </div>

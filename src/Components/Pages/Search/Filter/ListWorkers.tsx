@@ -3,17 +3,24 @@ import { IFilterNeededData, IWorkerInfromation } from "../../../../TS"
 import { useEffect, useState } from "react"
 import Api from "../../../../api/Api"
 import WorkerFilteredCardLoading from "../../../Common/LoadingLayouts/WorkerFilteredCardLoading"
+import { useSelector } from "react-redux"
+import { RootState } from "../../../Store/store"
 
 
 
 interface listWorkersProps{
   filterNeededData : IFilterNeededData
   getClickedWorkerId : (id : string)=>void
+  searchedCityName : string
+  searchedProfession : string
 }
 
-const ListWorkers = ({getClickedWorkerId , filterNeededData}:listWorkersProps) => {
+const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName , searchedProfession}:listWorkersProps) => {
 
     const [filteredWorkers , setFilteredWorkers] = useState<IWorkerInfromation[]>()
+
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     // loading state
     const [isLoaded , setIsLoaded] = useState<boolean>(true)
@@ -71,7 +78,7 @@ const ListWorkers = ({getClickedWorkerId , filterNeededData}:listWorkersProps) =
     ])    
 
 
-    if(!isLoaded){
+    if(isLoaded){
       return(
         <div>
           <WorkerFilteredCardLoading/>
@@ -90,9 +97,26 @@ const ListWorkers = ({getClickedWorkerId , filterNeededData}:listWorkersProps) =
                   <WorkerCard key={worker.idOuvrier} workerInfo={worker} getClickedWorkerId={getClickedWorkerId}/>
                 ))
                 :
-                <div className="w-full h-[300px] rounded-md border border-red-400 flex flex-col justify-center items-center">
-                  <h1 className="text-6xl">No One</h1>
-                  <p>we will design this ui inchaalah</p>
+                <div className="w-full h-[300px] rounded-md border-2 border-teal-500 flex flex-col justify-center items-center">
+                 <div className="flex gap-4 items-center">
+                    <img src="/imgUsed/noUsers.png" alt="user not found" className="w-1/3" />
+                    <div className="w-1/2 flex flex-col text-center gap-4">
+                      <h1 className="text-3xl font-semibold text-teal-600">
+                        {
+                          isArabicSelected 
+                          ? "غير موجود"
+                          : "Non Trouvé !"
+                        }
+                      </h1>
+                      {
+                        isArabicSelected
+                        ?
+                        <p className="font-semibold text-gray-800">نأسف، لا يوجد <span className="px-2 bg-teal-300 rounded-md">{searchedProfession}</span> متاحون في <span className="px-2 bg-teal-300 rounded-md">{searchedCityName}</span> في الوقت الحالي</p>
+                        :
+                        <p className="font-semibold text-gray-800">Nous sommes désolés, mais il n'y a pas de <span className="px-2 bg-teal-300 rounded-md">{searchedProfession}</span> disponibles à <span className="px-2 bg-teal-300 rounded-md">{searchedCityName}</span> pour le moment !</p>
+                      }
+                    </div>
+                 </div>
                 </div>
               }
           </div>
