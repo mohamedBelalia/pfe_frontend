@@ -1,10 +1,8 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { SlBadge } from "react-icons/sl";
-import { IProfessionsType, IWorkerInfromation } from "../../../../TS";
+import { IWorkerInfromation } from "../../../../TS";
 import { Config } from "../../../../../config/Local_Variables";
-import { useEffect, useState } from "react";
-import Api from "../../../../api/Api";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Store/store";
 import Professions from "../../../Common/workerComponents/Professions";
@@ -29,40 +27,10 @@ interface workerCardProps {
 
 const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
 
-    // state to store the professions
-  const [professions , setProfessions] = useState<IProfessionsType[]>();
-
-  // to know if the worker had professions or not
-  const [hadProfessions , setHadPorfessions] = useState<boolean>(true)
 
   // The Slice For Change The Language
   const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
-  // for the loading of professions
-  const [isProfessionsLoaded , setIsProfessionsLoaded] = useState<boolean>(false)
-
-    useEffect(()=>{
-        const fetchProfessions = async()=>{
-          try{
-              const response = await Api.get(`/professions?workerId=${workerInfo.idOuvrier}`)
-              if(response.data.status == "not found"){
-                  setHadPorfessions(false)
-              }
-              else{
-                setProfessions(response.data)
-              }
-  
-          }catch(exception){
-              console.log(exception);
-          }
-          finally{
-            setIsProfessionsLoaded(true)
-          }
-        }
-  
-        fetchProfessions()
-  
-    },[])
 
   return (
     <div>
@@ -78,7 +46,7 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
                 <div 
                   onClick={()=>getClickedWorkerId(workerInfo.idOuvrier)}
                   className="w-[150px] h-[150px] mx-auto md:mx-0 rounded-full overflow-hidden ">
-                  <img className="w-full h-full object-cover" src={Config.BaseImagesPath_Profiles + workerInfo.imgProfile} alt="" />
+                  <img className="w-full h-full object-cover" src={Config.BaseImagesPath_Profiles + workerInfo?.imgProfile} alt="" />
                 </div>
                 <div className="flex flex-col md:gap-5 gap-2">
                     <div>

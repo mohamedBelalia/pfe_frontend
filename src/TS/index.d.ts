@@ -41,3 +41,19 @@ interface IBadgeProps {
     getBadgeNbr : (nbrBadge : string[]) => void
 }
 
+
+// for the Projects of each worker
+interface IProjectWorker {
+    idProjet: string
+    imageProjet: string
+    titre?: string
+    description_projet?: string
+    idOuvrier ?: string
+}
+
+// for the Diploms of each worker
+interface IDiplomsWorker {
+    idDiplome : string
+    labelleDiplome_AR : string
+    labelleDiplome_FR : string
+}
