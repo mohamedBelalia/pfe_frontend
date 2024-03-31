@@ -1,15 +1,14 @@
 import { FaHammer } from "react-icons/fa";
-import { GiLargePaintBrush , GiConcreteBag , GiFurnace} from "react-icons/gi";
+import { GiLargePaintBrush , GiConcreteBag } from "react-icons/gi";
 import { MdPlumbing , MdElectricBolt } from "react-icons/md";
-import { CgSmartHomeBoiler } from "react-icons/cg";
 
 
 export const jobs = [
-    {
-        nameEn: "Constructeur",
-        nameAr: "بنّاء",
+      {
+        nameEn: "Peintre",
+        nameAr: "صباغ",
         id : "1",
-        Icon : <GiConcreteBag/>
+        Icon : <GiLargePaintBrush/>
       },
       {
         nameEn: "Charpentier",
@@ -18,10 +17,10 @@ export const jobs = [
         Icon : <FaHammer/>
       },
       {
-        nameEn: "Peintre",
-        nameAr: "صباغ",
+        nameEn: "Constructeur",
+        nameAr: "بنّاء",
         id : "3",
-        Icon : <GiLargePaintBrush/>
+        Icon : <GiConcreteBag/>
       },
       {
         nameEn: "Plombier",
@@ -37,12 +36,11 @@ export const jobs = [
       }
       ,
       {
-        nameEn: "Chauffage",
-        nameAr: "التدفئة",
+        nameEn: "Marbrier",
+        nameAr: "رخايمي",
         id : "6",
-        Icon : <CgSmartHomeBoiler/>
-      }
-      
+        Icon : <img src="/icons/marble.png"/>
+      }      
 ]
 /*
 Carpenter

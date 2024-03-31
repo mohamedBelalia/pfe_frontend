@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../../api/Api"
-import { ProfessionsType } from "../../../TS";
+import { IProfessionsType } from "../../../TS";
 
 export type professionBoxSearchProps = {
     professionNameProp : string 
@@ -13,8 +13,8 @@ const arabicRegex = /[\u0600-\u06FF]/;
 const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyping}:professionBoxSearchProps) => {
 
     const [isClicked , setIsClicked] = useState<boolean>(false)
-    const [professions , setProfessions] = useState<ProfessionsType[]>([]);
-    const [searchedProfessions , setSearchedProfessions] = useState<ProfessionsType[]>([]);
+    const [professions , setProfessions] = useState<IProfessionsType[]>([]);
+    const [searchedProfessions , setSearchedProfessions] = useState<IProfessionsType[]>([]);
     
     useEffect(()=>{
       const fetchProfessions = async()=>{
@@ -41,7 +41,7 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyp
     
     // to get the profession(that we get from database) that has the same name entred in the input
     const professionNameSearched = (professionNameSearched : string) => {
-        let searchedProfessionArray : ProfessionsType[] = professions?.filter((pro)=>
+        let searchedProfessionArray : IProfessionsType[] = professions?.filter((pro)=>
            professionNameSearched.length > 0 &&
            (pro.labelleProfession_AR.toLowerCase().includes(professionNameSearched.toLowerCase()) 
              || pro.labelleProfession_FR.toLowerCase().includes(professionNameSearched.toLowerCase()))

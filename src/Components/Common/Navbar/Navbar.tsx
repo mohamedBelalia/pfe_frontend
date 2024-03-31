@@ -64,7 +64,7 @@ const Navbar = () => {
   return (
     <div className="w-[90%] md:w-[70%] mx-auto relative z-50 bg-[#414E5F]">
         <div className="fixed mx-auto mt-5 w-[90%] md:w-[70%] sm:shadow-xl mb-10">
-            <div className="px-6 py-5 rounded-xl bg-transparent md:bg-white md:w-auto w-[50px]">
+            <div className="px-6 py-3 rounded-xl bg-transparent md:bg-[#d9e2ef] md:w-auto w-[50px]">
                 <div className="flex md:justify-between justify-end items-center">
                     <div onClick={()=>goTo("/")} className="gap-2 items-center hidden md:flex cursor-pointer">
                         <RxFramerLogo className="text-4xl text-green-700"/>
@@ -92,11 +92,11 @@ const Navbar = () => {
                             </ul>
                             <div onClick={showTaskerBtnRegester}>
                                 
-                                <button className="flex gap-3 justify-center items-center px-5 py-2 rounded-md font-bold text-white bg-[#199AFF]">
+                                <button className="flex gap-3 justify-center items-center px-5 py-1 rounded-md font-bold text-white bg-[#199AFF]">
                                     <span>
                                     <img src="./public/imgUsed/taskerAuth.png" className="w-[40px]" />
                                     </span>
-                                    <span>{isArabicSelected ? "كن حرفيي" : "Devenir un artisan"}</span>
+                                    <span>{isArabicSelected ? "كن حرفي" : "Devenir un artisan"}</span>
                                 </button>
                                
                             </div>
@@ -106,18 +106,18 @@ const Navbar = () => {
                                     onClick={()=>dispatch(setIsArabicLanguageSelected({isArabicSelected : !isArabicSelected}))}
                                     title="Change The Language" 
                                     className="relative w-[100px] h-[40px] flex justify-between p-2 overflow-hidden items-center bg-slate-200 rounded-xl cursor-pointer">
-                                    <div className="w-[30px] h-[30px]">
-                                        <img src="./icons/Ar.png" alt="" className="w-full h-full select-none" />
+                                    <div className="w-[30px] h-[30px] flex justify-center items-center">
+                                        <img src="./icons/Ar.png" alt="" className="w-[25px] select-none" />
                                     </div>
-                                    <div className="w-[26px] h-[26px]">
-                                        <img src="./icons/Fr.png" alt="" className="w-full h-full select-none" />
+                                    <div className="w-[26px] h-[26px] flex justify-center items-center">
+                                        <img src="./icons/Fr.png" alt="" className="w-[25px] select-none" />
                                     </div>
 
                                     <div className={`w-[50px] h-[38px] bg-blue-300 absolute top-0 ${isArabicSelected ? "left-0" : "left-[50px]"} flex justify-center items-center transition-all duration-400 ease-in-out`}>
                                         {
                                             isArabicSelected 
-                                            ? <img src="./icons/Ar.png" alt="" className="select-none w-[26px] h-[26px]" />
-                                            : <img src="./icons/Fr.png" alt="" className="select-none w-[26px] h-[26px]" />
+                                            ? <img src="./icons/Ar.png" alt="" className="select-none w-[25px]" />
+                                            : <img src="./icons/Fr.png" alt="" className="select-none w-[25px]" />
                                         }
                                     </div>
                                 
@@ -144,12 +144,12 @@ const Navbar = () => {
                 </div>
             </div>
             {/* Content Of Guides */}
-            <div className={`${isQuidsClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-20 md:-mt-3 duration-200 ease-in-out shadow-xl w-full bg-white overflow-hidden rounded-b-lg`}>
+            <div className={`${isQuidsClicked ? "h-[500px] md:h-[250px] lg:h-[200px]" : "h-0"} transition-all -mt-20 md:-mt-3 duration-200 ease-in-out shadow-xl w-full bg-[#d9e2ef] overflow-hidden rounded-b-lg`}>
                     <ShowedContent />
             </div>
 
             {/* The Worker Btns to regester that Handle by setIsBecomeTaskerClicked state */}
-            <div className={`w-full ${isBecomeTaskerClicked ? "h-[40vh] md:h-[140px]" : "h-0"} bg-teal-50 flex flex-col justify-center items-center rounded-b-md absolute left-0 shadow-lg -z-10 transition-all duration-200 ease-in-out overflow-hidden`}>
+            <div className={`w-full ${isBecomeTaskerClicked ? "h-[40vh] md:h-[140px]" : "h-0"} bg-[#d9e2ef] flex flex-col justify-center items-center rounded-b-md absolute left-0 shadow-lg -z-10 transition-all duration-200 ease-in-out overflow-hidden`}>
                 <RegesterBar/>
             </div>
 

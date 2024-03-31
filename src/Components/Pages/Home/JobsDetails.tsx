@@ -19,10 +19,20 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
     const jobCategoriesAr : string[]|undefined = jobDetails?.tasksAr.split("|")
     const jobCategoriesFr : string[]|undefined = jobDetails?.tasksFr.split("|")
 
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch<AppDispatch>()
+
+    const goTo = (label : string) =>{
+        window.scrollTo(0,0)
+        dispatch(setSelectedJobName({selectedTask : label}))
+        navigate("/search/step_one")
+    }
+
   return (
     <div className="bg-[#f0fffb] md:pb-10 pb-5">
-        <div className=" w-[100%] md:w-[80%] mx-auto p-10">
-            {
+        <div className=" w-[100%] md:w-[80%] mx-auto p-10 ">
+            {/* {
                 isArabicSelected ? 
                 <div className="flex flex-wrap gap-4">
                 {
@@ -43,10 +53,10 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
                     ))
                 }
             </div>
-            }
+            } */}
            
 
-            <div className={`flex flex-col ${isArabicSelected ? "md:flex-row-reverse text-right" : "md:flex-row"} gap-2 mt-14 items-center`}>
+            <div className={`flex flex-col ${isArabicSelected ? "md:flex-row-reverse text-right" : "md:flex-row"} gap-2 mt-14 items-start`}>
                 <div className="w-full">
                     <h1 className="font-bold text-4xl text-[#199AFF]">
                         {isArabicSelected ? jobDetails?.nameAr : jobDetails?.nameEn}
@@ -65,12 +75,18 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
                             {isArabicSelected ? jobDetails?.sentence3Ar : jobDetails?.sentence3En}
                         </p>
                     </div>
+                    {
+                        jobDetails?.nameEn != undefined
+                        &&
                     <div className={`mt-10 md:mt-0 flex ${isArabicSelected ? "md:justify-end" : "md:justify-start"} justify-center`}>
-                        <button className="flex gap-3 justify-center items-center px-5 py-2 rounded-md font-bold text-white bg-[#199AFF]">
+                        <button 
+                        onClick={()=>goTo(isArabicSelected ? jobDetails?.nameAr : jobDetails?.nameEn)}
+                        className="flex gap-3 justify-center items-center px-5 py-2 rounded-md font-bold text-white bg-[#199AFF]">
                                 <FaSearch/>
                                 <span>{isArabicSelected ? "العثور على " + jobDetails?.nameAr : "trouver un " + jobDetails?.nameEn }</span>
                         </button>
                     </div>
+                    }
                 </div>
                 <div className="w-1/2 h-[450px] hidden md:flex overflow-hidden rounded-3xl border-2 border-green-600">
                     <img className="w-full h-full object-cover" src={jobDetails?.imgPath} alt={jobDetails?.nameEn} />

@@ -3,7 +3,7 @@
       {
         "nameEn": "Constructeur",
         "nameAr": "بنّاء",
-        "id" : "1",
+        "id" : "3",
         "imgPath" : "./imgUsed/builder.jpg",
         "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
         "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
@@ -32,7 +32,7 @@
       {
         "nameEn": "Peintre",
         "nameAr": "صباغ",
-        "id" : "3",
+        "id" : "1",
         "imgPath" : "./imgUsed/Peintre.jpg",
         "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
         "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,

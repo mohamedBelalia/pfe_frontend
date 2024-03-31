@@ -116,14 +116,14 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
             </div>
             <div className="flex flex-col md:mx-0 mx-auto md:mt-0 mt-5 gap-4">
                 <a href="tel:+212 632-602326">
-                    <div className="hidden md:flex justify-end gap-3 items-center text-xl font-semibold text-end text-[#2d7d7d]">
+                    <div className="flex justify-end gap-3 items-center text-xl font-semibold text-end text-[#2d7d7d]">
                         <FaPhoneAlt/>
                         {workerDetails.phone}
                     </div>
                 </a>
-                <div>
+                {/* <div>
                     <Button bg="#349292" color="white" label={`Continue with ${workerDetails.nomOuvrier}`}/>
-                </div>
+                </div> */}
             </div>
         </div>
 
@@ -134,7 +134,7 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                 ?
                 <h1 className="text-end font-bold text-lg text-gray700">وصف</h1>
                 :
-                <h1 className="font-bold text-lg text-gray700">description</h1>
+                <h1 className="font-bold text-lg text-gray700">Description</h1>
             }
             <p className={`${isArabicSelected && "text-end"} text-gray700`}>
                 {workerDetails.description_ouvrier}

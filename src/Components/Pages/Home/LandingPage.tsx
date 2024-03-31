@@ -97,8 +97,8 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                 <h1 className="font-bold text-4xl md:text-5xl text-white text-center">
                   {
                     isArabicSelected 
-                    ? "ابحث عن حرفيي متخصص"
-                    : "Trouvez votre travailleur expert" 
+                    ? "ابحث عن حرفي متخصص"
+                    : "Trouvez Votre Travailleur Expert" 
                   }
                   
                 </h1>
@@ -112,7 +112,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                     className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
                     type="text" 
                     value={professionName}
-                    placeholder={isArabicSelected ? "البحث حسب اسم المهمة" : "Search By Task Name"}/>
+                    placeholder={isArabicSelected ? "البحث حسب اسم المهمة" : "Rechercher par nom de tâche"}/>
                   <button onClick={searchBtn} className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
                     <IoSearchSharp className="text-3xl text-white"/>
                   </button>
@@ -127,7 +127,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
             </div> 
 
           {/* The Part Of The Jobs to choose */}
-          <div className=" md:w-full w-[95vw] md:static absolute bottom-0 mb-8 md:mb-12 ">
+          <div className="md:w-full w-[95vw] md:static absolute bottom-0 mb-8 md:mb-12">
             <div className="flex justify-between gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar">
                 {
                   jobs.map((job , _)=>(
@@ -160,7 +160,7 @@ interface JobBtnTypes {
 const JobBtn = ({Icon , name , id , clickedId} : JobBtnTypes) =>{
 
     return (
-      <div className="flex flex-col items-center gap-3 cursor-pointer p-2 w-[60px] relative z-[-2px]">
+      <div className="flex flex-col items-center gap-3 cursor-pointer p-2 w-[60px] relative z-[-2px] ">
         <div className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} text-[40px] md:text-[50px]`}>
           {Icon}
         </div>

@@ -117,7 +117,7 @@ const ProcessStepOne = () => {
 
         <div className="w-[90%] md:w-[80%] mx-auto mb-6 mt-12">
             <h1 
-            className={`flex ${isArabicSelected && "flex-row-reverse"} gap-2 justify-center text-2xl font-semibold text-[#2D62FE]`}>
+            className={`flex flex-col justify-center text-center items-center ${isArabicSelected ? "md:flex-row-reverse" : "md:flex-row"} gap-2  text-2xl font-semibold text-[#2D62FE]`}>
                 {
                     isArabicSelected 
                     ? " أكمل العملية للعثور على أفضل "
@@ -144,7 +144,7 @@ const ProcessStepOne = () => {
                 <form onSubmit={(e)=>e.preventDefault()} className="flex flex-col md:gap-10 gap-5 mb-20">
                     <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
                         <h1 className={`font-semibold flex items-center gap-1 text-lg text-[#414E5F] ${isArabicSelected && "justify-end"}`}>
-                            <FaCity className="text-3xl mr-2"/>
+                            <FaCity className={`text-3xl mr-2 ${isArabicSelected && "hidden"}`}/>
                             {
                                 isArabicSelected && <span className="text-red-600">*</span>
                             }
@@ -152,6 +152,7 @@ const ProcessStepOne = () => {
                             {
                                 !isArabicSelected && <span className="text-red-600">*</span>
                             }
+                            <FaCity className={`text-3xl mr-2 ${!isArabicSelected && "hidden"}`}/>
                             
                         </h1>
 
