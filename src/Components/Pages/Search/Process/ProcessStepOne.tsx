@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { setTheSearchStepOne } from "../../../Store/Slices/StepOneSlice";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "../../../Common/Loading/LoadingPage";
+import { FaCity } from "react-icons/fa";
 
 
 const ProcessStepOne = () => {
@@ -142,7 +143,8 @@ const ProcessStepOne = () => {
             <div className="md:w-[60%] mx-auto md:mt-12 mt-5">
                 <form onSubmit={(e)=>e.preventDefault()} className="flex flex-col md:gap-10 gap-5 mb-20">
                     <div className="p-5 border border-black bg-[#eaebeeaa] rounded-xl">
-                        <h1 className={`font-semibold flex gap-1 text-lg text-[#414E5F] ${isArabicSelected && "justify-end"}`}>
+                        <h1 className={`font-semibold flex items-center gap-1 text-lg text-[#414E5F] ${isArabicSelected && "justify-end"}`}>
+                            <FaCity className="text-3xl mr-2"/>
                             {
                                 isArabicSelected && <span className="text-red-600">*</span>
                             }
@@ -150,6 +152,7 @@ const ProcessStepOne = () => {
                             {
                                 !isArabicSelected && <span className="text-red-600">*</span>
                             }
+                            
                         </h1>
 
                     {!isCityCorrect 

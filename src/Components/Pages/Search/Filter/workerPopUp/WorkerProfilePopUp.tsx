@@ -10,7 +10,7 @@ import { Config } from "../../../../../../config/Local_Variables";
 import Professions from "../../../../Common/workerComponents/Professions";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../Store/store";
-import WorkerProjects from "./workerProjects";
+import WorkerProjects from "./WorkerProjects";
 import LoadingPage from "../../../../Common/Loading/LoadingPage";
 import { MdSignalWifiConnectedNoInternet1 } from "react-icons/md";
 import Diploms from "./Diplomes";

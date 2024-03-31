@@ -57,3 +57,12 @@ interface IDiplomsWorker {
     labelleDiplome_AR : string
     labelleDiplome_FR : string
 }
+
+// for the Comments of each worker
+interface IComments {
+    idCommentaire : string 
+    textCommentaire : string 
+    nbrEtoile : number
+    dateCommentaire : string
+    idOuvrier : string
+}
