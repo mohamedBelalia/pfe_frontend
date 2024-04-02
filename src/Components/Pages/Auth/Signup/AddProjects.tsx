@@ -2,14 +2,29 @@ import React, { useState } from 'react'
 import { CiImageOn } from "react-icons/ci";
 import { PiXCircleFill } from "react-icons/pi";
 
-const AddProjects = () => {
+
+type FormData = {
+    projects: [{
+        proTitle: string
+        proDescription: string
+        proImage: File
+    }]
+}
+
+type UserFormProps = FormData & {
+    updateFields: (fields: Partial<FormData>) => void
+}
+
+
+const AddProjects = ({projects}:FormData) => {
+
     const [btnState, setBtnState] = useState<string>("Add Project");
     const [dataArray, setDataArray] = useState<Array<{ image: File | null, title: string, description: string }>>([]);
     const [choosedImage, setChoosedImage] = useState<File | null>();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
-    // const [infosProjects, setInfosProjects] = [{}];
+    
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -26,10 +41,8 @@ const AddProjects = () => {
                 title: title,
                 description: description
             };
-
             // Push the new object into the array
             const updatedArray = [...dataArray, newDataObject];
-
             // Update the state with the new array
             setDataArray(updatedArray);
             setChoosedImage(null);
@@ -64,7 +77,7 @@ const AddProjects = () => {
 
             <h1 className="text-teal-500 w-full text-center text-3xl font-[550]">Your Projects</h1>
             <div className='w-full  flex'>
-                <div  className="flex   w-[60%] md:py-4 ">
+                <div className="flex   w-[60%] md:py-4 ">
                     <div className='mr-16'>
                         <label htmlFor="image">
                             <span className=''>Your Photo <span className='text-red-500'>*</span></span>
@@ -79,10 +92,10 @@ const AddProjects = () => {
                             <label htmlFor='title'>Project Title<span className='text-red-500'> *</span></label>
                             <input
                                 value={title}
-                                onChange={(e) => { setTitle(e.target.value) }}
+                                onChange={(e) => setTitle(e.target.value)}
                                 autoFocus
                                 placeholder='Title'
-                                className='border-2 p-3 border-teal500 h-22 rounded-md bg-gray-200'
+                                className='border-2 p-3 w-80 border-teal500 h-22 rounded-md bg-gray-200'
                                 name="title"
                                 id="title"
                             />
@@ -91,7 +104,7 @@ const AddProjects = () => {
                             <label htmlFor='description'>Project Description</label>
                             <textarea
                                 value={description}
-                                onChange={(e) => { setDescription(e.target.value) }}
+                                onChange={(e) => setDescription(e.target.value)}
                                 placeholder='Description'
                                 className='border-2 border-teal500 p-3 h-22 rounded-md bg-gray-200'
                                 name="description" id="description"

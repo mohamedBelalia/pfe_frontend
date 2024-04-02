@@ -36,8 +36,7 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
 
 
 
-    const deleteOccup = (indexToDelete: number) => {
-
+    const deleteOccup = (indexToDelete: number) => { 
         setChoosedOccupations(prevItems => {
             // Create a new array without the item at the specified index
             return prevItems.filter((_, index) => index !== indexToDelete);
@@ -50,7 +49,7 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
 
 
     return (
-        <div className="w-[70%]  m-auto   relative ">
+        <div className="md:w-[70%]  m-auto   relative ">
             <h1 className="text-teal-500 text-center p-4 text-3xl font-semibold">Your Occupations</h1>
             <div className=' flex justify-center'>
                 <div className='flex items-center px-2 border-2  m-1 rounded w-[60%] pb-2'>
@@ -71,7 +70,7 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
                 <IoIosArrowDown className="text-[#414E5F] ml-16 text-2xl" />
             </div>
 
-            <div className={`${isClicked ? 'h-[300px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg ml-40  mt-[155px]   absolute w-[60%]  top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
+            <div className={`${isClicked ? 'h-[300px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg ml-28 md:ml-42 mt-[155px]   absolute w-[60%]  top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
                 {data.map((Occu, index) => (
                     <div
                         key={index}

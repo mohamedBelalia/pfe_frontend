@@ -1,30 +1,20 @@
 import { useMultistepForm } from "./useMultistepForm";
 import Signup from "./Signup";
-import Add_InfosAbout_You from "./Add_InfosAbout_You";
+import Add_Infos_about_You from "./Add_Infos_about_You";
 import Ocupations from "./Ocupations";
-import AddProjects from "./AddProjects";
+// import AddProjects from "./AddProjects";
 import { FormEvent, useState } from "react";
 import ProcessSignup from "./ProcessSignup";
 
-
-interface currentStepIndexProp{
-    sendCurrentStepIndex:(index:number)=>void,
-}
-
 type FormData = {
-    firstName: string,
-    lastName: string,
-    phone: string,
-    password: string,
-    confirmPassword: string,
-    userImage: string,
-    description: string,
-    occupations: string[],
-    // projects:[ {
-    //     proTitle: string,
-    //     proDescription: string,
-    //     proImage: File,
-    // }],
+    firstName: string;
+    lastName: string;
+    phone: string;
+    password: string;
+    confirmPassword: string;
+    userImage: File | null;
+    description: string;
+    occupations: string[];
 }
 
 const INITIAL_DATA: FormData = {
@@ -33,57 +23,50 @@ const INITIAL_DATA: FormData = {
     phone: "",
     password: "",
     confirmPassword: "",
-    userImage: "",
+    userImage: null,
     description: "",
     occupations: [],
-    // projects: [{
-    //     proTitle: "",
-    //     proDescription: "",
-    //     proImage: new File([], 'emptyFile') // Assuming proImage is of type File
-    // }],
+ 
 };
 
 const Forms = () => {
-    
-    const [data, setData] = useState(INITIAL_DATA)
-    const { currentStepIndex, step, isFirst, isLast, back, next } = useMultistepForm([ 
+    const [data, setData] = useState(INITIAL_DATA);
+    const { currentStepIndex, step, isFirst, isLast, back, next } = useMultistepForm([
         <Signup {...data} updateFields={updateFields} />,
-        <Add_InfosAbout_You  />,
-        <AddProjects  />,
-        <Ocupations occupations={data.occupations} updateFields={updateFields} />,
-    ])
+        <Add_Infos_about_You {...data} updateFields={updateFields} />,
+        <Ocupations {...data} updateFields={updateFields} />,
+        // <AddProjects {...data} updateFields={updateFields} />,
+    ]);
 
     function updateFields(fields: Partial<FormData>) {
-        setData(prev => {
-            return {...prev, ...fields}
-        })
+        setData(prev => ({
+            ...prev,
+            ...fields
+        }));
     }
 
     function onSubmit(e: FormEvent) {
-        e.preventDefault()
-        if(data.confirmPassword === data.password ){
+        e.preventDefault();
+        if (data.confirmPassword === data.password) {
             next();
-            
         }
-        
-
     }
 
     return (
-        <div className="h-[100%] w-[70%] m-auto items-center flex mb-6 flex-col ">
-            <ProcessSignup stepIndex={currentStepIndex}/>
-        <form onSubmit={onSubmit} className="relative w-full h-[400px]">
-            {step}
-            <div className="absolute flex justify-between w-full bottom-0">
-                {!isFirst ? <button onClick={back} type="button" className="px-8 transition-all ease-in-out py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Back</button> : <div />}
-                <div>
-                    {!isFirst && <button onClick={next} className="px-8 mr-4 transition-all ease-in-out py-1 duration-300 bg-gray-300 text-gray-400 font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Skip</button>}
-                    <button type="submit" className="px-8 transition-all ease-in-out py-1 duration-300 bg-teal500 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">{isLast ? "Finish" : "Next"}</button>
+        <div className="md:h-[100%] w-full  md:w-[85%] tab:w-[70%] m-auto  justify-center  items-center  mb-6 flex-col ">
+            <ProcessSignup stepIndex={currentStepIndex} />
+            <form onSubmit={onSubmit} className="relative w-full h-[400px]">
+                {step}
+                <div className="absolute px-10 flex justify-between w-full bottom-0">
+                    {!isFirst ? <button onClick={back} type="button" className="md:px-8  px-4 transition-all ease-in-out md:py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Back</button> : <div />}
+                    <div>
+                        {!isFirst && <button type="button" onClick={next} className="md:px-8 px-4 mr-4 transition-all ease-in-out md:py-1 duration-300 bg-gray-300 text-gray-400 font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Skip</button>}
+                        <button type="submit" className="md:px-8 px-4 transition-all ease-in-out md:py-1 duration-300 bg-teal500 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">{isLast ? "Finish" : "Next"}</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-            </div>
-    )
+            </form>
+        </div>
+    );
 }
 
 export default Forms;
