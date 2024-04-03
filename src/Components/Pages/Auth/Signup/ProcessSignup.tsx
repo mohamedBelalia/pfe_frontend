@@ -81,7 +81,7 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
     }
     return (
         <>
-            <div className="w-[100%]  bg-gray-100 px-6 rounded-xl py-6 my-6 items-center flex justify-between">
+            <div className="w-[100%] hidden  bg-gray-100 px-6 rounded-xl py-6 my-6 items-center md:flex justify-between">
                 <h1 className="flex w-[20%] text-3xl font-sans font-bold justify-center mr-4"><BiLogoFlutter className="size-8 mr-2 text-teal500" />Tasker</h1>
                 {step1(stepIndex)}
                 {step2(stepIndex)}

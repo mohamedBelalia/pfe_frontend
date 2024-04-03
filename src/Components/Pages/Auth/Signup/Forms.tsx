@@ -53,9 +53,9 @@ const Forms = () => {
     }
 
     return (
-        <div className="md:h-[100%] w-full  md:w-[85%] tab:w-[70%] m-auto  justify-center  items-center  mb-6 flex-col ">
+        <div className="md:h-[100%] w-full md:w-[85%] tab:w-[70%] m-auto  justify-center  items-center  mb-6 flex-col ">
             <ProcessSignup stepIndex={currentStepIndex} />
-            <form onSubmit={onSubmit} className="relative w-full h-[400px]">
+            <form onSubmit={onSubmit} className="relative w-full h-[600px]">
                 {step}
                 <div className="absolute px-10 flex justify-between w-full bottom-0">
                     {!isFirst ? <button onClick={back} type="button" className="md:px-8  px-4 transition-all ease-in-out md:py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Back</button> : <div />}

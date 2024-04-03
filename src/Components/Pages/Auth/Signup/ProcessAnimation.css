@@ -1,5 +1,5 @@
 .progress {
-    animation: progress 2s forwards cubic-bezier(0, 0, 0, 0);
+    animation: progress 1s forwards cubic-bezier(0, 0, 0, 0);
     width: 100%;
 }
 
