@@ -155,9 +155,16 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
        </>
         
 
-        <>
+        <div>
+            <h1 className="font-bold text-lg text-gray700">
+                {
+                    isArabicSelected 
+                    ? "الدبلومات"
+                    : "Diplômes"
+                }
+            </h1>
             <Diploms workerId={idWorker}/>
-        </>
+        </div>
 
         <div className="flex flex-col gap-2">
             <h1 className="font-bold text-lg text-gray700">Reviews</h1>

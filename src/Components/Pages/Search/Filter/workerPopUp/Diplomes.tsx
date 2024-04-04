@@ -68,13 +68,6 @@ const Diplomes = ({workerId}:DiplomsProps) => {
     diplomes != undefined && diplomes.length > 0
     &&
     <div  className={`flex flex-col gap-2 mt-2 ${isArabicSelected && "items-end"}`}>
-            <h1 className="font-bold text-lg text-gray700">
-                {
-                    isArabicSelected 
-                    ? "الدبلومات"
-                    : "Diplômes"
-                }
-            </h1>
             <div className="flex flex-wrap gap-2">
             {
                 diplomes?.slice(0,3).map((diplome,_)=>(

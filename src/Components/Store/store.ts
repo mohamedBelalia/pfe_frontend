@@ -4,6 +4,7 @@ import { SelectedTaskSlice } from "./Slices/SelectedTask";
 import { StepsFilterFollowSlice } from "./Slices/StepsFilterFollowSlice";
 import { SelectedLanguageSlice } from "./Slices/ChangeLanguageSlice";
 import { VideoPlaySlice } from "./Slices/VideoPlaySlice";
+import { ChangeIdWorkerUrl } from "./Slices/ChangeIdWorker";
 
 
 export const store = configureStore({
@@ -12,7 +13,8 @@ export const store = configureStore({
         selectedTask : SelectedTaskSlice.reducer ,
         stepsFilterFollowSlice : StepsFilterFollowSlice.reducer ,
         selectedLanguageSlice : SelectedLanguageSlice.reducer ,
-        videoPlayeSlice : VideoPlaySlice.reducer
+        videoPlayeSlice : VideoPlaySlice.reducer,
+        workerIdUrl : ChangeIdWorkerUrl.reducer
     }
 })
 

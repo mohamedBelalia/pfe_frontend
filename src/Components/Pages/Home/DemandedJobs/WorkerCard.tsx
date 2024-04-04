@@ -6,7 +6,10 @@ import { useEffect, useState } from "react"
 import Api from "../../../../api/Api"
 import {Config} from "../../../../../config/Local_Variables"
 import { useSelector } from "react-redux"
-import { RootState } from "../../../Store/store"
+import { AppDispatch, RootState } from "../../../Store/store"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { setTheIdWorkerUrl } from "../../../Store/Slices/ChangeIdWorker"
 
 interface JobCardTypes extends IBestWorkers{
     getClickedWorkerId : (id :string) => void
@@ -24,6 +27,8 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:JobCardTypes) => {
 
   // to know if the worker had professions or not
   const [hadProfessions , setHadPorfessions] = useState<boolean>(true)
+
+  const navigate = useNavigate()
 
   useEffect(()=>{
       const fetchProfessions = async()=>{
@@ -46,6 +51,11 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:JobCardTypes) => {
   },[])
 
     
+    const gotoWorkerProfile = (workerId : string) => {
+        window.scrollTo(0,0)
+        navigate(`/ouvres/${workerId}`)
+    }
+
 
   return (
     <div>
@@ -138,7 +148,7 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:JobCardTypes) => {
                 </a>
                 
                 <button 
-                onClick={()=>getClickedWorkerId(workerInfo.idOuvrier)}
+                onClick={()=>gotoWorkerProfile(workerInfo.idOuvrier)}
                 title={`بروفايل السيد  ${workerInfo.prenomOuvrier} `}
                   className="w-1/2 border-2 border-blue-500 hover:bg-blue-50 h-[40px] rounded-md flex items-center justify-center gap-3">
                   
