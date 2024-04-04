@@ -31,6 +31,7 @@ const INITIAL_DATA: FormData = {
 
 const Forms = () => {
     const [data, setData] = useState(INITIAL_DATA);
+    const isArabic = true;
     const { currentStepIndex, step, isFirst, isLast, back, next } = useMultistepForm([
         <Signup {...data} updateFields={updateFields} />,
         <Add_Infos_about_You {...data} updateFields={updateFields} />,
@@ -55,13 +56,18 @@ const Forms = () => {
     return (
         <div className="md:h-[100%] w-full md:w-[85%] tab:w-[70%] m-auto  justify-center  items-center  mb-6 flex-col ">
             <ProcessSignup stepIndex={currentStepIndex} />
-            <form onSubmit={onSubmit} className="relative w-full h-[600px]">
+            <form onSubmit={onSubmit} className="relative w-full h-[400px]">
                 {step}
-                <div className="absolute px-10 flex justify-between w-full bottom-0">
-                    {!isFirst ? <button onClick={back} type="button" className="md:px-8  px-4 transition-all ease-in-out md:py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Back</button> : <div />}
-                    <div>
-                        {!isFirst && <button type="button" onClick={next} className="md:px-8 px-4 mr-4 transition-all ease-in-out md:py-1 duration-300 bg-gray-300 text-gray-400 font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">Skip</button>}
-                        <button type="submit" className="md:px-8 px-4 transition-all ease-in-out md:py-1 duration-300 bg-teal500 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">{isLast ? "Finish" : "Next"}</button>
+                <div className={`${!isArabic?"":"flex flex-row-reverse"} absolute px-10 flex justify-between w-full bottom-0`}>
+                    {!isFirst ? <button onClick={back} type="button" 
+                    className="md:px-8  px-4 transition-all ease-in-out md:py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">
+                        {!isArabic?"Back":"الرجوع"}
+                    </button> : <div />}
+                    <div className={`${!isArabic?"":"flex flex-row-reverse"}`}>
+                        {!isFirst && <button type="button" onClick={next} className="md:px-8 px-4 transition-all ease-in-out md:py-1 duration-300 bg-gray-300 text-gray-400 font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">
+                            {!isArabic?"Skip":"تخطي"}
+                            </button>}
+                        <button type="submit" className="md:px-8 px-4 mx-4 transition-all ease-in-out md:py-1 duration-300 bg-teal500 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">{isLast ? (isArabic?"إنهاء":"Finich") : (!isArabic?"Next":"التالي")}</button>
                     </div>
                 </div>
             </form>

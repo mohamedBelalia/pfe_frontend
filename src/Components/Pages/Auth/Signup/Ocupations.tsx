@@ -14,9 +14,11 @@ type OccupationsFormProps = userData & {
 }
 
 const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
+
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [cmpOccup, setCmpOccup] = useState<number[]>([]);
     const [choosedOccupations, setChoosedOccupations] = useState<string[]>([...occupations]);
+    const [isArabic] = useState<boolean>(true);
 
 
     const handleClickedOccupations = (index: number, Occup: string | undefined) => {
@@ -50,7 +52,12 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
 
     return (
         <div className="md:w-[70%] w-[95%] mt-12 md:mt-0 m-auto   h-full relative ">
-            <h1 className="text-teal-500 text-center p-4 text-3xl font-semibold">Your Occupations</h1>
+            <h1 className="text-teal-500 text-center p-4 text-3xl font-semibold">
+                {`${!isArabic ? "Vos métiers" : "مهنتك"}`}
+                <p className='text-sm text-red-500'>
+                    {`${!isArabic?"Choisissez des métiers adaptés à votre activité":"اختر المهن التس تناسب نشاطك"}`}
+                </p>
+            </h1>
             <div className=' flex justify-center'>
                 <div className='flex items-center px-2 border-2   rounded w-full pb-2'>
                     <div className='md:h-14 h-11'></div>
@@ -65,12 +72,16 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
                 </div>
 
             </div>
-            <div onClick={() => setIsClicked(!isClicked)} className="bg-gray-200    w-full m-auto -z-10 border border-gray-400 rounded-md md:h-14 h-10 flex  items-center cursor-pointer select-none">
-                <p className="text-[#414E5F] pl-20 font-semibold">Selected Occupations</p>
+            <div onClick={() => setIsClicked(!isClicked)}
+                className={`${!isArabic ? "" : "flex-row-reverse "} bg-gray-200  justify-center  w-full m-auto -z-10 border border-gray-400 rounded-md md:h-14 h-10 flex  items-center cursor-pointer select-none `}>
+                <p className=" text-[#414E5F] pl-20 font-semibold">
+                    {`${!isArabic ? "Cliquez pour sélectionner" : "انقر للتحديد"}`}
+                </p>
                 <IoIosArrowDown className="text-[#414E5F] ml-16 text-2xl" />
             </div>
 
-            <div className={`${isClicked ? 'h-[300px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 w-full  rounded-md shadow-lg  sm:ml-28 md:ml-[5px] md:mt-[113px]    absolute  md:top-20 transition-all ease-in-out duration-150 overflow-hidden`}>
+            <div className={`${isClicked ? 'h-[300px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'}
+             bg-gray-200 w-full  rounded-md shadow-lg   transition-all ease-in-out duration-150 overflow-hidden`}>
                 {data.map((Occu, index) => (
                     <div
                         key={index}

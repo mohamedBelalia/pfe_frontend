@@ -7,9 +7,7 @@ import Footer from './Components/Common/Footer/Footer'
  import Filter from './Components/Pages/Search/Filter/Filter'
  import SearchPage from './Components/Pages/Search/SearchPage/SearchPage'
  import Login from './Components/Pages/Auth/login/Login'
-//  import ProcessSignup from './Components/Pages/Auth/Signup/ProcessSignup'
 import Forms from './Components/Pages/Auth/Signup/Forms'
-
 
 function App() {
 

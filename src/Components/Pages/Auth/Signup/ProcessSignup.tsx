@@ -9,11 +9,14 @@ type stepIndexProp = {
 
 const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
 
+
+    const isArabic = true;
+
     const step1 = (count: number) => {
         switch (count > 0) {
             case false:
                 return <>
-                    <div className="rounded-full relative w-8 h-8  animate-spin border-teal500 border-4 flex justify-center items-center font-semibold ">1</div>
+                    <div className="rounded-full relative w-8 h-8  border-teal500 border-4 flex justify-center items-center font-semibold ">1</div>
                     <div className="w-[30%] " >
                         <div className="bg-gray-200 rounded  h-2 " />
                     </div>
@@ -23,7 +26,7 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
             default:
                 return <>
                     <FaCheckCircle className="text-teal500 text-4xl  " />
-                    <div className="bg-gray-200 w-[30%] h-2 " >
+                    <div className={`${!isArabic?"":" flex-row-reverse"} bg-gray-200 w-[30%] h-2 flex `} >
                         <div className="bg-teal500 progress h-2  rounded" />
                     </div>
                 </>
@@ -40,13 +43,13 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
                 </>
             case 1:
                 return <>
-                    <div className="rounded-full w-8 animate-spin h-8 border-teal500 border-2  flex justify-center items-center font-semibold ">2</div>
+                    <div className="rounded-full w-8 h-8 border-teal500 border-2  flex justify-center items-center font-semibold ">2</div>
                     <div className="bg-gray-200 rounded w-[30%] h-2 " />
                 </>
             default:
                 return <>
                     <FaCheckCircle className="text-teal500 size-8 " />
-                    <div className="bg-gray-200  w-[30%] h-2 ">
+                    <div className={`${!isArabic?"":" flex-row-reverse"} bg-gray-200 w-[30%] h-2 flex `}>
                         <div className="bg-teal500 rounded progress  h-2 " />
                     </div>
                 </>
@@ -69,7 +72,7 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
                 break;
             case 2:
                 return <>
-                    <div className="rounded-full w-8 h-8 border-teal500 animate-spin border-2 flex justify-center items-center font-semibold ">3</div>
+                    <div className="rounded-full w-8 h-8 border-teal500  border-2 flex justify-center items-center font-semibold ">3</div>
                 </>
                 break;
             default:
@@ -81,8 +84,11 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
     }
     return (
         <>
-            <div className="w-[100%] hidden  bg-gray-100 px-6 rounded-xl py-6 my-6 items-center md:flex justify-between">
-                <h1 className="flex w-[20%] text-3xl font-sans font-bold justify-center mr-4"><BiLogoFlutter className="size-8 mr-2 text-teal500" />Tasker</h1>
+            <div className={`${!isArabic?"":"flex-row-reverse"} w-[100%] hidden  bg-gray-100 px-6 rounded-xl py-6 mt-4 items-center md:flex justify-between`}>
+                <h1 className={`${!isArabic?"":"flex-row-reverse"} flex w-[20%] text-3xl font-sans font-bold justify-center mr-4`}>
+                    <BiLogoFlutter className="size-8 mr-2 text-teal500" />
+                    {!isArabic?"Tasker":"الموقف"}
+                    </h1>
                 {step1(stepIndex)}
                 {step2(stepIndex)}
                 {step3(stepIndex)}
