@@ -11,6 +11,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Api from "../../../api/Api";
 import { IWorkerInfromation } from "../../../TS";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store/store";
+import ShowedProject from "./ShowedProject";
 
 const WorkerProfile = () => {
 
@@ -27,6 +30,12 @@ const WorkerProfile = () => {
 
   // to handle the loading
   const [isLoaded , setIsLoaded] = useState<boolean>(false)
+
+  // The Slice For Change The Language
+  const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+
+   // The Slice to show the Project
+   const idProject : string = useSelector((state:RootState)=> state.clickedProject.idProject)
 
 
   useEffect(()=>{
@@ -69,27 +78,55 @@ const WorkerProfile = () => {
 
   return (
     
-    <div className="min-h-[80vh]">
+    <div className="min-h-[80vh] relative ourBorder">
+      {
+        idProject.length > 0 
+        &&
+        <div className="w-[100vw] h-[100vh] fixed top-0 left-0 bg-[#03111eed] z-[60] flex justify-center items-center">
+            <ShowedProject idProject={idProject}/>
+        </div>
+      }
       <Navbar/> 
-        
-      <div className="w-[80%] mx-auto md:pt-[140px] pt-[60px] py-[40px] flex items-start gap-6">
-          <div className="w-1/3">
+      <div className={`w-full md:w-[80%] mx-auto md:pt-[140px] pt-[80px] py-[40px] px-5 md:px-0 flex gap-10 flex-col ${isArabicSelected ? "tab:flex-row-reverse" : "tab:flex-row "} items-start`}>
+          <div className="w-full mx-auto md:w-[80%] tab:w-1/3 ">
               <PersonnelInfo singleWorker={workerData}/>
           </div>
 
-          <div className="w-[70%] flex flex-col gap-8">
+          <div className="w-full md:w-[70%] flex flex-col gap-8">
               <div>
-                <h1 className="text-xl font-bold flex items-center gap-1 text-teal-700">
-                  <MdOutlineDescription className="text-[30px]"/> Description
+                <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
+                  {
+                    isArabicSelected
+                    ?
+                    <>
+                      وصف <MdOutlineDescription className="text-[30px]"/>
+                    </>
+                    :
+                    <>
+                    <MdOutlineDescription className="text-[30px]"/> Description
+                    </>
+                  }
+                  
                 </h1>
-                <p className="font-semibold mt-1 px-8">
+                <p className={`font-semibold mt-1 px-4 ${isArabicSelected && "text-end"}`}>
                   {workerData?.description_ouvrier}
                 </p>
               </div>
 
               <div>
-                  <h1 className="text-xl font-bold flex items-center gap-1 text-teal-700">
-                    <AiOutlineProfile className="text-[30px]"/> Professions
+                  <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
+                    {
+                      isArabicSelected
+                      ?
+                      <>
+                        المهن <AiOutlineProfile className="text-[30px]"/>
+                      </>
+                      :
+                      <>
+                      <AiOutlineProfile className="text-[30px]"/> Professions
+                      </>
+                    }
+                    
                   </h1>
                   <div className="py-3">
                     <Professions idWorker={workerData.idOuvrier}/>
@@ -97,16 +134,38 @@ const WorkerProfile = () => {
               </div>
 
               <div>
-                  <h1 className="text-xl font-bold flex items-center gap-2 text-teal-700">
-                      <FaHammer className="text-[30px]"/> Projects
-                  </h1>
+                    <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
+                      {
+                        isArabicSelected
+                        ?
+                        <>
+                          المشاريع <FaHammer className="text-[30px]"/>
+                        </>
+                        :
+                        <>
+                        <FaHammer className="text-[30px]"/> Les Projets
+                        </>
+                      }
+                      
+                    </h1>
                     <WorkerProjects idOuvrier={workerData.idOuvrier}/>
               </div>
 
 
               <div>
-                  <h1 className="text-xl font-bold flex items-center gap-1 text-teal-700">
-                    <GrCertificate className="text-[30px]"/> Diplômes
+                  <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
+                    {
+                      isArabicSelected
+                      ?
+                      <>
+                        الدبلومات <GrCertificate className="text-[30px]"/>
+                      </>
+                      :
+                      <>
+                      <GrCertificate className="text-[30px]"/> Diplômes
+                      </>
+                    }
+                    
                   </h1>
                   <div className="py-3">
                     <Diplomes workerId={idWorker != null ? idWorker : ""}/>

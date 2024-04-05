@@ -4,7 +4,7 @@ import { SelectedTaskSlice } from "./Slices/SelectedTask";
 import { StepsFilterFollowSlice } from "./Slices/StepsFilterFollowSlice";
 import { SelectedLanguageSlice } from "./Slices/ChangeLanguageSlice";
 import { VideoPlaySlice } from "./Slices/VideoPlaySlice";
-import { ChangeIdWorkerUrl } from "./Slices/ChangeIdWorker";
+import { ClickedProjectSlice } from "./Slices/ClickedProject";
 
 
 export const store = configureStore({
@@ -14,7 +14,7 @@ export const store = configureStore({
         stepsFilterFollowSlice : StepsFilterFollowSlice.reducer ,
         selectedLanguageSlice : SelectedLanguageSlice.reducer ,
         videoPlayeSlice : VideoPlaySlice.reducer,
-        workerIdUrl : ChangeIdWorkerUrl.reducer
+        clickedProject : ClickedProjectSlice.reducer
     }
 })
 

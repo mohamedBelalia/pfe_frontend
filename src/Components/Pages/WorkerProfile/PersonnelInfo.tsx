@@ -5,18 +5,17 @@ import { Config } from "../../../../config/Local_Variables";
 
 
 const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
-console.log(singleWorker);
 
   return (
-    <div className="w-full flex flex-col px-5 py-10 rounded-md bg-white border border-teal-800 shadow-xl gap-3">
-        <div className="flex gap-3">
-            <div className="rounded-full overflow-hidden w-[90px] h-[90px]">
+    <div className="w-full flex flex-col px-5 py-4 md:py-10 rounded-md bg-white border border-teal-800 shadow-xl gap-3">
+        <div className="flex gap-3 flex-col md:flex-row items-center">
+            <div className="rounded-full overflow-hidden md:w-[90px] md:h-[90px] w-[120px] h-[120px]">
                 <img 
                     src={Config.BaseImagesPath_Profiles + singleWorker.imgProfile} 
                     className="w-full h-full object-cover" />
             </div>
-            <div className="flex flex-col gap-1">
-                <h1 className="text-xl font-bold text-teal-700">{singleWorker.prenomOuvrier + " " + singleWorker.nomOuvrier}</h1>
+            <div className="flex flex-col items-center md:items-start gap-1">
+                <h1 className="text-2xl md:text-xl font-bold text-teal-700">{singleWorker.prenomOuvrier + " " + singleWorker.nomOuvrier}</h1>
                 <div className="flex items-center gap-2">
                     <IoIosStar/> <p className="font-semibold">{singleWorker.nbrCommentair} <span className="text-xs">({singleWorker.avgEtoile} reviews)</span></p>
                 </div>

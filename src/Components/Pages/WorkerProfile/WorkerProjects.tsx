@@ -4,9 +4,11 @@ import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { IProjectWorker } from "../../../TS";
 import { useSelector } from "react-redux";
-import { RootState } from "../../Store/store";
+import { AppDispatch, RootState } from "../../Store/store";
 import Api from "../../../api/Api";
 import { Config } from "../../../../config/Local_Variables";
+import { useDispatch } from "react-redux";
+import { setClickedProject } from "../../Store/Slices/ClickedProject";
 
 type workerProjectsProps = {
     idOuvrier : string
@@ -80,13 +82,13 @@ const WorkerProjects = ({idOuvrier} : workerProjectsProps) => {
 
     const scrollToLeft = () =>{
         if(cardsContainerRef.current?.scrollLeft != undefined){
-            cardsContainerRef.current.scrollLeft -= 500
+            cardsContainerRef.current.scrollLeft -= 390
         }
     }
 
     const scrollToRight = () =>{
         if(cardsContainerRef.current?.scrollLeft != undefined){
-            cardsContainerRef.current.scrollLeft += 500
+            cardsContainerRef.current.scrollLeft += 390
         }
     }
 
@@ -131,6 +133,8 @@ type ProjectProps = {
 
 const ProjectCard = ({projectInfo}:ProjectProps) => {
 
+    // to change the showed Project
+    const dispatch = useDispatch<AppDispatch>()
   
 
     const titleProject : string = projectInfo.titre != undefined ? projectInfo.titre?.slice(0,50) : ""
@@ -147,7 +151,9 @@ const ProjectCard = ({projectInfo}:ProjectProps) => {
 
 
     return(
-        <div className="relative w-[350px] h-[250px] border-2 border-teal-500 rounded-md overflow-hidden cursor-pointer">
+        <div
+            onClick={()=>dispatch(setClickedProject({idProject : projectInfo.idProjet}))} 
+            className="relative w-[350px] h-[250px] border-2 border-teal-500 rounded-md overflow-hidden cursor-pointer">
             <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-t from-teal-950 flex flex-col justify-between p-2">
                 <div className="flex justify-end">
                     <div className="w-fit bg-teal-700 p-2 rounded-md">
