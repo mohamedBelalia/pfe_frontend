@@ -94,7 +94,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
             <div className="w-full h-full  flex flex-col gap-16 pb-36 md:pb-0 md:gap-10 justify-center items-center relative">
               
               <div className={`flex gap-6 md:flex-row flex-col-reverse ${isArabicSelected && "md:flex-row-reverse"}`}>
-                <h1 className="font-bold text-4xl md:text-5xl text-white text-center">
+                <h1 className={`${isArabicSelected && "arabicFont"} font-bold text-4xl md:text-5xl text-white text-center`}>
                   {
                     isArabicSelected 
                     ? "ابحث عن حرفي متخصص"

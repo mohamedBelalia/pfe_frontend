@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { setSelectedJobName } from "../../../Store/Slices/SelectedTask"
 import NearWorkers from "./NearWorkers"
 import WorkerProfilePopUp from "../Filter/workerPopUp/WorkerProfilePopUp"
-import { ProfessionsType } from "../../../../TS"
+import { IProfessionsType } from "../../../../TS"
 import api from "../../../../api/Api"
 import ProfessionBoxSearch from "../../../Common/ProfessionBoxSearch/ProfessionBoxSearch"
 
@@ -15,7 +15,7 @@ const SearchPage = () => {
 
     const [isTyping , setIsTyping] = useState<boolean>(false)
 
-    const [professions , setProfessions] = useState<ProfessionsType[]>([]);
+    const [professions , setProfessions] = useState<IProfessionsType[]>([]);
     const [professionName , setProfessionName] = useState<string>("");
 
     const navigate = useNavigate()

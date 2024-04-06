@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { BsImages } from "react-icons/bs";
-import { FaChevronLeft } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft , FaChevronRight } from "react-icons/fa";
 import { IProjectWorker } from "../../../TS";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../Store/store";

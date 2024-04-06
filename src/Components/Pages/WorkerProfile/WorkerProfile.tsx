@@ -78,7 +78,7 @@ const WorkerProfile = () => {
 
   return (
     
-    <div className="min-h-[80vh] relative ourBorder">
+    <div className="min-h-[80vh] relative">
       {
         idProject.length > 0 
         &&
@@ -92,7 +92,7 @@ const WorkerProfile = () => {
               <PersonnelInfo singleWorker={workerData}/>
           </div>
 
-          <div className="w-full md:w-[70%] flex flex-col gap-8">
+          <div className="w-full tab:w-[70%] flex flex-col gap-8">
               <div>
                 <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
                   {

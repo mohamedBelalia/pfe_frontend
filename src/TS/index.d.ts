@@ -23,7 +23,7 @@ export interface IWorkerInfromation {
     nbrCommentair : string ,
     avgEtoile : string
     description_ouvrier? : string,
-    ville : string
+    ville ?: string
 }
 export interface ISingleWorker{
     singleWorker : IWorkerInfromation

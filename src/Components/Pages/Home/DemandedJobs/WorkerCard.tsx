@@ -6,10 +6,8 @@ import { useEffect, useState } from "react"
 import Api from "../../../../api/Api"
 import {Config} from "../../../../../config/Local_Variables"
 import { useSelector } from "react-redux"
-import { AppDispatch, RootState } from "../../../Store/store"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { setTheIdWorkerUrl } from "../../../Store/Slices/ChangeIdWorker"
+import { RootState } from "../../../Store/store"
 
 interface JobCardTypes extends IBestWorkers{
     getClickedWorkerId : (id :string) => void

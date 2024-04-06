@@ -125,7 +125,7 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
                                 labelleBadge_AR : worker.labelleBadge_AR ,
                                 labelleBadge_FR : worker.labelleBadge_FR ,
                                 nbrCommentair : worker.nbrCommentair ,
-                                avgEtoile : worker.avgEtoile
+                                avgEtoile : worker.avgEtoile 
                             }} />
                 ))
             }

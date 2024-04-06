@@ -1,5 +1,4 @@
-import { RxFramerLogo , RxHamburgerMenu , RxCross1 } from "react-icons/rx";
-import Button from "../Button/Button";
+import { RxFramerLogo } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ShowedContent from "./ShowedContent";
@@ -46,8 +45,6 @@ const Navbar = () => {
     useEffect(()=>{
         setCurrentUrl(window.location.href)
     },[window.location.href])
-
-    console.log(currentUrl);
     
 
     const showTaskerBtnRegester = () => {
@@ -94,7 +91,7 @@ const Navbar = () => {
                                 
                                 <button className="flex gap-3 justify-center items-center px-5 py-1 rounded-md font-bold text-white bg-[#199AFF]">
                                     <span>
-                                    <img src="./public/imgUsed/taskerAuth.png" className="w-[40px]" />
+                                    <img src="/public/imgUsed/taskerAuth.png" className="w-[40px]" />
                                     </span>
                                     <span>{isArabicSelected ? "كن حرفي" : "Devenir un artisan"}</span>
                                 </button>
@@ -107,17 +104,17 @@ const Navbar = () => {
                                     title="Change The Language" 
                                     className="relative w-[100px] h-[40px] flex justify-between p-2 overflow-hidden items-center bg-slate-200 rounded-xl cursor-pointer">
                                     <div className="w-[30px] h-[30px] flex justify-center items-center">
-                                        <img src="./icons/Ar.png" alt="" className="w-[25px] select-none" />
+                                        <span className="text-2xl font-extrabold select-none">ض</span>
                                     </div>
                                     <div className="w-[26px] h-[26px] flex justify-center items-center">
-                                        <img src="./icons/Fr.png" alt="" className="w-[25px] select-none" />
+                                        <span className="text-2xl font-extrabold select-none">A</span>
                                     </div>
 
                                     <div className={`w-[50px] h-[38px] bg-blue-300 absolute top-0 ${isArabicSelected ? "left-0" : "left-[50px]"} flex justify-center items-center transition-all duration-400 ease-in-out`}>
                                         {
                                             isArabicSelected 
-                                            ? <img src="./icons/Ar.png" alt="" className="select-none w-[25px]" />
-                                            : <img src="./icons/Fr.png" alt="" className="select-none w-[25px]" />
+                                            ? <span className="text-2xl font-extrabold select-none">ض</span>
+                                            : <span className="text-2xl font-extrabold select-none">A</span>
                                         }
                                     </div>
                                 

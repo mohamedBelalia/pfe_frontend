@@ -111,8 +111,6 @@ const ReviewUi = ({commentInfo}:ReviewUIProps) => {
     }
     
 
-    console.log(typeof lightStars + " cc");
-
   
 
     return (
