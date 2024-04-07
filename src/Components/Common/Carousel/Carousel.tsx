@@ -66,8 +66,8 @@ const Carousel = ({slides}:CarouselProps) => {
                 setCurrent(i);
               }}
               key={"circle" + i}
-              className={`rounded-full w-5 h-5 cursor-pointer  ${
-                i == current ? "bg-teal-500" : "bg-gray-500"
+              className={`rounded-full w-4 h-4 cursor-pointer  ${
+                i == current ? "bg-teal-500" : "bg-gray-300"
               }`}
             ></div>
           );

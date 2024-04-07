@@ -160,7 +160,7 @@ interface JobBtnTypes {
 const JobBtn = ({Icon , name , id , clickedId} : JobBtnTypes) =>{
 
     return (
-      <div className="flex flex-col items-center gap-3 cursor-pointer p-2 w-[60px] relative z-[-2px] ">
+      <div className="flex flex-col items-center gap-3 cursor-pointer p-2 w-[90px] relative z-[-2px] ">
         <div className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} text-[40px] md:text-[50px]`}>
           {Icon}
         </div>

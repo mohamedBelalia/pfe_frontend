@@ -2,9 +2,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
 import { ISingleWorker } from "../../../TS";
 import { Config } from "../../../../config/Local_Variables";
+import { MdRateReview } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../Store/store";
+import RatedWorkerId, { setRatedWorkerId } from "../../Store/Slices/RatedWorkerId";
 
 
 const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
+
+
+    // to store the id of the rated worker
+    const dispatch = useDispatch<AppDispatch>()
 
   return (
     <div className="w-full flex flex-col px-5 py-4 md:py-10 rounded-md bg-white border border-teal-800 shadow-xl gap-3">
@@ -37,8 +45,13 @@ const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
             </a>
         </div>
 
-        <div>
-            <button></button>
+        <div className="mt-4">
+            <button
+                onClick={()=>dispatch(setRatedWorkerId({idWorker : singleWorker.idOuvrier}))} 
+                className="flex items-center gap-4 py-2 px-4 font-semibold hover:text-teal-900 hover:bg-blue-100 transition-all duration-300 border-2 border-blue-600 rounded-md mx-auto">
+                Évaluer Ahmed 
+                <MdRateReview className="text-2xl"/>
+            </button>
         </div>
 
     </div>

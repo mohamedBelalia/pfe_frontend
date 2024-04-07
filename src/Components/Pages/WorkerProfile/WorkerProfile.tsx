@@ -14,6 +14,7 @@ import { IWorkerInfromation } from "../../../TS";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
 import ShowedProject from "./ShowedProject";
+import RatingProcess from "../../Common/RatingProcess/RatingProcess";
 
 const WorkerProfile = () => {
 
@@ -36,6 +37,9 @@ const WorkerProfile = () => {
 
    // The Slice to show the Project
    const idProject : string = useSelector((state:RootState)=> state.clickedProject.idProject)
+
+  //  the slice to get the rated worker ID
+  const ratedWorkerID : string = useSelector((state:RootState) => state.ratedWorkerId.idWorker)
 
 
   useEffect(()=>{
@@ -79,6 +83,8 @@ const WorkerProfile = () => {
   return (
     
     <div className="min-h-[80vh] relative">
+      
+      {/* to show the details of each project */}
       {
         idProject.length > 0 
         &&
@@ -86,6 +92,16 @@ const WorkerProfile = () => {
             <ShowedProject idProject={idProject}/>
         </div>
       }
+
+      {/* to start the rating process for the cliked worker */}
+      {
+        ratedWorkerID.length > 0 
+        &&
+        <div className="w-[100vw] h-[100vh] fixed top-0 left-0 bg-[#03111eed] z-[60] flex justify-center items-center">
+            <RatingProcess workerName={workerData.nomOuvrier} workerId={workerData.idOuvrier}/>
+        </div>
+      }
+
       <Navbar/> 
       <div className={`w-full md:w-[80%] mx-auto md:pt-[140px] pt-[80px] py-[40px] px-5 md:px-0 flex gap-10 flex-col ${isArabicSelected ? "tab:flex-row-reverse" : "tab:flex-row "} items-start`}>
           <div className="w-full mx-auto md:w-[80%] tab:w-1/3 ">
@@ -126,7 +142,7 @@ const WorkerProfile = () => {
                       <AiOutlineProfile className="text-[30px]"/> Professions
                       </>
                     }
-                    
+
                   </h1>
                   <div className="py-3">
                     <Professions idWorker={workerData.idOuvrier}/>

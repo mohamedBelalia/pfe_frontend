@@ -2,13 +2,6 @@ import { useEffect, useState } from "react"
 import Carousel from "../../Common/Carousel/Carousel"
 import Api from "../../../api/Api"
 
-const tempImgs = [
-    "project2.jpeg" , 
-    "project1.jpeg" , 
-    "project3.jpeg" , 
-    "project4.jpeg" , 
-    "project5.jpeg"
-]
 
 type ProjectImagesProps = {
     idProject : string

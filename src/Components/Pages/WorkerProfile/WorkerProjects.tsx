@@ -160,7 +160,7 @@ const ProjectCard = ({projectInfo}:ProjectProps) => {
                     </div>
                 </div>
                 <div className="h-[25%]">
-                    <p className={`text-white text-md font-semibold ${isTextArabic && "text-end"}`}>
+                    <p className={`text-white font-semibold ${isTextArabic && "text-end"}`}>
                         {
                             isTextArabic
                             ? <>...{titleProject}</>

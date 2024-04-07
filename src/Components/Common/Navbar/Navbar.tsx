@@ -93,7 +93,7 @@ const Navbar = () => {
                                     <span>
                                     <img src="/public/imgUsed/taskerAuth.png" className="w-[40px]" />
                                     </span>
-                                    <span>{isArabicSelected ? "كن حرفي" : "Devenir un artisan"}</span>
+                                    <span>{isArabicSelected ? "حرفي" : "Artisan"}</span>
                                 </button>
                                
                             </div>

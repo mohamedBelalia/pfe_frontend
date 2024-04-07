@@ -6,7 +6,7 @@ export interface SelectedLanguage {
 }
 
 const initialState : SelectedLanguage = {
-    isArabicSelected : true 
+    isArabicSelected : false 
 }
 
 export const SelectedLanguageSlice = createSlice({

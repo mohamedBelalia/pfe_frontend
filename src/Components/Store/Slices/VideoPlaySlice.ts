@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 
-export interface VideoTools {
+export interface IVideoTools {
     isVideoPlayed : boolean 
     videoType : string 
 }
 
-const initialState :VideoTools = {
+const initialState : IVideoTools = {
     isVideoPlayed : false ,
     videoType : ""
 } 

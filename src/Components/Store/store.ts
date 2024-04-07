@@ -5,6 +5,8 @@ import { StepsFilterFollowSlice } from "./Slices/StepsFilterFollowSlice";
 import { SelectedLanguageSlice } from "./Slices/ChangeLanguageSlice";
 import { VideoPlaySlice } from "./Slices/VideoPlaySlice";
 import { ClickedProjectSlice } from "./Slices/ClickedProject";
+import { RatedWorkerIdSlice } from "./Slices/RatedWorkerId";
+import { RatingProcessSlice } from "./Slices/RateingProcess";
 
 
 export const store = configureStore({
@@ -14,7 +16,9 @@ export const store = configureStore({
         stepsFilterFollowSlice : StepsFilterFollowSlice.reducer ,
         selectedLanguageSlice : SelectedLanguageSlice.reducer ,
         videoPlayeSlice : VideoPlaySlice.reducer,
-        clickedProject : ClickedProjectSlice.reducer
+        clickedProject : ClickedProjectSlice.reducer ,
+        ratedWorkerId : RatedWorkerIdSlice.reducer ,
+        ratingProcessSlice : RatingProcessSlice.reducer
     }
 })
 
