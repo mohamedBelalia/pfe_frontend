@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setIsArabicLanguageSelected } from "../../Store/Slices/ChangeLanguageSlice";
 import { PiVideoFill } from "react-icons/pi";
+import { SiHomebridge } from "react-icons/si"; // temp
 
 const Navbar = () => {
 
@@ -58,9 +59,35 @@ const Navbar = () => {
         navigate(path)
     }
 
+
+    const [lastScrollTop, setLastScrollTop] = useState(0);
+    const [navbarVisible, setNavbarVisible] = useState(true);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+        // Check if user is scrolling up or down
+        if (currentScrollTop > lastScrollTop) {
+          // Scrolling down
+          setNavbarVisible(false);
+        } else {
+          // Scrolling up
+          setNavbarVisible(true);
+        }
+  
+        setLastScrollTop(currentScrollTop);
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollTop]);
+    
+
   return (
-    <div className="w-[90%] md:w-[70%] mx-auto relative z-50 bg-[#414E5F]">
-        <div className="fixed mx-auto mt-5 w-[90%] md:w-[70%] sm:shadow-xl mb-10">
+    <div className="w-full md:w-[70%] mx-auto relative z-50 bg-[#414E5F]">
+        <div className="fixed mx-auto mt-5 w-full md:w-[70%] sm:shadow-xl mb-10">
             <div className="px-6 py-3 rounded-xl bg-transparent md:bg-[#d9e2ef] md:w-auto w-[50px]">
                 <div className="flex md:justify-between justify-end items-center">
                     <div onClick={()=>goTo("/")} className="gap-2 items-center hidden md:flex cursor-pointer">
@@ -122,19 +149,47 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className="bg-[#d0d3dab6] p-2 rounded-md cursor-pointer md:static absolute right-0"
+                        <div className="bg-[#d0d3dab6] p-2 rounded-md md:flex hidden cursor-pointer md:static absolute right-3"
                             onClick={showGuidsBox}
                         >   
                             <div>
-                            {/* {   
-                                isQuidsClicked ? 
-                                <RxCross1 className="text-3xl font-bold text-[#020409]"/>
-                                :
-                                <RxHamburgerMenu className="text-3xl font-bold text-[#020409]"/>
-                            } */}
                                  <PiVideoFill className="text-3xl font-bold text-sky-700"/>
                             </div>
                         </div>
+
+                        <div className={`justify-between items-center absolute md:hidden mt-2 px-3 -ml-5 ${!navbarVisible && "hidden"}`}>
+                            <div 
+                                onClick={()=>dispatch(setIsArabicLanguageSelected({isArabicSelected : !isArabicSelected}))}
+                                title="Change The Language" 
+                                className="relative w-[80px] h-[30px] flex justify-between p-2 overflow-hidden items-center bg-slate-200 rounded-xl cursor-pointer">
+                                <div className="w-[30px] h-[30px] flex justify-center items-center">
+                                    <span className="font-extrabold select-none">ض</span>
+                                </div>
+                                <div className="w-[30px] h-[30px] flex justify-center  items-center">
+                                    <span className="font-extrabold select-none ">A</span>
+                                </div>
+
+                                <div className={`w-[40px] h-[30px] bg-blue-300 absolute top-0 ${isArabicSelected ? "left-0" : "left-[40px]"} flex justify-center items-center transition-all duration-400 ease-in-out`}>
+                                    {
+                                        isArabicSelected 
+                                        ? <span className="font-extrabold select-none">ض</span>
+                                        : <span className="font-extrabold select-none">A</span>
+                                    }
+                                </div>
+                                    
+                            </div>
+                        </div>
+
+                        {/* <div className="w-full md:hidden flex justify-between items-center absolute mt-4 -ml-6 px-3">
+                            <div className="flex items-center gap-2">
+                                <SiHomebridge className="text-[30px] text-teal-500"/>
+                                <p className="font-bold text-xl text-teal-500">Hrayfi</p>
+                            </div>
+
+                            <div className="bg-[#d0d3dab6] p-1 rounded-md">
+                                 <PiVideoFill className="text-3xl font-bold text-sky-700"/>
+                            </div>
+                        </div> */}
 
                     </div>
 
@@ -153,7 +208,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile navbar */}
-        <div className="fixed border border-green-600 mx-auto p-2 h-[70px] w-[90%] bottom-0 mb-2 shadow-xl bg-white rounded-md flex md:hidden">
+        <div className={`fixed mx-auto ${navbarVisible ? "h-[60px]" : "h-0"} transition-max-h shadow-[0px_16px_47px_0px_#2d3748] ease-in-out duration-100 w-full bottom-0 overflow-hidden bg-white flex md:hidden`}>
             <PhoneNavbar getTheBecomeATaskerBox={setIsBecomeTaskerClicked} isTheBecomeATaskerBoxClicked={isBecomeTaskerClicked}/>
         </div>
 

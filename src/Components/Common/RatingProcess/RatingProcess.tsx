@@ -67,14 +67,14 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
 
 
   return (
-    <div className="w-[60%] bg-white rounded-2xl min-h-[500px]">
+    <div className="w-[95%] md:w-[60%] bg-white rounded-2xl min-h-[500px]">
         <div className="h-[30px] flex justify-end items-center p-2">
             <button 
                 onClick={()=>dispatch(setRatedWorkerId({idWorker : ""}))}
                 className="select-none font-bold text-xl w-[30px] h-[30px] flex justify-center items-center mt-2 text-white bg-red-500 rounded-full">X</button>
         </div>
        
-       <div className="md:px-36 px-10 pb-7 pt-2 flex flex-col gap-4">
+       <div className="md:px-36 px-6 pb-7 pt-2 flex flex-col gap-4">
             {/* The Green Process */}
            
            {

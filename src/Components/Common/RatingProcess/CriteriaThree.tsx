@@ -51,7 +51,7 @@ const CriteriaThree = () => {
         Est-ce que le prix correspond au travail effectué ?
         </h1>
 
-        <div className="mt-8 flex flex-col gap-7 px-28">
+        <div className="mt-8 flex flex-col gap-7 md:px-28">
             {
                 rates.map((rate , _) => (
                     <div key={rate.idRate}>

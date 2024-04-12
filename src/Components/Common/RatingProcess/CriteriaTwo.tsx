@@ -53,7 +53,7 @@ const CriteriaTwo = ({workerName}:RateingProcessProps) => {
         Est-ce que <span className="text-teal-500">{workerName}</span> maîtrise son travail ?
         </h1>
 
-        <div className="mt-8 flex flex-col gap-7 px-28">
+        <div className="mt-8 flex flex-col gap-7 md:px-28">
             {
                 rates.map((rate , _) => (
                     <div key={rate.idRate}>

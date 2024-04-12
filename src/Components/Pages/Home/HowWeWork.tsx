@@ -32,9 +32,9 @@ const HowWeWork = () => {
     },[])
 
   return (
-    <div className="w-[80%] mx-auto pt-12">
-        <h1 className="text-center text-4xl font-bold text-[#349292]">{isArabicSelected ? "كيف نعمل" : "Comment nous travaillons"}</h1>
-        <div className="flex flex-col tab:flex-row items-start gap-6 mt-20">
+    <div className="w-[80%] mx-auto md:pt-12 pt-5">
+        <h1 className="text-center md:text-4xl text-3xl font-bold text-[#349292]">{isArabicSelected ? "كيف نعمل" : "Comment nous travaillons"}</h1>
+        <div className="flex flex-col tab:flex-row items-start gap-6 md:mt-20 mt-7">
 
             <div className="tab:w-1/2 w-full">
                 <ExplainerVideo id={number}/>

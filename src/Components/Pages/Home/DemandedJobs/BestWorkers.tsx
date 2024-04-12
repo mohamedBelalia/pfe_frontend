@@ -94,8 +94,8 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
 
     
   return (
-    <div className="px-1 md:px-0 md:w-[80%] w-full md:mx-auto mt-16 pt-12">
-        <h1 className="text-center text-4xl font-bold text-[#349292]">
+    <div className="px-1 md:px-0 w-[90%] mx-auto mt-16 md:pt-12 pt-5">
+        <h1 className="text-center text-3xl font-bold text-[#349292]">
             {
                 isArabicSelected 
                 ? "أفضل 6 عمال تقييمًا في منطقتك"

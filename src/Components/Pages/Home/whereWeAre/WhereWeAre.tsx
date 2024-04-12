@@ -9,8 +9,8 @@ const WhereWeAre = () => {
     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
   return (
-    <div className="mt-16 pt-3">
-        <h1 className="text-center text-4xl font-bold text-[#349292]">{isArabicSelected ? "أين نحن" : "Où sommes-nous"}</h1>
+    <div className="mt-16 pt-3 px-1">
+        <h1 className="text-center text-3xl md:text-4xl font-bold text-[#349292]">{isArabicSelected ? "أين نحن" : "Où sommes-nous"}</h1>
         <div className="mx-auto text-center mt-5">
             <p className="text-lg text-[#414E5F]">
                 {

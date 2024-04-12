@@ -40,7 +40,33 @@ export const jobs = [
         nameAr: "رخايمي",
         id : "6",
         Icon : <img src="/icons/marble.png"/>
-      }      
+      }     
+      ,
+      {
+        nameEn: "Constructeur",
+        nameAr: "بنّاء",
+        id : "3",
+        Icon : <GiConcreteBag/>
+      },
+      {
+        nameEn: "Plombier",
+        nameAr: "سباك",
+        id : "4",
+        Icon : <MdPlumbing/>
+      },
+      {
+        nameEn: "Électricien",
+        nameAr: "كهربائي",
+        id : "5",
+        Icon : <MdElectricBolt/>
+      }
+      ,
+      {
+        nameEn: "Marbrier",
+        nameAr: "رخايمي",
+        id : "6",
+        Icon : <img src="/icons/marble.png"/>
+      }  
 ]
 /*
 Carpenter

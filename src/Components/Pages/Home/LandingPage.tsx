@@ -119,7 +119,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
               </div> 
                
               <div className="md:w-[40%] w-[90%] mx-auto relative">
-                <div className="w-full absolute z-40 md:-top-5 -top-14 left-0">
+                <div className="w-full z-40 md:-top-5 -top-14 left-0">
                   <ProfessionBoxSearch isTyping={isTyping} getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
                 </div>
               </div>
@@ -127,7 +127,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
             </div> 
 
           {/* The Part Of The Jobs to choose */}
-          <div className="md:w-full w-[95vw] md:static absolute bottom-0 mb-8 md:mb-12">
+          <div className="md:w-full w-[95vw] md:static absolute bottom-0 mb-8 md:mb-12 ">
             <div className="flex justify-between gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar">
                 {
                   jobs.map((job , _)=>(
@@ -136,6 +136,9 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                     </div>
                   ))
                 }
+            </div>
+            <div className="w-[40%] mx-auto flex justify-between">
+             
             </div>
           </div>
 

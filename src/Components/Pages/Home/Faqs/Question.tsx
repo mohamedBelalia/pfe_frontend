@@ -21,13 +21,13 @@ const Question = ({id , question , answer , clickedId , setClick}:questionTypes)
     }
 
   return (
-    <div className="w-[100%] md:w-[80%] tab:w-[70%] lg:w-[50%] mx-auto">
+    <div className="w-[95%] md:w-[80%] tab:w-[70%] lg:w-[50%] mx-auto">
         <div
             className={`w-full bg-[#d0d3daa0] border-2 border-[#3492928c]
             flex flex-col justify-between px-5 md:px-10 items-center rounded-xl`}>
             
             <div className="flex justify-between items-center h-[60px] w-full">
-                <h1 className="text-center md:text-start font-semibold text-[16px] md:text-lg text-[#586374]">{question}</h1>
+                <h1 className="text-start md:text-start font-semibold text-[16px] md:text-lg text-[#586374]">{question}</h1>
                 {
                     isClicked ? 
                     <div className="mx-[10px]">

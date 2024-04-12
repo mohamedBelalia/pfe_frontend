@@ -31,7 +31,7 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
 
   return (
     <div className="bg-[#f0fffb] md:pb-10 pb-5">
-        <div className=" w-[100%] md:w-[80%] mx-auto p-10 ">
+        <div className=" w-[100%] md:w-[80%] mx-auto md:p-10 p-6 ">
             {/* {
                 isArabicSelected ? 
                 <div className="flex flex-wrap gap-4">
@@ -56,7 +56,7 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
             } */}
            
 
-            <div className={`flex flex-col ${isArabicSelected ? "md:flex-row-reverse text-right" : "md:flex-row"} gap-2 mt-14 items-start`}>
+            <div className={`flex flex-col ${isArabicSelected ? "md:flex-row-reverse text-right" : "md:flex-row"} gap-2 md:mt-14 items-start`}>
                 <div className="w-full">
                     <h1 className="font-bold text-4xl text-[#199AFF]">
                         {isArabicSelected ? jobDetails?.nameAr : jobDetails?.nameEn}

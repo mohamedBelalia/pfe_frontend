@@ -83,7 +83,7 @@ const ShowedProject = ({idProject}:showedProjectProps) => {
                 onClick={()=>dispatch(setClickedProject({idProject : ""}))} 
                 className="w-[30px] h-[30px] bg-red-500 text-white rounded-bl-lg font-bold">X</button>
         </div>
-        <div className="flex flex-col md:flex-row gap-5 md:p-8 p-2">
+        <div className="flex flex-col-reverse md:flex-row gap-5 md:p-8 p-2">
             <div className="w-full md:w-[40%] flex flex-col gap-5">
                 <h1 className={`text-2xl font-bold text-blue-600 ${isTextArabic && "text-end"}`}>{project.titre}</h1>
                 <p className={`text-teal-950 font-semibold ${isTextArabic && "text-end"}`}>
