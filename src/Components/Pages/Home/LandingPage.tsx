@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Api from "../../../api/Api"
 import ProfessionBoxSearch from "../../Common/ProfessionBoxSearch/ProfessionBoxSearch";
 import { IProfessionsType } from "../../../TS";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 type LandingPageTypes = {
   getTheCoosenJob : (idJob:string) => void
@@ -88,7 +89,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
           justify-center items-end`}>
 
       <div className="w-full h-full absolute top-0 left-0 overflow-hidden zelijeBg"></div>
-      <div className="md:h-[70%] h-full relative ourContainer flex flex-col justify-around md:justify-end items-center">
+      <div className="md:h-[90%] h-full relative ourContainer flex flex-col justify-around md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
             <div className="w-full h-full  flex flex-col gap-16 pb-36 md:pb-0 md:gap-10 justify-center items-center relative">
@@ -127,8 +128,9 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
             </div> 
 
           {/* The Part Of The Jobs to choose */}
-          <div className="md:w-full w-[95vw] md:static absolute bottom-0 mb-8 md:mb-12 ">
-            <div className="flex justify-between gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar">
+          <div className="md:w-full w-[100vw] md:static absolute bottom-0 mb-3 md:mb-8 md:h-[300px] ">
+            <>
+                <div className="flex justify-between md:hidden gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar mb-10">
                 {
                   jobs.map((job , _)=>(
                     <div onClick={()=>clicked(job.id)} key={job.id}>
@@ -136,10 +138,14 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                     </div>
                   ))
                 }
-            </div>
-            <div className="w-[40%] mx-auto flex justify-between">
-             
-            </div>
+                </div>
+
+                <div className="md:block hidden">
+                  <JobsCarousel jobBtns={jobs} clicked={clicked} isArabicSelected={isArabicSelected} jobClicked={jobClicked}/>
+                </div>
+
+            </>
+
           </div>
 
 
@@ -153,14 +159,14 @@ export default LandingPage
 
 // The Part Of JobBtn Component
 
-interface JobBtnTypes {
+interface IJobBtnTypes {
   Icon : React.ReactNode ,
   name : string ,
   id : string ,
   clickedId : string
 }
 
-const JobBtn = ({Icon , name , id , clickedId} : JobBtnTypes) =>{
+const JobBtn = ({Icon , name , id , clickedId} : IJobBtnTypes) =>{
 
     return (
       <div className="flex flex-col items-center gap-3 cursor-pointer p-2 w-[90px] relative z-[-2px] ">
@@ -178,3 +184,89 @@ const JobBtn = ({Icon , name , id , clickedId} : JobBtnTypes) =>{
       </div>
     )
 }
+
+
+type IJobsCarousel = {
+    jobBtns : {
+        nameEn: string;
+        nameAr: string;
+        id: string;
+        Icon: JSX.Element;
+    }[]
+    clicked: (id: string) => void
+    jobClicked: string 
+    isArabicSelected: boolean
+}
+
+const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsCarousel) => {
+
+  let [current, setCurrent] = useState<number>(0);
+
+  let previousSlide = () => {
+
+    if (current === 0){ 
+      setCurrent([1].length - 1) 
+    }
+    else{ 
+      setCurrent(current - 1) 
+    }
+
+  }
+
+  let nextSlide = () => {
+    if (current === jobBtns.length - 1){
+      setCurrent(0)
+    }
+    else{
+      setCurrent(current + 1)
+    }
+  }
+
+  return (
+    <div className="overflow-hidden relative ourBorder">
+
+    <div 
+        className="flex gap-20 transition ease-out duration-500 h-full"
+        style={{
+        transform: `translateX(-${current * 150}px)`,
+        }}
+    >
+
+    {
+      jobs.map((job , _)=>(
+        <div onClick={()=>clicked(job.id)} key={job.id} className="w-[200px]">
+          <JobBtn Icon={job.Icon} name={isArabicSelected ? `${job.nameAr}` : `${job.nameEn}`} id={job.id} clickedId={jobClicked}/>
+        </div>
+      ))
+    }
+
+    </div>
+
+    {/* <div className="absolute top-0 h-full w-full justify-between items-center flex text-white  text-3xl">
+      <button onClick={previousSlide}>
+        <FaChevronLeft className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
+      </button>
+      <button onClick={nextSlide}>
+        <FaChevronRight className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
+      </button>
+    </div> */}
+
+    <div className="absolute -bottom-1 flex justify-center gap-3 w-full">
+      {jobBtns.map((_, i) => {
+        return (
+          <div
+            onClick={() => {
+              setCurrent(i);
+            }}
+            key={"circle" + i}
+            className={`rounded-full w-3 h-3 cursor-pointer  ${
+              i == current ? "bg-teal-500" : "bg-gray-300"
+            }`}
+          ></div>
+        );
+      })}
+    </div>
+  </div>
+  )
+
+} 
