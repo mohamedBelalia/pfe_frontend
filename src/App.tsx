@@ -17,7 +17,7 @@ function App() {
     
       <Router>
           <Routes>
-            <Route path='/' element={<Home/>}/>
+            <Route index path='/' element={<Home/>}/>
             <Route path='/search' element={<SearchPage/>}/>
             <Route path='/search/step_one' element={<ProcessStepOne/>}/>
             <Route path='/search/filter' element={<Filter/>}/>

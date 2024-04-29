@@ -92,7 +92,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
       <div className="md:h-[90%] h-full relative ourContainer flex flex-col justify-around md:justify-end items-center">
           
           {/* The Part Of The Title and the input */}
-            <div className="w-full h-full  flex flex-col gap-16 pb-36 md:pb-0 md:gap-10 justify-center items-center relative">
+            <div className="w-full h-full mt-12 flex flex-col gap-16 pb-36 md:pb-0 md:gap-10 justify-center items-center relative">
               
               <div className={`flex gap-6 md:flex-row flex-col-reverse ${isArabicSelected && "md:flex-row-reverse"}`}>
                 <h1 className={`${isArabicSelected && "arabicFont"} font-bold text-4xl md:text-5xl text-white text-center`}>
@@ -128,9 +128,9 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
             </div> 
 
           {/* The Part Of The Jobs to choose */}
-          <div className="md:w-full w-[100vw] md:static absolute bottom-0 mb-3 md:mb-8 md:h-[300px] ">
+          <div className="md:w-full w-[95vw] md:static absolute bottom-0 mb-3 md:mb-8 md:h-[300px] ">
             <>
-                <div className="flex justify-between md:hidden gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar mb-10">
+                <div className="flex w-full  justify-between  md:hidden gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar ">
                 {
                   jobs.map((job , _)=>(
                     <div onClick={()=>clicked(job.id)} key={job.id}>
@@ -140,7 +140,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                 }
                 </div>
 
-                <div className="md:block hidden">
+                <div className="md:block hidden ">
                   <JobsCarousel jobBtns={jobs} clicked={clicked} isArabicSelected={isArabicSelected} jobClicked={jobClicked}/>
                 </div>
 
@@ -223,10 +223,10 @@ const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsC
   }
 
   return (
-    <div className="overflow-hidden relative ourBorder">
+    <div className="overflow-hidden relative ">
 
     <div 
-        className="flex gap-20 transition ease-out duration-500 h-full"
+        className="flex gap-20 transition ease-out duration-500 h-full "
         style={{
         transform: `translateX(-${current * 150}px)`,
         }}
@@ -242,16 +242,16 @@ const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsC
 
     </div>
 
-    {/* <div className="absolute top-0 h-full w-full justify-between items-center flex text-white  text-3xl">
+    <div className="h-full w-[200px] mx-auto justify-between items-center flex text-white text-3xl">
       <button onClick={previousSlide}>
         <FaChevronLeft className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
       </button>
       <button onClick={nextSlide}>
         <FaChevronRight className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
       </button>
-    </div> */}
+    </div>
 
-    <div className="absolute -bottom-1 flex justify-center gap-3 w-full">
+    {/* <div className="absolute -bottom-1 flex justify-center gap-3 w-full">
       {jobBtns.map((_, i) => {
         return (
           <div
@@ -265,7 +265,7 @@ const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsC
           ></div>
         );
       })}
-    </div>
+    </div> */}
   </div>
   )
 

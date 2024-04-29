@@ -45,26 +45,26 @@ export const jobs = [
       {
         nameEn: "Constructeur",
         nameAr: "بنّاء",
-        id : "3",
+        id : "7",
         Icon : <GiConcreteBag/>
       },
       {
         nameEn: "Plombier",
         nameAr: "سباك",
-        id : "4",
+        id : "8",
         Icon : <MdPlumbing/>
       },
       {
         nameEn: "Électricien",
         nameAr: "كهربائي",
-        id : "5",
+        id : "9",
         Icon : <MdElectricBolt/>
       }
       ,
       {
         nameEn: "Marbrier",
         nameAr: "رخايمي",
-        id : "6",
+        id : "10",
         Icon : <img src="/icons/marble.png"/>
       }  
 ]
