@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import RateButtons from "./RateButtons";
-import { AppDispatch, RootState } from "../../Store/store";
+import { AppDispatch } from "../../Store/store";
 import { useDispatch } from "react-redux";
-import { IRatingCriteriasType, setDelaisCriteriasLevels, setIsLeveleProcessClicked } from "../../Store/Slices/RateingProcess";
-import { useSelector } from "react-redux";
+import { setDelaisCriteriasLevels, setIsLeveleProcessClicked } from "../../Store/Slices/RateingProcess";
 import { RateingProcessProps } from "./RatingProcess";
-
+import { FaRegCirclePlay } from "react-icons/fa6";
+import { FaPause } from "react-icons/fa";
 
 const rates = [
     {   
@@ -31,6 +31,24 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
 
     const dispatch = useDispatch<AppDispatch>()
 
+    // for the audio
+    const [isAudioPlay , setIsAudioPlay] = useState<boolean>(true)
+
+    const audioRef = useRef<HTMLAudioElement>(null)
+
+    const handleAudio = () => {
+        if(isAudioPlay){
+            audioRef.current?.play()
+        }
+        else{
+            audioRef.current?.pause()
+        }
+
+        setIsAudioPlay((prev)=> !prev)
+    }
+
+    // for the audio
+
 
     if(idClicked == "1" || idClicked == "2" || idClicked == "3"){
         dispatch(setIsLeveleProcessClicked(true))
@@ -51,9 +69,23 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
 
   return (
     <div>
-        <h1 className="md:w-[80%] mx-auto text-teal-900 text-2xl font-bold text-center">
-            Est-ce que <span className="text-teal-500">{workerName}</span> respecte les délais ? 
-        </h1>
+        <div className="flex items-center gap-7 mx-auto w-fit">
+            <h1 className="text-teal-900 text-2xl font-bold text-center">
+                Est-ce que <span className="text-teal-500">{workerName}</span> respecte les délais ? 
+            </h1>
+
+            <audio ref={audioRef} controls src="/quran/beslaah.mp3" className="hidden"/>
+            <div className="p-2 border-2 active:shadow-none shadow-[-3px_3px_1px_2px_#38b2ac] border-[#2f6b69]  rounded-md cursor-pointer" onClick={handleAudio}>
+                {
+                    isAudioPlay
+                    ? <FaRegCirclePlay  className="text-4xl text-[#2f6b69] transform rotate-[182deg] "/>
+                    : <FaPause className="text-4xl text-[#2f6b69]"/>
+                }
+                
+            </div>
+        </div>
+
+       
 
         <div className="mt-8 flex flex-col gap-7 md:px-28">
             {

@@ -34,9 +34,10 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyp
 
     useEffect(()=>{
         if(!isClicked){
-         professionNameSearched(professionNameProp)
+         professionNameSearched(professionNameProp)         
         }
     },[professionNameProp])
+ 
 
     
     // to get the profession(that we get from database) that has the same name entred in the input
@@ -46,7 +47,8 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyp
            (pro.labelleProfession_AR.toLowerCase().includes(professionNameSearched.toLowerCase()) 
              || pro.labelleProfession_FR.toLowerCase().includes(professionNameSearched.toLowerCase()))
         )
- 
+
+        
         setSearchedProfessions(searchedProfessionArray);
      }
 
@@ -64,33 +66,28 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyp
       }
     },[isTyping])
     
+  
 
   return (
-    <div className={`${searchedProfessions.length > 0 && !isClicked ? "h-[260px] border border-black" : "h-0"} overflow-y-scroll 
+    // ${searchedProfessions.length > 0 && !isClicked ? "max-h-fit border border-black" : "h-0"}
+    <div className={` absolute overflow-y-scroll ${searchedProfessions.length === 0 ? "h-0" : "max-h-[200px]"}
     w-full  rounded-md bg-white z-40 transition-all ease-in-out duration-300`}>
   {
      searchedProfessions.length > 0 && 
      searchedProfessions.map((pro , _)=>(
-        
-      <div 
-          key={pro.idProfession}
-          onClick={()=>professionNameClicked(
-            arabicRegex.test(professionNameProp) 
-            ? pro.labelleProfession_AR
-            : pro.labelleProfession_FR
-          )}
 
-          className="cursor-pointer h-[60px] px-6 border-b border-gray-500 
-          flex justify-start gap-3 text-lg items-center hover:bg-gray-200"
-      >
-        <p className={`${arabicRegex.test(professionNameProp) ? "text-right" : "text-left"} w-full`}>
-        {
-          arabicRegex.test(professionNameProp) 
-          ? pro.labelleProfession_AR
-          : pro.labelleProfession_FR
-        }
-        </p>
-      </div>
+        <ProfessionDiv 
+          key={pro.idProfession}
+          professionClickFN={professionNameClicked}  
+          loopedProfession={ // here we check if the enterd profession in arabic or in french to pass to the comp the right word
+            arabicRegex.test(professionNameProp) 
+             ? pro.labelleProfession_AR
+            : pro.labelleProfession_FR
+          } 
+          isArabicInput={arabicRegex.test(professionNameProp)}
+          getTheProfessionsInserter={setSearchedProfessions}
+        />
+      
      ))
   }
   </div>
@@ -98,3 +95,35 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyp
 }
 
 export default ProfessionBoxSearch
+
+
+// for the searched profession (we should trensfer it to a global comp and use it also in the "search/step_one" for the cities if it possible)
+
+type IProfessionDivTEMP = {
+  professionClickFN : (profession : string) => void
+  getTheProfessionsInserter : (professions : IProfessionsType[]) => void // using it only to clear the array of searched proessions (searchedProfessions) after click
+  loopedProfession : string
+  isArabicInput : boolean
+}
+
+const ProfessionDiv = ({isArabicInput , loopedProfession , professionClickFN , getTheProfessionsInserter}:IProfessionDivTEMP) => {
+  
+  const handleClick = () => {
+    professionClickFN(loopedProfession)
+    getTheProfessionsInserter([])
+  }
+
+  return (
+      <div 
+          onClick={handleClick}
+          className="w-full cursor-pointer h-[60px] px-6 border-b border-gray-500 
+          flex justify-start gap-3 text-lg items-center hover:bg-gray-200"
+      >
+
+          <p className={`${isArabicInput ? "text-right" : "text-left"} w-full`}>
+              {loopedProfession}
+          </p>
+
+      </div>
+  )
+}

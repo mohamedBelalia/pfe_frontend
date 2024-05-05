@@ -105,6 +105,8 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                 </h1>
                 <img src="./icons/workerImg.png" className="w-[60px] object-cover mx-auto" alt="worker morocco" />
               </div>
+
+              <div className="w-full">
               <div className="w-full flex justify-center">
                   <input 
                     onFocus={()=>setIsTyping(true)}
@@ -119,12 +121,13 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                   </button>
               </div> 
                
-              <div className="md:w-[40%] w-[90%] mx-auto relative">
-                <div className="w-full z-40 md:-top-5 -top-14 left-0">
+              <div className="md:w-[40%] w-[90%] mx-auto relative mt-5">
+                <div className="w-full z-40 ">
                   <ProfessionBoxSearch isTyping={isTyping} getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
                 </div>
               </div>
-              
+
+              </div>
             </div> 
 
           {/* The Part Of The Jobs to choose */}

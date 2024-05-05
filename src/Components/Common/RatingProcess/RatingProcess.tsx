@@ -20,6 +20,8 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
 
     const [criteriaNumber , setCriteriaNumber] = useState<number>(1)
 
+     // The Slice For Change The Language
+     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     // to handle the insertion status
     const [insertionStatus , setInsertionStatus] = useState<string>("")
@@ -54,17 +56,19 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
 
             try{
                 const response = Api.post("/commentaire" , passedData)
-
-                dispatch(setRatedWorkerId({idWorker : ""}))
-                
-
+            
             }
             catch{
 
             }
+            suivant()
+
+            setTimeout(()=> {
+                dispatch(setRatedWorkerId({idWorker : ""}))
+              }, 3000);
+
         }
     }
-
 
   return (
     <div className="w-[95%] md:w-[60%] bg-white rounded-2xl min-h-[500px]">
@@ -113,13 +117,22 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
                 }
             </div>
 
+            {
+            !(criteriaNumber >=4)
+            &&
             <div className="mt-5 flex justify-between items-center">
                 {
-                    criteriaNumber > 1
+                    !(criteriaNumber >=4)
                     ?
                     <button
                         onClick={retour} 
-                        className="px-10 h-[35px] rounded-lg font-bold bg-gray-700 text-white">Retour</button>
+                        className="px-10 h-[35px] rounded-lg font-bold bg-gray-700 text-white">
+                            {
+                                isArabicSelected 
+                                ? "الرجوع"
+                                : "Retour"
+                            }        
+                    </button>
                     :
                     <button></button>
                 }
@@ -127,7 +140,7 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
 
                 {
                 
-                criteriaNumber <= 3 
+                criteriaNumber < 3 
                 ?
 
                     isLevelRatingClicked
@@ -135,23 +148,52 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
                     <button 
                         onClick={suivant}
                         className="px-10 h-[35px] rounded-lg font-bold bg-[#378380] text-white">
-                        Suivant
+                        {
+                            isArabicSelected 
+                            ? "التالي"
+                            : "Suivant"
+                        }
                     </button>
                     :
                     <button 
                         className="px-10 h-[35px] rounded-lg font-bold  bg-gray-500 text-white cursor-not-allowed">
-                        Suivant
+                        {
+                            isArabicSelected 
+                            ? "التالي"
+                            : "Suivant"
+                        }
                     </button>
                 :
 
+                isLevelRatingClicked
+                ?
                 <button 
                     onClick={insertComment}
-                    className="px-10 w-[400px] h-[35px] rounded-lg font-bold bg-[#378380] text-white">Valider</button>
+                    className="px-10 h-[35px] rounded-lg font-bold bg-[#378380] text-white">
+                    {
+                        isArabicSelected 
+                        ? "تأكيد"
+                        : "Confirmer"
+                    }
+                </button>
+                :
+                <button 
+                    className="px-10 h-[35px] rounded-lg font-bold  bg-gray-500 text-white cursor-not-allowed">
+                    {
+                        isArabicSelected  
+                        ? "تأكيد"
+                        : "Confirmer"
+                    }
+                </button>
+
+                // <button 
+                //     onClick={insertComment}
+                //     className="px-10 w-[400px] h-[35px] rounded-lg font-bold bg-[#378380] text-white">Valider</button>
 
                 }
     
             </div>
-
+            }
        </div>
 
     </div>
