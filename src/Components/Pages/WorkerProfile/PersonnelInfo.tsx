@@ -5,7 +5,7 @@ import { Config } from "../../../../config/Local_Variables";
 import { MdRateReview } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../Store/store";
-import RatedWorkerId, { setRatedWorkerId } from "../../Store/Slices/RatedWorkerId";
+import { setRatedWorkerId } from "../../Store/Slices/RatedWorkerId";
 
 
 const PersonnelInfo = ({singleWorker}:ISingleWorker) => {

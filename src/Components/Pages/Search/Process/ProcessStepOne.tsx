@@ -13,6 +13,9 @@ import LoadingPage from "../../../Common/Loading/LoadingPage";
 import { FaCity } from "react-icons/fa";
 
 
+// Arabic regex
+const arabicRegex = /[\u0600-\u06FF]/;
+
 const ProcessStepOne = () => {
 
     const selectedTask :string = useSelector((state:RootState)=> state.selectedTask.selectedTask)
@@ -67,10 +70,22 @@ const ProcessStepOne = () => {
         2#if there is a city in the "citiesGets.cities" includes the passed value then this city stored in the "citiesArray"
     */
     const citySearchedName = (cityName : string) => {
-        let citiesArray : string[] | undefined = citiesGets.citiesEn.filter((city) => 
-            cityName.length > 0 &&
-            city.toLowerCase().includes(cityName.toLowerCase())
-        )
+        let citiesArray : string[] | undefined ;
+
+        // test if the entred city name in arabic or not
+        if(arabicRegex.test(cityName)){
+            citiesArray = citiesGets.citiesAr.filter((city) => 
+                cityName.length > 0 &&
+                city.includes(cityName)
+            )
+        }
+        else{
+            citiesArray =  citiesGets.citiesEn.filter((city) => 
+                cityName.length > 0 &&
+                city.toLowerCase().includes(cityName.toLowerCase())
+            )
+        }
+        
         setSearchedCities(citiesArray)
     }
 
@@ -79,7 +94,7 @@ const ProcessStepOne = () => {
         the json file , when clicking the "Continue" btn below the field of "Your Task Address" 
     */
     const handleCityName = () => {
-        if(citiesGets.citiesEn.includes(cityName)){
+        if(citiesGets.citiesEn.includes(cityName) || citiesGets.citiesAr.includes(cityName) ){
 
             setIsCityCorrect(true)
 
@@ -240,8 +255,8 @@ const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox}:searchedCi
     return (
         <div 
             onClick={()=>cityClicked(city)}
-            className="w-full cursor-pointer h-[60px] px-6 border-b border-gray-500 
-            flex justify-start gap-3 text-lg items-center hover:bg-gray-200"
+            className={`w-full cursor-pointer h-[60px] px-6 border-b border-gray-500 
+            flex ${arabicRegex.test(city) ? "justify-end" : "justify-start"} gap-3 text-lg items-center hover:bg-gray-200`}
         >
            <FaLocationDot className="text-gray-700"/> {city}
         </div>

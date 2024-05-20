@@ -104,7 +104,7 @@ const WorkerProfile = () => {
 
       <Navbar/> 
       <div className={`w-full md:w-[80%] mx-auto md:pt-[140px] pt-[80px] py-[40px] px-5 md:px-0 flex gap-10 flex-col ${isArabicSelected ? "tab:flex-row-reverse" : "tab:flex-row "} items-start`}>
-          <div className="w-full mx-auto md:w-[80%] tab:w-1/3 ">
+          <div className="w-full mx-auto sm:w-[70%] md:w-[80%] tab:w-1/2">
               <PersonnelInfo singleWorker={workerData}/>
           </div>
 

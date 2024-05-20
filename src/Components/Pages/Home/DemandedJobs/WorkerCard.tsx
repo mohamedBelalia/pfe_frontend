@@ -8,6 +8,7 @@ import {Config} from "../../../../../config/Local_Variables"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { RootState } from "../../../Store/store"
+import { AxiosError } from "axios"
 
 interface JobCardTypes extends IBestWorkers{
     getClickedWorkerId : (id :string) => void
@@ -39,8 +40,8 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:JobCardTypes) => {
               setProfessions(response.data)
             }
 
-        }catch(exception){
-            console.log(exception);
+        }catch(AxiosError){
+            console.log("404");
         }
       }
 

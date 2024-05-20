@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RateButtons from "./RateButtons";
 import { AppDispatch } from "../../Store/store";
 import { useDispatch } from "react-redux";
@@ -31,7 +31,7 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
 
     const dispatch = useDispatch<AppDispatch>()
 
-    // for the audio
+    // Start the audio
     const [isAudioPlay , setIsAudioPlay] = useState<boolean>(true)
 
     const audioRef = useRef<HTMLAudioElement>(null)
@@ -47,7 +47,15 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
         setIsAudioPlay((prev)=> !prev)
     }
 
-    // for the audio
+    useEffect(()=>{
+        const handleEndAudio =()=>{
+            setIsAudioPlay(true)            
+        } 
+        audioRef.current?.addEventListener("ended" ,handleEndAudio)
+        
+    },[])
+
+    // End the audio
 
 
     if(idClicked == "1" || idClicked == "2" || idClicked == "3"){
@@ -75,6 +83,7 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
             </h1>
 
             <audio ref={audioRef} controls src="/quran/beslaah.mp3" className="hidden"/>
+   
             <div className="p-2 border-2 active:shadow-none shadow-[-3px_3px_1px_2px_#38b2ac] border-[#2f6b69]  rounded-md cursor-pointer" onClick={handleAudio}>
                 {
                     isAudioPlay
@@ -87,10 +96,10 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
 
        
 
-        <div className="mt-8 flex flex-col gap-7 md:px-28">
+        <div className="mt-8 flex flex-col gap-7 ">
             {
                 rates.map((rate , _) => (
-                    <div key={rate.idRate}>
+                    <div key={rate.idRate} className="w-full">
                         <RateButtons idRate={rate.idRate} text={rate.text} nbrStar={rate.nbrStar} getIdClicked={setIdClicked} idClicked={idClicked}/>
                     </div>
                 ))

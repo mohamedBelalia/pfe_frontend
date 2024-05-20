@@ -41,7 +41,7 @@ const RateButtons = ({idRate , nbrStar  , text , getIdClicked , idClicked}:RateB
     
 
     return (
-        <div className="select-none">
+        <div className="select-none md:w-full">
         {
             idRate == "1"
             &&
