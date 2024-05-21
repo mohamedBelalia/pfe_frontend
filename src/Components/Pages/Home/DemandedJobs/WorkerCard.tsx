@@ -8,10 +8,9 @@ import {Config} from "../../../../../config/Local_Variables"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { RootState } from "../../../Store/store"
-import { AxiosError } from "axios"
 
 interface JobCardTypes extends IBestWorkers{
-    getClickedWorkerId : (id :string) => void
+    getClickedWorkerId ?: (id :string) => void
 }
 
 const BASE_IMAGE_PATH_Profile = Config.BaseImagesPath_Profiles ;

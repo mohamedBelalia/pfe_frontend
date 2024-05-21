@@ -10,6 +10,7 @@ import WorkerProfilePopUp from "../Filter/workerPopUp/WorkerProfilePopUp"
 import { IProfessionsType } from "../../../../TS"
 import api from "../../../../api/Api"
 import ProfessionBoxSearch from "../../../Common/ProfessionBoxSearch/ProfessionBoxSearch"
+import BestWorkers from "../../Home/DemandedJobs/BestWorkers"
 
 const SearchPage = () => {
 
@@ -67,16 +68,16 @@ const SearchPage = () => {
             <Navbar/>
         </div>
      
-        <div className="pt-36 mb-20 mx-auto flex flex-col gap-8">
-            <h1 className="text-center text-2xl font-semibold text-teal-700">Search For Your Specific Task</h1>
+        <div className="md:pt-36 pt-24 mb-20 mx-auto flex flex-col ">
+            <h1 className="text-center text-2xl font-semibold text-teal-700 mb-2">Search For Your Specific Task</h1>
 
             <div className="md:w-full w-[80%] mx-auto md:mx-0 flex justify-center">
                 <input 
                   onChange={(e)=>setProfessionName(e.target.value)}
                   onFocus={()=>setIsTyping(true)}
-                    onBlur={()=>setIsTyping(false)}
+                  onBlur={()=>setIsTyping(false)}
                   value={professionName}
-                  className="h-[55px] md:h-[70px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 border-[#199AFF] focus:border-teal-700"
+                  className="h-[55px] md:h-[70px]  w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 border-[#199AFF] focus:border-teal-700"
                   type="text" 
                   placeholder="Search By Task Name"/>
                 <button onClick={searchBtn} className="rounded-r-full bg-teal-700 flex justify-center items-center w-[90px]">
@@ -84,14 +85,15 @@ const SearchPage = () => {
                 </button>
             </div>
 
-            <div className="md:w-[40%] w-[90%] mx-auto relative">
+            <div className="md:w-[40%] w-[90%] mx-auto  relative">
               <div className="w-full absolute top-0 left-0">
                 <ProfessionBoxSearch isTyping={isTyping} getProfessionNameProp={setProfessionName} professionNameProp={professionName}/>
               </div>
             </div>
 
-            <div className="md:w-[80%] md:mx-auto mx-0 mt-8">
-              <NearWorkers getWorkerId={setWorkerClickedId}/>
+            <div className="md:w-[100%] md:mx-auto mx-0 ">
+              {/* <NearWorkers getWorkerId={setWorkerClickedId}/> */}
+              <BestWorkers/>
             </div>
 
             {/* worker profile popup */}

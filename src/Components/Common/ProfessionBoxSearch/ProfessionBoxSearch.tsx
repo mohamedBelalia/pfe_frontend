@@ -70,7 +70,7 @@ const ProfessionBoxSearch = ({professionNameProp , getProfessionNameProp , isTyp
 
   return (
     // ${searchedProfessions.length > 0 && !isClicked ? "max-h-fit border border-black" : "h-0"}
-    <div className={` absolute overflow-y-scroll ${searchedProfessions.length === 0 ? "h-0" : "max-h-[200px]"}
+    <div className={`absolute overflow-y-scroll ${searchedProfessions.length === 0 ? "h-0" : "max-h-[200px] border border-gray-500"}
     w-full  rounded-md bg-white z-40 transition-all ease-in-out duration-300`}>
   {
      searchedProfessions.length > 0 && 

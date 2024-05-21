@@ -69,3 +69,10 @@ interface IComments {
     dateCommentaire : string
     idOuvrier : string
 }
+
+// for the coming cities from databse
+interface ICity{
+    idVille: string;
+    ville_AR: string;
+    ville_FR: string;
+}

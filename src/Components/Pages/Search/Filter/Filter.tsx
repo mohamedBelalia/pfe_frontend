@@ -7,7 +7,8 @@ import "./filterStyles.css"
 import { useEffect, useState } from "react"
 import WorkerProfilePopUp from "./workerPopUp/WorkerProfilePopUp"
 import LoadingPage from "../../../Common/Loading/LoadingPage"
-import { IFilterNeededData } from "../../../../TS"
+import { ICity, IFilterNeededData } from "../../../../TS"
+import Api from "../../../../api/Api"
 
 const Filter = () => {
 
@@ -18,6 +19,9 @@ const Filter = () => {
 
     // The Slice For Change The Language
     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+
+    // to store the city name
+    const [cityName , setCityName] = useState<ICity>()
 
     // to get the badge IDs
     const [badgePassedValues , setBadgePassedValues] = useState<string[]>([""])
@@ -32,6 +36,15 @@ const Filter = () => {
         }
         
     },[window.location.href])
+
+    // get the city name by the passed ID
+    useEffect(()=>{
+        const fetchCityName = async()=>{
+            const cityResponse = await Api.get(`villes?id=${selectTaskCity}`)
+            setCityName(cityResponse.data)
+        }
+        fetchCityName()
+    },[])
 
     const [clickedWorkerId , setClickedWorkerId] = useState<string>("")
 
@@ -55,13 +68,13 @@ const Filter = () => {
                     isArabicSelected
                     ?
                     <h1 className="text-center text-xl font-semibold text-[#3a5973]">
-                        <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskCity}</span> في <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span>
+                        <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span> في <span className="text-teal-700 bg-amber-200 rounded-md px-2">{cityName?.ville_AR}</span>
                          {" "} هناك 207 عامل
                     </h1>
                     :
                     <h1 className="text-center text-xl font-semibold text-[#3a5973]">
                         Il y a 207 travailleurs {" "}
-                        <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span> à <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskCity}</span>
+                        <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span> à <span className="text-teal-700 bg-amber-200 rounded-md px-2">{cityName?.ville_FR}</span>
                     </h1>
                 }
                 

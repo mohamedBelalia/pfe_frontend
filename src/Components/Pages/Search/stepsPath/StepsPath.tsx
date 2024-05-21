@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../Store/store";
 import { addTheReachedStepName } from "../../../Store/Slices/StepsFilterFollowSlice";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 const StepsPath = () => {
@@ -23,10 +24,10 @@ const StepsPath = () => {
   return (
     <div className="md:w-[80%] mx-auto mt-7 mb-8">
         <div className="h-[70px] tab:w-[80%] w-[95%] mx-auto bg-gray-300 rounded-xl px-5 flex gap-8">
-            <div className="w-[10%] hidden h-full md:flex justify-center items-center gap-2">
+            <Link to={"/"} className="w-[10%] hidden h-full md:flex justify-center items-center gap-2">
                 <RxFramerLogo className="text-4xl text-green-700"/>
                 <p className="text-xl text-green-700">Tasker</p>
-            </div>
+            </Link>
 
             <div className=" w-full flex justify-center items-center px-4">
                 <div className="h-[80%] w-full flex justify-center items-center gap-2">

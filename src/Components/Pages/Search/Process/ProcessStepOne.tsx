@@ -11,6 +11,8 @@ import { setTheSearchStepOne } from "../../../Store/Slices/StepOneSlice";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "../../../Common/Loading/LoadingPage";
 import { FaCity } from "react-icons/fa";
+import Api from "../../../../api/Api";
+import { ICity } from "../../../../TS";
 
 
 // Arabic regex
@@ -48,13 +50,15 @@ const ProcessStepOne = () => {
     // This is The State of the city name
     const [cityName , setCityName] = useState<string>("") ;
 
+    // This state used to store the city id
+    const [cityID , setCityID] = useState<string>("")
 
     // This state is to confirm if a "city name" is correct or not
     const [isCityCorrect , setIsCityCorrect] = useState<boolean | undefined>()
 
     /* when the user start writing in the "city_name" field , this state(searchedCities) 
     is store the matched cities to display them in the searched cities box */
-    const [searchedCities , setSearchedCities] = useState<string[]>([])
+    const [searchedCities , setSearchedCities] = useState<ICity[]>()
 
     // to get the city name value onchange 
     const getCityName = (event : React.ChangeEvent<HTMLInputElement>)=>{
@@ -70,19 +74,19 @@ const ProcessStepOne = () => {
         2#if there is a city in the "citiesGets.cities" includes the passed value then this city stored in the "citiesArray"
     */
     const citySearchedName = (cityName : string) => {
-        let citiesArray : string[] | undefined ;
+        let citiesArray : ICity[] | undefined ;
 
         // test if the entred city name in arabic or not
         if(arabicRegex.test(cityName)){
-            citiesArray = citiesGets.citiesAr.filter((city) => 
+            citiesArray = citiesFromDB?.filter((city) => 
                 cityName.length > 0 &&
-                city.includes(cityName)
+                city.ville_AR.includes(cityName)
             )
         }
         else{
-            citiesArray =  citiesGets.citiesEn.filter((city) => 
+            citiesArray =  citiesFromDB?.filter((city) => 
                 cityName.length > 0 &&
-                city.toLowerCase().includes(cityName.toLowerCase())
+                city.ville_FR.toLowerCase().includes(cityName.toLowerCase())
             )
         }
         
@@ -94,12 +98,12 @@ const ProcessStepOne = () => {
         the json file , when clicking the "Continue" btn below the field of "Your Task Address" 
     */
     const handleCityName = () => {
-        if(citiesGets.citiesEn.includes(cityName) || citiesGets.citiesAr.includes(cityName) ){
+        if(citiesGets.citiesEn.includes(cityName) || citiesGets.citiesAr.includes(cityName) ){            
 
             setIsCityCorrect(true)
 
             dispatch(setTheSearchStepOne({stepOneInfo : {
-                cityTask : cityName ,
+                cityTask : cityID ,
                 }}))
 
             window.scroll(0,0);
@@ -120,6 +124,21 @@ const ProcessStepOne = () => {
         setSearchedCities([]) ;
     }
     
+
+    const [citiesFromDB , setCitiesFromDB] = useState<ICity[]>()
+
+    // fetch the cities from databse
+    useEffect(()=>{
+        const fetchCities = async() => {
+            const response = await Api.get("/villes")
+
+            setCitiesFromDB(response.data)
+        }
+
+        fetchCities()
+
+    },[])
+
     
   return (
     <>
@@ -182,18 +201,22 @@ const ProcessStepOne = () => {
                                     value={cityName}
                                     type="text" 
                                     placeholder={isArabicSelected ? "مدينتك" : "Votre ville"}
-                                    className={`${isArabicSelected && "rtl-input"} w-full p-3 border outline-none border-gray-500 h-[60px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]`}
+                                    className={`${isArabicSelected || arabicRegex.test(cityName) && "rtl-input"} w-full p-3 border outline-none border-gray-500 h-[60px] rounded-xl mt-3 focus:border-2 focus:border-[#349292]`}
                                 />
                             </div>
                         
                         {
-                            searchedCities.length > 0 &&                         
+                            (searchedCities != undefined && searchedCities.length > 0) &&                         
                             <div className="w-full overflow-hidden  rounded-xl bg-white border border-gray-500 mt-1 absolute">
                                 {
                                     searchedCities.map((city , index)=> index < 5 &&(
-                                        <SearchedCityDiv city={city} key={index} 
+                                        <SearchedCityDiv 
+                                            key={index} 
+                                            city={city} 
+                                            isArabic={arabicRegex.test(cityName)}
                                             setClickedCityName={setCityName}
                                             clearCitiesBox={clearCitiesBox}
+                                            setIdOfClickedCity={setCityID}
                                             />
                                     ))
                                 }
@@ -240,15 +263,22 @@ export default ProcessStepOne
 
 // Searched Cities
 interface searchedCityDivTypes {
-    city : string ,
+    city : ICity ,
     setClickedCityName : (city : string) => void ,
-    clearCitiesBox : () => void
+    clearCitiesBox : () => void ,
+    setIdOfClickedCity : (id: string) => void
+    isArabic : boolean
 }
 
-const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox}:searchedCityDivTypes) => {
+const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox  , isArabic , setIdOfClickedCity}:searchedCityDivTypes) => {
 
-    const cityClicked = (city : string) => {
-        setClickedCityName(city)
+    const cityClicked = (city : ICity) => {
+        setClickedCityName(
+            isArabic ? city.ville_AR : city.ville_FR
+        )
+
+        setIdOfClickedCity(city.idVille)
+
         clearCitiesBox()
     }
 
@@ -256,9 +286,16 @@ const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox}:searchedCi
         <div 
             onClick={()=>cityClicked(city)}
             className={`w-full cursor-pointer h-[60px] px-6 border-b border-gray-500 
-            flex ${arabicRegex.test(city) ? "justify-end" : "justify-start"} gap-3 text-lg items-center hover:bg-gray-200`}
+            flex ${isArabic ? "justify-end" : "justify-start"} gap-3 text-lg items-center hover:bg-gray-200`}
         >
-           <FaLocationDot className="text-gray-700"/> {city}
+           <FaLocationDot className="text-gray-700"/> 
+
+            {
+                isArabic
+                ? city.ville_AR
+                : city.ville_FR
+            }
+
         </div>
     )
 }

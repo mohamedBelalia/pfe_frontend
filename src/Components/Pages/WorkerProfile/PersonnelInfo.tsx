@@ -4,12 +4,15 @@ import { ISingleWorker } from "../../../TS";
 import { Config } from "../../../../config/Local_Variables";
 import { MdRateReview } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../Store/store";
+import { AppDispatch, RootState } from "../../Store/store";
 import { setRatedWorkerId } from "../../Store/Slices/RatedWorkerId";
+import { useSelector } from "react-redux";
 
 
 const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
 
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     // to store the id of the rated worker
     const dispatch = useDispatch<AppDispatch>()
@@ -27,7 +30,20 @@ const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
                 <div className="flex items-center gap-2">
                     <IoIosStar/> <p className="font-semibold">{singleWorker.nbrCommentair} <span className="text-xs">({singleWorker.avgEtoile} reviews)</span></p>
                 </div>
-                <p className="text-xs text-red-600 font-bold">FIXE THE CITYES</p>
+                 
+                    { // TODO fetch the city(s) of the worker
+                        isArabicSelected
+                        ?
+                        <p className="text-sm  font-semibold">
+                            المدينة الرئيسية
+                            <span className="px-1 bg-yellow-300 rounded-md font-bold text-teal-800"> مراكش</span>
+                        </p>
+                        : 
+                        <p className="text-sm  font-semibold">
+                            ville principale <span className="px-1 bg-yellow-300 rounded-md font-bold text-teal-800">Marrakech</span>
+                        </p>
+                    }
+                
             </div>
         </div>
 
@@ -49,7 +65,7 @@ const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
             <button
                 onClick={()=>dispatch(setRatedWorkerId({idWorker : singleWorker.idOuvrier}))} 
                 className="flex items-center gap-4 py-2 px-4 font-semibold hover:text-teal-900 hover:bg-blue-100 transition-all duration-300 border-2 border-blue-600 rounded-md mx-auto">
-                Évaluer Ahmed 
+                Évaluer {singleWorker.nomOuvrier} 
                 <MdRateReview className="text-2xl"/>
             </button>
         </div>

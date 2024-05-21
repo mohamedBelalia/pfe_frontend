@@ -5,9 +5,10 @@ import Api from "../../../../api/Api"
 import { useEffect, useState } from "react"
 import { IWorkerInfromation } from "../../../../TS"
 import WorkerCardLoading from "../../../Common/LoadingLayouts/WorkerCardLoading"
+import axios from "axios"
 
 type topWorkersType = {
-    getWorkerId : (id :string) => void
+    getWorkerId ?: (id :string) => void
 }
 
 
@@ -17,13 +18,47 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
     const [workers , setWorkers] = useState<IWorkerInfromation[]>()
 
     // for the error handling
-    const [isError , setIsError] = useState<boolean>(false)
+    const [_ , setIsError] = useState<boolean>(false)
 
     // to handle the loading interval
     const [isLoaded , setIsLoaded] = useState<boolean>(true)
 
     // The Slice For Change The Language
     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
+
+
+    /* bloc of code only to get the geolocation name */
+    // storing the geolocation Name
+    const [geolocationName , setGeolocationName] = useState<string>("")
+
+    
+    // using the API to get the area
+    useEffect(()=>{
+        const fetchIpAddress = async() => {
+            try{
+                // 1) first we get the @IP 
+                const IpAddressResponse = await axios.get("https://api.ipify.org/")
+                // pass the ip address
+                fetchGeoLocatoinInfo(IpAddressResponse.data)          
+            }
+            catch(err){
+                // TODO complate this catch
+            }
+            finally{
+                // this finally also
+            }
+        }
+        fetchIpAddress()
+    },[])
+
+    // 2) we get the information corspand with this ip address
+    const fetchGeoLocatoinInfo = async(ipAddress:string) =>{
+        const geolocationInfo = await axios.get(`http://ip-api.com/json/${ipAddress}`)
+
+        setGeolocationName(geolocationInfo.data.city);
+    } 
+
+    /* bloc of code only to get the geolocation name */
 
     useEffect(()=>{
         const fetchBestWorkers = async()=>{
@@ -64,8 +99,8 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
             <h1 className="text-center text-4xl font-bold text-[#349292]">
             {
                 isArabicSelected 
-                ? "أفضل 6 عمال تقييمًا في منطقتك"
-                : "Les 6 meilleurs artisans évalués dans votre région."
+                ? `${geolocationName} فضل 6 عمال تقييمًا في`
+                : `Les 6 meilleurs artisans évalués dans ${geolocationName}`
             }
             </h1>
 
@@ -94,12 +129,12 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
 
     
   return (
-    <div className="px-1 md:px-0 w-[90%] mx-auto mt-16 md:pt-12 pt-5">
+    <div className="px-1 md:px-0 w-[90%] mx-auto mt-10 md:pt-12 pt-5">
         <h1 className="text-center text-3xl font-bold text-[#349292]">
             {
                 isArabicSelected 
-                ? "أفضل 6 عمال تقييمًا في منطقتك"
-                : "Les 6 meilleurs artisans évalués dans votre région."
+                ? `${geolocationName} فضل 6 عمال تقييمًا في`
+                : `Les 6 meilleurs artisans évalués dans ${geolocationName}`
             }
             
         </h1>
