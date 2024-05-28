@@ -71,7 +71,7 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
     }
 
   return (
-    <div className="w-[95%] md:w-[60%] bg-white rounded-2xl min-h-[500px]">
+    <div className="w-[95%] md:w-[60%] bg-white rounded-2xl min-h-[500px] ">
         <div className="h-[30px] flex justify-end items-center p-2">
             <button 
                 onClick={()=>dispatch(setRatedWorkerId({idWorker : ""}))}
