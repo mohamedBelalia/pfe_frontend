@@ -37,7 +37,7 @@ const ChildComponent: React.FC<ChildProps> = ({ onClose }) => {
 
   // JSX content of ChildComponent
   return (
-    <div className={`absolute flex-col w-52 -ml-40 -mt-[320px] bg-teal-500 bg-opacity-85 border-gray-300 p-4 rounded-lg ${isScroll ? 'hidden' : ''}`}>
+    <div className={`absolute flex-col w-52  -mt-[320px] bg-teal-500 bg-opacity-85 border-gray-300 p-4 rounded-lg ${isScroll ? 'hidden' : ''}`}>
       <div>
         <button onClick={handleClick} className=" flex justify-end w-full text-white">
           <IoCloseSharp />
