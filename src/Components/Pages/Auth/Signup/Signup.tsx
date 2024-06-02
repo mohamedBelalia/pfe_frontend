@@ -9,7 +9,6 @@ type userData = {
 }
 
 type UserFormProps = userData & {
-
   updateFields: (fields: Partial<userData>) => void
 }
 
