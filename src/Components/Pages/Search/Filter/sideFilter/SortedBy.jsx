@@ -3,17 +3,17 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const SortedBy = () => {
 
-  const [isClicked , setIsClicked] = useState<boolean>(false)
+  const [isClicked , setIsClicked] = useState(false)
 
-  const [sortedByValue , setSortedByValue] = useState<string>("Recommended")
+  const [sortedByValue , setSortedByValue] = useState("Recommended")
 
-  const handleClickedSortedBy = (sortingType : string) => {
+  const handleClickedSortedBy = (sortingType) => {
         setSortedByValue(sortingType)
         setIsClicked(false)
   }
 
   return (
-    <div className="">
+    <div>
         <div>
             <h1 className="text-xl font-semibold text-[#414E5F] mb-3">Sorted By : </h1>
 

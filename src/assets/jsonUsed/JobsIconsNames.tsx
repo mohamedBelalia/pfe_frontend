@@ -1,38 +1,82 @@
-import { FaHammer , FaTruck } from "react-icons/fa";
+import { FaHammer } from "react-icons/fa";
 import { GiLargePaintBrush , GiConcreteBag } from "react-icons/gi";
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { MdPlumbing } from "react-icons/md";
+import { MdPlumbing , MdElectricBolt } from "react-icons/md";
+
 
 export const jobs = [
-    {
-        name: "Builder",
+      {
+        nameEn: "Peintre",
+        nameAr: "صباغ",
         id : "1",
-        Icon : <GiConcreteBag/>
+        Icon : <GiLargePaintBrush/>
       },
       {
-        name: "Carpenter",
+        nameEn: "Charpentier",
+        nameAr: "نجار",
         id : "2",
         Icon : <FaHammer/>
       },
       {
-        name: "Dyer",
+        nameEn: "Constructeur",
+        nameAr: "بنّاء",
         id : "3",
-        Icon : <GiLargePaintBrush/>
+        Icon : <GiConcreteBag/>
       },
       {
-        name: "Plumber",
+        nameEn: "Plombier",
+        nameAr: "سباك",
         id : "4",
         Icon : <MdPlumbing/>
       },
       {
-        name: "Transporter",
+        nameEn: "Électricien",
+        nameAr: "كهربائي",
         id : "5",
-        Icon : <FaTruck/>
+        Icon : <MdElectricBolt/>
       }
       ,
       {
-        name: "Trending",
+        nameEn: "Marbrier",
+        nameAr: "رخايمي",
         id : "6",
-        Icon : <FaArrowTrendUp/>
+        Icon : <img src="/icons/marble.png"/>
+      }     
+      ,
+      {
+        nameEn: "Constructeur",
+        nameAr: "بنّاء",
+        id : "7",
+        Icon : <GiConcreteBag/>
+      },
+      {
+        nameEn: "Plombier",
+        nameAr: "سباك",
+        id : "8",
+        Icon : <MdPlumbing/>
+      },
+      {
+        nameEn: "Électricien",
+        nameAr: "كهربائي",
+        id : "9",
+        Icon : <MdElectricBolt/>
       }
+      ,
+      {
+        nameEn: "Marbrier",
+        nameAr: "رخايمي",
+        id : "10",
+        Icon : <img src="/icons/marble.png"/>
+      }  
 ]
+/*
+Carpenter
+
+
+
+Chauffage
+ fr
+Plâtrier FR
+
+import { CgSmartHomeBoiler } from "react-icons/cg";
+import {  } from "react-icons/gi";
+*/

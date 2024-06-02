@@ -3,7 +3,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 export interface StepOneSliceTypes {
     cityTask : string ,
-    disciptionTask : string
 }
 
 export interface StepOneInfo {
@@ -12,8 +11,7 @@ export interface StepOneInfo {
 
 const initialState : StepOneInfo = {
     stepOneInfo : {
-        cityTask : "" ,
-        disciptionTask : ""
+        cityTask : "" 
     }
 }
 

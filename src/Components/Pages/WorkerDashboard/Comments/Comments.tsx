@@ -19,6 +19,7 @@ const Comments = () => {
   const [isArabic, setIsArabic] = useState(true);
 
   return (
+
     <div className="mt-16 flex flex-col items-center">
       <p className="flex justify-center items-center text-4xl font-semibold text-gray-600">تعليقات العملاء</p>
       {data.map((item, index) => (

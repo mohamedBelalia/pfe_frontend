@@ -2,23 +2,25 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 
 export interface SelectedTask {
-    selectedTask : string
+    selectedTask : string ,
+    selectedTask_id : string
 }
 
 const initialState : SelectedTask = {
-    selectedTask : ""
+    selectedTask : "" ,
+    selectedTask_id : ""
 }
 
 export const SelectedTaskSlice = createSlice({
     name : "selected_task",
     initialState ,
     reducers : {
-        setSelectedTask : (state , action:PayloadAction<SelectedTask>)=>{
+        setSelectedJobName : (state , action:PayloadAction<{selectedTask : string}>)=>{
                 state.selectedTask = action.payload.selectedTask
         }
     }
 })
 
-export const { setSelectedTask } = SelectedTaskSlice.actions
+export const { setSelectedJobName } = SelectedTaskSlice.actions
 
 export default SelectedTaskSlice.reducer

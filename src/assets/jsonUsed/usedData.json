@@ -1,59 +1,92 @@
 {
     "jobs": [
       {
-        "name": "Builder",
-        "id" : "1",
-        "imgPath" : "./imgUsed/builder.png",
-        "sentence1" : "Builders construct structures, manage projects, and ensure code compliance." ,
-        "sentence2" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
-        "sentence3" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
-        "tasks" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures"
-      },
-      {
-        "name": "Carpenter",
-        "id" : "2",
-        "imgPath" : "./imgUsed/Carpenter.png",
-        "sentence1" : "Carpenters craft and repair wooden structures, from stairs to cabinets." ,
-        "sentence2" : "They mill lumber, hang doors, and contribute to diverse woodworking projects." ,
-        "sentence3" : "Essential in construction, they blend precision and craftsmanship." ,
-        "tasks" : "Mill lumber|Construct stairs|Fit and hang doors"
-      },
-      {
-        "name": "Dyer",
+        "nameEn": "Constructeur",
+        "nameAr": "بنّاء",
         "id" : "3",
-        "imgPath" : "./imgUsed/gardenMan.jpg",
-        "sentence1" : "Dyers color fabrics, mixing solutions and performing color matching." ,
-        "sentence2" : "Tasks include dyeing, quality checks, and developing new techniques." ,
-        "sentence3" : "Their expertise enhances the visual appeal of diverse textile products." ,
-        "tasks" : "Mix dye solutions|Perform color matching|Operate dyeing machinery|Conduct quality checks|Ensure color consistency"
+        "imgPath" : "./imgUsed/builder.jpg",
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
+        "tasksFr" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures",
+        "tasksAr" : "حفر مواقع البناء|تجميع السقالات|تركيب الأسلاك الكهربائية|هياكل مقاومة للماء"
       },
       {
-        "name": "Plumber",
-        "id" : "4",
-        "imgPath" : "./imgUsed/Plumber.jpg",
-        "sentence1" : "Plumbers fix leaks, install fixtures, and inspect sewer lines." ,
-        "sentence2" : "They design plumbing systems, maintain water heaters, and respond to emergencies." ,
-        "sentence3" : "Welding or soldering pipes is part of their skill set." ,
-        "tasks" : "Repair pipe leaks|Install plumbing fixtures|Inspect sewer lines|Design plumbing systems|Weld or solder pipes|Maintain water heaters"
-      },
-      {
-        "name": "Transporter",
-        "id" : "5",
-        "imgPath" : "./imgUsed/Transporter.jpg",
-        "sentence1" : "Transporters plan logistics routes, load/unload cargo, and maintain vehicle fleets." ,
-        "sentence2" : "They monitor shipping schedules, complete documents, and handle customs clearance." ,
-        "sentence3" : "Coordination with warehouses ensures smooth transportation operations." ,
-        "tasks" : "Plan logistics routes|Load and unload cargo|Maintain vehicle fleet|Monitor shipping schedules"
+        "nameEn": "Charpentier",
+        "nameAr": "نجار",
+        "id" : "2",
+        "imgPath" : "./imgUsed/Charpentier.jpg",
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
+        "tasksFr" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures",
+        "tasksAr" : "حفر مواقع البناء|تجميع السقالات|تركيب الأسلاك الكهربائية|هياكل مقاومة للماء"
       }
       ,
       {
-        "name": "Trending",
-        "id" : "6" ,
+        "nameEn": "Peintre",
+        "nameAr": "صباغ",
+        "id" : "1",
+        "imgPath" : "./imgUsed/Peintre.jpg",
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
+        "tasksFr" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures",
+        "tasksAr" : "حفر مواقع البناء|تجميع السقالات|تركيب الأسلاك الكهربائية|هياكل مقاومة للماء"
+      }
+      ,
+      {
+        "nameEn": "Plombier",
+        "nameAr": "سباك",
+        "id" : "4",
         "imgPath" : "./imgUsed/Plumber.jpg",
-        "sentence1" : "dfdf" ,
-        "sentence2" : "ggg" ,
-        "sentence3" : "aaa" ,
-        "tasks" : "sfdf"
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
+        "tasksFr" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures",
+        "tasksAr" : "حفر مواقع البناء|تجميع السقالات|تركيب الأسلاك الكهربائية|هياكل مقاومة للماء"
+      }
+      ,
+      {
+        "nameEn": "Électricien",
+        "nameAr": "كهربائي",
+        "id" : "5",
+        "imgPath" : "./imgUsed/Electricien.jpg",
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
+        "tasksFr" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures",
+        "tasksAr" : "حفر مواقع البناء|تجميع السقالات|تركيب الأسلاك الكهربائية|هياكل مقاومة للماء"
+      }
+      ,
+      {
+        "nameEn": "Chauffage",
+        "nameAr": "التدفئة",
+        "id" : "6",
+        "imgPath" : "./imgUsed/Chauffage.jpg",
+        "sentence1En" : "Builders construct structures, manage projects, and ensure code compliance." ,
+        "sentence2En" : "They assemble scaffolding, apply finishes, and coordinate subcontractors." ,
+        "sentence3En" : "Safety inspections, excavation, and electrical wiring are common tasks." ,
+        "sentence1Ar" : "يقوم البناؤون بإنشاء هياكل، وإدارة المشاريع، وضمان الامتثال للشروط القانونية" ,
+        "sentence2Ar" : "يقومون بتجميع الأنشطة، وتطبيق التشطيبات، وتنسيق المقاولين الفرعيين" ,
+        "sentence3Ar" : "التفتيش الأمني، والحفر، وتوصيل الأسلاك الكهربائية هي مهام شائعة" ,
+        "tasksFr" : "Excavate building sites|Assemble scaffolding|Install electrical wiring|Waterproof structures",
+        "tasksAr" : "حفر مواقع البناء|تجميع السقالات|تركيب الأسلاك الكهربائية|هياكل مقاومة للماء"
       }
     ]
   }
