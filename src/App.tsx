@@ -9,8 +9,11 @@ import SearchPage from './Components/Pages/Search/SearchPage/SearchPage'
 import Login from './Components/Pages/Auth/login/Login'
 import Forms from './Components/Pages/Auth/Signup/Forms'
 import WorkerProfile from './Components/Pages/WorkerProfile/WorkerProfile'
+import AddProject from './Components/Pages/AddProject/AddProject'
 
 function App() {
+
+
 
   return (
     
@@ -21,8 +24,9 @@ function App() {
             <Route path='/search/step_one' element={<ProcessStepOne/>}/>
             <Route path='/search/filter' element={<Filter/>}/>
             <Route path="/Login" element={<Login />} />
-            <Route path="/Forms" element={<Forms />} /> 
+            <Route path="/Signup" element={<Forms />} /> 
             <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/:idWorker/ajouter-projet" element={<AddProject />} />
             <Route path="/ouvres/:idWorker" element={<WorkerProfile />} />
             <Route path="*" element={<div>NOT FOUND</div>} />
           </Routes>

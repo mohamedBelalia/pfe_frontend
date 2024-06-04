@@ -3,31 +3,23 @@ import Card from "./Card/Card";
 import OtherInfos from "./OtherInfos/OtherInfos";
 import AllPosts from "./AllPosts/AllPosts";
 import Comments from "./Comments/Comments";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store/store";
+import Navbar from "../../Common/Navbar/Navbar";
 const Dashboard = () => {
 
-const [isArabic,setIsArabic] = useState(true);
+// The Slice For Change The Language
+const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
-if(!isArabic)
+
 return (
-     <div className="bg-gray-50">
-       <div className='md:px-24  px-2  md:flex  my-10 mx-auto'>
-         <div className="md:w-2/5" >
-           <Card />
-           <ComplateAcount />
-         </div>
-         <OtherInfos />
-       </div>
-       <AllPosts />
-       <Comments />
+     <>
+      <div className="border md:mb-28">
+      <Navbar/>
+      </div>
+      <div className="bg-gray-50">
 
-     </div>
-    )
-    else{
-
-      return(
-        <div className="bg-gray-50">
-      <div className='md:px-24 px-2  md:flex flex-row-reverse  my-10 mx-auto'>
+      <div className={`md:px-24 px-2 md:flex my-10 mx-auto ${isArabicSelected && "flex-row-reverse"}`}>
         <div className="md:w-2/5" >
           <Card />
           <ComplateAcount />
@@ -37,9 +29,10 @@ return (
       <AllPosts />
       <Comments />
 
-    </div>
-      )
-    }
+      </div>
+     </>
+)
+   
 }
 
 export default Dashboard

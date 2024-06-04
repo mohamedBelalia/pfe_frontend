@@ -7,7 +7,7 @@ const Login = () => {
 
   const handleClick = () => {
     // Navigate signup page
-    navigate('/signup');
+    navigate('/Signup');
   };
 
   return (
