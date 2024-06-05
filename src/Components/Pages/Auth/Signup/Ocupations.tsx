@@ -51,42 +51,48 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
 
 
     return (
-        <div className="md:w-[70%] w-[95%] mt-12 md:mt-0 m-auto   h-full relative ">
+        <div className="md:w-[70%] w-[95%] mt-12 md:mt-0 m-auto   h-[70vh] relative ">
             <h1 className="text-teal-500 text-center p-4 text-3xl font-semibold">
                 {`${!isArabic ? "Vos métiers" : "مهنتك"}`}
                 <p className='text-sm text-red-500'>
-                    {`${!isArabic?"Choisissez des métiers adaptés à votre activité":"اختر المهن التس تناسب نشاطك"}`}
+                    {`${!isArabic ? "Choisissez des métiers adaptés à votre activité" : "اختر المهن التس تناسب نشاطك"}`}
                 </p>
             </h1>
             <div className=' flex justify-center'>
-                <div className='flex items-center px-2 border-2   rounded w-full pb-2'>
-                    <div className='md:h-14 h-11'></div>
-                    {choosedOccupations.map((occup, index) => {
-                        return (
-                            <div key={index} className="flex  flex-col  text-sm font-700 mr-2 " >
-                                <PiXCircleFill onClick={() => deleteOccup(index)} className="text-red-500 mb-1 text-xl md:text-2xl font-700" />
-                                <p className="text-teal500  border-teal500 border-2 md:px-4 px-2 rounded-md font-semibold  -mt-1">{occup}</p>
-                            </div>
-                        )
-                    })}
-                </div>
+                {/* <div className='flex items-center px-2 border-2   rounded w-full pb-2'> */}
+
 
             </div>
             <div onClick={() => setIsClicked(!isClicked)}
-                className={`${!isArabic ? "" : "flex-row-reverse "} bg-gray-200  justify-center  w-full m-auto -z-10 border border-gray-400 rounded-md md:h-14 h-10 flex  items-center cursor-pointer select-none `}>
-                <p className=" text-[#414E5F] pl-20 font-semibold">
-                    {`${!isArabic ? "Cliquez pour sélectionner" : "انقر للتحديد"}`}
-                </p>
+                className={`${!isArabic ? "" : "flex-row-reverse "} border-teal500 rounded-xl px-2  justify-between w-[610px] m-auto -z-10 border-2  md:h-14 h-10 flex  items-center cursor-pointer select-none `}>
+
+                <div className='flex'>
+                    {
+                        choosedOccupations && choosedOccupations.length !== 0 ?
+                            choosedOccupations.map((o, i) => {
+                                return (
+                                    <div key={o} className="flex  justify-center px-2 py-2   items-center rounded-md  bg-teal-400  text-sm font-700 mr-2 " >
+                                        <p className="text-teal-800    md:px-4 px-2 rounded-md font-semibold  -mt-1">{o}</p>
+                                        <div className='text-teal-800 w-2 bg-white  rounded-full h-2 flex justify-center items-center    text-md md:text-lg '>
+                                            <p className=''><PiXCircleFill onClick={() => deleteOccup(i)}  /></p>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                            : `${!isArabic ? "Cliquez pour sélectionner" : "انقر للتحديد"}`
+
+                    }
+                </div>
                 <IoIosArrowDown className="text-[#414E5F] ml-16 text-2xl" />
             </div>
 
-            <div className={`${isClicked ? 'h-[300px] overflow-y-scroll scrollbar-none border border-gray-400' : 'h-0'}
-             bg-gray-200 w-full  rounded-md shadow-lg   transition-all ease-in-out duration-150 overflow-hidden`}>
+            <div className={`${isClicked ? 'h-[300px] w-[610px] mt-1 overflow-y-scroll scrollbar-none border border-teal500' : 'h-0'}
+             bg-gray-50 w-full  rounded-md shadow-lg   transition-all ease-in-out duration-150 overflow-hidden`}>
                 {data.map((Occu, index) => (
                     <div
                         key={index}
                         onClick={() => handleClickedOccupations(index, Occu)}
-                        className={`${cmpOccup.includes(index) ? 'bg-green-200' : ''} md:h-[38px] w-full border-b-2 flex justify-start items-center  px-8  border-gray-300 `}
+                        className={`${cmpOccup.includes(index) ? 'bg-teal-400 text-white' : ''} md:h-[38px] hover:bg-blue-600 hover:text-white w-full border-b-2 flex justify-start items-center  px-8  border-gray-100 `}
                     >
                         {Occu}
                     </div>

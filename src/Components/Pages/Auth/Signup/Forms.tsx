@@ -31,7 +31,7 @@ const INITIAL_DATA: FormData = {
 
 const Forms = () => {
     const [data, setData] = useState(INITIAL_DATA);
-    const isArabic = true;
+    const isArabic = false;
     const { currentStepIndex, step, isFirst, isLast, back, next } = useMultistepForm([
         <Signup {...data} updateFields={updateFields} />,
         <Add_Infos_about_You {...data} updateFields={updateFields} />,
@@ -54,11 +54,11 @@ const Forms = () => {
     }
 
     return (
-        <div className="md:h-[100%] w-full md:w-[85%] tab:w-[70%] m-auto  justify-center  items-center  mb-6 flex-col ">
+        <div className="md:w-[80%] h-[100vh] mx-auto mt-7 ">
             <ProcessSignup stepIndex={currentStepIndex} />
-            <form onSubmit={onSubmit} className="relative w-full h-[400px]">
+            <form onSubmit={onSubmit} className="relative w-[80%] m-auto flex flex-col items-baseline justify-between h-[70vh]">
                 {step}
-                <div className={`${!isArabic?"":"flex flex-row-reverse"} absolute px-10 flex justify-between w-full bottom-0`}>
+                <div className={`${!isArabic?"":"flex  flex-row-reverse"}  px-10 flex justify-between w-full bottom-0`}>
                     {!isFirst ? <button onClick={back} type="button" 
                     className="md:px-8  px-4 transition-all ease-in-out md:py-1 duration-300 bg-blue-400 text-white font-semibold text-xl hover:bg-[#414F5F] hover:text-white rounded-lg">
                         {!isArabic?"Back":"الرجوع"}
