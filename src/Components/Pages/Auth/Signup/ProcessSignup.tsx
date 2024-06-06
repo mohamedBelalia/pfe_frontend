@@ -16,7 +16,7 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
         switch (count > 0) {
             case false:
                 return <>
-                    <div className="rounded-full relative w-8 h-8 text-gray-400  border-teal500 border-2  flex justify-center items-center font-bold ">1</div>
+                    <div className="rounded-full relative w-6 h-6 md:w-8 md:h-8 text-gray-400  border-teal500 border-2  flex justify-center items-center font-bold ">1</div>
                     <div className="w-[30%] " >
                         <div className="bg-gray-200 rounded  h-2 " />
                     </div>
@@ -25,7 +25,7 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
 
             default:
                 return <>
-                    <FaCheckCircle className="text-teal500 text-4xl  " />
+                    <FaCheckCircle className="text-teal500 text-2xl md:text-4xl  " />
                     <div className={`${!isArabic?"":" flex-row-reverse"} bg-gray-200 rounded-full w-[30%] h-2 flex `} >
                         <div className="bg-teal500 progress h-2  rounded" />
                     </div>
@@ -38,17 +38,17 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
         switch (count) {
             case 0:
                 return <>
-                    <div className="rounded-full w-8  h-8 border-gray-400 border-2 text-gray-400  flex justify-center items-center font-bold ">2</div>
+                    <div className="rounded-full w-6 h-6  md:w-8  md:h-8 border-gray-400 border-2 text-gray-400  flex justify-center items-center font-bold ">2</div>
                     <div className="bg-gray-200 rounded w-[30%] h-2 " />
                 </>
             case 1:
                 return <>
-                    <div className="rounded-full w-8 h-8 border-teal500 border-2 text-gray-400  flex justify-center items-center font-bold ">2</div>
+                    <div className="rounded-full md:w-8 md:h-8 w-6 h-6 border-teal500 border-2 text-gray-400  flex justify-center items-center font-bold ">2</div>
                     <div className="bg-gray-200 rounded w-[30%] h-2 " />
                 </>
             default:
                 return <>
-                    <FaCheckCircle className="text-teal500 text-4xl " />
+                    <FaCheckCircle className="text-teal500 text-2xl md:text-4xl " />
                     <div className={`${!isArabic?"":" flex-row-reverse"} rounded-full w-[30%] h-2 flex `}>
                         <div className="bg-teal500 rounded progress  h-2 " />
                     </div>
@@ -62,30 +62,30 @@ const ProcessSignup = ({ stepIndex }: stepIndexProp) => {
         switch (count) {
             case 0:
                 return <>
-                    <div className="rounded-full w-8 h-8 border-gray-500 text-gray-400 border-2 flex justify-center items-center font-bold ">3</div>
+                    <div className="rounded-full  md:w-8 md:h-8 w-6 h-6 border-gray-400 text-gray-400 border-2 flex justify-center items-center font-bold ">3</div>
                 </>
                 break;
             case 1:
                 return <>
-                    <div className="rounded-full w-8 h-8 text-gray-400 font-bold border-gray-400 border-2 flex justify-center items-center ">3</div>
+                    <div className="rounded-full  md:w-8 md:h-8 w-6 h-6 text-gray-400 font-bold border-gray-400 border-2 flex justify-center items-center ">3</div>
                 </>
                 break;
             case 2:
                 return <>
-                    <div className="rounded-full w-8 h-8 border-teal500 text-gray-400 border-2 flex justify-center items-center font-bold ">3</div>
+                    <div className="rounded-full  md:w-8 md:h-8 w-6 h-6 border-teal500 text-gray-400 border-2 flex justify-center items-center font-bold ">3</div>
                 </>
                 break;
             default:
                 return <>
-                    <FaCheckCircle className="text-teal500 text-4xl " />
+                    <FaCheckCircle className="text-teal500 text-2xl md:text-4xl " />
                 </>
                 break;
         }
     }
     return (
         <>
-            <div className={`${!isArabic?"":"flex-row-reverse"} h-[70px] tab:w-[80%] w-[95%]  mx-auto items-center bg-gray-300 rounded-xl px-5 flex gap-4`}>
-                <h1 className={`${!isArabic?"":"flex-row-reverse"} flex w-[20%] items-center text-xl font-sans `}>
+            <div className={`${!isArabic?"":"flex-row-reverse"} h-[70px] tab:w-[80%] justify-center   w-[95%]  mx-auto items-center bg-gray-300 rounded-xl px-5 flex gap-4`}>
+                <h1 className={`${!isArabic?"":"flex-row-reverse"} hidden md:flex w-[20%] items-center text-xl font-sans `}>
                     <BiLogoFlutter className="size-4 mr-2 text-teal500" />
                     {!isArabic?"Mo9f":"الموقف"}
                     </h1>
