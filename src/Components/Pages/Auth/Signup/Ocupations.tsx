@@ -1,5 +1,5 @@
 // import React from 'react'
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
 import data from "./Occupations.json";
 import { PiXCircleFill } from "react-icons/pi";
@@ -7,27 +7,31 @@ import { PiXCircleFill } from "react-icons/pi";
 
 type userData = {
     occupations: string[]
+    cmpOccup: number[]
 }
 
 type OccupationsFormProps = userData & {
     updateFields: (fields: Partial<userData>) => void
 }
 
-const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
+const Ocupations = ({ occupations,cmpOccup, updateFields }: OccupationsFormProps) => {
 
     const [isClicked, setIsClicked] = useState<boolean>(false);
-    const [cmpOccup, setCmpOccup] = useState<number[]>([]);
     const [choosedOccupations, setChoosedOccupations] = useState<string[]>([...occupations]);
+    const [cmp, setCmp] = useState<number[]>([...cmpOccup]);
     const [isArabic] = useState<boolean>(true);
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    // const dropdownRef = useRef<HTMLDivElement>(null);
 
     const handleClickedOccupations = (index: number, Occup: string | undefined) => {
         if (Occup && cmpOccup.length < 3 && !choosedOccupations.includes(Occup)) {
-            setCmpOccup([...cmpOccup, index]);
+            setCmp([...cmpOccup, index]);
             setChoosedOccupations([...choosedOccupations, Occup])
+            
+            
 
             // Pass the updated state to updateFields
             updateFields({ occupations: [...choosedOccupations, Occup] });
+            updateFields({ cmpOccup: [...cmp, index] });
 
             if (cmpOccup.length === 2) {
                 setIsClicked(!isClicked);
@@ -39,23 +43,31 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
 
 
     const deleteOccup = (indexToDelete: number) => {
+      
+    
         setChoosedOccupations(prevItems => {
             // Create a new array without the item at the specified index
+            const updateOccup = prevItems.filter((_, index) => index !== indexToDelete);
+            updateFields({ occupations: [...updateOccup] });
             return prevItems.filter((_, index) => index !== indexToDelete);
-        });
-        setCmpOccup(prevItems => {
-            // Create a new array without the item at the specified index
-            return prevItems.filter((_, index) => index !== indexToDelete);
-        });
-    };
 
+        });
+    
+        setCmp(prevItems => {
+            // Create a new array without the item at the specified index
+            const updatedCmp = prevItems.filter((_, index) => index !== indexToDelete);
+            updateFields({ cmpOccup: [...updatedCmp] });
+            return updatedCmp;
+        });
+    }
+    
 
     return (
         <div className="md:w-[70%]  w-[95%] lg:mt-10 mt-4 md:mt-0 m-auto   h-[70vh] relative ">
             <h1 className="text-blue-500 text-center p-4 text-3xl font-semibold">
                 {`${!isArabic ? "Vos métiers" : "مهنتك"}`}
                 <p className='text-sm text-red-500'>
-                    {`${!isArabic ? "Choisissez des métiers adaptés à votre activité" : "اختر المهن التس تناسب نشاطك"}`}
+                    {`${!isArabic ? "Choisissez des métiers adaptés à votre activité" : "اختر المهن التى تناسب نشاطك"}`}
                 </p>
             </h1>
             <div className=' flex justify-center'>
@@ -85,14 +97,13 @@ const Ocupations = ({ occupations, updateFields }: OccupationsFormProps) => {
                 </div>
                 <IoIosArrowDown className="text-[#414E5F] md:ml-10  text-2xl" />
             </div>
-
             <div className={`${isClicked ? 'h-[300px] w-[611px] mt-1 overflow-y-scroll scrollbar-none border border-teal500' : 'h-0'}
              bg-gray-50 w-full  rounded-md shadow-lg   transition-all ease-in-out duration-150 overflow-hidden`}>
                 {data.map((Occu, index) => (
                     <div
                         key={index}
                         onClick={() => handleClickedOccupations(index, Occu)}
-                        className={`${cmpOccup.includes(index) ? 'bg-teal-400 text-white' : ''} md:h-[38px] hover:bg-blue-600 hover:text-white w-full border-b-2 flex justify-start items-center  px-8  border-gray-100 `}
+                        className={`${cmp.includes(index) ? 'bg-teal-400 text-white' : ''} md:h-[38px] hover:bg-blue-600 hover:text-white w-full border-b-2 flex justify-start items-center  px-8  border-gray-100 `}
                     >
                         {Occu}
                     </div>
