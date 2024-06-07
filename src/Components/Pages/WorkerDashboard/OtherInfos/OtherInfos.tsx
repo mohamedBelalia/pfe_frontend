@@ -1,13 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Progress from "./Progress";
 
 const OtherInfos = () => {
-    const [isArabic, setIsArabic] = useState(true);
+    const isArabic = true;
 
     return (
-        <div className='lg:px-10 px-4 w-full md:ml-10'>
+        <div className='lg:px-10  px-4 w-full md:ml-10'>
             {/* Complete Your Profile Informations To Get Clients */}
-            <div className='w-full py-5 md:mt-0 rounded-md bg-red-300 sm:md tab:text-lg text-center text-red-700 font-semibold'>
+            <div className='w-full hidden md:block  py-5 md:mt-0 rounded-md bg-red-300 sm:md tab:text-lg text-center text-red-700 font-semibold'>
                 {isArabic?"أكمل معلومات ملفك الشخصي للحصول على عملاء":"Complete Your Profile Informations To Get Clients"}
             </div>
 

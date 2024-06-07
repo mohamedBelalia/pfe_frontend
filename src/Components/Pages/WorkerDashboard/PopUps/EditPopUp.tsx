@@ -24,7 +24,7 @@ const EditPopUp = () => {
         e.preventDefault();
     }
     return (
-        <form onSubmit={onsubmit} className='flex mt-0 flex-col bg-teal500  border-2 rounded-sm sm:w-[500px] w-[300px] md:w-[600px] h-[400px] md:h-[500px]'>
+        <form onSubmit={onsubmit} className='flex  h-[70vh] mt-0 flex-col bg-teal500  border-2 rounded-sm sm:w-[500px] w-full  md:w-[600px]  md:h-[500px]'>
             <div className='  h-[15%]'>{currentStepindex + 1}/{steps.length}</div>
             <div className='relative bg-gray-100  rounded-sm   rounded-t-3xl  h-[85%]'>
                 <div className='flex   items-center flex-col w-[60%]  -mt-10  '>
@@ -55,7 +55,7 @@ const EditPopUp = () => {
                 <div className="overflow-y-scroll h-[202px] mt-3  flex flex-col items-center bg-gray-200 md:min-h-[335px] md:max-h-[335px] m-2 no-scrollbar scroll-smooth  ">
                     {step}
                 </div>
-                <div className="flex justify-around bottom-4  ">
+                <div className="flex fixed top-[70vh] left-[100px] justify-around bottom-4  ">
                     <div className="w-28 "> {!isFirstStep && <button onClick={back} className="bg-teal500 text-white px-4 rounded ">Back</button>}</div>
                     <div className="w-28"> {!isLastStep && <input type="submit" onClick={next} className="bg-teal500 text-white px-4 rounded " value="next"/>} </div>
                 </div>
