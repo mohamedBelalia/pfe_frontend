@@ -34,6 +34,7 @@ export default {
   },
   plugins: [
     require('tailwind-scrollbar'),
+    
   ],
 }
 // tailwind.config.js

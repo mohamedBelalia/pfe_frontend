@@ -7,7 +7,7 @@ const CompleteAcount = () => {
     return (
 
         
-        <div className='border p-6 m-auto sm:w-[70%] mb-8 md:mb-0 tab:w-[35vw] md:w-[30vw] rounded-md'>
+        <div className='border p-6  m-auto sm:w-[70%] mb-4 md:mb-0 tab:w-[35vw] md:w-[30vw] rounded-md'>
             <div className='flex  justify-end flex-nowrap font-bold text-blue500 '>
                 <div className='text-md md:text-lg'>{isArabic?"أكمل حسابك":"Complétez votre compte"}</div>
                 <BsFillPersonCheckFill className="text-3xl font-semibold" />

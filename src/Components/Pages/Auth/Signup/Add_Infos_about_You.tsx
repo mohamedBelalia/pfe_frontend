@@ -55,7 +55,6 @@ const Add_Infos_about_You = ({ userImage, description, updateFields }: UserFormP
                     <textarea
                         value={description}
                         onChange={(e) => updateFields({ description: e.target.value })}
-                        required
                         placeholder={`${!isArabic ? "Description" : "وصف"}`}
                         className='border-2 p-3 md:h-[200px] w-[100%] mt-2 md:w-[450px] md:h-38  rounded-md bg-gray-200'
                         name="description"

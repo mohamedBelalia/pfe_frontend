@@ -49,25 +49,43 @@ const Forms = () => {
             ...fields
         }));
     }
-
+    // sign up validation
     function onSubmit(e: FormEvent) {
         e.preventDefault();
-        if (data.confirmPassword === data.password 
-            && data.password !== ""
-            && data.firstName !== ""
-            && data.lastName !== ""
-            && data.phone !== ""
-          
-        ) {
-            next();
-        } else {
-            setProgress(0)
-            setIsOpen(!isOpen);
+        if(currentStepIndex === 0){
+            if (data.confirmPassword === data.password 
+                && data.password.length >=6
+                && data.firstName.length >=3
+                && data.lastName.length >=3
+                && data.phone.length >=10
+              
+            ) {
+                next();
+            } else {
+                setProgress(0)
+                setIsOpen(true);
+            }
+        }if(currentStepIndex === 1){
+            if(data.description.length >=10 && data.userImage != null){
+                next();
+            }else{
+                setIsOpen(true);
+            }
+        }else{
+            if(data.occupations.length >=1){
+                console.log("hhhhh");
+                
+            }else{
+                setIsOpen(true);
+            }
         }
+
+    
+    
 
     }
 
-    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const [progress, setProgress] = useState(0);
   const duration = 2000; // 2 seconds in milliseconds
@@ -80,7 +98,14 @@ const Forms = () => {
                 if (prev <= 100) {
                     return prev + 1;
                 } else {
-                    return prev;
+                    const interval = setInterval(() => {
+                        console.log("test");
+                      }, 1000);
+                  
+                      // Cleanup function to clear the interval when the component unmounts
+                      clearInterval(interval); 
+                      return prev;
+                       
                 }
             });
         }else{
@@ -92,7 +117,7 @@ const Forms = () => {
     
     return () => clearTimeout(timer);
   }, [progress]);
-  console.log(progress);
+
   
     
     return (
@@ -102,7 +127,7 @@ const Forms = () => {
             {/* alert echec de l'inscription */}
             {isOpen ? <div className="fixed  inset-0 flex  justify-center z-50 bg-black bg-opacity-80">
                 <div className="absolute w-[95vw] top-[20vh] m-auto rounded-t-xl opacity-[100%] bg-red-200 md:w-1/3 shadow-lg">
-                    <div className="flex flex-col h-[14vh] items-center justify-center">
+                    <div className="flex flex-col h-[14vh] sm:h-[18vh] items-center justify-center">
                         <p onClick={() => { setIsOpen(false) }} className="w-full flex text-2xl mr-6 justify-end cursor-pointer" >
                             <IoClose />
                         </p>
@@ -111,8 +136,8 @@ const Forms = () => {
                         </h3>
                         <p className="text-sm text-red-700">Veuillez remplir les informations nécessaires</p>
                     </div>
-                    <div className="m-auto  h-1">
-                        <div style={{ width: `${progress}%`,  transition: 'width 0.1s ease-in-out'  }} className={` bg-red-900 ease-in-out h-1`}> </div>
+                    <div className="m-auto  bg-red-400 h-1">
+                        <div style={{ width: `${progress-1}%`,  transition: 'width 0.1s ease-in-out'  }} className={` bg-red-800  h-1`}> </div>
                     </div>
                 </div>
             </div> : ""}

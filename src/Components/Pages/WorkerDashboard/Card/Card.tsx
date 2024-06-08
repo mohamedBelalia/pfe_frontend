@@ -8,7 +8,7 @@ const Card = () => {
     const isArabic = true;
     const Occupations = (props: { text: string }) => {
         return (
-            <div className=" m-2 px-4 py-1 border-2 border-teal500 bg-gray-200  rounded-full">{props.text}</div>
+            <div className=" m-2 px-4 py-1 border-2  border-teal500 bg-gray-300  rounded-full">{props.text}</div>
         )
     }
 
@@ -20,7 +20,7 @@ const Card = () => {
     return (
 
 
-        <div className={`${isArabic?"flex flex-col items-end":""} p-6 w-full m-auto sm:w-[70%] tab:w-[35vw] md:w-[30vw] pb-6 mb-3 border text-center  rounded-md`}>
+        <div className={`${isArabic?"flex flex-col items-end":""}  p-6 w-full m-auto sm:w-[70%] tab:w-[35vw] md:w-[30vw] pb-6 mb-3 border text-center  rounded-md`}>
 
             <EditProfile isOpen={isOpen} onClose={togglePopup} />
             <div onClick={togglePopup} className={ `${isArabic?"flex-row-reverse":""} flex cursor-pointer  text-blue500`}>
@@ -28,7 +28,7 @@ const Card = () => {
                 <div className='-mt-1 font-semibold mx-1'>{isArabic ? "تعديل الملف الشخصي" : "Edit Profile"}</div>
 
             </div>
-            <img className=' w-32 md:w-32 m-auto mt-6 mb-3 rounded-full ' src="public\imgUsed\portrait-man-laughing.jpg" alt="" />
+            <img className=' w-32 md:w-32 m-auto mt-6 mb-3 rounded-full ' src="imgUsed\portrait-man-laughing.jpg" alt="" />
             <div className="text-teal500 w-full text-lg md:text-xl font-semibold flex justify-center pb-4">
                 <div >{!isArabic ? "Ahmed Akrami" : "أحمد أكرم"}</div>
 
