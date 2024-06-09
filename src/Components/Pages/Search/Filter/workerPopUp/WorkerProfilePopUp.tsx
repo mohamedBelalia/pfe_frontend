@@ -14,6 +14,7 @@ import WorkerProjects from "./WorkerProjects";
 import LoadingPage from "../../../../Common/Loading/LoadingPage";
 import { MdSignalWifiConnectedNoInternet1 } from "react-icons/md";
 import Diploms from "./Diplomes";
+import { Link } from "react-router-dom";
 
 
 type workerPopUpTypes = {
@@ -85,7 +86,7 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
     
 
   return (
-    <div className="w-full h-[80%] rounded-lg pt-4 pb-10 px-6 bg-white overflow-y-scroll overflow-x-hidden">
+    <div className="w-full rounded-xl pb-10 px-6 bg-white  overflow-x-hidden">
         
         {
         workerDetails != undefined 
@@ -105,15 +106,21 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                     <div className="flex items-center gap-1 text-gray700 font-semibold ">   
                         <IoIosStar/> {workerDetails.avgEtoile} <span className="text-xs">({workerDetails.nbrCommentair} reviews)</span>
                     </div>
-                    <div className="border-dashed border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] py-0.5 px-1 text-sm  flex gap-3 items-center justify-center">
+
+                    <Link to={`/ouvres/${workerDetails.idOuvrier}`} className="px-10 py-1 bg-teal500 text-white rounded-md">
+                        Voir Le Profil
+                    </Link>
+
+                    {/* <div className="border-dashed border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] py-0.5 px-1 text-sm  flex gap-3 items-center justify-center">
                         <SlBadge/>
                         {workerDetails.labelleBadge_FR}
-                    </div>
+                    </div> */}
                     {/* <div className="block md:hidden mt-2">
                         <h1 className="text-xl font-bold text-end text-[#2d7d7d]">{workerDetails?.phone}</h1>
                     </div> */}
                 </div>
             </div>
+            
             <div className="flex flex-col md:mx-0 mx-auto md:mt-0 mt-5 gap-4">
                 <a href="tel:+212 632-602326">
                     <div className="flex justify-end gap-3 items-center text-xl font-semibold text-end text-[#2d7d7d]">
@@ -141,20 +148,20 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
             </p>
         </div>
 
-        <div className="flex flex-col gap-1">
+        {/* <div className="flex flex-col gap-1">
             {
                 isArabicSelected
                     ? <h1 className="font-bold text-lg text-gray700 text-end">المهن الرئيسية</h1>
                     : <h1 className="font-bold text-lg text-gray700">Principales Professions</h1>
             }
             <Professions idWorker={idWorker}/>
-        </div>
+        </div> */}
 
-       <>
+       {/* <>
             <WorkerProjects idWorker={idWorker} workerName={workerDetails.nomOuvrier}/>
        </>
-        
-
+         */}
+{/* 
         <div>
             <h1 className="font-bold text-lg text-gray700">
                 {
@@ -164,12 +171,12 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                 }
             </h1>
             <Diploms workerId={idWorker}/>
-        </div>
-
+        </div> */}
+{/* 
         <div className="flex flex-col gap-2">
             <h1 className="font-bold text-lg text-gray700">Reviews</h1>
             <Reviews idWorker={idWorker}/>
-        </div>
+        </div> */}
 
         </div>
 

@@ -44,7 +44,7 @@ const Carousel = ({slides}:CarouselProps) => {
           return <img
                   key={index}
                   src={ Config.BaseImagesPath_Projects + img } 
-                  className="min-w-[100%] object-cover"/>
+                  className="min-w-[100%] object-cover object-top"/>
         ;
         })}
       </div>

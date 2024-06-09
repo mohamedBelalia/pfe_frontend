@@ -1,5 +1,5 @@
 import WorkerCard from "./WorkerCard"
-import { IFilterNeededData, IWorkerInfromation } from "../../../../TS"
+import { ICity, IFilterNeededData, IWorkerInfromation } from "../../../../TS"
 import { useEffect, useState } from "react"
 import Api from "../../../../api/Api"
 import WorkerFilteredCardLoading from "../../../Common/LoadingLayouts/WorkerFilteredCardLoading"
@@ -13,9 +13,13 @@ interface listWorkersProps{
   getClickedWorkerId : (id : string)=>void
   searchedCityName : string
   searchedProfession : string
+  // for the nbr of filtered workers 
+  getNbrWorkers : (nbrWorker : number) => void
+  // city name
+  cityName? : ICity
 }
 
-const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName , searchedProfession}:listWorkersProps) => {
+const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName , searchedProfession , getNbrWorkers , cityName}:listWorkersProps) => {
 
     const [filteredWorkers , setFilteredWorkers] = useState<IWorkerInfromation[]>()
 
@@ -39,7 +43,7 @@ const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName ,
         filter += `,badge:${filterNeededData.badge[1]}`
       }
       else if(filterNeededData.badge[0] != undefined && filterNeededData.badge[1] != undefined){
-        filter += `,badge:${filterNeededData.badge[0]}&${filterNeededData.badge[1]}`
+        filter += `,badge:${filterNeededData.badge[0]}|${filterNeededData.badge[1]}`
       }   
     
     }
@@ -50,14 +54,16 @@ const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName ,
 
       const fetchFilteredWorkers = async()=>{
         try{
-          const response = await Api.get(`/workers?filter=${filter}`)
-          
+          const response = await Api.get(`/workers?filter=${filter}`)          
+
           if(response.data.status != "not found"){
             setFilteredWorkers(response.data) ;
             setIsNotFound(false)
+            getNbrWorkers(response.data.length)            
           }
           else{
             setIsNotFound(true)
+            getNbrWorkers(0)
           }
          
 
@@ -111,9 +117,9 @@ const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName ,
                       {
                         isArabicSelected
                         ?
-                        <p className="font-semibold text-gray-800">نأسف، لا يوجد <span className="px-2 bg-teal-300 rounded-md">{searchedProfession}</span> متاحون في <span className="px-2 bg-teal-300 rounded-md">{searchedCityName}</span> في الوقت الحالي</p>
+                        <p className="font-semibold text-gray-800">نأسف، لا يوجد <span className="px-2 bg-teal-300 rounded-md">{searchedProfession}</span> متاحون في <span className="px-2 bg-teal-300 rounded-md">{cityName?.ville_AR}</span> في الوقت الحالي</p>
                         :
-                        <p className="font-semibold text-gray-800">Nous sommes désolés, mais il n'y a pas de <span className="px-2 bg-teal-300 rounded-md">{searchedProfession}</span> disponibles à <span className="px-2 bg-teal-300 rounded-md">{searchedCityName}</span> pour le moment !</p>
+                        <p className="font-semibold text-gray-800">Nous sommes désolés, mais il n'y a pas de <span className="px-2 bg-teal-300 rounded-md">{searchedProfession}</span> disponibles à <span className="px-2 bg-teal-300 rounded-md">{cityName?.ville_FR}</span> pour le moment !</p>
                       }
                     </div>
                  </div>

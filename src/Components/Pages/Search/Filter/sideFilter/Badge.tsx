@@ -15,6 +15,7 @@ const Badge = ({getBadgeNbr}:IBadgeProps) => {
         maalem : false ,
         khedam : false 
     })
+    
 
     // The Slice For Change The Language
     const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)

@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
 import ShowedProject from "./ShowedProject";
 import RatingProcess from "../../Common/RatingProcess/RatingProcess";
+import Evaluation from "./Evaluation";
 
 const WorkerProfile = () => {
 
@@ -104,7 +105,7 @@ const WorkerProfile = () => {
 
       <Navbar/> 
       <div className={`w-full md:w-[80%] mx-auto md:pt-[140px] pt-[80px] py-[40px] px-5 md:px-0 flex gap-10 flex-col ${isArabicSelected ? "tab:flex-row-reverse" : "tab:flex-row "} items-start`}>
-          <div className="w-full mx-auto sm:w-[70%] md:w-[80%] tab:w-1/2">
+          <div className="w-full mx-auto sm:w-[70%] md:w-[80%] tab:w-1/3">
               <PersonnelInfo singleWorker={workerData}/>
           </div>
 
@@ -187,6 +188,27 @@ const WorkerProfile = () => {
                     <Diplomes workerId={idWorker != null ? idWorker : ""}/>
                   </div>
               </div>
+
+            <div>
+                <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
+                    {
+                      isArabicSelected
+                      ?
+                      <>
+                        الدبلومات <GrCertificate className="text-[30px]"/>
+                      </>
+                      :
+                      <>
+                      <GrCertificate className="text-[30px]"/> Evaluation
+                      </>
+                    }
+                    
+                  </h1>
+                  <div className="py-3">
+                    <Evaluation/>
+                  </div>
+            </div>
+              
 
           </div>
 

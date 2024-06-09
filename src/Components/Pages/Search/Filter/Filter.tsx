@@ -25,6 +25,9 @@ const Filter = () => {
 
     // to get the badge IDs
     const [badgePassedValues , setBadgePassedValues] = useState<string[]>([""])
+    
+    // filtered nbr of workers
+    const [nbrWorker , setNbrWorker] = useState<number>(0)
 
     useEffect(()=>{
         if(selectTaskCity.trim().length == 0 || selectTaskName.trim().length ==0){
@@ -53,6 +56,7 @@ const Filter = () => {
             ville : selectTaskCity,   
             badge : badgePassedValues
         }
+        
 
   return (
     <>
@@ -69,11 +73,11 @@ const Filter = () => {
                     ?
                     <h1 className="text-center text-xl font-semibold text-[#3a5973]">
                         <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span> في <span className="text-teal-700 bg-amber-200 rounded-md px-2">{cityName?.ville_AR}</span>
-                         {" "} هناك 207 عامل
+                         {" "} هناك {nbrWorker} عامل
                     </h1>
                     :
                     <h1 className="text-center text-xl font-semibold text-[#3a5973]">
-                        Il y a 207 travailleurs {" "}
+                        Il y a {nbrWorker} travailleurs {" "}
                         <span className="text-teal-700 bg-amber-200 rounded-md px-2">{selectTaskName}</span> à <span className="text-teal-700 bg-amber-200 rounded-md px-2">{cityName?.ville_FR}</span>
                     </h1>
                 }
@@ -88,10 +92,13 @@ const Filter = () => {
 
                     <div className="w-full">
                         <ListWorkers 
+                            cityName={cityName}
                             filterNeededData={filterData} 
                             getClickedWorkerId={setClickedWorkerId} 
                             searchedCityName={selectTaskCity}
-                            searchedProfession={selectTaskName}/>
+                            searchedProfession={selectTaskName}
+                            getNbrWorkers={setNbrWorker}
+                            />
                     </div>
                 </div>
             </div>
@@ -100,13 +107,13 @@ const Filter = () => {
 
         {
             clickedWorkerId != "" &&
-        <div className="w-full h-screen bg-[#00000062] fixed top-0 z-50">
+        <div className="w-full h-screen bg-[#00000062] fixed flex justify-center items-center top-0 z-50">
             
-            <div className="md:w-[50%] w-[95%] mx-auto flex flex-col justify-center items-center h-full">
+            <div className="bg-white md:w-[50%] w-[95%] mx-auto flex flex-col justify-center items-center rounded-md p-3">
                 
                 <div className="flex justify-end w-full">
                     <div onClick={()=>setClickedWorkerId("")} 
-                        className="hover:bg-red-100 cursor-pointer flex justify-center items-center w-[60px] h-[30px] bg-white rounded-t-lg text-xl font-bold">
+                        className=" cursor-pointer flex justify-center items-center bg-red-600  w-[30px] h-[30px] rounded-full text-white text-xl font-bold">
                         <h1>X</h1>
                     </div>
                 </div>

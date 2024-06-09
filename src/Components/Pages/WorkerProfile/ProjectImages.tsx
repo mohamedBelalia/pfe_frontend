@@ -31,7 +31,7 @@ const ProjectImages = ({idProject , firstImg}:ProjectImagesProps) => {
                     let loadedImgs : LoadedImagesType[] = response.data
                     let storedImaged : string[] = [firstImg];
 
-                    for(let i = 0 ; i<loadedImgs.length ; i++){
+                    for(let i = 1 ; i<loadedImgs.length ; i++){
                         storedImaged.push(loadedImgs[i].imgPath);
                     }
 

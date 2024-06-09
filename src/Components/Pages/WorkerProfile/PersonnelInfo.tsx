@@ -19,7 +19,7 @@ const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
 
   return (
     <div className="w-full flex flex-col px-5 py-4 md:py-10 rounded-md bg-white border border-teal-800 shadow-xl gap-3">
-        <div className="flex gap-3 flex-col md:flex-row items-center">
+        <div className="flex gap-3 flex-col md:flex-row items-center justify-center">
             <div className="rounded-full overflow-hidden md:w-[90px] md:h-[90px] w-[120px] h-[120px]">
                 <img 
                     src={Config.BaseImagesPath_Profiles + singleWorker.imgProfile} 
@@ -35,12 +35,13 @@ const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
                         isArabicSelected
                         ?
                         <p className="text-sm  font-semibold">
-                            المدينة الرئيسية
-                            <span className="px-1 bg-yellow-300 rounded-md font-bold text-teal-800"> مراكش</span>
+                            <span className="px-1 bg-yellow-300 rounded-md font-bold text-teal-800">{singleWorker.ville_AR}</span>
                         </p>
                         : 
-                        <p className="text-sm  font-semibold">
-                            ville principale <span className="px-1 bg-yellow-300 rounded-md font-bold text-teal-800">Marrakech</span>
+                        <p className="text-sm w-full bg-yellow-300 rounded-md text-center font-semibold">
+                            {/* <span className="px-1 bg-yellow-300 rounded-md font-bold text-teal-800"> */}
+                                {singleWorker.ville_FR}
+                            {/* </span> */}
                         </p>
                     }
                 
@@ -48,11 +49,15 @@ const PersonnelInfo = ({singleWorker}:ISingleWorker) => {
         </div>
 
       
-        <div className="py-1 px-4 rounded-md bg-slate-400 text-white text-center w-[100px] mx-auto">
-            <p>Maalem</p>
+        <div className="py-0.5 px-4 rounded-md bg-slate-300 text-teal-900 font-semibold text-center w-full mx-auto my-2">
+            {
+                isArabicSelected 
+                ? singleWorker.labelleBadge_AR 
+                : singleWorker.labelleBadge_FR
+            }
         </div>  
 
-        <div className="mt-4 ">
+        <div className="">
             <a href="tel:+212 632-602326">
                 <div className="flex border-2 border-dashed border-teal-500 rounded-md py-2 mx-auto justify-center gap-3 items-center text-xl font-semibold text-end text-[#2d7d7d]">
                     <FaPhoneAlt/>
