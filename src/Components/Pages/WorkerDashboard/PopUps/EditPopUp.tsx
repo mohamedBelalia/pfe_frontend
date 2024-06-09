@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
@@ -15,11 +15,7 @@ interface PROPSPopUp {
 const EditPopUp = ({ close }: PROPSPopUp) => {
 
 
-    // const { steps, currentStepindex, step, isFirstStep, isLastStep, back, next } = useMultistepsForm([
-    //     <ChoiseCity />,
-    //     <ChoiseOccupations />,
-    //     <textarea placeholder="Your Description Here" className="h-24 focus:outline-dashed pt-4 pl-4 md:h-28 w-[253px] text-black md:w-[400px] rounded-md mt-3 mb-3" name="description" />
-    // ])
+   
 
     const [passVisible, setPassVisible] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>('');
