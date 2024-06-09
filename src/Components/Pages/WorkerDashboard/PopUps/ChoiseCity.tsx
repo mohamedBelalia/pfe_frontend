@@ -48,7 +48,7 @@ const ChoiseCity = () => {
             {isOpen && (
                 <div className='h-[200px]  sm:w-[100%] z-10 overflow-y-scroll scrollbar-none border border-gray-400 bg-gray-200 rounded-md shadow-lg absolute w-full top-14 -mt-1 transition-all ease-in-out duration-150 overflow-hidden'>
                    
-                   {cities .filter(city => city.toLowerCase().includes(inputValue.toLowerCase()))
+                   {cities.filter(city => city.toLowerCase().includes(inputValue.toLowerCase()))
                             .map((city, index) => (
                                 inputValue.length<5 &&<div 
                                 onClick={()=>handleChoiseCity(city)}
