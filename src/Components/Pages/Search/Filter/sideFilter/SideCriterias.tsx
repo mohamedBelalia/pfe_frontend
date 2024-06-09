@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SelectDateBtn from "./SelectDateBtn";
 import { DateValueType } from "react-tailwindcss-datepicker";
-import RangePrice from "./RangePrice";
 import Badge from "./Badge";
 
 
@@ -17,11 +16,6 @@ const SideCriterias = () => {
     <div className="w-full p-8 bg-gray-200 rounded-lg border border-gray-400 flex flex-col gap-5">
 
         <SelectDateBtn getSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
-
-        <hr className="h-[3px] rounded-full w-[80%] mx-auto bg-gray-500"/>
-
-        <RangePrice/>
-
         <hr className="h-[3px] rounded-full w-[80%] mx-auto bg-gray-500"/>
 
         <Badge/>
