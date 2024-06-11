@@ -20,7 +20,7 @@ const Card = () => {
     return (
 
 
-        <div className={`${isArabic?"flex flex-col items-end":""}  p-6 w-full m-auto sm:w-[70%] tab:w-[35vw] md:w-[30vw] pb-6 mb-3 border text-center  rounded-md`}>
+        <div className={`${isArabic?"flex flex-col items-end":""}  p-6 w-full m-auto sm:w-[70%] tab:w-[400px] md:w-[300px] pb-6 mb-3 border text-center  rounded-md`}>
 
             <EditProfile isOpen={isOpen} onClose={togglePopup} />
             <div onClick={togglePopup} className={ `${isArabic?"flex-row-reverse":""} flex cursor-pointer  text-blue500`}>

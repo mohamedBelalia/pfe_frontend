@@ -41,18 +41,19 @@ const OtherInfos = () => {
                 </div>
                 <div className={`flex w-full  justify-between items-center flex-wrap ${isArabic ? "flex-row-reverse" : ""}`}>
                  
-                    <div className="w-full tab:h-[260px] md:w-[200px] tab:w-[260px] md:h-[200px] mb-4  rounded">
-                        <img className="rounded-xl object-cover  h-full w-full " src="imgUsed/portrait-man-laughing.jpg" alt="img" />
+                    <div className=" mb-4 w-[48%]  aspect-1  rounded">
+                        <img className="rounded-xl w-full object-cover  h-full  " src="imgUsed/portrait-man-laughing.jpg" alt="img" />
                     </div> 
-                    <div className=" w-full  tab:h-[260px] md:w-[200px] tab:w-[260px] md:h-[200px]  mb-4  rounded">
-                        <img className="rounded-xl object-cover  h-full w-full " src="imgUsed/00.jpg" alt="img" />
+                    <div className=" mb-4 w-[48%]  aspect-1  rounded">
+                        <img className="rounded-xl w-full object-cover  h-full  " src="imgUsed/00.jpg" alt="img" />
                     </div> 
-                    <div className=" w-full tab:h-[260px] md:w-[200px] tab:w-[260px] md:h-[200px]  rounded">
-                        <img className="rounded-xl object-cover h-full w-full " src="./imgUsed/20.jpg" alt="img" />
+                    <div className=" mb-4 w-[48%]  aspect-1  rounded">
+                        <img className="rounded-xl w-full object-cover  h-full  " src="imgUsed/20.jpg" alt="img" />
                     </div> 
-                    <div className="w-full cursor-pointer  tab:h-[260px] md:w-[200px] tab:w-[260px] md:h-[200px]  relative bg-black rounded-xl">
+                   
+                    <div className="w-[48%]  aspect-1 cursor-pointer   relative bg-black rounded-xl">
                         <img className="rounded-xl object-cover w-full opacity-50 h-full" src="imgUsed/30.jpg" alt="img" />
-                        <div className="absolute hover:text-[2rem] hover:text-teal500 w-full h-full text-white inset-0 m-auto flex items-center justify-center md:text-3xl sm:text-xl">+{cmp-3} Posts</div>
+                        <div className="absolute  hover:text-[2rem] hover:text-teal500 w-full h-full text-white inset-0 m-auto flex items-center justify-center md:text-3xl sm:text-xl">+{cmp-3} Posts</div>
                     </div>
 
                 </div>
