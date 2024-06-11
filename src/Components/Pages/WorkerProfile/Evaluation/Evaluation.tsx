@@ -3,7 +3,7 @@ import RatingRangesOf from "./RatingRangesOf"
 type EvaluationProps = {
   workerId : string
 }
-
+// 
 const Evaluation = ({workerId}:EvaluationProps) => {
   return (
     <div className="px-7 mt-8 flex flex-col gap-14"> 

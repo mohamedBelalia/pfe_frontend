@@ -206,7 +206,7 @@ const WorkerProfile = () => {
                   </h1>
                   <div className="pb-3">
                     {
-                      idWorker != undefined 
+                      idWorker != undefined  // if there is no id worker
                       &&
                       <Evaluation workerId={idWorker}/>
                     }

@@ -42,6 +42,7 @@ const RatingRangesOf = ({ ratingOf, workerId }: RatingRangesOfProps) => {
         }
     }, [ratingRanges]);
 
+    // TODO Handling a nice UI for this cases
     if (!isLoaded) {
         return <div>Loading...</div>;
     }
