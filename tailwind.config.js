@@ -14,7 +14,7 @@ export default {
       'lg': '1440px',
     },
 
-
+    
     extend: {
       colors: {
         blue500: '#199AFF',
@@ -34,6 +34,10 @@ export default {
   },
   plugins: [
     require('tailwind-scrollbar'),
+    
   ],
 }
+// tailwind.config.js
+
+  
 

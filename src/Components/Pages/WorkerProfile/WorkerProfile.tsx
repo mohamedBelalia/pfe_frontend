@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
 import ShowedProject from "./ShowedProject";
 import RatingProcess from "../../Common/RatingProcess/RatingProcess";
-import Evaluation from "./Evaluation";
+import Evaluation from "./Evaluation/Evaluation";
 
 const WorkerProfile = () => {
 
@@ -184,12 +184,12 @@ const WorkerProfile = () => {
                     }
                     
                   </h1>
-                  <div className="py-3">
+                  <div className="pb-3">
                     <Diplomes workerId={idWorker != null ? idWorker : ""}/>
                   </div>
               </div>
 
-            <div>
+            <div className="my-5">
                 <h1 className={`text-xl font-bold flex ${isArabicSelected ? 'justify-end' : 'justify-start' } gap-1 text-teal-700`}>
                     {
                       isArabicSelected
@@ -204,8 +204,12 @@ const WorkerProfile = () => {
                     }
                     
                   </h1>
-                  <div className="py-3">
-                    <Evaluation/>
+                  <div className="pb-3">
+                    {
+                      idWorker != undefined 
+                      &&
+                      <Evaluation workerId={idWorker}/>
+                    }
                   </div>
             </div>
               
