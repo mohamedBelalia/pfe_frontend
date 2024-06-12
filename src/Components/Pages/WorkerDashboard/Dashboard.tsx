@@ -1,6 +1,7 @@
 import ComplateAcount from "./ComplateAcount/ComplateAcount"
 import Card from "./Card/Card";
 import OtherInfos from "./OtherInfos/OtherInfos";
+import PaginationPage from "./OtherInfos/PaginationPage";
 // import AllPosts from "./AllPosts/AllPosts";
 // import Comments from "./Comments/Comments";
 // import { useState } from "react";
@@ -19,7 +20,7 @@ return (
            <Card />
            <ComplateAcount />
          </div>
-         <OtherInfos />
+         <PaginationPage />
        </div>
        {/* <AllPosts /> */}
        {/* <Comments /> */}
@@ -38,7 +39,7 @@ return (
           <Card />
           <ComplateAcount />
         </div>
-        <OtherInfos />
+        <PaginationPage />
       </div>
       {/* <AllPosts /> */}
       {/* <Comments /> */}

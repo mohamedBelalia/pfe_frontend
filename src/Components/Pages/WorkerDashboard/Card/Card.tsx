@@ -1,10 +1,27 @@
 import { IoMdSettings } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbStars } from "react-icons/tb";
 import EditProfile from "../PopUps/EditProfile";
+import Api from "../../../../api/Api";
 
+interface Worker {
+    idOuvrier: string;
+    nomOuvrier: string;
+    prenomOuvrier: string;
+    phone: string;
+    imgProfile: string;
+    description_ouvrier:string
+    // Add any other properties if needed
+}
+interface Profession  {
+    idProfession: number,
+    labelleProfession_AR: string,
+    labelleProfession_FR: string
+};
 const Card = () => {
-
+    const [worker,setWorker]= useState<Worker[]>([]);
+    const [professions,setProfessions]= useState<Profession[]>([]);
+    // const [idNum,setIdNum]= useState<number>(0);
     const isArabic = true;
     const Occupations = (props: { text: string }) => {
         return (
@@ -17,12 +34,45 @@ const Card = () => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        const fetchWorker = async () => {
+            try {
+                const response = await Api.get<Worker[]>("workers?id=13");
+                setWorker(response.data);
+                // console.log(worker[0]);
+                // setIdNum(Number(worker[0].idOuvrier))
+                
+            } catch (error) {
+                console.error("Error fetching professions:", error);
+            }
+        };
+
+        fetchWorker();
+    }, []);
+
+    useEffect(() => {
+        const fetchProfessions = async () => {
+            try {
+                const response = await Api.get<Profession[]>(`professions?workerId=${worker[0].idOuvrier}`);
+                setProfessions(response.data);
+
+                // console.log(professions[1]);
+                
+            } catch (error) {
+                console.error("Error fetching professions:", error);
+            }
+        };
+
+        fetchProfessions();
+    }, []);
+    
+
     return (
 
 
         <div className={`${isArabic?"flex flex-col items-end":""}  p-6 w-full m-auto sm:w-[70%] tab:w-[400px] md:w-[300px] pb-6 mb-3 border text-center  rounded-md`}>
 
-            <EditProfile isOpen={isOpen} onClose={togglePopup} />
+            <EditProfile id={2} isOpen={isOpen} onClose={togglePopup} />
             <div onClick={togglePopup} className={ `${isArabic?"flex-row-reverse":""} flex cursor-pointer  text-blue500`}>
                 <IoMdSettings />
                 <div className='-mt-1 font-semibold mx-1'>{isArabic ? "تعديل الملف الشخصي" : "Edit Profile"}</div>
@@ -30,13 +80,12 @@ const Card = () => {
             </div>
             <img className=' w-32 md:w-32 m-auto mt-6 mb-3 rounded-full ' src="imgUsed\portrait-man-laughing.jpg" alt="" />
             <div className="text-teal500 w-full text-lg md:text-xl font-semibold flex justify-center pb-4">
-                <div >{!isArabic ? "Ahmed Akrami" : "أحمد أكرم"}</div>
+                <div >{worker[0]?.nomOuvrier+" "+ worker[0]?.prenomOuvrier}</div>
 
                 <TbStars className="ml-3  text-yellow-500" />
             </div>
-            <div className={`${isArabic ? "rtl" : ""} `}>
-                {!isArabic?"Je me ferai un plaisir de vous aider et de tout faire rapidement et efficacement. J'aime mon travail et j'aime aider les gens."
-                :" سأكون سعيدًا بمساعدتك والقيام بكل شيء بسرعة وكفاءة. أحب عملي وأحب مساعدة الناس."}
+            <div className="m-auto">
+                <div>{worker[0]?.description_ouvrier}</div>
             </div>
 
             {/* <div className={`${isArabic:"rtl"}`}>I will be happy to help you and do everything quickly and efficiently. I like my job and I like helping people</div> */}
@@ -44,36 +93,17 @@ const Card = () => {
                 <div className="font-semibold ml-1 mt-5 text-teal500 text-left">{isArabic? "المهن" : "Occupations"}</div>
 
                 <div className={`${isArabic?"justify-end":""} flex  flex-wrap`}>
-                    <Occupations text={"Plumber"} />
-                    <Occupations text={"Builder"} />
-                    <Occupations text={"Hv Technician"} />
+                    {professions.map(prof=>{
+                   return <Occupations text={isArabic?prof.labelleProfession_AR:prof.labelleProfession_FR} key={prof.idProfession}/>
+
+
+                    })}
+                    
 
                 </div>
             </div>
         </div>
-        // <div className='p-6   pb-6 mb-3 border text-center  rounded-md'>
-
-        //     <EditProfile isOpen={isOpen} onClose={togglePopup} />
-        //     <div onClick={togglePopup} className='flex justify-end font-bold w-full  cursor-pointer text-blue500 '>
-        //         <div className='-mt-1.5 mr-1'>تعديل الملف</div>
-        //         <IoMdSettings />
-        //     </div>
-        //     <img className=' w-32 md:w-32 m-auto mt-6 mb-3 rounded-full ' src="public\imgUsed\portrait-man-laughing.jpg" alt="" />
-        //     <div className="text-teal500 text-lg md:text-xl font-semibold flex justify-center pb-4">
-        //         <div >أحمد أكرم </div>
-        //         <TbStars className="ml-3  text-yellow-500" />
-        //     </div>
-        //     <div className="text-sm md:text-md w-72 m-auto text-600 font-semibold text-gray700">سأكون سعيدًا بمساعدتك والقيام بكل شيء بسرعة وكفاءة. أحب عملي وأحب مساعدة الناس</div>
-        //     <div>
-        //         <div className="font-semibold ml-1 mt-5 text-teal500 text-right">المهن</div>
-        //         <div className="flex justify-end flex-wrap">
-        //             <Occupations text={"سباك"} />
-        //             <Occupations text={"بناء"} />
-        //             <Occupations text={"نجار الخشب"} />
-
-        //         </div>
-        //     </div>
-        // </div>
+       
 
     )
 }

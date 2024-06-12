@@ -1,8 +1,8 @@
 // import React from 'react'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
-import data from "./Occupations.json";
 import { PiXCircleFill } from "react-icons/pi";
+import Api from "../../../../api/Api"
 
 
 type userData = {
@@ -13,15 +13,34 @@ type userData = {
 type OccupationsFormProps = userData & {
     updateFields: (fields: Partial<userData>) => void
 }
+interface Profession {
+    idProfession: string;
+    labelleProfession_AR: string;
+    labelleProfession_FR: string;
+}
 
 const Ocupations = ({ occupations,cmpOccup, updateFields }: OccupationsFormProps) => {
-
+    const [professions, setProfessions] = useState<Profession[]>([]);
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [choosedOccupations, setChoosedOccupations] = useState<string[]>([...occupations]);
     const [cmp, setCmp] = useState<number[]>([...cmpOccup]);
     const [isArabic] = useState<boolean>(true);
     // const dropdownRef = useRef<HTMLDivElement>(null);
+    //  to bring occupations data
+    useEffect(() => {
+        const fetchProfessions = async () => {
+            try {
+                const response = await Api.get("/professions/");
+                setProfessions(response.data);
+                console.log(professions);
+                
+            } catch (error) {
+                console.error("Error fetching professions:", error);
+            }
+        };
 
+        fetchProfessions();
+    }, []);
     const handleClickedOccupations = (index: number, Occup: string | undefined) => {
         if (Occup && cmpOccup.length < 3 && !choosedOccupations.includes(Occup)) {
             setCmp([...cmpOccup, index]);
@@ -99,13 +118,14 @@ const Ocupations = ({ occupations,cmpOccup, updateFields }: OccupationsFormProps
             </div>
             <div className={`${isClicked ? 'h-[300px] w-[611px] mt-1 overflow-y-scroll scrollbar-none border border-teal500' : 'h-0'}
              bg-gray-50 w-full  rounded-md shadow-lg   transition-all ease-in-out duration-150 overflow-hidden`}>
-                {data.map((Occu, index) => (
+                {professions.map((profession ) => (
                     <div
-                        key={index}
-                        onClick={() => handleClickedOccupations(index, Occu)}
-                        className={`${cmp.includes(index) ? 'bg-teal-400 text-white' : ''} md:h-[38px] hover:bg-blue-600 hover:text-white w-full border-b-2 flex justify-start items-center  px-8  border-gray-100 `}
+                        dir='rtl'
+                        key={profession.idProfession}
+                        onClick={() => handleClickedOccupations(Number(profession.idProfession), profession.labelleProfession_AR)}
+                        className={`${cmp.includes(Number(profession.idProfession)) ? 'bg-teal-400 text-white' : ''} md:h-[38px] hover:bg-blue-600 hover:text-white w-full border-b-2 flex justify-start items-center  px-8  border-gray-100 `}
                     >
-                        {Occu}
+                        {profession.labelleProfession_AR}
                     </div>
                 ))}
             </div>
