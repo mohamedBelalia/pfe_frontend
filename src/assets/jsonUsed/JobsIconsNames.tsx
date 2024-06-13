@@ -8,65 +8,45 @@ export const jobs = [
         nameEn: "Peintre",
         nameAr: "صباغ",
         id : "1",
+        imgPath : "./professionsIcons/painting.png",
         Icon : <GiLargePaintBrush/>
       },
       {
         nameEn: "Charpentier",
         nameAr: "نجار",
         id : "2",
+        imgPath : "./professionsIcons/sawing.png",
         Icon : <FaHammer/>
       },
       {
         nameEn: "Constructeur",
         nameAr: "بنّاء",
         id : "3",
+        imgPath : "./professionsIcons/construction.png",
         Icon : <GiConcreteBag/>
       },
       {
         nameEn: "Plombier",
         nameAr: "سباك",
         id : "4",
+        imgPath : "./professionsIcons/water-tap.png",
         Icon : <MdPlumbing/>
       },
       {
         nameEn: "Électricien",
         nameAr: "كهربائي",
         id : "5",
+        imgPath : "./professionsIcons/electrician.png",
         Icon : <MdElectricBolt/>
       }
       ,
       {
-        nameEn: "Marbrier",
-        nameAr: "رخايمي",
+        nameEn: "Climatisation",
+        nameAr: "التكييف",
         id : "6",
+        imgPath : "./professionsIcons/air-conditioning.png",
         Icon : <img src="/icons/marble.png"/>
       }     
-      ,
-      {
-        nameEn: "Constructeur",
-        nameAr: "بنّاء",
-        id : "7",
-        Icon : <GiConcreteBag/>
-      },
-      {
-        nameEn: "Plombier",
-        nameAr: "سباك",
-        id : "8",
-        Icon : <MdPlumbing/>
-      },
-      {
-        nameEn: "Électricien",
-        nameAr: "كهربائي",
-        id : "9",
-        Icon : <MdElectricBolt/>
-      }
-      ,
-      {
-        nameEn: "Marbrier",
-        nameAr: "رخايمي",
-        id : "10",
-        Icon : <img src="/icons/marble.png"/>
-      }  
 ]
 /*
 Carpenter

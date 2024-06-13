@@ -3,10 +3,11 @@ import Api from "../../../../api/Api";
 
 type RatingRangesOfProps = {
     ratingOf: "respect_delais" | "quality_travail" | "prix_qualite"
-    workerId: string
+    workerId: string ,
+    getIsNoComment? : (isNoComment : boolean) => void
 }
 
-const RatingRangesOf = ({ ratingOf, workerId }: RatingRangesOfProps) => {
+const RatingRangesOf = ({ ratingOf, workerId , getIsNoComment}: RatingRangesOfProps) => {
 
     const [ratingRanges, setRatingRanges] = useState<{
         count_Bien: number;
@@ -18,7 +19,7 @@ const RatingRangesOf = ({ ratingOf, workerId }: RatingRangesOfProps) => {
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     const widthOf = (count: number, sum: number) => {
-        return (count * 100) / sum;
+        return Math.round((count * 100) / sum);
     };
 
     useEffect(() => {
@@ -51,16 +52,27 @@ const RatingRangesOf = ({ ratingOf, workerId }: RatingRangesOfProps) => {
         return <div>No data available</div>;
     }
 
+    if(ratingRanges.count_Bien == null && ratingRanges.count_Excellent == null && ratingRanges.count_Tres_Bien == null){
+        if(getIsNoComment){
+            getIsNoComment(true);
+        }
+    }
+    
+
     return (
         <div className="flex flex-col gap-5">
-            <table className="h-[160px] mx-12">
+            <table className="h-[160px] mmx-12">
                 <tbody>
                     <tr>
                         <td className="font-semibold text-[18px] w-[12%]">Bien</td>
                         <td className="w-full">
                             <div className="h-[35px] w-[430px] relative">
                                 <div style={{ width: `${widthOf(ratingRanges.count_Bien, totalRate)}%` }} className="h-full flex justify-center items-center font-semibold text-[#7c4a27] bg-[#e8975d8b] rounded-md">
-                                    {widthOf(ratingRanges.count_Bien, totalRate)} %
+                                    {
+                                    widthOf(ratingRanges.count_Bien, totalRate) > 0 
+                                    &&
+                                    widthOf(ratingRanges.count_Bien, totalRate) + " %"
+                                    }
                                 </div>
                                 <div className="absolute top-0 left-0 w-full h-full border-2 border-[#E8985D] rounded-md"></div>
                             </div>
@@ -71,7 +83,11 @@ const RatingRangesOf = ({ ratingOf, workerId }: RatingRangesOfProps) => {
                         <td className="w-full">
                             <div className="h-[35px] w-[430px] relative">
                                 <div style={{ width: `${widthOf(ratingRanges.count_Tres_Bien, totalRate)}%` }} className="h-full flex justify-center items-center font-semibold text-[#214866] bg-[#199AFF8b] rounded-md">
-                                    {widthOf(ratingRanges.count_Tres_Bien, totalRate)} %
+                                    {
+                                    widthOf(ratingRanges.count_Tres_Bien, totalRate) > 0 
+                                    &&
+                                    widthOf(ratingRanges.count_Tres_Bien, totalRate) + " %"
+                                    }
                                 </div>
                                 <div className="absolute top-0 left-0 w-full h-full border-2 border-[#199AFF] rounded-md"></div>
                             </div>
@@ -82,7 +98,11 @@ const RatingRangesOf = ({ ratingOf, workerId }: RatingRangesOfProps) => {
                         <td className="w-full">
                             <div className="h-[35px] w-[430px] relative">
                                 <div style={{ width: `${widthOf(ratingRanges.count_Excellent, totalRate)}%` }} className="h-full flex justify-center items-center font-semibold text-[#195656] bg-[#3492928b] rounded-md">
-                                    {widthOf(ratingRanges.count_Excellent, totalRate)} %
+                                    {
+                                    widthOf(ratingRanges.count_Excellent, totalRate) > 0 
+                                    &&
+                                    widthOf(ratingRanges.count_Excellent, totalRate) + " %"
+                                    }
                                 </div>
                                 <div className="absolute top-0 left-0 w-full h-full border-2 border-[#349292] rounded-md"></div>
                             </div>

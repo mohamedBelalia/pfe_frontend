@@ -69,6 +69,7 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
 
         }
     }
+    
 
   return (
     <div className="w-[95%] md:w-[60%] bg-white rounded-2xl min-h-[500px] ">
@@ -122,7 +123,7 @@ const RatingProcess = ({workerName , workerId}:RateingProcessProps) => {
             &&
             <div className="mt-5 flex justify-between items-center">
                 {
-                    !(criteriaNumber >=4)
+                    !(criteriaNumber >=4 || criteriaNumber == 1)
                     ?
                     <button
                         onClick={retour} 

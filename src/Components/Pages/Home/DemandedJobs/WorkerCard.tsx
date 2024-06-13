@@ -56,8 +56,8 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:JobCardTypes) => {
 
 
   return (
-    <div>
-        <div className="p-4 py-6 flex gap-9 flex-col md:flex-1 w-[350px] bg-[#ffffff] shadow-xl rounded-xl overflow-hidden border-2 border-teal-600">
+    <div className="md:col-span-4">
+        <div className="p-4 py-6 flex gap-9 flex-col md:flex-1 w-[350px] md:w-full bg-[#ffffff] shadow-xl rounded-xl overflow-hidden border-2 border-teal-600">
            
            {/* Head Card (image , name , badge) */}
            <div className="flex gap-4">
@@ -130,7 +130,7 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:JobCardTypes) => {
                 </p>
                 </div>
               </div>
-              <div title={`${workerInfo.prenomOuvrier} رقم هاتف السيد `} className="text-[#2d7d7d] text-md font-bold">
+              <div title={`${workerInfo.prenomOuvrier} رقم هاتف السيد `} className="text-[#2d7d7d] text-lg font-bold">
                   {workerInfo.phone}
               </div>
           </div>

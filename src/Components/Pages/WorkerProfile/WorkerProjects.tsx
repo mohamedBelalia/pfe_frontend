@@ -92,7 +92,14 @@ const WorkerProjects = ({idOuvrier} : workerProjectsProps) => {
     }
 
     if(projects == undefined || !isProjectsExist){
-        return <div>NO PROJECTS</div>
+        return <div className="w-full py-5 flex flex-col justify-center opacity-75 items-center gap-4 bg-slate-200 m-3 text-xl font-semibold rounded-md">
+            <img src="/imgUsed/construction.png" alt="project" className="w-[150px]" />
+            {
+                isArabicSelected
+                ? "لا توجد مشاريع"
+                : "il y a aucun projet"
+            }
+        </div>
     }
 
   return (

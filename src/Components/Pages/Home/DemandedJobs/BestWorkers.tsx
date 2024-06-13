@@ -160,14 +160,16 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
                                 labelleBadge_AR : worker.labelleBadge_AR ,
                                 labelleBadge_FR : worker.labelleBadge_FR ,
                                 nbrCommentair : worker.nbrCommentair ,
-                                avgEtoile : worker.avgEtoile 
+                                avgEtoile : worker.avgEtoile ,
+                                ville_AR : worker.ville_AR ,
+                                ville_FR : worker.ville_FR
                             }} />
                 ))
             }
         </div>
 
             {/* PC screens seaction */}
-        <div className="hidden md:flex justify-around md:flex-wrap gap-5 mt-14">
+        <div className="hidden md:grid grid-cols-12 gap-8 mt-14">
             {
                 workers?.map((worker, _) => (
                     <WorkerCard key={worker.idOuvrier}
@@ -187,7 +189,9 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
                                 labelleBadge_AR : worker.labelleBadge_AR ,
                                 labelleBadge_FR : worker.labelleBadge_FR,
                                 nbrCommentair : worker.nbrCommentair ,
-                                avgEtoile : worker.avgEtoile
+                                avgEtoile : worker.avgEtoile,
+                                ville_AR : worker.ville_AR ,
+                                ville_FR : worker.ville_FR
                             }} />
                 ))
             }
