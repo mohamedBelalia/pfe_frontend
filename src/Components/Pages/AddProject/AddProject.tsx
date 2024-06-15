@@ -36,7 +36,6 @@ const AddProject = () => {
         const fileName = file.name ;
         const fileExtension = fileName.split('.').pop()?.toLowerCase();
 
-        console.log(fileExtension);
         if(fileExtension != "png" && fileExtension != "jpeg" && fileExtension != "jpg" && fileExtension != "webp"){
             setIsFileNotImage(true)
         }
@@ -45,6 +44,8 @@ const AddProject = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
             setSelectedImages((prev) => [...prev, reader.result as string]);
+            console.log(reader.result as string);
+            
             };
             reader.readAsDataURL(file);
         }
@@ -117,7 +118,7 @@ const AddProject = () => {
         const byteArray = new Uint8Array(byteNumbers);
         return new Blob([byteArray], { type: mimeType });
     };
-    
+        
 
   return (
     <>
@@ -185,21 +186,21 @@ const AddProject = () => {
                  <div className="flex flex-col ">
                     <label className="text-teal-700 font-semibold text-xl mb-1">{isArabicSelected ? "عنوان المشروع" : "Titre De Projet"}</label>
                     <input 
-                    value={projectTitle}
+                        value={projectTitle}
+                        onChange={(e)=>setProjectTitle(e.target.value)}
                         className="border-2 border-teal-600 rounded-md outline-none p-2"
                         type="text" 
                         placeholder={isArabicSelected ? "العنوان" : "le titre"}
-                        onChange={(e)=>setProjectTitle(e.target.value)}
                         />
                  </div>
 
                  <div className="flex flex-col ">
                     <label className="text-teal-700 font-semibold text-xl mb-1">{isArabicSelected ? "وصف المشروع" : "Description du projet"}</label>
                     <textarea 
-                    value={projectDescription}
+                        value={projectDescription}
+                        onChange={(e)=>setProjectDescription(e.target.value)}
                         className="border-2 border-teal-600 rounded-md outline-none p-2"
                         placeholder={isArabicSelected ? "وصف المشروع" : "Description du projet"}
-                        onChange={(e)=>setProjectDescription(e.target.value)}
                         rows={6}
                         />
                  </div>

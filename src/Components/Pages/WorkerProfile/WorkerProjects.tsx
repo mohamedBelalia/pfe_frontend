@@ -106,7 +106,7 @@ const WorkerProjects = ({idOuvrier} : workerProjectsProps) => {
     <div className="my-5">
         <div ref={cardsContainerRef} className="flex gap-10 overflow-x-scroll no-scrollbar scroll-smooth">
            {
-            projects.map((project , index)=>(
+            projects.map((project , _)=>(
                 <div key={project.idProjet}>
                     <ProjectCard projectInfo={project}/>
                 </div>
@@ -154,6 +154,7 @@ const ProjectCard = ({projectInfo}:ProjectProps) => {
             setIsTextArabic(false)
         }
     },[titleProject])
+
 
 
     return(

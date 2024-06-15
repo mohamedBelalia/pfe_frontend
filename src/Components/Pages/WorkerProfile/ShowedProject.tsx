@@ -13,6 +13,7 @@ type showedProjectProps = {
 }
 
 const ShowedProject = ({idProject}:showedProjectProps) => {
+    
 
     // to change the showed Project
     const dispatch = useDispatch<AppDispatch>()
@@ -29,13 +30,17 @@ const ShowedProject = ({idProject}:showedProjectProps) => {
     // to handle the project content
     const [ isTextArabic , setIsTextArabic] = useState<boolean>(true)
 
+    // handle project not found
+    const [isNotFound , setIsNotFound] = useState<boolean>(true)
+
     useEffect(()=>{
         const fetchProjectData = async()=> {
             
             try{
                 const response = await Api.get(`/projects?id=${idProject}`)
                 if(response.data.status != "not found"){
-                    setProject(response.data[0])
+                    setProject(response.data);
+                    setIsNotFound(false);              
                 }
             }
             catch(err){
@@ -71,11 +76,6 @@ const ShowedProject = ({idProject}:showedProjectProps) => {
         )
     }
 
-    if(project == undefined){
-        dispatch(setClickedProject({idProject : ""}))
-        return false
-    }
-
   return (
     <div className="w-[95%] md:w-[80%]  bg-white rounded-md">
         <div className="h-[20px] mb-3 flex justify-end">
@@ -83,7 +83,10 @@ const ShowedProject = ({idProject}:showedProjectProps) => {
                 onClick={()=>dispatch(setClickedProject({idProject : ""}))} 
                 className="w-[30px] h-[30px] bg-red-500 text-white rounded-bl-lg font-bold">X</button>
         </div>
-        <div className="flex flex-col-reverse md:flex-row gap-5 md:p-8 p-2">
+        {
+            !isNotFound && project != undefined
+            ?
+            <div className="flex flex-col-reverse md:flex-row gap-5 md:p-8 p-2">
             <div className="w-full md:w-[40%] flex flex-col gap-5">
                 <h1 className={`text-2xl font-bold text-blue-600 ${isTextArabic && "text-end"}`}>{project.titre}</h1>
                 <p className={`text-teal-950 font-semibold ${isTextArabic && "text-end"}`}>
@@ -96,6 +99,9 @@ const ShowedProject = ({idProject}:showedProjectProps) => {
             </div>
 
         </div>
+        : <div className="w-full h-[200px] flex justify-center items-center">il y a une erreur avec ce projet</div>
+        }
+        
     </div>
   )
 }

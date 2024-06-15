@@ -57,7 +57,7 @@ const ListWorkers = ({getClickedWorkerId , filterNeededData , searchedCityName ,
           const response = await Api.get(`/workers?filter=${filter}`)          
 
           if(response.data.status != "not found"){
-            setFilteredWorkers(response.data) ;
+            setFilteredWorkers(response.data) ;            
             setIsNotFound(false)
             getNbrWorkers(response.data.length)            
           }

@@ -10,6 +10,7 @@ import Login from './Components/Pages/Auth/login/Login'
 import Forms from './Components/Pages/Auth/Signup/Forms'
 import WorkerProfile from './Components/Pages/WorkerProfile/WorkerProfile'
 import AddProject from './Components/Pages/AddProject/AddProject'
+import UpdateProject from './Components/Pages/WorkerDashboard/updateProject/UpdateProject'
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/:idWorker/ajouter-projet" element={<AddProject />} />
             <Route path="/ouvres/:idWorker" element={<WorkerProfile />} />
-            <Route path="*" element={<div>NOT FOUND</div>} />
+            <Route path="*" element={<UpdateProject idProject='1'/>} />
           </Routes>
         <Footer/>
       </Router>

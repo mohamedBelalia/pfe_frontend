@@ -50,10 +50,11 @@ interface IBadgeProps {
 interface IProjectWorker {
     idProjet: string
     imageProjet: string
-    titre?: string
-    description_projet?: string
+    titre: string
+    description_projet: string
     idOuvrier ?: string
 }
+
 
 // for the Diploms of each worker
 interface IDiplomsWorker {

@@ -28,14 +28,7 @@ const ProjectImages = ({idProject , firstImg}:ProjectImagesProps) => {
                     setIsNotFound(true)
                 }
                 else{
-                    let loadedImgs : LoadedImagesType[] = response.data
-                    let storedImaged : string[] = [firstImg];
-
-                    for(let i = 1 ; i<loadedImgs.length ; i++){
-                        storedImaged.push(loadedImgs[i].imgPath);
-                    }
-
-                    setImages(storedImaged);   
+                    setImages(response.data);   
                 }
             }
             catch(err){
