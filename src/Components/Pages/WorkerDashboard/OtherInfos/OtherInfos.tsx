@@ -1,5 +1,4 @@
 // import { useState } from "react";
-import { useEffect, useState } from "react";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import React from 'react'

@@ -38,7 +38,6 @@ const PopUpCompleteAccount = ({ close, id }: PROPSPopUp) => {
 
 
     const [worker, setWorker] = useState<Worker[]>([]);
-    const [diplomes, setDiplomes] = useState<WorkerDiplomes[]>([]);
 
     const [passVisible, setPassVisible] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>('');
@@ -79,7 +78,8 @@ const PopUpCompleteAccount = ({ close, id }: PROPSPopUp) => {
         const fetchDiplomes = async () => {
             try {
                 const response = await Api.get<WorkerDiplomes[]>(`diplomes?workerId=${id}`);
-                setDiplomes(response.data);
+                // setDiplomes(response.data);
+console.log(response.data);
 
 
 
