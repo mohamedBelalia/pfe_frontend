@@ -8,36 +8,37 @@ import Api from "../../../../api/Api";
 
 interface PROPSPopUp {
     close: () => void,
-    id:number
+    id: number
 
 }
-
-
-
 interface Worker {
     idOuvrier: string;
     nomOuvrier: string;
     prenomOuvrier: string;
     phone: string;
     imgProfile: string;
-    description_ouvrier:string
-    dateNaissance:string
-    ville:string
-    diplomes:string
-    description:string
-    ouvries_ville:string
+    description_ouvrier: string
+    dateNaissance: string
+    ville: string
+    badge: string
+}
+interface WorkerDiplomes {
+    idDiplome: string;
+    labelleDiplome_FR: string;
+    labelleDiplome_AR: string;
 }
 interface City {
     idVille: string;
     ville_AR: string;
     ville_FR: string;
-  }
+}
 
 
-    const PopUpCompleteAccount = ({ close,id }: PROPSPopUp) => {
+const PopUpCompleteAccount = ({ close, id }: PROPSPopUp) => {
 
-   
-    const [worker,setWorker]= useState<Worker[]>([]);
+
+    const [worker, setWorker] = useState<Worker[]>([]);
+    const [diplomes, setDiplomes] = useState<WorkerDiplomes[]>([]);
 
     const [passVisible, setPassVisible] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>('');
@@ -51,15 +52,17 @@ interface City {
     const onsubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
     }
-   
-    
+
+
     // bring worker infos 
     useEffect(() => {
         const fetchWorker = async () => {
             try {
                 const response = await Api.get<Worker[]>(`workers?id=${id}`);
                 setWorker(response.data);
-                
+
+
+
             } catch (error) {
                 console.error("Error fetching professions:", error);
             }
@@ -67,13 +70,34 @@ interface City {
 
         fetchWorker();
     }, []);
+    useEffect(() => {
+        setInputValue(worker[0]?.ville)
+    }, [worker])
+
+    // bring worker diplomes 
+    useEffect(() => {
+        const fetchDiplomes = async () => {
+            try {
+                const response = await Api.get<WorkerDiplomes[]>(`diplomes?workerId=${id}`);
+                setDiplomes(response.data);
+
+
+
+            } catch (error) {
+                console.error("Error fetching professions:", error);
+            }
+        };
+
+        fetchDiplomes();
+    }, []);
     // bring cities  
     useEffect(() => {
         const fetchCitiesr = async () => {
             try {
                 const response = await Api.get<City[]>("villes");
                 setCities(response.data);
-                
+
+
             } catch (error) {
                 console.error("Error fetching cities:", error);
             }
@@ -88,9 +112,9 @@ interface City {
         const parts = originalDate.split("/");
         const formattedDate = `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
         setDateNaiss(formattedDate);
-        setInputValue(worker[0]?.ville);
-      }, []); // Run this effect only once after the initial render
-    
+
+    }, []); // Run this effect only once after the initial render
+
     const handleInputCity = (data: string) => {
         setInputValue(data);
         setCityOpen(true);
@@ -115,58 +139,62 @@ interface City {
                     </label>
                 </div>
                 <div className="w-full flex flex-col items-center">
-                    <div className={`${isArabic?"flex flex-row-reverse":""} md:flex md:justify-around sm:w-[90%] w-[95%]  m-auto md:w-full`}>
+                    <div className={`${isArabic ? "flex flex-row-reverse" : ""} md:flex md:justify-around sm:w-[90%] w-[95%]  m-auto md:w-full`}>
                         <div className=" md:w-[45%] py-2">
-                            
-                            <label htmlFor="prenom" className={`${isArabic?"flex justify-end ":""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
-                                {isArabic? "الاسم الشخصي" : "Nom Personnel"}
+
+                            <label htmlFor="prenom" className={`${isArabic ? "flex justify-end " : ""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
+                                {isArabic ? "الاسم الشخصي" : "Nom Personnel"}
 
                             </label>
                             <input type="text"
-                                dir={`${isArabic?"rtl":""}`}
-                                className={` w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
+                                dir={`${isArabic ? "rtl" : ""}`}
+                                readOnly={worker[0]?.prenomOuvrier !== '' && worker[0].prenomOuvrier !==null ? false : true}
+
+                                className={`${worker[0]?.prenomOuvrier === '' ? "" : "opacity-50"} w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
                                 id="prenom"
-                                value={worker[0]?.nomOuvrier}
+                                value={worker[0]?.prenomOuvrier}
                             />
                         </div>
                         <div className=" md:w-[45%]  py-2">
-                            <label htmlFor="nom" className={`${isArabic?"flex justify-end ":""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `}>
-                                {isArabic?"الاسم العائلي":"Nom de Famille"}
+                            <label htmlFor="nom" className={`${isArabic ? "flex justify-end " : ""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `}>
+                                {isArabic ? "الاسم العائلي" : "Nom de Famille"}
                             </label>
                             <input type="text"
-                                dir={`${isArabic?"rtl":""}`}
+                                readOnly={worker[0]?.nomOuvrier !== '' ? true : false}
 
-                                className={` w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
+                                dir={`${isArabic ? "rtl" : ""}`}
+
+                                className={`${worker[0]?.nomOuvrier === '' ? "" : "opacity-50"} w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
                                 id="nom"
-                                value={worker[0]?.prenomOuvrier}
+                                value={worker[0]?.nomOuvrier}
 
                             />
                         </div>
                     </div>
                     <div className="md:flex md:justify-around m-auto  sm:w-[90%] w-[95%] md:w-full">
                         <div className=" md:w-[45%] py-2">
-                            <label htmlFor="dateNaiss" className={`${isArabic?"flex justify-end ":""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `}>
-                               
-                                {isArabic?"تاريخ الازدياد": "Date De Naissence"}
+                            <label htmlFor="dateNaiss" className={`${isArabic ? "flex justify-end " : ""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `}>
+
+                                {isArabic ? "تاريخ الازدياد" : "Date De Naissence"}
 
                             </label>
                             <input type="date"
-                                dir={`${isArabic?"rtl":""}`}
+                                dir={`${isArabic ? "rtl" : ""}`}
 
-                                className={` w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
+                                className={`${worker[0]?.dateNaissance === '' ? "opacity-50" : ""} w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
                                 id="dateNaiss"
                                 value={dateNaiss}
                             />
                         </div>
                         <div className=" md:w-[45%] py-2">
-                            <label htmlFor="telephone" className={`${isArabic?"flex justify-end ":""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
-                                
-                                {isArabic?"رقم الهاتف":"Téléphone"}
+                            <label htmlFor="telephone" className={`${isArabic ? "flex justify-end " : ""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
+
+                                {isArabic ? "رقم الهاتف" : "Téléphone"}
                             </label>
                             <input type="text"
-                                dir={`${isArabic?"rtl":""}`}
+                                dir={`${isArabic ? "rtl" : ""}`}
 
-                                className={` w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
+                                className={`${worker[0]?.phone === '' ? "opacity-50" : ""} w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
                                 id="telephone"
                                 value={worker[0]?.phone}
                             />
@@ -174,14 +202,13 @@ interface City {
                     </div>
                     <div className="md:flex md:justify-around sm:w-[90%]   w-[95%] m-auto md:w-full">
                         <div className="relative md:w-[45%] py-2">
-                            <label htmlFor="ville" className={`${isArabic?"flex justify-end ":""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
-                            {isArabic?"المدينة":"Ville"}
-                                
+                            <label htmlFor="ville" className={`${isArabic ? "flex justify-end " : ""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
+                                {isArabic ? "المدينة" : "Ville"}
                             </label>
                             <input type="text"
-                                dir={`${isArabic?"rtl":""}`}
+                                dir={`${isArabic ? "rtl" : ""}`}
 
-                                className={` w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
+                                className={`${worker[0]?.ville === '' ? "opacity-50" : ""} w-full h-[50px]  px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
                                 id="ville"
                                 onChange={(e) => { handleInputCity(e.target.value) }}
                                 value={inputValue}
@@ -191,7 +218,6 @@ interface City {
                             <div className="absolute top-20 w-full z-10 left-0 ">
                                 {cityOpen && (
                                     <div className='h-[250px]  sm:w-[100%] z-10 overflow-y-scroll scrollbar-none border border-gray-400 bg-gray-200 rounded-md shadow-lg  w-full transition-all ease-in-out duration-150 overflow-hidden'>
-
                                         {cities.filter(city => city.ville_FR.toLowerCase().includes(inputValue.toLowerCase()))
                                             .map((city, index) => (
                                                 <div
@@ -211,16 +237,16 @@ interface City {
                         </div>
 
                         <div className=" md:w-[45%] py-2">
-                            <label htmlFor="badge" className={`${isArabic?"flex justify-end ":""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
-                                
-                                {isArabic?"الشارة":"Badge"}
+                            <label htmlFor="badge" className={`${isArabic ? "flex justify-end " : ""} after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
+
+                                {isArabic ? "الشارة" : "Badge"}
 
                             </label>
                             <select
-                                dir={`${isArabic?"rtl":""}`}
+                                dir={`${isArabic ? "rtl" : ""}`}
 
                                 name="badge" id="badge"
-                                className={` w-full h-[50px] px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
+                                className={`${worker[0]?.ville === '' ? "opacity-50" : ""} w-full h-[50px] px-4 focus:outline-blue-500 border-teal500  rounded-xl border-2  bg-transparent`}
 
                             >
                                 <option className="" value="1">Maalem</option>
@@ -231,16 +257,16 @@ interface City {
                     </div>
                     <div className={`flex flex-col items-center m-auto sm:w-[95%]  w-full `} >
 
-                        <label htmlFor="description" className={`${isArabic?"flex justify-end ":""}  w-full after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
-                            
-                            {isArabic?" نبذة عنك":" À ProPos de vous"}
+                        <label htmlFor="description" className={`${isArabic ? "flex justify-end " : ""}  w-full after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
+
+                            {isArabic ? " نبذة عنك" : " À ProPos de vous"}
 
                         </label>
                         <textarea
-                                dir={`${isArabic?"rtl":""}`}
+                            dir={`${isArabic ? "rtl" : ""}`}
 
                             placeholder={`Description" `}
-                            className='border-2 w-[95%] md:w-full  p-3 focus:outline-blue-500  md:h-38  rounded-xl border-teal500 '
+                            className={`${worker[0]?.description_ouvrier !== '' ? "opacity-50" : ""} border-2 w-[95%] md:w-full  p-3 focus:outline-blue-500  md:h-38  rounded-xl border-teal500`}
                             name="description"
                             id="description" cols={50} rows={4}
                             value={worker[0]?.description_ouvrier}
@@ -248,21 +274,21 @@ interface City {
                         />
                     </div>
                     <div className="mx-6 w-[95%]  m-auto  py-2">
-                        <label htmlFor="password" className={`${isArabic?"flex justify-end ":""}  w-full after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
-                        {isArabic?"كلمة السر":"Mot de Passe"}
+                        <label htmlFor="password" className={`${isArabic ? "flex justify-end " : ""}  w-full after:text-red-500 mb-1 text-sm md:text-md flex  text-teal500 font-semibold `} >
+                            {isArabic ? "كلمة السر" : "Mot de Passe"}
 
                         </label>
-                        <div 
-                         className={` relative border-teal500  flex rounded-xl border-2`}>
+                        <div
+                            className={` relative border-teal500  flex rounded-xl border-2`}>
                             <input type={passVisible ? "text" : "password"}
-                                dir={`${isArabic?"rtl":""}`}
+                                dir={`${isArabic ? "rtl" : ""}`}
 
 
                                 className={` w-full h-[50px]  px-4 focus:outline-blue-500  rounded-xl  bg-transparent`}
                                 id="password"
                             />
-                            {passVisible ? <MdVisibilityOff onClick={handlePassVisibility} className={`${isArabic?"left-4":"right-4 "} absolute top-1/3 text-xl text-teal500`} />
-                                : <MdVisibility onClick={handlePassVisibility}className={`${isArabic?"left-4":"right-4 "} absolute top-1/3 text-xl text-teal500`}/>}
+                            {passVisible ? <MdVisibilityOff onClick={handlePassVisibility} className={`${isArabic ? "left-4" : "right-4 "} absolute top-1/3 text-xl text-teal500`} />
+                                : <MdVisibility onClick={handlePassVisibility} className={`${isArabic ? "left-4" : "right-4 "} absolute top-1/3 text-xl text-teal500`} />}
                         </div>
                     </div>
                 </div>

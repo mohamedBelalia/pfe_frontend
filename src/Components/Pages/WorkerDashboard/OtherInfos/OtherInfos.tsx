@@ -97,12 +97,12 @@ const OtherInfos: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             >
                 <GrPrevious />
             </button>
-            <div className="flex justify-between w-[40%]">
+            <div className=" text-center  w-[40%]">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
                         key={index + 1}
                         onClick={() => handlePageClick(index + 1)}
-                        className={`px-3 py-1 rounded-md ${currentPage === index + 1 ? 'bg-teal-700 text-white' : 'bg-gray-200 text-gray-700'}`}
+                        className={`px-3 mx-4 py-1 rounded-md ${currentPage === index + 1 ? 'bg-teal-700  text-white' : 'bg-gray-200  text-gray-700'}`}
                     >
                         {index + 1}
                     </button>

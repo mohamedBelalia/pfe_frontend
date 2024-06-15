@@ -17,7 +17,7 @@ interface Profession  {
     idProfession: number,
     labelleProfession_AR: string,
     labelleProfession_FR: string
-};
+}
 const Card = () => {
     const [worker,setWorker]= useState<Worker[]>([]);
     const [professions,setProfessions]= useState<Profession[]>([]);
@@ -37,7 +37,7 @@ const Card = () => {
     useEffect(() => {
         const fetchWorker = async () => {
             try {
-                const response = await Api.get<Worker[]>("workers?id=13");
+                const response = await Api.get<Worker[]>("workers?id=10");
                 setWorker(response.data);
                 // console.log(worker[0]);
                 // setIdNum(Number(worker[0].idOuvrier))
@@ -95,8 +95,6 @@ const Card = () => {
                 <div className={`${isArabic?"justify-end":""} flex  flex-wrap`}>
                     {professions.map(prof=>{
                    return <Occupations text={isArabic?prof.labelleProfession_AR:prof.labelleProfession_FR} key={prof.idProfession}/>
-
-
                     })}
                     
 

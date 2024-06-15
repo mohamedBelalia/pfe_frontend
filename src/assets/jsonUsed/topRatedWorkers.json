@@ -1,0 +1,40 @@
+{
+  "topRatedWorkers" : [
+    {
+      "workerImgPath": "/imgUsed/portrait-man-laughing.jpg",
+      "workerFullName": "Ahmed Benali",
+      "workerBadge": "maalem",
+      "workerPhoneNumber": "+212 600-123456"
+    },
+    {
+      "workerImgPath": "/imgUsed/portrait-man-laughing.jpg",
+      "workerFullName": "zaki Amrani",
+      "workerBadge": "khedam",
+      "workerPhoneNumber": "+212 600-654321"
+    },
+    {
+      "workerImgPath": "/imgUsed/portrait-man-laughing.jpg",
+      "workerFullName": "Youssef Chaoui",
+      "workerBadge": "maalem",
+      "workerPhoneNumber": "+212 600-987654"
+    },
+    {
+      "workerImgPath": "/imgUsed/portrait-man-laughing.jpg",
+      "workerFullName": "Khalid Bouhaddi",
+      "workerBadge": "khedam",
+      "workerPhoneNumber": "+212 600-234567"
+    },
+    {
+      "workerImgPath": "/imgUsed/portrait-man-laughing.jpg",
+      "workerFullName": "Omar Lahmadi",
+      "workerBadge": "maalem",
+      "workerPhoneNumber": "+212 600-876543"
+    },
+    {
+      "workerImgPath": "/imgUsed/portrait-man-laughing.jpg",
+      "workerFullName": "Amine Belkadi",
+      "workerBadge": "khedam",
+      "workerPhoneNumber": "+212 600-345678"
+    }
+  ]
+}
