@@ -12,7 +12,7 @@ type UpdateProjectProps = {
 
 const UpdateProject = ({ idProject }: UpdateProjectProps) => {
 
-    const tempIdProject = "21"
+    const tempIdProject = "54"
 
     // The Slice For Change The Language
     const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
@@ -92,7 +92,6 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
 
     const handleUpload = async () => {
         const formData = new FormData();
-        formData.append('projectID' , tempIdProject);
         formData.append('title', projectTitle);
         formData.append('description', projectDescription);
         selectedImages.forEach((image: string, index: number) => {
@@ -107,27 +106,26 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
             try {
                 setIsUpdatingLoading(true)
 
-                console.log("formData");
+                const deleteImgsResponse = await Api.put(`/porject-images?idProject=${tempIdProject}` , deletedImages)
+
+                console.log(deleteImgsResponse);
                 
 
+                const response = await Api.post(`/projects?updateProject=${tempIdProject}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
 
-                // const deleteImgsResponse = await Api.put(`/porject-images?idProject=${tempIdProject}` , deletedImages)
-
-                // console.log(deleteImgsResponse);
+                console.log(response.data);
                 
 
-                // const response = await Api.put(`/projects?id=${tempIdProject}`, formData, {
-                //     headers: {
-                //         'Content-Type': 'multipart/form-data',
-                //     }
-                // });
-
-                // if (response.data.status == "done") {
-                //     setIsProjectPosted(true)
-                // }
-                // else if (response.data.status == "something_wrong") {
-                //     setIsProjectPosted(false)
-                // }
+                if (response.data.status == "done") {
+                    setIsProjectPosted(true)
+                }
+                else if (response.data.status == "something_wrong") {
+                    setIsProjectPosted(false)
+                }
 
             } catch (error) {
                 setIsError(true)
@@ -137,6 +135,7 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
                 setProjectTitle("")
                 setProjectDescription("")
                 setSelectedImages([])
+                setFetchedProjectImages([])
             }
         }
         else {

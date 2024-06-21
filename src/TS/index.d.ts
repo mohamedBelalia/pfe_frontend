@@ -33,6 +33,16 @@ export interface IBestWorkers{
    workerInfo : IWorkerInfromation
 }
 
+export interface ICommunWorkerInfo {
+    nomOuvrier : string,
+    prenomOuvrier: string,
+    phone: string ,
+    imgProfile : string | null,
+    ville :  string ,
+    description_ouvrier : string | null
+    badgeId : string | null
+}
+
 // for the sended data of the filter
 export interface IFilterNeededData{
     profession : string

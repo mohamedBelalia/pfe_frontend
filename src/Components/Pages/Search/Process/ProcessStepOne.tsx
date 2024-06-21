@@ -270,7 +270,7 @@ interface searchedCityDivTypes {
     isArabic : boolean
 }
 
-const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox  , isArabic , setIdOfClickedCity}:searchedCityDivTypes) => {
+export const SearchedCityDiv = ({city , setClickedCityName , clearCitiesBox  , isArabic , setIdOfClickedCity}:searchedCityDivTypes) => {
 
     const cityClicked = (city : ICity) => {
         setClickedCityName(

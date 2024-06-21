@@ -10,9 +10,15 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setIsArabicLanguageSelected } from "../../Store/Slices/ChangeLanguageSlice";
 import { PiVideoFill } from "react-icons/pi";
-import { SiHomebridge } from "react-icons/si"; // temp
+import useAuth from "../../Custom/UseAuth";
+
 
 const Navbar = () => {
+
+    // user token
+    // The Slice For Change The Language
+    const isAuth = useAuth()
+    
 
     //get the url 
     const [currentUrl , setCurrentUrl] = useState<string>("")
@@ -114,6 +120,7 @@ const Navbar = () => {
                                     </div>
                                 }
                             </ul>
+
                             <div onClick={showTaskerBtnRegester}>
                                 
                                 <button className="flex gap-3 justify-center items-center px-5 py-1 rounded-md font-bold text-white bg-[#199AFF]">
@@ -149,13 +156,18 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className="bg-[#d0d3dab6] p-2 rounded-md md:flex hidden cursor-pointer md:static absolute right-3"
+                        {
+                            isAuth
+                            && <button className="w-[80px] h-[80px] bg-blue-500 rounded-md">M</button>
+                        }
+
+                        {/* <div className="bg-[#d0d3dab6] p-2 rounded-md md:flex hidden cursor-pointer md:static absolute right-3"
                             onClick={showGuidsBox}
                         >   
                             <div>
                                  <PiVideoFill className="text-3xl font-bold text-sky-700"/>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className={`justify-between items-center absolute md:hidden mt-2 px-3 -ml-5 ${!navbarVisible && "hidden"}`}>
                             <div 

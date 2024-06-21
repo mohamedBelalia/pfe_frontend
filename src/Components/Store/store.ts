@@ -7,6 +7,7 @@ import { VideoPlaySlice } from "./Slices/VideoPlaySlice";
 import { ClickedProjectSlice } from "./Slices/ClickedProject";
 import { RatedWorkerIdSlice } from "./Slices/RatedWorkerId";
 import { RatingProcessSlice } from "./Slices/RateingProcess";
+import { StoredUserTokenSlice } from "./Slices/StoringUserToken";
 
 
 export const store = configureStore({
@@ -18,7 +19,8 @@ export const store = configureStore({
         videoPlayeSlice : VideoPlaySlice.reducer,
         clickedProject : ClickedProjectSlice.reducer ,
         ratedWorkerId : RatedWorkerIdSlice.reducer ,
-        ratingProcessSlice : RatingProcessSlice.reducer
+        ratingProcessSlice : RatingProcessSlice.reducer ,
+        storedUserToken : StoredUserTokenSlice.reducer
     }
 })
 
