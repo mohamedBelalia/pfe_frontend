@@ -169,7 +169,7 @@ const SignupForm = () => {
 
     return (
         <div className="border">
-            {/* TODO create only one input and use it */}
+
             <Navbar />
             <div className='pt-[100px] w-full md:w-[70%] md:flex md:flex-col mb-20  m-auto md:mt-10 md:items-center rounded-xl'>
                 <div className="text-center mb-2">
@@ -201,10 +201,10 @@ const SignupForm = () => {
 
                 <div className="p-3 w-full flex flex-col gap-5">
                     {/* Part 1 */}
-                    <div className="w-full flex gap-10" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
+                    <div className="w-full flex flex-col md:flex-row md:gap-10 gap-4" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
 
                         {/* Prénom */}
-                        <div className="w-1/2 flex  flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Prénom " : " الاسم الشخصي"} <span className="text-red-600"> *</span>
                             </label>
@@ -227,7 +227,7 @@ const SignupForm = () => {
                         </div>
 
                         {/* Nom */}
-                        <div className="w-1/2 flex  flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Nom " : "الاسم العائلي "}
                             </label>
@@ -243,10 +243,10 @@ const SignupForm = () => {
 
                     </div>
                     {/* Part 2 */}
-                    <div className="w-full flex gap-10" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
+                    <div className="w-full flex flex-col md:flex-row md:gap-10 gap-4" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
 
                         {/* Phone */}
-                        <div className="w-1/2 flex flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Téléphone " : "هاتف"} <span className="text-red-600"> *</span>
                             </label>
@@ -272,7 +272,7 @@ const SignupForm = () => {
                         </div>
 
                         {/* Ville */}
-                        <div className="w-1/2 flex flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Ville " : "المدينة"} <span className="text-red-600"> *</span>
                             </label>
@@ -289,10 +289,10 @@ const SignupForm = () => {
 
                     </div>
                     {/* Part 3 */}
-                    <div className="w-full flex gap-10" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
+                    <div className="w-full flex flex-col md:flex-row md:gap-10 gap-4" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
 
                         {/* Password */}
-                        <div className="w-1/2 flex  flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Mot de passe " : "كلمة السر"} <span className="text-red-600"> *</span>
                             </label>
@@ -323,7 +323,7 @@ const SignupForm = () => {
                         </div>
 
                         {/* Confirmez le mot de passe */}
-                        <div className="w-1/2 flex  flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Confirmez le mot de passe " : "تأكيد كلمة المرور"} <span className="text-red-600"> *</span>
                             </label>
@@ -356,10 +356,10 @@ const SignupForm = () => {
                     </div>
 
                     {/* Part 4 */}
-                    <div className="w-full flex gap-10" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
+                    <div className="w-full flex flex-col md:flex-row md:gap-10 gap-4" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
 
                         {/* Profession */}
-                        <div className="w-1/2 flex flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <label className="text-md md:text-md text-teal500 font-semibold">
                                 {!isArabicSelected ? "Votre Professions" : "المهن الخاصة بك"} <span className="text-red-600"> *</span>
                             </label>
@@ -374,7 +374,7 @@ const SignupForm = () => {
                                 </p>
                             }
                         </div>
-                        <div className="w-1/2 flex flex-col gap-1">
+                        <div className="md:w-1/2 w-full flex  flex-col gap-1">
                             <button
                                 onClick={signup}
                                 className="w-full h-[50px] rounded-lg mt-7 bg-teal-600 hover:bg-teal-500 font-semibold text-xl text-white">

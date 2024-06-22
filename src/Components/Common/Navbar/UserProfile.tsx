@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { getCookie } from "../../../../config/Cookies"
+import { Config } from "../../../../config/Local_Variables"
 import Api from "../../../api/Api"
 import { ICommunWorkerInfo } from "../../../TS"
 
 
+const baseProfilePath = Config.BaseImagesPath_Profiles
 
 const UserProfile = () => {
 
@@ -19,9 +21,9 @@ const UserProfile = () => {
     useEffect(() => {
 
         const fetchUserProfile = async () => {
-            const response = await Api.get(`/userProfile?token=${token}`)
+            const response = await Api.get(`/profile?token=${token}`)
             try {
-                if(response.data.status == "token_not_valid"){
+                if(response.data.status == "not_valid"){
                     console.log("logout !!");
                 }
                 else{
@@ -38,8 +40,9 @@ const UserProfile = () => {
     }, [token]);
 
   return (
-    <div>
-        {userProfile?.imgProfile}
+    <div className="w-[45px] border-2 border-teal500 rounded-full overflow-hidden cursor-pointer">
+         <img 
+         src={baseProfilePath + userProfile?.imgPath}/>
     </div>
   )
 }

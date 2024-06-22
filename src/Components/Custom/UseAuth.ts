@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { getCookie } from "../../../config/Cookies"
+import { getCookie } from "../../../config/Cookies";
+import Api from '../../api/Api';
 
 const useAuth = () => {
-
-    const token = getCookie("auth_token")
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const token = getCookie("auth_token");
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null); // Use null to indicate loading state
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`/protected?token=${token}`);
-        if (response.data.status == "valid_token") {
+        const response = await Api.get(`/protected?token=${token}`);
+
+        if (response.data.status === "valid") {
           setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
         }
       } catch (error) {
         setIsAuthenticated(false);
@@ -21,7 +22,7 @@ const useAuth = () => {
     };
 
     checkAuth();
-  }, []);
+  }, [token]);
 
   return isAuthenticated;
 };
