@@ -4,19 +4,24 @@ import { PiXCircleFill } from "react-icons/pi";
 import { FaCheckCircle } from "react-icons/fa";
 import PopupParent from "./PopupParent.tsx";
 import { useState } from "react";
+import PopUpCompleteAccount from "./PopUpCompleteAccount.tsx";
 const CompleteAcount = () => {
     const isArabic = true;
-    const [open,setIsOpen] = useState<boolean>(false);
+    const [isopen,setIsOpen] = useState<boolean>(false);
     const onClose = ()=> {
         setIsOpen(false);
+    }
+    const [open,setOpen] = useState<boolean>(false);
+    const onCloseComp = ()=> {
+        setOpen(false);
     }
    
     return (
         
         
-        <div className='border  z-50 p-6  m-auto sm:w-[70%]  tab:w-[400px] md:w-[300px] mb-4 md:mb-0  rounded-md'>
-            <PopupParent id={2} isOpen={open} onClose={onClose} />
-            <div onClick={()=>setIsOpen(true)} className='flex items-center cursor-pointer hover:text-blue-700 justify-end flex-nowrap font-bold text-blue500 '>
+        <div className='border z-50 p-6  m-auto sm:w-[70%]  tab:w-[400px] md:w-[300px] mb-4 md:mb-0  rounded-md'>
+            <PopupParent id={2} isOpen={isopen} onClose={onClose} />
+            <div onClick={()=>setOpen(true)} className='flex items-center cursor-pointer hover:text-blue-700 justify-end flex-nowrap font-bold text-blue500 '>
                 <div className='text-md mr-2 md:text-lg'>{isArabic?"أكمل حسابك":"Complétez votre compte"}</div>
                 <BsFillPersonCheckFill className="text-3xl  font-semibold" />
             </div>
@@ -34,6 +39,8 @@ const CompleteAcount = () => {
                     <FaCheckCircle className="text-xl font-700" />
                 </div>
             </div>
+            
+            {open?<PopUpCompleteAccount onCloseComp={onCloseComp} />:""}
         </div>
     )
 }

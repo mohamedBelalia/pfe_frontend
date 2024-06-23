@@ -34,7 +34,7 @@ const AllPosts = () => {
             style={{ minWidth: card_width, minHeight: card_height }}
             className="mx-4 shadow-xl relative rounded-md"
           >
-            <div className='absolute  w-[55%] top-4 right-4 flex justify-around z-50'>
+            <div className='absolute  w-[55%] top-4 right-4 flex justify-around z-40'>
               <button className=" bg-red-300 text-red-950  hover:bg-red-400  font-semibold py-1 px-4 rounded">
                 Suprimer
               </button>

@@ -40,7 +40,7 @@ const ChoiseOccupations = () => {
         <div className="pt-3 relative" ref={dropdownRef}>
             <div 
                 onClick={() => setIsClicked(!isClicked)} 
-                className="bg-gray-200 w-[100%] md:w-full -z-10 border border-gray-400 rounded-md h-12 flex items-center cursor-pointer select-none"
+                className="bg-gray-200 -z-10 border-[1.5px] border-blue-700 rounded-md h-12 flex items-center cursor-pointer "
             >
                 <div className="text-[#414E5F] justify-center w-[90%] m-auto flex pl-4 font-semibold">
                     {selectedOccupations.length > 0 ? selectedOccupations.map((item) => (
@@ -50,16 +50,16 @@ const ChoiseOccupations = () => {
                         >
                             {item} 
                             <IoMdCloseCircle 
-                                className='ml-2 mm text-lg cursor-pointer' 
+                                className='ml-2  text-lg cursor-pointer' 
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleRemoveOccupation(item);
                                 }}
                             />
                         </span>
-                    )) : 'Select Occupations'}
+                    )) : ''}
                 </div>
-                <IoIosArrowDown className="text-[#414E5F] text-2xl ml-auto mr-4" />
+                <IoIosArrowDown className="text-blue-700 text-2xl  mr-8" />
             </div>
 
             <div className={`${isClicked ? 'h-[200px] overflow-y-scroll mt-5 scrollbar-none border border-gray-400' : 'h-0'} bg-gray-200 rounded-md shadow-lg absolute w-full top-10 transition-all ease-in-out duration-150 overflow-hidden`}>
