@@ -36,12 +36,11 @@ const ChoiseCity = () => {
     
 
     return (
-        <div className=" md:w-[400px] w-[90%] relative z-50  cursor-pointer h-[60px] border-gray-500 flex justify-start  text-lg items-center ">
+        <div className="   relative z-50  cursor-pointer h-[60px] border-gray-500 flex justify-start  text-lg items-center ">
             <input
             
                 onChange={handleInput}
-                placeholder='Your Address'
-                className='border-teal500 sm:w-[100%]  pl-6 md:w-full w-[265px]  md:pl-3 bg-transparent border rounded-md h-[37px]'
+                className='border-blue-400  pl-6 w-full bg-gray-50 mr-8 md:pl-3 border-[1.5px] rounded-md h-12'
                 type="text"
                 value={inputValue}
             />

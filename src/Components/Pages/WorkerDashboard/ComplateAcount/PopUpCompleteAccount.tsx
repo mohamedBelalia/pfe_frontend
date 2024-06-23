@@ -35,13 +35,13 @@ import { LuImagePlus } from "react-icons/lu";
 //     ville_AR: string;
 //     ville_FR: string;
 // }
-
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Progress from "../OtherInfos/Progress";
 import { FaCity } from "react-icons/fa";
-import Professions from "../../../Common/workerComponents/Professions";
 import ChoiseCity from "../PopUps/ChoiseCity";
+import ChoiseOccupations from "../PopUps/ChoiseOccupations";
 
+import { BsTools } from "react-icons/bs";
 
 
 const PopUpCompleteAccount = () => {
@@ -83,7 +83,7 @@ const PopUpCompleteAccount = () => {
         <div className="absolute bg-white top-0 left-0 inset-0 container flex  h-[100vh]">
             <div className="w-1/3 px-4 mt-10">
                 <Progress num={10} />
-                <div className="flex flex-col -mt-2 text-teal-500 font-bold justify-center items-center mb-10">   Complétez votre compte</div>
+                <div className="flex flex-col -mt-2 text-teal-700 font-bold justify-center items-center mb-10">   Complétez votre compte</div>
                 <article onClick={firstElementClick} className={`${first ? "bg-teal-400 text-teal-900" : ""} cursor-pointer hover:bg-teal-400 border pl-4 mt-6 rounded-md flex  bg-teal-100 text-teal-800  items-center text-lg font-semibold`}>
                     <IoMdPerson className="mx-2 h-12 text-2xl" /> Personel Information
                 </article>
@@ -108,14 +108,14 @@ const PopUpCompleteAccount = () => {
                                 <IoMdPerson className="mx-2 h-10  text-4xl" /> Personel Information
                             </article>
                             <div className="flex flex-col  px-6 mt-4">
-                                <label className="text-lg mt-4 text-blue-500 font-semibold" htmlFor="prenom">Prenom</label>
+                                <label className="text-lg mt-4 text-blue-700 font-semibold" htmlFor="prenom">Prenom</label>
                                 <input className="h-12 border-[1.5px] border-blue-500 rounded-md bg-gray-100" type="text" name="prenom" id="prenom" />
 
-                                <label className="text-lg mt-4 text-blue-500 font-semibold" htmlFor="phone">Nom</label>
-                                <input className="h-12   border-[1.5px] border-blue-500 rounded-md bg-gray-100" type="text" name="nom" id="nom" />
+                                <label className="text-lg mt-4 text-blue-700 font-semibold" htmlFor="phone">Nom</label>
+                                <input className="h-12   border-[1.5px] border-blue-700 rounded-md bg-gray-100" type="text" name="nom" id="nom" />
 
-                                <label className="text-lg mt-4 text-blue-500 font-semibold" htmlFor="phone">Telephone</label>
-                                <input className="h-12   border-[1.5px] border-blue-500 rounded-md bg-gray-100" type="text" name="phone" id="phone" />
+                                <label className="text-lg mt-4 text-blue-700 font-semibold" htmlFor="phone">Telephone</label>
+                                <input className="h-12   border-[1.5px] border-blue-700 rounded-md bg-gray-100" type="text" name="phone" id="phone" />
                             </div>
                         </div>
                         <button className="absolute py-1 hover:bg-teal-800 left-1/3 w-1/3 bg-teal-600 rounded-md text-xl text-white bottom-20">Valider</button>
@@ -129,11 +129,11 @@ const PopUpCompleteAccount = () => {
                     </article>
                     <div className="mx-1">
                         <label className="w-auto" htmlFor="img">
-                            <p className="text-blue-500 w-auto  text-lg font-semibold">Image de Profile</p>
+                            <p className="text-blue-700 w-auto  text-lg font-semibold">Image de Profile</p>
                             <LuImagePlus className="text-gray-600 m-auto w-auto mt-3 border-blue-400  px-12 border-[1.5px] rounded-md bg-gray-100 text-9xl"/>
                             <input type="file" id="img" hidden />
                         </label>
-                        <p className="text-blue-500 mt-6  text-lg font-semibold">Description</p>
+                        <p className="text-blue-700 mt-6  text-lg font-semibold">Description</p>
                         <textarea className="w-full bg-gray-100 border-[1.5px] border-blue-400 rounded-md" name="description" id="description" rows={6}></textarea>
                     </div>
                     <button className="absolute py-1 hover:bg-teal-800 left-1/3 w-1/3 bg-teal-600 rounded-md text-xl text-white bottom-20">Valider</button>
@@ -142,13 +142,23 @@ const PopUpCompleteAccount = () => {
             }
             {
                 third ? <div className="w-2/3  pt-12 h-[100vh] relative px-8 bg-slate-300">
-                        <Professions occupations={[]} cmpOccup={[]} />
+                        <article className=" cursor-pointer  text-teal-700 rounded-md flex    items-center text-2xl font-semibold">
+                        <BsTools className="mr-2  h-10  text-4xl" />
+                    </article>
+                    
+
+                        <ChoiseOccupations />
                     <button className="absolute py-1 hover:bg-teal-800 left-1/3 w-1/3 bg-teal-600 rounded-md text-xl text-white bottom-20">Valider</button>
 
                 </div> : ""
             }
             {
-                fourth ? <div className="w-2/3  pt-12 h-[100vh] relative pl-4 bg-slate-300">
+                fourth ? <div className="w-2/3 p pt-12 h-[100vh] relative pl-8 bg-slate-300">
+                     <article className=" cursor-pointer  text-teal-700 rounded-md flex    items-center text-2xl font-semibold">
+                        <FaCity className=" mr-4 h-10 text-2xl" /> Ville
+                    </article>
+                    <p className="mt-10 text-blue-600 font-semibold">Entrez votre ville</p>
+
                     <ChoiseCity />
                     <button className="absolute py-1 hover:bg-teal-800 left-1/3 w-1/3 bg-teal-600 rounded-md text-xl text-white bottom-20">Valider</button>
 

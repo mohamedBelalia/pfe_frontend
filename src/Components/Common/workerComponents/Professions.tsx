@@ -20,8 +20,7 @@ const Professions = ({idWorker}:professionProps) => {
     const [isProfessionsLoaded , setIsProfessionsLoaded] = useState<boolean>(false)
 
     // The Slice For Change The Language
-    // const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
-    const isArabicSelected = true
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     useEffect(()=>{
         const fetchProfessions = async()=>{
@@ -54,7 +53,7 @@ const Professions = ({idWorker}:professionProps) => {
         ( 
             hadProfessions 
             ?
-            professions?.map((profession)=>(
+            professions?.map((profession , _)=>(
             <div className="px-10 py-1 rounded-md bg-blue-500 text-white" key={profession.idProfession}>
                 {
                     isArabicSelected 
