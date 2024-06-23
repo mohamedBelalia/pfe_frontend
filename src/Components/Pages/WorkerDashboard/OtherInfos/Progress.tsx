@@ -1,10 +1,12 @@
 import  { useEffect, useState } from 'react'
 import "./Progress.css"
-
-const Progress = () => {
-    var [progressContent, setProgressContent] = useState<number>(0);
-    const endProgressContent = 50;
-    const speed = 10;
+interface NUMPROPS{
+    num:number
+}
+const Progress = ({num}:NUMPROPS) => {
+    
+    const  [progressContent, setProgressContent] = useState<number>(0);
+        const speed = 10;
 
 
     
@@ -12,7 +14,7 @@ const Progress = () => {
     useEffect(() => {
         const progress = setInterval(() => {
             // Update count every second
-            if (progressContent >= endProgressContent) {
+            if (progressContent >= num) {
                 clearInterval(progress);
             } else {
                 setProgressContent(prevCount => prevCount + 1);
@@ -21,7 +23,7 @@ const Progress = () => {
     
         // Clear interval on component unmount
         return () => clearInterval(progress);
-    }, [progressContent, setProgressContent]); // Include progressContent and setProgressContent in the dependency array
+    }, [progressContent,num, setProgressContent]); // Include progressContent and setProgressContent in the dependency array
     
 
 
@@ -30,7 +32,7 @@ const Progress = () => {
         <div className="flex relative p-4 justify-center ">
             <div
                 style={{
-                    background: `conic-gradient(#349292 ${(progressContent*360)/100}deg, #D0D3DA 0deg)`
+                    background: `conic-gradient(#349292 ${(progressContent*360)/50}deg, #D0D3DA 0deg)`
                 }}
                 className="w-24 rounded-full h-24 bg-teal500 " id="progress"></div>
             <div className="bg-white w-20 h-20 mt-2 flex items-center justify-center text-xl text-teal500 font-bold rounded-full absolute">{progressContent}%</div>

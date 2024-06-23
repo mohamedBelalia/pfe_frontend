@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import OtherInfos from './OtherInfos.tsx'; // Adjust the import path according to your project structure
+// import OtherInfos from './OtherInfos.tsx'; // Adjust the import path according to your project structure
 import Progress from './Progress.tsx';
 import Api from '../../../../api/Api.ts';
 
@@ -23,14 +23,22 @@ interface Projet {
     imageProjet: string;
     idOuvrier: string;
 }
-
+interface Commentaire {
+    commentaire_id: string;
+    idOuvrier: string;
+    respect_delais: string;
+    quality_travail: string;
+    prix_qualite: string;
+    moyenneEtoiles: string;
+  }
 
 
 const PaginationPage: React.FC = () => {
-    const [currentPage, setCurrentPage] = useState(1);
+    // const [currentPage, setCurrentPage] = useState(1);
     // const [shortDescription, setShortDescription] = useState<string>();
     const [data, setData] = useState<Projet[]>([]);
-    const [totalPages, setTotalPages] = useState(0);
+    const [num, setNum] = useState<number>(0);
+    // const [totalPages, setTotalPages] = useState(0);
     const isArabic = true;
 
     useEffect(() => {
@@ -47,25 +55,29 @@ const PaginationPage: React.FC = () => {
         fetchWorker();
     }, []);
 
-
     useEffect(() => {
-        setTotalPages(Math.ceil(data.length / 3));
-        setCurrentPage(1);
+        const fetchData = async () => {
+          try {
+            const response = await Api.get<Commentaire[]>(`/commentaire?id=15`);
+            setNum(response.data.length);
+          } catch (error) {
+            console.error("Error fetching rating:", error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+        
+    useEffect(() => {
+        // setTotalPages(Math.ceil(data.length / 3));
+        // setCurrentPage(1);
     }, [data]);
 
 
 
-    // useEffect(() => {
-    //     setShortDescription(data[0]?.description_ouvrier.substring(0, 25));
-
-    // }, [data]); // Empty dependency array to run this effect only once
-
-
-    // Slice the data array to get only the items for the current page
-    const paginatedData = data.slice((currentPage - 1) * 3, currentPage * 3);
 
     return (
-        <div className="ml-4 relative  mx-auto ">
+        <div className="ml-4 relative w-full mx-auto ">
 
 
 
@@ -75,7 +87,7 @@ const PaginationPage: React.FC = () => {
                 {isArabic ? "أكمل معلومات ملفك الشخصي للحصول على عملاء" : "Complete Your Profile Informations To Get Clients"}
             </div>
 
-            <Progress />
+            <Progress num={num} />
 
             {/* Rates */}
             <div className='flex items-center justify-center text-teal500'>
@@ -84,12 +96,12 @@ const PaginationPage: React.FC = () => {
                     <div className="relative flex justify-center items-center"></div>
 
                     {isArabic ? <div className="flex font-semibold flex-row">
-                        <span>شخص قاموا بتقييمك</span><span>47</span></div>
-                        : <div>47 people rated you</div>}
+                        <span>شخص قاموا بتقييمك </span><span>{ " " +num}</span></div>
+                        : <div>47 personnes vous ont noté</div>}
                 </div>
             </div>
 
-            <div className="my-4  justify-between flex ">
+            {/* <div className="my-4  justify-between flex ">
                 {paginatedData.map((item) => (
 
                     <div  dir={`${isArabic ? "rtl" : "ltr"}`} key={item.idProjet} className={`border w-[40%] shadow-lg mx-2 rounded-xl  aspect-1 `}>
@@ -110,12 +122,12 @@ const PaginationPage: React.FC = () => {
 
 
                 ))}
-            </div>
-            <OtherInfos
+            </div> */}
+            {/* <OtherInfos
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={setCurrentPage}
-            />
+            /> */}
         </div>
     );
 };

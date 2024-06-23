@@ -16,6 +16,7 @@ export default {
       'lg': '1440px',
     },
     extend: {
+     
       colors: {
         blue500: '#199AFF',
         blue600: '#2D62FE',
