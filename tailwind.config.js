@@ -35,6 +35,6 @@ export default {
   },
   plugins: [
     require('tailwind-scrollbar'),
-    require('@tailwindcss/aspect-ratio'),
+    // require('@tailwindcss/aspect-ratio'),
   ],
 }
