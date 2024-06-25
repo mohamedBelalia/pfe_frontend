@@ -26,8 +26,9 @@ const AllPosts: React.FC = () => {
   useEffect(() => {
     const fetchImgPosts = async () => {
       try {
-        const response = await Api.get<Props[]>("projects?workerId=15");
+        const response = await Api.get<Props[]>(`projects?workerId=2`);
         setProjet(response.data);
+        
       } catch (error) {
         console.error("Error fetching worker:", error);
       }
@@ -58,11 +59,15 @@ const AllPosts: React.FC = () => {
     setDeletePostId(postId);
   };
 
-  // const handleDelete = (id: number) => {
-  //   // Handle the deletion logic here
-  //   console.log("Deleted post id:", id);
-  //   toggleDeletePopup(null);
-  // };
+  const handleDelete = async (idProjet: string) => {
+    try {
+      await Api.delete(`projects?idProject=${idProjet}`);
+      setProjet(projet.filter(item => item.idProjet !== idProjet));
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
+    toggleDeletePopup(null);
+  };
 
   return (
     <div className="m-auto">
@@ -84,7 +89,7 @@ const AllPosts: React.FC = () => {
               <DeletePstPopup
                 id={item.idProjet}
                 onClose={() => toggleDeletePopup(null)}
-                
+                onConfirm={handleDelete} // Pass the handleDelete function
               />
             )}
             <div className="absolute w-[55%] top-4 right-4 flex justify-around z-30">
