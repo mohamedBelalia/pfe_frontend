@@ -1,14 +1,20 @@
 import React from 'react';
 
 interface DeletePstPopupProps {
-  id: number;
+  id: string;
   onClose: () => void;
-  onConfirm: (id: number) => void;
+  // onConfirm: (id: number) => void;
 }
 
-const DeletePstPopup: React.FC<DeletePstPopupProps> = ({ id, onClose, onConfirm }) => {
+const DeletePstPopup: React.FC<DeletePstPopupProps> = ({ id, onClose }) => {
+
+  const onConfirm = (idProjet:string)=> {
+    console.log(idProjet);
+    
+  }
+
   return (
-    <div className="fixed inset-0 bg-black/40 bg-opacity-75 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black  /40 bg-opacity-75 flex justify-center items-center z-50">
       <div className="bg-white mx-2 rounded-lg shadow-lg overflow-hidden md:w-1/3">
         <div className="p-4 border-b">
           <h2 className="text-xl font-semibold">Confirmer la suppression</h2>
