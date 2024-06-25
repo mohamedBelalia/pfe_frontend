@@ -77,7 +77,7 @@ const PaginationPage: React.FC = () => {
 
 
     return (
-        <div className="ml-4 relative w-full mx-auto ">
+        <div className="ml-4 hidden md:block relative w-full mx-auto ">
 
 
 
@@ -89,17 +89,7 @@ const PaginationPage: React.FC = () => {
 
             <Progress num={num} />
 
-            {/* Rates */}
-            <div className='flex items-center justify-center text-teal500'>
-                <div className="flex flex-col justify-center items-center">
-                    <img className="lg:w-16 w-12 ml-2" src="icons/starsRate.png" alt="Rating" />
-                    <div className="relative flex justify-center items-center"></div>
-
-                    {isArabic ? <div className="flex font-semibold flex-row">
-                        <span>شخص قاموا بتقييمك </span><span>{ " " +num}</span></div>
-                        : <div>47 personnes vous ont noté</div>}
-                </div>
-            </div>
+           
 
             {/* <div className="my-4  justify-between flex ">
                 {paginatedData.map((item) => (

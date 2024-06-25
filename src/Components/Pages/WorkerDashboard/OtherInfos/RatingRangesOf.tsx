@@ -29,11 +29,10 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const response = await Api.get<Commentaire[]>(`/commentaire?id=${workerId}`);
+
+        const response = await Api.get<Commentaire[]>(`/comments?workerId=1`);
         setRatingRanges(response.data);
-        
-        
-        
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching rating:", error);
       } finally {
@@ -46,7 +45,7 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
 
   // Handle data after fetching it from the database
   useEffect(() => {
-    
+
     if (ratingRanges.length > 0) {
       const bienCount = ratingRanges.filter(
         (item) => item[ratingOf] === "Bien"
@@ -79,15 +78,15 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
 
   return (
     <div className="flex  w-full  flex-col ">
-      <table className="h-[160px] mx-12">
-        <tbody>
-          <tr>
-            <td className="font-semibold text-[18px] w-[12%]">Bien</td>
-            <td className="w-full">
-              <div className="h-[35px] w-[430px] relative">
+      <table className="h-[160px]   w-full md:mx-6">
+        <tbody className="">
+          <tr className="w-full ">
+            <td className="font-semibold flex md:flex-row flex-col mt-3 text-[18px] w-[12%]">Bien</td>
+            <td className="w-full flex justify-center    flex-col">
+              <div className="h-[35px] md:w-[430px] w-full relative">
                 <div
-                  style={{ width: count_Bien==0?`10%`:`${widthOf(count_Bien, totalRate)}%` }}
-                  className={`${count_Bien<=1?"flex m-auto w-full":"bg-[#e8975d8b]"} h-full  flex justify-center items-center font-semibold text-[#7c4a27]  rounded-md`}
+                  style={{ width: count_Bien == 0 ? `10%` : `${widthOf(count_Bien, totalRate)}%` }}
+                  className={` ${count_Bien == 1 ? "text-lg" : ""} ${count_Bien == 0 ? "flex text-md m-auto w-full" : "bg-[#e8975d8b]"} h-full  flex justify-center items-center text-md font-semibold text-[#7c4a27]  rounded-md`}
                 >
                   {widthOf(count_Bien, totalRate)} %
                 </div>
@@ -96,26 +95,26 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
             </td>
           </tr>
           <tr>
-            <td className="font-semibold text-[18px] w-[12%]">Tres Bien</td>
-            <td className="w-full">
-              <div className="h-[35px] w-[430px] relative">
+            <td className="font-semibold flex md:block mt-3 flex-col text-[18px] ">Tres Bien</td>
+            <td className="w-full flex justify-center  flex-col">
+              <div className="h-[35px] md:w-[430px]  relative">
                 <div
-                  style={{ width: count_Tres_Bien==0?`10%`:`${widthOf(count_Tres_Bien, totalRate)}%` }}
-                  className={`${count_Tres_Bien==0?"flex m-auto w-full":" bg-[#199AFF8b]"} h-full  flex justify-center items-center font-semibold text-[#214866]  rounded-md`}
+                  style={{ width: count_Tres_Bien == 0 ? `10%` : `${widthOf(count_Tres_Bien, totalRate)}%` }}
+                  className={` ${count_Tres_Bien == 1 ? "text-[10px] " : "text-sm"} ${count_Tres_Bien == 0 ? "flex  text-sm m-auto w-full" : " bg-[#199AFF8b]"} h-full   flex justify-center items-center font-semibold text-[#214866]  rounded-md`}
                 >
-                  {widthOf(count_Tres_Bien, totalRate)} % 
+                  {widthOf(count_Tres_Bien, totalRate)} %
                 </div>
                 <div className="absolute top-0 left-0 w-full h-full border-2 border-[#199AFF] rounded-md"></div>
               </div>
             </td>
           </tr>
           <tr>
-            <td className="font-semibold text-[18px] w-[12%]">Excellent</td>
-            <td className="w-full">
-              <div className="h-[35px] w-[430px] relative">
+            <td className="font-semibold mt-3 flex flex-col text-[18px] w-[12%]">Excellent</td>
+            <td className="w-full flex justify-center  flex-col">
+              <div className="h-[35px] md:w-[430px] relative">
                 <div
-                  style={{ width: count_Excellent==0?`10%`:`${widthOf(count_Excellent, totalRate)}%` }}
-                  className={`${count_Excellent<=1?"flex m-auto w-full":" bg-[#47b0b0]"} h-full  flex justify-center items-center font-semibold text-[#214866]  rounded-md`}
+                  style={{ width: count_Excellent == 0 ? `10%` : `${widthOf(count_Excellent, totalRate)}%` }}
+                  className={` ${count_Excellent == 1 ? "text-[10px]" : ""} ${count_Excellent == 0 ? "flex m-auto  w-full" : "  text-sm bg-[#47b0b0]"} h-full text-md flex justify-center items-center   font-semibold text-[#214866]  rounded-md`}
                 >
                   {widthOf(count_Excellent, totalRate)} %
                 </div>

@@ -2,15 +2,26 @@ import { useEffect, useState } from "react";
 import cities from "./Cities.json";
 import { FaLocationDot } from "react-icons/fa6";
 import React from "react";
-
-const ChoiseCity = () => {
+interface Props {
+    city: string;
+    onCityChange: (city: string) => void;
+}
+const ChoiseCity = ({city,onCityChange}:Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>('');
+    const [selectedCity, setSelectedCity] = useState(city);
+    const handleCitySelect = (city:string) => {
+        
+        setSelectedCity(city);
+        onCityChange(city); // Call the callback function passed from parent
+    };
 
     const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+       
         const value = event.target.value;
         setInputValue(value);
-
+        handleCitySelect(value)
         // Set isOpen based on input length
         setIsOpen(value.length > 0);
     };
@@ -36,13 +47,13 @@ const ChoiseCity = () => {
     
 
     return (
-        <div className="   relative z-50  cursor-pointer h-[60px] border-gray-500 flex justify-start  text-lg items-center ">
+        <div className=" relative z-50  cursor-pointer h-[60px] w-full flex justify-start  text-lg items-center ">
             <input
             
                 onChange={handleInput}
-                className='border-blue-400  pl-6 w-full bg-gray-50 mr-8 md:pl-3 border-[1.5px] rounded-md h-12'
+                className='border-blue-700  focus:outline-none w-full pl-6  bg-gray-200  md:pl-3 border-[1.5px] rounded-md h-12'
                 type="text"
-                value={inputValue}
+                value={selectedCity} 
             />
             {isOpen && (
                 <div className='h-[200px]  sm:w-[100%] z-10 overflow-y-scroll scrollbar-none border border-gray-400 bg-gray-200 rounded-md shadow-lg absolute w-full top-14 -mt-1 transition-all ease-in-out duration-150 overflow-hidden'>
