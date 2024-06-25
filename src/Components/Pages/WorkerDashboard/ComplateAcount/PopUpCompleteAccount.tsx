@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { IoMdPerson } from "react-icons/io";
-import { HiOutlineViewList } from "react-icons/hi";
-import { GrUserWorker } from "react-icons/gr";
-import { FaCity } from "react-icons/fa";
 import Progress from "../OtherInfos/Progress";
 import ChoiseCity from "../PopUps/ChoiseCity";
 import ChoiseOccupations from "../PopUps/ChoiseOccupations";
 import Api from '../../../../api/Api';
-import { LuImagePlus } from 'react-icons/lu';
+import { IoImageOutline } from "react-icons/io5";
+import { BsTools } from "react-icons/bs";
+import { BiSolidCity } from "react-icons/bi";
 
 interface Props {
     onCloseComp: () => void;
@@ -27,6 +26,7 @@ interface Worker {
 
 const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
     const [activeStep, setActiveStep] = useState(0);
+    const isArabic=true; // State to toggle language
     const [formData, setFormData] = useState<Partial<Worker>>({
         idOuvrier: '',
         nomOuvrier: '',
@@ -38,7 +38,11 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
         ville_AR: '',
         professions: [], // Initialize professions as an empty array
     });
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState<string>("icons/userIcon.png");
+
+    useEffect(() => {
+        setSelectedImage(`uploads/profiles/${formData.imgProfile}`)
+    }, [formData]);
 
     useEffect(() => {
         const fetchWorker = async () => {
@@ -46,6 +50,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                 const response = await Api.get<Worker[]>("workers?id=1");
                 const workerData = response.data[0];
                 setFormData(workerData);
+            
             } catch (error) {
                 console.error("Error fetching worker:", error);
             }
@@ -91,12 +96,13 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
 
     const steps = [
         {
-            title: "Personal Information",
-            icon: <IoMdPerson className="h-12 text-2xl" />,
+            title: isArabic ? "المعلومات الشخصية" : "Personal Information",
+            icon: <IoMdPerson className="h-12 mx-2 text-2xl" />,
             content: (
                 <div className="flex flex-col md:px-6 md:mt-4">
-                    <label className="text-lg flex mt-4 text-blue-700 font-semibold" htmlFor="prenom">Prenom</label>
+                    <label className="text-lg flex mt-4 text-blue-700 font-semibold" htmlFor="prenom">{isArabic ? "الاسم الشخصي" : "Prenom"}</label>
                     <input
+                        
                         value={formData.prenomOuvrier || ''}
                         onChange={handleChange}
                         className="h-12 px-4 bg-gray-200 focus:outline-none border-[1.5px] focus:border-blue-500 border-blue-500 rounded-md"
@@ -104,7 +110,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                         name="prenomOuvrier"
                         id="prenom"
                     />
-                    <label className="text-lg flex mt-4 text-blue-700 font-semibold" htmlFor="nom">Nom</label>
+                    <label className="text-lg flex mt-4 text-blue-700 font-semibold" htmlFor="nom">{isArabic ? "الاسم العائلي" : "Nom"}</label>
                     <input
                         value={formData.nomOuvrier || ''}
                         onChange={handleChange}
@@ -113,7 +119,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                         name="nomOuvrier"
                         id="nom"
                     />
-                    <label className="text-lg flex mt-4 text-blue-700 font-semibold" htmlFor="phone">Telephone</label>
+                    <label className="text-lg flex mt-4 text-blue-700 font-semibold" htmlFor="phone">{isArabic ? "الهاتف" : "Telephone"}</label>
                     <input
                         value={formData.phone || ''}
                         onChange={handleChange}
@@ -126,20 +132,16 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
             ),
         },
         {
-            title: "Description et l'image",
-            icon: <HiOutlineViewList className="text-2xl h-12" />,
+            title: isArabic ? "الوصف والصورة" : "Description et l'image",
+            icon: <IoImageOutline className="text-2xl mx-2 h-12" />,
             content: (
                 <div className="mx-1 md:px-6">
                     <label className="w-auto" htmlFor="img">
-                        <p className="text-blue-700  flex w-auto text-lg font-semibold">Image de Profile </p>
-                        {selectedImage ? (
-                            <img src={`C:/wamp64/www/pfeApi/api/uploads/profiles/pic1.jpg`} alt="Profile" className="w-28 h-28 mt-3 m-auto border-blue-400  border-[1.5px] bg-gray-100" />
-                        ) : (
-                            <LuImagePlus className="text-gray-600 m-auto  w-28 h-28 mt-3 border-blue-400  border-[1.5px] rounded-md bg-gray-100 text-9xl" />
-                        )}
+                        <p className="text-blue-700  flex w-auto text-lg font-semibold">{isArabic ? "صورة الملف الشخصي" : "Image de Profile"}</p>
+                        <img src={selectedImage} alt="Profile" className="w-28 h-28 mt-3 m-auto border-blue-400  border-[1.5px] bg-gray-100" />
                         <input type="file" id="img" hidden onChange={handleImageChange} />
                     </label>
-                    <p className="text-blue-700 flex mt-6 mb-2 text-xl font-semibold">Description</p>
+                    <p className="text-blue-700 flex mt-6 mb-2 text-xl font-semibold">{isArabic ? "الوصف" : "Description"}</p>
                     <textarea
                         value={formData.description_ouvrier || ''}
                         onChange={handleChange}
@@ -152,22 +154,23 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
             ),
         },
         {
-            title: "Professions",
-            icon: <GrUserWorker className="text-2xl h-12" />,
+            title: isArabic ? "المهن" : "Professions",
+            icon: <BsTools className="text-2xl mx-2 h-12" />,
             content: (
                 <div className="md:px-6">
-                    <p className="text-blue-700 flex mt-6 text-lg font-semibold">Sélectionnez vos professions</p>
+                    <p className="text-blue-700 flex mt-6 text-lg font-semibold">{isArabic ? "حدد مهنتك" : "Sélectionnez vos professions"}</p>
                     <ChoiseOccupations id={formData.idOuvrier || ''} />
                 </div>
             ),
         },
         {
-            title: "Ville",
-            icon: <FaCity className="text-2xl h-12" />,
+            title: isArabic ? "المدينة" : "Ville",
+
+            icon: <BiSolidCity className="text-2xl mx-2 h-12" />,
             content: (
                 <div className="md:px-6">
-                    <p className="text-blue-700 flex mt-6 text-lg font-semibold">Entrez votre ville</p>
-                    <ChoiseCity city={formData.ville_FR || ''} onCityChange={handleCityChange} />
+                    <p className="text-blue-700 flex mt-6 text-lg font-semibold">{isArabic ? "ادخل مدينتك" : "Entrez votre ville"}</p>
+                    <ChoiseCity city={isArabic?formData.ville_AR || '':formData.ville_FR || ''} onCityChange={handleCityChange} />
                 </div>
             ),
         },
@@ -175,17 +178,17 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
 
     const renderStepContent = () => {
         return (
-            <div className="md:w-2/3 px-2 md:px-2 md:pt-12 h-[100vh] relative w-full bg-slate-300">
+            <div  className="md:w-2/3 px-2 md:px-2 md:pt-12 h-[85vh] md:h-[100vh] relative w-full bg-slate-300">
                 <article className="mt-4 cursor-pointer text-teal-700 flex items-center text-2xl font-semibold">
                     <p className="mr-2">{steps[activeStep].icon}</p> {steps[activeStep].title}
                 </article>
                 {steps[activeStep].content}
                 <div className="absolute py-1 w-full flex justify-around left-0 rounded-md text-xl text-white bottom-10">
                     <button onClick={onCloseComp} className="bg-red-300 text-red-800 w-2/5 md:w-1/3 py-2 rounded px-10">
-                        Anuller
+                        {isArabic ? "إلغاء" : "Anuller"}
                     </button>
                     <button onClick={handleSubmit} className="bg-teal-600 w-2/5 md:w-1/3 py-2 rounded px-10">
-                        Valider
+                        {isArabic ? "تأكيد" : "Valider"}
                     </button>
                 </div>
             </div>
@@ -193,12 +196,12 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 w-full h-full bg-black/80">
-            <div className="bg-teal-400 md:bg-white md:flex-row m-auto flex-col z-50 inset-0 bg-hite container flex h-[100vh]">
-                <div className="md:w-1/3 md:h-[100vh] w-full md:px-4 md:mt-10">
+        <div  className="fixed inset-0 z-50 w-full h-full bg-black/80">
+            <div dir={`${isArabic?"rtl":"ltr"}`}  className={`md:flex-row bg-teal-400 md:bg-white  m-auto flex-col z-50 inset-0 bg-hite container flex h-[100vh]`}>
+                <div  className="md:w-1/3 md:h-[100vh] w-full md:px-4 mt-4">
                     <div className="md:block hidden">
+                        <div className="flex md:flex-col text-blue-700 font-bold justify-center items-center mb-10">{isArabic ? "أكمل حسابك" : "Complétez votre compte"}</div>
                         <Progress num={10} />
-                        <div className="flex md:flex-col -mt-2 text-teal-700 font-bold justify-center items-center mb-10">Complétez votre compte</div>
                     </div>
                     <div className="flex w-full md:flex-col">
                         {steps.map((step, index) => (

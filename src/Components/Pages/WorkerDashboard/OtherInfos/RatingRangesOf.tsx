@@ -21,7 +21,7 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
   const [count_Excellent, setCount_Excellent] = useState<number>(0);
   const [totalRate, setTotalRate] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-
+  const isArabic = true;
   const widthOf = (count: number, sum: number) => {
     return (count * 100) / sum;
   };
@@ -77,7 +77,7 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
   }
 
   return (
-    <div className="flex  w-full  flex-col ">
+    <div dir={`${isArabic?"rtl":"ltr"}`} className="flex  w-full  flex-col ">
       <table className="h-[160px]   w-full md:mx-6">
         <tbody className="">
           <tr className="w-full ">

@@ -1,17 +1,39 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import data from "./data.json";
 import EditPostPopup from './EditPostPopup';
 import DeletePstPopup from './DeletePstPopup';
+import Api from '../../../../api/Api';
 
 const cardWidth = 400;
 const cardHeight = 300;
+
+interface Props {
+  idOuvrier: string;
+  imageProjet: string;
+  description_projet: string;
+  titre: string;
+}
 
 const AllPosts: React.FC = () => {
   const cardsContainer = useRef<HTMLDivElement>(null);
   const [openPostId, setOpenPostId] = useState<number | null>(null);
   const [deletePostId, setDeletePostId] = useState<number | null>(null);
+  const [projet, setProjet] = useState<Props[]>([]);
+  const [currentData, setCurrentData] = useState<Props | null>(null);
+
+  useEffect(() => {
+    const fetchImgPosts = async () => {
+      try {
+        const response = await Api.get<Props[]>("projects?workerId=1");
+        setProjet(response.data);
+      } catch (error) {
+        console.error("Error fetching worker:", error);
+      }
+    };
+
+    fetchImgPosts();
+  }, []);
 
   const scrollToLeft = () => {
     if (cardsContainer.current) {
@@ -27,6 +49,8 @@ const AllPosts: React.FC = () => {
 
   const toggleEditPopup = (postId: number | null) => {
     setOpenPostId(postId);
+    const postData = projet.find(item => Number(item.idOuvrier) === postId);
+    setCurrentData(postData || null);
   };
 
   const toggleDeletePopup = (postId: number | null) => {
@@ -46,42 +70,42 @@ const AllPosts: React.FC = () => {
         className="flex overflow-x-scroll scrollbar-none items-center"
         style={{ scrollBehavior: 'smooth' }}
       >
-        {data.map((item) => (
+        {projet.map((item) => (
           <div
-            key={item.id}
+            key={item.idOuvrier}
             style={{ minWidth: cardWidth, minHeight: cardHeight }}
             className="mx-4 shadow-xl relative rounded-md"
           >
-            {openPostId === Number(item.id)&& (
-              <EditPostPopup id={Number(item.id)} onClose={() => toggleEditPopup(null)} />
+            {openPostId === Number(item.idOuvrier) && currentData && (
+              <EditPostPopup id={Number(item.idOuvrier)} onClose={() => toggleEditPopup(null)} data={currentData} />
             )}
-            {deletePostId === Number(item.id) && (
+            {deletePostId === Number(item.idOuvrier) && (
               <DeletePstPopup
-                id={Number(item.id)}
+                id={Number(item.idOuvrier)}
                 onClose={() => toggleDeletePopup(null)}
                 onConfirm={handleDelete}
               />
             )}
             <div className="absolute w-[55%] top-4 right-4 flex justify-around z-30">
               <button
-                onClick={() => toggleDeletePopup(Number(item.id))}
+                onClick={() => toggleDeletePopup(Number(item.idOuvrier))}
                 className="bg-red-300 text-red-950 hover:bg-red-400 font-semibold py-1 px-4 rounded"
               >
                 Supprimer
               </button>
               <button
-                onClick={() => toggleEditPopup(Number(item.id))}
+                onClick={() => toggleEditPopup(Number(item.idOuvrier))}
                 className="bg-teal-100 hover:bg-teal-400 text-teal-700 font-semibold py-1 px-4 rounded"
               >
                 Modifier
               </button>
             </div>
-            <p className="absolute font-semibold bottom-2 px-1 w-full text-md text-white z-10">
-              {item.text}
+            <p className="absolute left-2 right-2 font-semibold bottom-2  w-full text-md text-white z-10">
+              {item.titre}
             </p>
             <img
               className="absolute inset-0 h-full w-full rounded-md object-cover"
-              src="imgUsed/00.jpg"
+              src={`uploads/Projects/${item.imageProjet}`}
               alt="img"
             />
             <div className="absolute rounded-md inset-0 bg-gradient-to-t from-teal-900 via-teal-900/30 to-teal-900/50 transition-all duration-300 hover:bg-gradient-to-t hover:from-teal-800 hover:via-gray-700/40 hover:to-transparent"></div>

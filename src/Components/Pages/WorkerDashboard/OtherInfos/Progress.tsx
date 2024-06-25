@@ -29,7 +29,7 @@ const Progress = ({ num }: NUMPROPS) => {
 
     return (
         <>
-            <div className="flex relative p-4 pb-2 justify-center ">
+            <div className="flex relative  pb-2 justify-center ">
                 <div
                     style={{
                         background: `conic-gradient(#349292 ${(progressContent * 360) / 50}deg, #D0D3DA 0deg)`
