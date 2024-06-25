@@ -11,12 +11,10 @@ const Login = () => {
   };
 
   return (
-
     <div className='md:flex my-6 mt-[5%] justify-between lg:w-[60%] w-[80%] m-auto' >
       <div className="flex flex-col border-2 rounded-xl  w-[100%] md:rounded-r-none md:border-r-0 justify-center items-center md:w-[60%]">
         <div className="flex flex-col  w-full items-center">
           <h1 className="text-teal-500 text-3xl mt-4 font-semibold">Login To Account</h1>
-
           <small className="text-red-500">*use your active number to conecting with you</small>
         </div>
         <form className="w-[50%]  items-center flex flex-col" >
@@ -42,6 +40,10 @@ const Login = () => {
 
 
     </div>
+
+
+
+
   )
 }
 

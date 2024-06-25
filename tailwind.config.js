@@ -1,4 +1,6 @@
- /** @type {import('tailwindcss').Config} */
+// tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
 
 export default {
   darkMode: 'false',
@@ -13,9 +15,8 @@ export default {
       'tab': '1170px',
       'lg': '1440px',
     },
-
-    
     extend: {
+     
       colors: {
         blue500: '#199AFF',
         blue600: '#2D62FE',
@@ -27,17 +28,13 @@ export default {
       width: {
         container: "70%"
       },
-      
-     
-      
-     },
+      aspectRatio: {
+        '1/1': [1, 1],
+      },
+    },
   },
   plugins: [
     require('tailwind-scrollbar'),
-    
+    require('@tailwindcss/aspect-ratio'),
   ],
 }
-// tailwind.config.js
-
-  
-
