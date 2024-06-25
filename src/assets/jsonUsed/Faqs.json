@@ -2,13 +2,13 @@
     "faQuestions": [
         {
             "id": "Q1",
-            "question": "Types de projets réalisés?",
-            "answer": "Nos constructeurs expérimentés sont spécialisés dans divers projets de construction tels que les maisons résidentielles, les espaces commerciaux, les rénovations, etc."
+            "question": "Est-ce que votre service est entièrement gratuit ?",
+            "answer": "Oui, notre service est totalement gratuit, et nous ne prenons aucune commission sur le montant des travaux effectués."
         },
         {
             "id": "Q2",
-            "question": "Durée moyenne d'un projet?",
-            "answer": "La durée varie selon la taille, la complexité et les conditions météorologiques. Nous fournissons des délais précis lors de la consultation."
+            "question": "Comment contacter un travailleur ?",
+            "answer": "le contact avec un travailleur se fait par numéro de téléphone , tous les travailleurs de notre plateforme proposent leurs numéros de téléphone"
         },
         {
             "id": "Q3",

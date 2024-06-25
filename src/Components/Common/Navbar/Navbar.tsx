@@ -176,7 +176,10 @@ const Navbar = () => {
 
                             {
                                 isAuth
-                                && <div className="md:block hidden">
+                                && <div className="md:block hidden relative">
+                                    <div className="-top-2 left-7 w-[20px] h-[20px] rounded-full bg-red-600 absolute ">
+
+                                    </div>
                                     <UserProfile />
                                 </div>
                             }

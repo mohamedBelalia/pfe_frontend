@@ -22,7 +22,7 @@ const WhereWeAre = () => {
                     </>
                     :<>
                         Nous sommes dans toutes les villes du Maroc  <br/>
-                        Vous pouvez facilement trouver des travailleurs dans votre région via notre plateforme"
+                        Vous pouvez facilement trouver des travailleurs dans votre région via notre plateforme
                     </>
                 }
                 

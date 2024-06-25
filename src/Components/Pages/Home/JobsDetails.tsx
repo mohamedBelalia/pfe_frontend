@@ -88,7 +88,7 @@ const JobsDetails = ({idJob}:JobDetailsTypes) => {
                     </div>
                     }
                 </div>
-                <div className="w-1/2 h-[450px] hidden md:flex overflow-hidden rounded-3xl border-2 border-green-600">
+                <div className="w-1/2 h-[450px] hidden md:flex overflow-hidden rounded-xl border-4 border-teal500">
                     <img className="w-full h-full object-cover" src={jobDetails?.imgPath} alt={jobDetails?.nameEn} />
                 </div>
             </div>

@@ -46,6 +46,38 @@ export const jobs = [
         id : "6",
         imgPath : "./professionsIcons/air-conditioning.png",
         Icon : <img src="/icons/marble.png"/>
+      }  
+      ,
+      {
+        nameEn: "Vitrerie Aluminium",
+        nameAr: "زجاج ألومنيوم",
+        id : "7",
+        imgPath : "./professionsIcons/windows.png",
+        Icon : <img src="/icons/marble.png"/>
+      }   
+      ,
+      {
+        nameEn: "Plâtre",
+        nameAr: "جبس",
+        id : "8",
+        imgPath : "./professionsIcons/brick-wall.png",
+        Icon : <img src="/icons/brick-wall.png"/>
+      } 
+      ,
+      {
+        nameEn: "Soudeur",
+        nameAr: "أعمال حديدية",
+        id : "9",
+        imgPath : "./professionsIcons/welder.png",
+        Icon : <img src="/icons/marble.png"/>
+      } 
+      ,
+      {
+        nameEn: "Réparation Machines",
+        nameAr: "إصلاحات الآلات",
+        id : "10",
+        imgPath : "./professionsIcons/repair.png",
+        Icon : <img src="/icons/marble.png"/>
       }     
 ]
 /*

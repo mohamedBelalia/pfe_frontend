@@ -133,7 +133,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
           {/* The Part Of The Jobs to choose */}
           <div className="md:w-full w-[95vw] md:static absolute bottom-0 mb-3 md:mb-8 md:h-[300px] ">
             <>
-                <div className="flex w-full  justify-between gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar ">
+                <div className="flex md:hidden w-full justify-between gap-10 md:gap-1 px-4 overflow-scroll hideScrollBar ">
                 {
                   jobs.map((job , _)=>(
                     <div onClick={()=>clicked(job.id)} key={job.id}>
@@ -143,9 +143,9 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                 }
                 </div>
 
-                {/* <div className="md:block hidden ">
+                <div className="md:block hidden ">
                   <JobsCarousel jobBtns={jobs} clicked={clicked} isArabicSelected={isArabicSelected} jobClicked={jobClicked}/>
-                </div> */}
+                </div>
 
             </>
 
@@ -190,87 +190,87 @@ const JobBtn = ({Icon , name , id , clickedId , imgPath} : IJobBtnTypes) =>{
 }
 
 
-// type IJobsCarousel = {
-//     jobBtns : {
-//         nameEn: string;
-//         nameAr: string;
-//         id: string;
-//         Icon: JSX.Element;
-//     }[]
-//     clicked: (id: string) => void
-//     jobClicked: string 
-//     isArabicSelected: boolean
-// }
+type IJobsCarousel = {
+    jobBtns : {
+        nameEn: string;
+        nameAr: string;
+        id: string;
+        Icon: JSX.Element;
+    }[]
+    clicked: (id: string) => void
+    jobClicked: string 
+    isArabicSelected: boolean
+}
 
-// const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsCarousel) => {
+const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsCarousel) => {
 
-//   let [current, setCurrent] = useState<number>(0);
+  let [current, setCurrent] = useState<number>(0);
 
-//   let previousSlide = () => {
+  let previousSlide = () => {
 
-//     if (current === 0){ 
-//       setCurrent([1].length - 1) 
-//     }
-//     else{ 
-//       setCurrent(current - 1) 
-//     }
+    if (current === 0){ 
+      setCurrent([1].length - 1) 
+    }
+    else{ 
+      setCurrent(current - 1) 
+    }
 
-//   }
+  }
 
-//   let nextSlide = () => {
-//     if (current === jobBtns.length - 1){
-//       setCurrent(0)
-//     }
-//     else{
-//       setCurrent(current + 1)
-//     }
-//   }
+  let nextSlide = () => {
+    if (current === jobBtns.length - 1){
+      setCurrent(0)
+    }
+    else{
+      setCurrent(current + 1)
+    }
+  }
 
-//   return (
-//     <div className="overflow-hidden relative ">
+  return (
+    <div className="overflow-hidden relative ">
 
-//     <div 
-//         className="flex gap-20 transition ease-out duration-500 h-full "
-//         style={{
-//         transform: `translateX(-${current * 150}px)`,
-//         }}
-//     >
+    <div 
+        className="flex gap-20 transition ease-out duration-500 h-full "
+        style={{
+        transform: `translateX(-${current * 150}px)`,
+        }}
+    >
 
-//     {
-//       jobs.map((job , _)=>(
-//         <div onClick={()=>clicked(job.id)} key={job.id} className="w-[200px]">
-//           <JobBtn imgPath={job.imgPath} Icon={job.Icon} name={isArabicSelected ? `${job.nameAr}` : `${job.nameEn}`} id={job.id} clickedId={jobClicked}/>
-//         </div>
-//       ))
-//     }
+    {
+      jobs.map((job , _)=>(
+        <div onClick={()=>clicked(job.id)} key={job.id} className="w-[200px]">
+          <JobBtn imgPath={job.imgPath} Icon={job.Icon} name={isArabicSelected ? `${job.nameAr}` : `${job.nameEn}`} id={job.id} clickedId={jobClicked}/>
+        </div>
+      ))
+    }
 
-//     </div>
+    </div>
 
-//     <div className="h-full w-[200px] mx-auto justify-between items-center flex text-white text-3xl">
-//       <button onClick={previousSlide}>
-//         <FaChevronLeft className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
-//       </button>
-//       <button onClick={nextSlide}>
-//         <FaChevronRight className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
-//       </button>
-//     </div>
+    <div className="h-full w-[200px] mx-auto justify-between items-center flex text-white text-3xl">
+      <button onClick={previousSlide}>
+        <FaChevronLeft className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
+      </button>
+      <button onClick={nextSlide}>
+        <FaChevronRight className="w-[35px] h-[35px] rounded-md p-1 bg-white text-teal-800" />
+      </button>
+    </div>
 
-//     {/* <div className="absolute -bottom-1 flex justify-center gap-3 w-full">
-//       {jobBtns.map((_, i) => {
-//         return (
-//           <div
-//             onClick={() => {
-//               setCurrent(i);
-//             }}
-//             key={"circle" + i}
-//             className={`rounded-full w-3 h-3 cursor-pointer  ${
-//               i == current ? "bg-teal-500" : "bg-gray-300"
-//             }`}
-//           ></div>
-//         );
-//       })}
-//     </div> */}
-//   </div>
-//   )
+    {/* <div className="absolute -bottom-1 flex justify-center gap-3 w-full">
+      {jobBtns.map((_, i) => {
+        return (
+          <div
+            onClick={() => {
+              setCurrent(i);
+            }}
+            key={"circle" + i}
+            className={`rounded-full w-3 h-3 cursor-pointer  ${
+              i == current ? "bg-teal-500" : "bg-gray-300"
+            }`}
+          ></div>
+        );
+      })}
+    </div> */}
+  </div>
+  )
 
-// } 
+} 
