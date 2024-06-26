@@ -177,7 +177,7 @@ const JobBtn = ({Icon , name , id , clickedId , imgPath} : IJobBtnTypes) =>{
         <div className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} text-[40px] md:text-[50px]`}>
           <img src={imgPath} alt="" />
         </div>
-        <p className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} font-bold text-lg`}>{name}</p>
+        <p className={`${id === clickedId ? "text-[#48d1d1]" : "text-white"} font-bold text-lg text-center`}>{name}</p>
 
           {
             id === clickedId 

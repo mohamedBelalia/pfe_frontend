@@ -110,11 +110,11 @@ const Navbar = () => {
                                         currentUrl != "http://localhost:5173/"
                                         &&
                                         <div title="Find the best worker for your task"
-                                            className="cursor-pointer flex items-center gap-2 bg-teal-200 p-2 rounded-md" onClick={() => goTo("/search")}>
+                                            className="cursor-pointer flex items-center gap-2 bg-blue-200 p-2 rounded-md" onClick={() => goTo("/search")}>
                                             {
                                                 isArabicSelected
                                                     ? <p className="text-sm">بحث</p>
-                                                    : <p className="font-normal">search</p>
+                                                    : <p className="font-normal">Recherche</p>
                                             }
                                             <IoSearchSharp className="text-2xl" />
                                         </div>

@@ -2,7 +2,7 @@ import { IoSearchSharp } from "react-icons/io5"
 import Navbar from "../../../Common/Navbar/Navbar"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { AppDispatch } from "../../../Store/store"
+import { AppDispatch, RootState } from "../../../Store/store"
 import { useNavigate } from "react-router-dom"
 import { setSelectedJobName } from "../../../Store/Slices/SelectedTask"
 import NearWorkers from "./NearWorkers"
@@ -11,9 +11,13 @@ import { IProfessionsType } from "../../../../TS"
 import api from "../../../../api/Api"
 import ProfessionBoxSearch from "../../../Common/ProfessionBoxSearch/ProfessionBoxSearch"
 import BestWorkers from "../../Home/DemandedJobs/BestWorkers"
+import OccupationList from "./OccupationList"
+import { useSelector } from "react-redux"
 
 const SearchPage = () => {
 
+    // The Slice For Change The Language
+    const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
     const [isTyping , setIsTyping] = useState<boolean>(false)
 
     const [professions , setProfessions] = useState<IProfessionsType[]>([]);
@@ -69,7 +73,13 @@ const SearchPage = () => {
         </div>
      
         <div className="md:pt-36 pt-24 mb-20 mx-auto flex flex-col ">
-            <h1 className="text-center text-2xl font-semibold text-teal-700 mb-2">Search For Your Specific Task</h1>
+            <h1 className="text-center text-2xl font-semibold text-teal-700 mb-5">
+              {
+                isArabicSelected 
+                ? "ابحث عن مهنتك المحددة"
+                : "Recherchez votre profession spécifique"
+              }
+            </h1>
 
             <div className="md:w-full w-[80%] mx-auto md:mx-0 flex justify-center">
                 <input 
@@ -79,7 +89,9 @@ const SearchPage = () => {
                   value={professionName}
                   className="h-[55px] md:h-[70px]  w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 border-[#199AFF] focus:border-teal-700"
                   type="text" 
-                  placeholder="Search By Task Name"/>
+                  placeholder={
+                    isArabicSelected ? "البحث باسم المهنة" : "Recherche par nom de profession"
+                  }/>
                 <button onClick={searchBtn} className="rounded-r-full bg-teal-700 flex justify-center items-center w-[90px]">
                   <IoSearchSharp className="text-3xl text-white"/>
                 </button>
@@ -91,9 +103,10 @@ const SearchPage = () => {
               </div>
             </div>
 
-            <div className="md:w-[100%] md:mx-auto mx-0 ">
+            <div className="md:w-[80%] md:mx-auto mx-0 mt-9">
               {/* <NearWorkers getWorkerId={setWorkerClickedId}/> */}
-              <BestWorkers/>
+              {/* <BestWorkers/> */}
+              <OccupationList/>
             </div>
 
             {/* worker profile popup */}

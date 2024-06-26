@@ -7,7 +7,7 @@ export const jobs = [
       {
         nameEn: "Peintre",
         nameAr: "صباغ",
-        id : "1",
+        id : "3",
         imgPath : "./professionsIcons/painting.png",
         Icon : <GiLargePaintBrush/>
       },
@@ -21,7 +21,7 @@ export const jobs = [
       {
         nameEn: "Constructeur",
         nameAr: "بنّاء",
-        id : "3",
+        id : "1",
         imgPath : "./professionsIcons/construction.png",
         Icon : <GiConcreteBag/>
       },
@@ -43,7 +43,7 @@ export const jobs = [
       {
         nameEn: "Climatisation",
         nameAr: "التكييف",
-        id : "6",
+        id : "11",
         imgPath : "./professionsIcons/air-conditioning.png",
         Icon : <img src="/icons/marble.png"/>
       }  
@@ -51,7 +51,7 @@ export const jobs = [
       {
         nameEn: "Vitrerie Aluminium",
         nameAr: "زجاج ألومنيوم",
-        id : "7",
+        id : "10",
         imgPath : "./professionsIcons/windows.png",
         Icon : <img src="/icons/marble.png"/>
       }   
@@ -59,7 +59,7 @@ export const jobs = [
       {
         nameEn: "Plâtre",
         nameAr: "جبس",
-        id : "8",
+        id : "9",
         imgPath : "./professionsIcons/brick-wall.png",
         Icon : <img src="/icons/brick-wall.png"/>
       } 
@@ -67,7 +67,7 @@ export const jobs = [
       {
         nameEn: "Soudeur",
         nameAr: "أعمال حديدية",
-        id : "9",
+        id : "8",
         imgPath : "./professionsIcons/welder.png",
         Icon : <img src="/icons/marble.png"/>
       } 
@@ -75,7 +75,7 @@ export const jobs = [
       {
         nameEn: "Réparation Machines",
         nameAr: "إصلاحات الآلات",
-        id : "10",
+        id : "7",
         imgPath : "./professionsIcons/repair.png",
         Icon : <img src="/icons/marble.png"/>
       }     

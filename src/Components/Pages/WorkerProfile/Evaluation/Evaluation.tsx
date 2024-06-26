@@ -26,7 +26,7 @@ const Evaluation = ({workerId}:EvaluationProps) => {
   }
 
   return (
-    <div className="px-7 mt-8 flex flex-col gap-14"> 
+    <div className="md:px-7 pl-4 mt-8 flex flex-col gap-14"> 
         <div>
           <p className="font-bold text-lg text-blue600 mb-1">Le Respect de Delais</p>
           <RatingRangesOf getIsNoComment={setIsNotComment} workerId={workerId} ratingOf="respect_delais"/>
