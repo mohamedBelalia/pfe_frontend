@@ -26,7 +26,7 @@ const AllPosts: React.FC = () => {
   useEffect(() => {
     const fetchImgPosts = async () => {
       try {
-        const response = await Api.get<Props[]>(`projects?workerId=2`);
+        const response = await Api.get<Props[]>(`projects?workerId=4`);
         setProjet(response.data);
         
       } catch (error) {

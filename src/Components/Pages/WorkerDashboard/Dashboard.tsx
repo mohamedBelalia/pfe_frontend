@@ -11,9 +11,9 @@ const isArabic =  false;
 
 if(!isArabic)
 return (
-     <div className="container m-auto ">
-       <div className=' md:flex justify-between flex md:flex-row flex-col my-10 mx-auto'>
-         <div className="" >
+     <div className="container  m-auto ">
+       <div className=' md:flex flex md:flex-row flex-col my-10 mx-auto'>
+         <div className="w-[40%]" >
             <div className='w-full mb-2 md:hidden px-2 sm:w-[70%] m-auto py-5 md:mt-0 rounded-md bg-red-300 sm:md tab:text-lg text-center text-red-700 font-semibold'>
                 {"Complétez votre informations pour obtenir des clients"}
             </div>
@@ -21,7 +21,7 @@ return (
            <Card />
            <ComplateAcount />
          </div>
-         <div className="flex md:mx-10 flex-col">
+         <div className="flex w-[60%] items-center md:mx-10 flex-col">
          <PaginationPage />
          <Evaluation workerId={"1"} />
          </div>

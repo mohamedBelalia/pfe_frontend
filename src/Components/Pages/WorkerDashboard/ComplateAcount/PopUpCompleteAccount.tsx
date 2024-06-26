@@ -47,7 +47,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
     useEffect(() => {
         const fetchWorker = async () => {
             try {
-                const response = await Api.get<Worker[]>("workers?id=1");
+                const response = await Api.get<Worker[]>("workers?id=2");
                 const workerData = response.data[0];
                 setFormData(workerData);
             
