@@ -1,12 +1,5 @@
-@font-face {
-    font-family: Cairo;
-    src: url(../public/Cairo-VariableFont_slnt\,wght.ttf);
-}
 
-#root{
-    font-family: Cairo;
-}
-
+  
 .ourContainer{
     width: 80%;
     margin-left: auto;
@@ -42,9 +35,6 @@
     animation: 120s citySlideRight infinite linear;
 }
 
-.rtl-input{
-    direction: rtl;
-}
 
 @keyframes citySlideLeft {
     0% {

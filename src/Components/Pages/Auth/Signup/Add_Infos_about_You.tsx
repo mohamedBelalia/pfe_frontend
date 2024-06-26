@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CiImageOn } from "react-icons/ci";
 import "./add_info_style.css"
-import { DiVim } from "react-icons/di";
 
 type userData = {
     userImage: File | null,

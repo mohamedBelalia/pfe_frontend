@@ -9,7 +9,6 @@ type userData = {
   confirmPassword: string
 }
 
-
 type UserFormProps = userData & {
   updateFields: (fields: Partial<userData>) => void
 }
@@ -28,7 +27,6 @@ const Signup = ({ firstName, lastName, phone, password, confirmPassword, updateF
         <small className="text-red-500">
           {!isArabic ? "utilisez votre numéro actif pour vous contacter*" : "* استخدم رقمك النشط للتواصل معك"}
         </small>
-
       </div>
 
       <div className='w-full  flex items-center  flex-col '>
@@ -101,6 +99,7 @@ const Signup = ({ firstName, lastName, phone, password, confirmPassword, updateF
 
       </div>
     </div>
+
   )
 }
 
