@@ -11,7 +11,7 @@ type EvaluationProps = {
 
 const Evaluation = ({ workerId }: EvaluationProps) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const isArabic = true; // Assume this value might be derived from some context or props
+    const isArabic = false; // Assume this value might be derived from some context or props
 
     // Step 2: Use the type for the pages array
     const pages: { title_AR: string, title_FR: string, ratingOf: ReviewType }[] = [

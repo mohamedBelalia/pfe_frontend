@@ -22,7 +22,7 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
   const [count_Excellent, setCount_Excellent] = useState<number>(0);
   const [totalRate, setTotalRate] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const isArabic = true; // Assume this value might be derived from some context or props
+  const isArabic = false; // Assume this value might be derived from some context or props
 
   const widthOf = (count: number, sum: number) => {
     return Math.round((count * 100) / sum);

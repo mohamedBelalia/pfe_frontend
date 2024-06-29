@@ -29,7 +29,7 @@ const Progress = ({ num }: NUMPROPS) => {
 
     return (
         <>
-            <div className="flex relative  pb-2 justify-center ">
+            {/* <div className="flex relative  pb-2 justify-center ">
                 <div
                     style={{
                         background: `conic-gradient(#349292 ${(progressContent * 360) / 50}deg, #D0D3DA 0deg)`
@@ -37,16 +37,16 @@ const Progress = ({ num }: NUMPROPS) => {
                     className="w-24 rounded-full h-24 bg-teal500 " id="progress"></div>
                 <div className="bg-white w-20 h-20 mt-2 flex items-center justify-center text-xl text-teal500 font-bold rounded-full absolute">{progressContent}%</div>
 
-            </div>
+            </div> */}
             {/* Rates */}
             <div className='flex mb-6 items-center justify-center text-teal500'>
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex text-lg flex-col justify-center items-center">
                     <img className="lg:w-16 w-12 ml-2" src="icons/starsRate.png" alt="Rating" />
-                    <div className="relative flex justify-center items-center"></div>
+                    <div className="relative  flex justify-center items-center"></div>
 
                     {isArabic ? <div className="flex font-semibold flex-row">
-                        <span>شخص قاموا بتقييمك </span><span>{" " + num}</span></div>
-                        : <div>47 personnes vous ont noté</div>}
+                        <span className=''>شخص قاموا بتقييمك </span><span>{" " + num}</span></div>
+                        : <span className='text-lg'><span>{num+" "}</span> personnes vous ont noté</span>}
                 </div>
             </div></>
     )

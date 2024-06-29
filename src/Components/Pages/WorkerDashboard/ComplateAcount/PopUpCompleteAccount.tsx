@@ -7,10 +7,16 @@ import Api from '../../../../api/Api';
 import { IoImageOutline } from "react-icons/io5";
 import { BsTools } from "react-icons/bs";
 import { BiSolidCity } from "react-icons/bi";
+import { Config } from '../Local_Variables';
 
 interface Props {
     onCloseComp: () => void;
 }
+
+interface Commentaire {
+    commentaire_id: string;
+    
+  }
 
 interface Worker {
     idOuvrier: string;
@@ -27,6 +33,7 @@ interface Worker {
 const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
     const [activeStep, setActiveStep] = useState(0);
     const isArabic = false;
+    const [num, setNum] = useState<number>(0);
     const [formData, setFormData] = useState<Partial<Worker>>({
         idOuvrier: '',
         nomOuvrier: '',
@@ -38,13 +45,9 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
         ville_AR: '',
         professions: [],
     });
-    const [selectedImage, setSelectedImage] = useState<string>("icons/userIcon.png");
+    const [selectedImage, setSelectedImage] = useState<string>("");
 
-    useEffect(() => {
-        if (formData.imgProfile) {
-            setSelectedImage(`uploads/profiles/${formData.imgProfile}`);
-        }
-    }, [formData.imgProfile]);
+  
 
     useEffect(() => {
         const fetchWorker = async () => {
@@ -67,6 +70,25 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
             [name]: value,
         });
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await Api.get<Commentaire[]>(`/commentaire?id=15`);
+            setNum(response.data.length);
+          } catch (error) {
+            console.error("Error fetching rating:", error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+        
+    useEffect(() => {
+        // setTotalPages(Math.ceil(data.length / 3));
+        // setCurrentPage(1);
+    }, []);
+
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -105,7 +127,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                     <input
                         value={formData.prenomOuvrier || ''}
                         onChange={handleChange}
-                        className="h-12 px-4 bg-gray-200 focus:outline-none border-[1.5px] focus:border-blue-500 border-blue-500 rounded-md"
+                        className="h-12 px-4  focus:outline-none border-[1.5px] focus:border-blue-500 border-blue-500 rounded-md"
                         type="text"
                         name="prenomOuvrier"
                         id="prenom"
@@ -114,7 +136,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                     <input
                         value={formData.nomOuvrier || ''}
                         onChange={handleChange}
-                        className="h-12 px-4 focus:outline-none bg-gray-200 border-[1.5px] border-blue-700 rounded-md"
+                        className="h-12 px-4 focus:outline-none  border-[1.5px] border-blue-700 rounded-md"
                         type="text"
                         name="nomOuvrier"
                         id="nom"
@@ -123,7 +145,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                     <input
                         value={formData.phone || ''}
                         onChange={handleChange}
-                        className="h-12 px-4 focus:outline-none bg-gray-200 border-[1.5px] border-blue-700 rounded-md"
+                        className="h-12 px-4 focus:outline-none  border-[1.5px] border-blue-700 rounded-md"
                         type="text"
                         name="phone"
                         id="phone"
@@ -138,14 +160,14 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
                 <div className="mx-1 md:px-6">
                     <label className="w-auto" htmlFor="img">
                         <p className="text-blue-700 flex w-auto text-lg font-semibold">{isArabic ? "صورة الملف الشخصي" : "Image de Profile"}</p>
-                        <img src={selectedImage} alt="Profile" className="w-28 h-28 mt-3 m-auto border-blue-400 border-[1.5px] bg-gray-100" />
+                        <img src={selectedImage.length==0?Config.BaseImagesPath_Profiles + formData.imgProfile:selectedImage} alt="Profile" className="w-28 rounded-xl h-28 mt-3 m-auto border-blue-400 border-[1.5px] bg-gray-100" />
                         <input type="file" id="img" hidden onChange={handleImageChange} />
                     </label>
                     <p className="text-blue-700 flex mt-6 mb-2 text-xl font-semibold">{isArabic ? "الوصف" : "Description"}</p>
                     <textarea
                         value={formData.description_ouvrier || ''}
                         onChange={handleChange}
-                        className="w-full p-4 md:px-4 md:p-0 bg-gray-100 focus:outline-none border-[1.5px] border-blue-400 rounded-md"
+                        className="w-full p-4 md:px-4 md:p-0  focus:outline-none border-[1.5px] border-blue-400 rounded-md"
                         name="description_ouvrier"
                         id="description"
                         rows={6}
@@ -177,16 +199,16 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
 
     const renderStepContent = () => {
         return (
-            <div className="md:w-2/3 px-2 md:px-2 md:pt-12 h-[85vh] md:h-[100vh] relative w-full bg-slate-300">
+            <div className="md:w-2/3 px-2 md:px-2 md:pt-12 h-[85vh] md:h-[100vh] relative w-full bg-slate-100">
                 <article className="mt-4 cursor-pointer text-teal-700 flex items-center text-2xl font-semibold">
                     <p className="mr-2">{steps[activeStep].icon}</p> {steps[activeStep].title}
                 </article>
                 {steps[activeStep].content}
-                <div className="absolute py-1 w-full flex justify-around left-0 rounded-md text-xl text-white bottom-10">
-                    <button onClick={onCloseComp} className="bg-red-300 text-red-800 w-2/5 md:w-1/3 py-2 rounded px-10">
+                <div className="absolute py-1 w-full flex justify-around left-0  text-xl text-white bottom-10">
+                    <button onClick={onCloseComp} className="bg-red-300 text-red-800 w-2/5 md:w-1/3 py-2 rounded-lg px-10">
                         {isArabic ? "إلغاء" : "Annuler"}
                     </button>
-                    <button onClick={handleSubmit} className="bg-teal-600 w-2/5 md:w-1/3 py-2 rounded px-10">
+                    <button onClick={handleSubmit} className="bg-teal-600 w-2/5 md:w-1/3 py-2 rounded-lg px-10">
                         {isArabic ? "تأكيد" : "Valider"}
                     </button>
                 </div>
@@ -196,18 +218,18 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
 
     return (
         <div className="fixed inset-0 z-50 w-full h-full bg-black/80">
-            <div dir={isArabic ? "rtl" : "ltr"} className="md:flex-row bg-teal-400 md:bg-white m-auto flex-col z-50 inset-0 bg-white container flex h-[100vh]">
+            <div dir={isArabic ? "rtl" : "ltr"} className="md:flex-row  md:bg-white m-auto flex-col z-50 inset-0 bg-white container flex h-[100vh]">
                 <div className="md:w-1/3 md:h-[100vh] w-full md:px-4 mt-4">
                     <div className="md:block hidden">
                         <div className="flex md:flex-col text-blue-700 font-bold justify-center items-center mb-10">{isArabic ? "أكمل حسابك" : "Complétez votre compte"}</div>
-                        <Progress num={10} />
+                        <Progress num={num} />
                     </div>
                     <div className="flex w-full md:flex-col">
                         {steps.map((step, index) => (
                             <article
                                 key={index}
                                 onClick={() => setActiveStep(index)}
-                                className={`${activeStep === index ? "bg-slate-300 text-teal-900" : ""} mx-2 flex justify-center md:justify-start items-center m-auto w-full cursor-pointer hover:bg-slate-300 md:border px-3 md:pl-4 mt-6 rounded-t-md md:rounded-md text-teal-800 text-lg font-semibold`}
+                                className={`${activeStep === index ? "bg-slate-100 text-teal-900" : ""} mx-2 flex justify-center md:justify-start items-center m-auto w-full cursor-pointer hover:bg-slate-100 md:border px-3 md:pl-4 mt-6 rounded-t-md md:rounded-md text-teal-800 text-lg font-semibold`}
                             >
                                 {step.icon} <p className="hidden md:flex">{step.title}</p>
                             </article>

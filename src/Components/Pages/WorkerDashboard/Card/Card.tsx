@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { TbStars } from "react-icons/tb";
 import Api from "../../../../api/Api";
 import PopUpCompleteAccount from "../ComplateAcount/PopUpCompleteAccount";
+import { Config } from "../Local_Variables";
 
 interface Worker {
     idOuvrier: string;
@@ -24,7 +25,7 @@ const Card = () => {
     const [worker, setWorker] = useState<Worker | null>(null);
     const [professions, setProfessions] = useState<Profession[]>([]);
     // const [idNum, setIdNum] = useState<number>(0);
-    const isArabic = true;
+    const isArabic = false;
 
     const Occupations = (props: { text: string; keyProf: string }) => {
         return (
@@ -64,7 +65,8 @@ const Card = () => {
                 <IoMdSettings />
                 <div className="-mt-1 font-semibold mx-1">{isArabic ? "تعديل الملف الشخصي" : "Edit Profile"}</div>
             </div>
-            <img className="w-32 md:w-32 m-auto mt-6 mb-3 rounded-full" src="imgUsed/portrait-man-laughing.jpg" alt="" />
+            
+            <img className="w-32 md:w-32 m-auto mt-6 mb-3 rounded-full" src={Config.BaseImagesPath_Profiles + worker?.imgProfile} alt="" />
             <div className="text-teal500 w-full text-lg md:text-xl font-semibold flex justify-center pb-4">
                 <div>{worker?.nomOuvrier + " " + worker?.prenomOuvrier}</div>
                 <TbStars className="ml-3 text-yellow-500" />

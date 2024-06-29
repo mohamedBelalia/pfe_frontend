@@ -67,7 +67,7 @@ const ChoiseCity = ({ city, onCityChange }: Props) => {
         <div dir={`${isArabic ? "rtl" : "ltr"}`} className="relative z-50 cursor-pointer h-[60px] w-full flex justify-start text-lg items-center">
             <input
                 onChange={handleInput}
-                className='border-blue-700 px-4 focus:outline-none w-full pl-6 bg-gray-200 md:pl-3 border-[1.5px] rounded-md h-12'
+                className='border-blue-700 px-4 focus:outline-none w-full pl-6  md:pl-3 border-[1.5px] rounded-md h-12'
                 type="text"
                 value={selectedCity}
             />

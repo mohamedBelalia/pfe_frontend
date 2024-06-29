@@ -4,7 +4,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import EditPostPopup from './EditPostPopup';
 import DeletePstPopup from './DeletePstPopup';
 import Api from '../../../../api/Api';
-
+import { Config } from '../Local_Variables';
 
 interface Props {
   idOuvrier: string;
@@ -24,8 +24,8 @@ const AllPosts: React.FC = () => {
   useEffect(() => {
     const fetchImgPosts = async () => {
       try {
-        const response = await Api.get<Props[]>(`projects?workerId=4`);
-        setProjet(response.data);
+        const response = await Api.get<Props[]>(`projects?workerId=15`);
+        setProjet(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -58,7 +58,7 @@ const AllPosts: React.FC = () => {
 
   const handleDelete = async (idProjet: string) => {
     try {
-      await Api.delete(`projects?idProject=${idProjet}`);
+      await Api.delete(`/projects?idProject=${idProjet}`);
       setProjet(projet.filter(item => item.idProjet !== idProjet));
     } catch (error) {
       console.error("Error deleting project:", error);
@@ -67,53 +67,57 @@ const AllPosts: React.FC = () => {
   };
 
   return (
-    <div className="m-auto ">
+    <div className="m-auto w-full ">
       <div
         ref={cardsContainer}
-        className="flex overflow-x-scroll scrollbar-none items-center"
+        className="flex overflow-x-scroll  scrollbar-none items-center"
         style={{ scrollBehavior: 'smooth' }}
       >
-        {projet.map((item) => (
-          <div
-            key={item.idProjet}
-            // style={{ minWidth: cardWidth, minHeight: cardHeight }}
-            className="mx-4  shadow-xl w-[400px] my-4 h-[300px] relative rounded-md"
-          >
-            {openPostId === item.idOuvrier && currentData && (
-              <EditPostPopup id={Number(item.idOuvrier)} onClose={() => toggleEditPopup(null)} data={currentData} />
-            )}
-            {deletePostId === item.idOuvrier && (
-              <DeletePstPopup
-                id={item.idProjet}
-                onClose={() => toggleDeletePopup(null)}
-                onConfirm={handleDelete}
+        {projet.length > 0 ? (
+          projet.map((item) => (
+            <div
+              key={item.idProjet}
+              className="mr-4 min-w-[400px] my-4 h-[300px] relative rounded-lg"
+            >
+              {openPostId === item.idOuvrier && currentData && (
+                <EditPostPopup id={Number(item.idOuvrier)} onClose={() => toggleEditPopup(null)} data={currentData} />
+              )}
+              {deletePostId === item.idOuvrier && (
+                <DeletePstPopup
+
+                  id={item.idProjet}
+                  onClose={() => toggleDeletePopup(null)}
+                  onConfirm={handleDelete}
+                />
+              )}
+              <div className="absolute  top-4 right-4 flex justify-around z-30">
+                <button
+                  onClick={() => toggleDeletePopup(item.idOuvrier)}
+                  className="bg-red-300 mx-4 text-red-950 hover:bg-red-400 font-semibold py-1 px-4 rounded"
+                >
+                  Supprimer
+                </button>
+                <button
+                  onClick={() => toggleEditPopup(item.idOuvrier)}
+                  className="bg-teal-100 hover:bg-teal-400 text-teal-700 font-semibold py-1 px-4 rounded"
+                >
+              {/* {item.imageProjet} */}
+              Modifier 
+                </button>
+              </div>
+              <p className="absolute left-2 right-2 font-semibold bottom-2 w-full text-md text-white z-10">
+                {item.titre}
+              </p>
+              <img
+                className="absolute inset-0 h-full w-full rounded-md object-cover"
+                src={Config.BaseImagesPath_Projects + item.imageProjet}
               />
-            )}
-            <div className="absolute w-[55%] top-4 right-4 flex justify-around z-30">
-              <button
-                onClick={() => toggleDeletePopup(item.idOuvrier)}
-                className="bg-red-300 text-red-950 hover:bg-red-400 font-semibold py-1 px-4 rounded"
-              >
-                Supprimer
-              </button>
-              <button
-                onClick={() => toggleEditPopup(item.idOuvrier)}
-                className="bg-teal-100 hover:bg-teal-400 text-teal-700 font-semibold py-1 px-4 rounded"
-              >
-                Modifier
-              </button>
+              <div className="absolute rounded-md inset-0 bg-gradient-to-t from-teal-900 via-teal-900/30 to-teal-900/50 transition-all duration-300 hover:bg-gradient-to-t hover:from-teal-800 hover:via-gray-700/40 hover:to-transparent"></div>
             </div>
-            <p className="absolute left-2 right-2 font-semibold bottom-2 w-full text-md text-white z-10">
-              {item.titre}
-            </p>
-            <img
-              className="absolute inset-0 h-full w-full rounded-md object-cover"
-              src={`uploads/Projects/${item.imageProjet}`}
-              alt="img"
-            />
-            <div className="absolute rounded-md inset-0 bg-gradient-to-t from-teal-900 via-teal-900/30 to-teal-900/50 transition-all duration-300 hover:bg-gradient-to-t hover:from-teal-800 hover:via-gray-700/40 hover:to-transparent"></div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div className="text-center text-gray-500 w-full my-4">No projects found</div>
+        )}
       </div>
 
       <div className="flex my-4 justify-center">

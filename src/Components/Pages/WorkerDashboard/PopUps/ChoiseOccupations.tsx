@@ -81,7 +81,7 @@ const ChoiseOccupations = ({ id }: IdWorker) => {
         <div  className="pt-3 relative" ref={dropdownRef}>
             <div
                 onClick={() => setIsClicked(!isClicked)}
-                className="bg-gray-200 -z-10 border-[1.5px] border-blue-700 rounded-md h-12 flex items-center cursor-pointer"
+                className=" -z-10 border-[1.5px] border-blue-700 rounded-md h-12 flex items-center cursor-pointer"
             >
                 <div className="text-[#414E5F] justify-center w-[90%] m-auto flex pl-4 font-semibold">
                     {selectedOccupations.length > 0 ? selectedOccupations.map((item) => (

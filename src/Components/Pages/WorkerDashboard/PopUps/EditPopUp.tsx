@@ -42,28 +42,7 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
     setPassVisible(!passVisible);
   };
 
-  // const onsubmit = async (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   // Create form data object to be sent to the API
-  //   const formData = {
-  //     nomOuvrier: worker[0]?.nomOuvrier,
-  //     prenomOuvrier: worker[0]?.prenomOuvrier,
-  //     phone: worker[0]?.phone,
-  //     description_ouvrier: worker[0]?.description_ouvrier,
-  //     ville: inputValue || cityWorker?.ville_FR,
-  //     badge: badge,
-  //     // Add any other data fields as required
-  //   };
-
-  //   try {
-  //     await Api.put(`workers/${worker[0].idOuvrier}`, formData);
-  //     close();
-  //   } catch (error) {
-  //     console.error("Error updating worker:", error);
-  //   }
-  // };
-
-  // Bring worker info
+  
   useEffect(() => {
     const fetchWorker = async () => {
       try {
@@ -98,20 +77,6 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
     fetchCities();
   }, []);
 
-  // // Bring city of worker
-  // useEffect(() => {
-  //   const fetchCityWorker = async () => {
-  //     if (worker[0]?.ville) {
-  //       try {
-         
-  //       } catch (error) {
-  //         console.error("Error fetching city of worker:", error);
-  //       }
-  //     }
-  //   };
-
-  //   fetchCityWorker();
-  // }, [worker]);
 
   const handleInputCity = (data: string) => {
     setInputValue(data);
