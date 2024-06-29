@@ -27,6 +27,7 @@ interface Worker {
 
 const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
     const [activeStep, setActiveStep] = useState(0);
+    const isArabic  = true;
     const [formData, setFormData] = useState<Partial<Worker>>({
         idOuvrier: '',
         nomOuvrier: '',
@@ -175,7 +176,7 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
 
     const renderStepContent = () => {
         return (
-            <div className="md:w-2/3 px-2 md:px-2 md:pt-12 h-[100vh] relative w-full bg-slate-300">
+            <div className="md:w-2/3 px-2 md:px-2 w-[100%] md:pt-12 h-[100vh] relative  bg-slate-300">
                 <article className="mt-4 cursor-pointer text-teal-700 flex items-center text-2xl font-semibold">
                     <p className="mr-2">{steps[activeStep].icon}</p> {steps[activeStep].title}
                 </article>
@@ -195,10 +196,10 @@ const PopUpCompleteAccount = ({ onCloseComp }: Props) => {
     return (
         <div className="fixed inset-0 z-50 w-full h-full bg-black/80">
             <div className="bg-teal-400 md:bg-white md:flex-row m-auto flex-col z-50 inset-0 bg-hite container flex h-[100vh]">
-                <div className="md:w-1/3 md:h-[100vh] w-full md:px-4 md:mt-10">
+                <div className="md:w-1/3 md:h-[100vh] w-full md:px-4 md:mt-2">
                     <div className="md:block hidden">
                         <Progress num={10} />
-                        <div className="flex md:flex-col -mt-2 text-teal-700 font-bold justify-center items-center mb-10">Complétez votre compte</div>
+                        <div className="flex md:flex-col -mt-2 text-teal-700 font-bold justify-center items-center mb-10">{!isArabic?"Complétez votre compte":"أكمل حسابك"}</div>
                     </div>
                     <div className="flex w-full md:flex-col">
                         {steps.map((step, index) => (

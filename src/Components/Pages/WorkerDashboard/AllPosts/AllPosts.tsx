@@ -49,8 +49,8 @@ const AllPosts: React.FC = () => {
         {data.map((item) => (
           <div
             key={item.id}
-            style={{ minWidth: cardWidth, minHeight: cardHeight }}
-            className="mx-4 shadow-xl relative rounded-md"
+            // style={{ minWidth: cardWidth, minHeight: cardHeight }}
+            className="mr-2 min-w-full min-h-[250px] md:min-w-[400px] md:min-h-[300px] shadow-xl relative rounded-md"
           >
             {openPostId === Number(item.id)&& (
               <EditPostPopup id={Number(item.id)} onClose={() => toggleEditPopup(null)} />
@@ -65,7 +65,7 @@ const AllPosts: React.FC = () => {
             <div className="absolute w-[55%] top-4 right-4 flex justify-around z-30">
               <button
                 onClick={() => toggleDeletePopup(Number(item.id))}
-                className="bg-red-300 text-red-950 hover:bg-red-400 font-semibold py-1 px-4 rounded"
+                className="bg-red-300 text-red-950 hover:bg-red-400 font-semibold md:py-1 py-[2px] px-2 md:px-4 rounded"
               >
                 Supprimer
               </button>

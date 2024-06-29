@@ -37,9 +37,9 @@ const Evaluation = ({ workerId }: EvaluationProps) => {
     };
 
     return (
-        <div className="h-full mx-2 mt-8 flex flex-col gap-7">
+        <div className="h-full   mx-2 mt-8 flex flex-col gap-7">
             <div>
-                <p className="font-bold  text-lg text-blue600 mb-1">{pages[currentPage].title}</p>
+                <p className="font-bold text-lg text-blue600 mb-1">{pages[currentPage].title}</p>
                 <RatingRangesOf workerId={workerId} ratingOf={pages[currentPage].ratingOf} />
             </div>
 

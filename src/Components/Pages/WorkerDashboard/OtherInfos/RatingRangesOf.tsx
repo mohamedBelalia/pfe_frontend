@@ -78,26 +78,26 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
 
   return (
     <div className="flex  w-full  flex-col ">
-      <table className="h-[160px]   w-full md:mx-6">
+      <table className="h-[160px] m-auto w-full md:mx-6">
         <tbody className="">
-          <tr className="w-full ">
-            <td className="font-semibold flex md:flex-row flex-col mt-3 text-[18px] w-[12%]">Bien</td>
-            <td className="w-full flex justify-center    flex-col">
-              <div className="h-[35px] md:w-[430px] w-full relative">
+          <tr className="w-full m-auto ">
+            <td className="font-semibold  flex md:flex-row flex-col mt-3 text-[18px] w-[12%]">Bien</td>
+            <td className="w-full m-auto  flex justify-center flex-col">
+              <div className="h-[35px]  w-full  relative">
                 <div
                   style={{ width: count_Bien == 0 ? `10%` : `${widthOf(count_Bien, totalRate)}%` }}
-                  className={` ${count_Bien == 1 ? "text-lg" : ""} ${count_Bien == 0 ? "flex text-md m-auto w-full" : "bg-[#e8975d8b]"} h-full  flex justify-center items-center text-md font-semibold text-[#7c4a27]  rounded-md`}
+                  className={` ${count_Bien == 1 ? "text-lg" : ""} ${count_Bien == 0 ? "flex text-md m-auto " : "bg-[#e8975d8b]"} h-full   flex justify-center items-center text-md font-semibold text-[#7c4a27]  rounded-md`}
                 >
                   {widthOf(count_Bien, totalRate)} %
                 </div>
-                <div className="absolute top-0 left-0 w-full h-full border-2 border-[#E8985D] rounded-md"></div>
+                <div className="absolute  top-0 left-0 w-full h-full border-2 border-[#E8985D] rounded-md"></div>
               </div>
             </td>
           </tr>
           <tr>
             <td className="font-semibold flex md:block mt-3 flex-col text-[18px] ">Tres Bien</td>
             <td className="w-full flex justify-center  flex-col">
-              <div className="h-[35px] md:w-[430px]  relative">
+              <div className="h-[35px]  relative">
                 <div
                   style={{ width: count_Tres_Bien == 0 ? `10%` : `${widthOf(count_Tres_Bien, totalRate)}%` }}
                   className={` ${count_Tres_Bien == 1 ? "text-[10px] " : "text-sm"} ${count_Tres_Bien == 0 ? "flex  text-sm m-auto w-full" : " bg-[#199AFF8b]"} h-full   flex justify-center items-center font-semibold text-[#214866]  rounded-md`}
@@ -111,7 +111,7 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
           <tr>
             <td className="font-semibold mt-3 flex flex-col text-[18px] w-[12%]">Excellent</td>
             <td className="w-full flex justify-center  flex-col">
-              <div className="h-[35px] md:w-[430px] relative">
+              <div className="h-[35px] relative">
                 <div
                   style={{ width: count_Excellent == 0 ? `10%` : `${widthOf(count_Excellent, totalRate)}%` }}
                   className={` ${count_Excellent == 1 ? "text-[10px]" : ""} ${count_Excellent == 0 ? "flex m-auto  w-full" : "  text-sm bg-[#47b0b0]"} h-full text-md flex justify-center items-center   font-semibold text-[#214866]  rounded-md`}

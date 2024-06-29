@@ -77,7 +77,7 @@ const PaginationPage: React.FC = () => {
 
 
     return (
-        <div className="ml-4 hidden md:block relative w-full mx-auto ">
+        <div className="ml-4 hidden md:block relative  w-full mx-auto ">
 
 
 
