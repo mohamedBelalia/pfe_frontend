@@ -6,24 +6,28 @@ import RatingRangesOf from './RatingRangesOf';
 type ReviewType = "respect_delais" | "quality_travail" | "prix_qualite";
 
 type EvaluationProps = {
-    workerId: string
+    workerId: string;
 }
 
 const Evaluation = ({ workerId }: EvaluationProps) => {
     const [currentPage, setCurrentPage] = useState(0);
+    const isArabic = true; // Assume this value might be derived from some context or props
 
     // Step 2: Use the type for the pages array
-    const pages: { title: string, ratingOf: ReviewType }[] = [
+    const pages: { title_AR: string, title_FR: string, ratingOf: ReviewType }[] = [
         {
-            title: "Le Respect de Delais",
+            title_AR: "احترام الوقت",
+            title_FR: "Le Respect des Délais",
             ratingOf: "respect_delais"
         },
         {
-            title: "Quality Travail",
+            title_AR: "جودة العمل",
+            title_FR: "Qualité du Travail",
             ratingOf: "quality_travail"
         },
         {
-            title: "Prix",
+            title_AR: "جودة السعر",
+            title_FR: "Prix Qualité",
             ratingOf: "prix_qualite"
         }
     ];
@@ -37,9 +41,11 @@ const Evaluation = ({ workerId }: EvaluationProps) => {
     };
 
     return (
-        <div className="h-full   mx-2 mt-8 flex flex-col gap-7">
-            <div>
-                <p className="font-bold text-lg text-blue600 mb-1">{pages[currentPage].title}</p>
+        <div className="h-full mx-2 mt-8 flex flex-col gap-7">
+            <div dir={isArabic ? "rtl" : "ltr"}>
+                <p className="font-bold text-lg text-blue-600 mb-1">
+                    {isArabic ? pages[currentPage].title_AR : pages[currentPage].title_FR}
+                </p>
                 <RatingRangesOf workerId={workerId} ratingOf={pages[currentPage].ratingOf} />
             </div>
 

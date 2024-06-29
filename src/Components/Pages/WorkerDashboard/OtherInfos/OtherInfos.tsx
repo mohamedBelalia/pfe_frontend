@@ -3,7 +3,6 @@ import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import React from 'react'
 
-
 interface PaginationProps {
     currentPage: number;
     totalPages: number;

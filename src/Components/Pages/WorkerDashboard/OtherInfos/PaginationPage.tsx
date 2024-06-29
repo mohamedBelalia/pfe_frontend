@@ -86,7 +86,7 @@ const PaginationPage: React.FC = () => {
             <div className='w-full hidden md:block  py-5 md:mt-0 rounded-md bg-red-300 sm:md tab:text-lg text-center text-red-700 font-semibold'>
                 {isArabic ? "أكمل معلومات ملفك الشخصي للحصول على عملاء" : "Complete Your Profile Informations To Get Clients"}
             </div>
-
+            <p className='mt-6'></p>
             <Progress num={num} />
 
            
