@@ -26,6 +26,7 @@ interface Profession {
 
 const CompleteAcount = () => {
     const isArabic = false;
+    
     const [professions, setProfessions] = useState<Profession[]>([]);
 
     const [formData, setFormData] = useState<Partial<Worker>>({

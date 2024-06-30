@@ -63,7 +63,7 @@ const Card = () => {
             {isOpen ? <PopUpCompleteAccount onCloseComp={togglePopup} /> : ""}
             <div onClick={togglePopup} className={`${isArabic ? "flex-row-reverse" : ""} flex cursor-pointer text-blue500`}>
                 <IoMdSettings />
-                <div className="-mt-1 font-semibold mx-1">{isArabic ? "تعديل الملف الشخصي" : "Edit Profile"}</div>
+                <div className="-mt-1 font-semibold mx-1">{isArabic ? "تعديل الملف الشخصي" : "Editer le profile"}</div>
             </div>
             
             <img className="w-32 md:w-32 m-auto mt-6 mb-3 rounded-full" src={Config.BaseImagesPath_Profiles + worker?.imgProfile} alt="" />
