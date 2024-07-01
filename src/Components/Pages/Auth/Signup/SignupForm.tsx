@@ -174,7 +174,7 @@ const SignupForm = () => {
             <div className='pt-[100px] w-full md:w-[70%] md:flex md:flex-col mb-20  m-auto md:mt-10 md:items-center rounded-xl'>
                 <div className="text-center mb-2">
                     <h1 className="text-blue-500 font-semibold text-2xl lg:text-3xl ">
-                        {!isArabicSelected ? "Informations personnelles" : "معلومات شخصية"}
+                        {!isArabicSelected ? "Inscription au MOQEF" : "معلومات شخصية"}
                     </h1>
                     <small className="text-red-500">
                         {!isArabicSelected ? "utilisez votre numéro actif pour vous contacter*" : "* استخدم رقمك النشط للتواصل معك"}

@@ -7,12 +7,11 @@ import { IProjectWorker } from "../../../../TS"
 import { Config } from "../../../../../config/Local_Variables"
 
 type UpdateProjectProps = {
-    idProject: string
+    idProject: string,
+    cancelIt : (id : string) => void
 }
 
-const UpdateProject = ({ idProject }: UpdateProjectProps) => {
-
-    const tempIdProject = "54"
+const UpdateProject = ({ idProject , cancelIt }: UpdateProjectProps) => {
 
     // The Slice For Change The Language
     const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
@@ -64,7 +63,7 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
                     setFetchedProject(responseProject.data);
                 }
                 // for the project images
-                const responseProjectImages = await Api.get(`/projects?id=${tempIdProject}&images=all`)
+                const responseProjectImages = await Api.get(`/projects?id=${idProject}&images=all`)
 
                 if (responseProjectImages.data.status != "not_found") {
                     setFetchedProjectImages(responseProjectImages.data)
@@ -79,7 +78,7 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
             }
         }
 
-        fetchProject(tempIdProject);
+        fetchProject(idProject);
 
         if (fetchedProject != undefined) {
             setProjectTitle(fetchedProject.titre)
@@ -106,12 +105,12 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
             try {
                 setIsUpdatingLoading(true)
 
-                const deleteImgsResponse = await Api.put(`/porject-images?idProject=${tempIdProject}` , deletedImages)
+                const deleteImgsResponse = await Api.put(`/porject-images?idProject=${idProject}` , deletedImages)
 
                 console.log(deleteImgsResponse);
                 
 
-                const response = await Api.post(`/projects?updateProject=${tempIdProject}`, formData, {
+                const response = await Api.post(`/projects?updateProject=${idProject}`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     }
@@ -136,6 +135,7 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
                 setProjectDescription("")
                 setSelectedImages([])
                 setFetchedProjectImages([])
+                location.reload()
             }
         }
         else {
@@ -183,7 +183,7 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
     }
 
     return (
-        <div className="w-full h-[800px] flex justify-center items-center bg-[#bababa]">
+        <div className="w-full h-[800px] flex justify-center items-center">
             <div className="bg-white w-[80%] rounded-lg md:px-6 px-3 py-10">
                 <div className="w-full flex gap-10 flex-col items-start md:flex-row">
                     <div className="md:w-1/2 w-full bg-[#f5f5f5c9] rounded-md border border-[#8f8e8e] flex flex-col gap-7 px-4 md:px-8 md:py-8 py-6" dir={isArabicSelected ? "rtl" : "ltr"}>
@@ -274,6 +274,7 @@ const UpdateProject = ({ idProject }: UpdateProjectProps) => {
                     }
                     <button
                         className="bg-blue500 px-10 py-2 rounded-md text-xl text-white font-semibold hover:bg-blue-600"
+                        onClick={()=>cancelIt("")}
                     >Annuler</button>
                 </div>
             </div>

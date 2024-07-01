@@ -11,7 +11,7 @@ type EvaluationProps = {
 
 const Evaluation = ({ workerId }: EvaluationProps) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const isArabic = true; // Assume this value might be derived from some context or props
+    const isArabic = false; // Assume this value might be derived from some context or props
 
     // Step 2: Use the type for the pages array
     const pages: { title_AR: string, title_FR: string, ratingOf: ReviewType }[] = [
@@ -41,12 +41,11 @@ const Evaluation = ({ workerId }: EvaluationProps) => {
     };
 
     return (
-        <div className="h-full mx-2 mt-8 flex flex-col gap-7">
-            <div dir={isArabic?"rtl":"ltr"}>
+        <div className="mx-2 mt-8 flex flex-col h-auto gap-5">
+            <div dir={isArabic ? "rtl" : "ltr"}>
                 <p className="font-bold text-lg text-blue-600 mb-1">
                     {isArabic ? pages[currentPage].title_AR : pages[currentPage].title_FR}
                 </p>
-
                 <RatingRangesOf workerId={workerId} ratingOf={pages[currentPage].ratingOf} />
             </div>
 

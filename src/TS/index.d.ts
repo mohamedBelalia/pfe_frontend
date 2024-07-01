@@ -5,52 +5,61 @@ export interface IProfessionsType {
 }
 
 // for the video player 
-export interface IVideoPlayerTools{
-    isVideoPlayed : boolean
-    getIsVideoPlayed : (videoPlayed : boolean) => void
-} 
+export interface IVideoPlayerTools {
+    isVideoPlayed: boolean
+    getIsVideoPlayed: (videoPlayed: boolean) => void
+}
+
+// profile worker
+export interface IProfileWorker {
+    firstName : string
+    id : string
+    imgPath : string
+    phoneNumber : string
+}
 
 // for the Best Workers incoming data
 export interface IWorkerInfromation {
-    idOuvrier :  string,
-    nomOuvrier :  string,
-    prenomOuvrier :  string,
-    imgProfile : string ,
-    phone :  string,
-    idBadge :  string,
-    labelleBadge_AR :  string,
-    labelleBadge_FR :  string ,
-    nbrCommentair : string ,
-    avgEtoile : string
-    description_ouvrier? : string,
-    ville_AR : string ,
-    ville_FR : string
+    idOuvrier: string,
+    nomOuvrier: string,
+    prenomOuvrier: string,
+    imgProfile: string,
+    phone: string,
+    idBadge: string,
+    labelleBadge_AR: string,
+    labelleBadge_FR: string,
+    nbrCommentair: string,
+    avgEtoile: string
+    description_ouvrier?: string,
+    ville_AR: string,
+    ville_FR: string,
+    experience?: string
 }
-export interface ISingleWorker{
-    singleWorker : IWorkerInfromation
+export interface ISingleWorker {
+    singleWorker: IWorkerInfromation
 }
-export interface IBestWorkers{
-   workerInfo : IWorkerInfromation
+export interface IBestWorkers {
+    workerInfo: IWorkerInfromation
 }
 
 export interface ICommunWorkerInfo {
-    id : string,
+    id: string,
     phoneNumber: string,
-    firstName: string ,
-    imgPath : string,
+    firstName: string,
+    imgPath: string,
 }
 
 
 // for the sended data of the filter
-export interface IFilterNeededData{
-    profession : string
-    ville : string
-    badge : string[]
+export interface IFilterNeededData {
+    profession: string
+    ville: string
+    badge: string[]
 }
 
 // only for the Badge props in the filter components 
 interface IBadgeProps {
-    getBadgeNbr : (nbrBadge : string[]) => void
+    getBadgeNbr: (nbrBadge: string[]) => void
 }
 
 
@@ -60,28 +69,28 @@ interface IProjectWorker {
     imageProjet: string
     titre: string
     description_projet: string
-    idOuvrier ?: string
+    idOuvrier?: string
 }
 
 
 // for the Diploms of each worker
 interface IDiplomsWorker {
-    idDiplome : string
-    labelleDiplome_AR : string
-    labelleDiplome_FR : string
+    idDiplome: string
+    labelleDiplome_AR: string
+    labelleDiplome_FR: string
 }
 
 // for the Comments of each worker
 interface IComments {
-    idCommentaire : string 
-    textCommentaire : string 
-    nbrEtoile : number
-    dateCommentaire : string
-    idOuvrier : string
+    idCommentaire: string
+    textCommentaire: string
+    nbrEtoile: number
+    dateCommentaire: string
+    idOuvrier: string
 }
 
 // for the coming cities from databse
-interface ICity{
+interface ICity {
     idVille: string;
     ville_AR: string;
     ville_FR: string;

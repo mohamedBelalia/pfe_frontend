@@ -1,9 +1,14 @@
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { RootState } from "../../Store/store"
 
 
 const RegesterBar = () => {
 
     const navigate = useNavigate()
+
+        // The Slice For Change The Language
+        const isArabicSelected : boolean = useSelector((state:RootState)=> state.selectedLanguageSlice.isArabicSelected)
 
     // to go to the specific path in addition go to the top of the page
     const goTo = (path : string) => {
@@ -17,14 +22,24 @@ const RegesterBar = () => {
             <button 
                 onClick={()=>goTo("/Signup")}
                 title="Create an account as a worker" 
-                className="p-3 w-full md:w-1/3 bg-teal-300 rounded-md font-medium text-[#414E5F]">Sign up as Tasker</button>
+                className="p-3 w-full md:w-1/3 bg-teal-300 rounded-md font-medium text-[#414E5F]">
+                    {
+                        isArabicSelected
+                        ? "سجل كعامل"
+                        : "S'inscrire en tant que ouvrier"
+                    }
+                </button>
             <button 
                 onClick={()=>goTo("/Login")}
                 title="Login in your Tasker account" 
-                className="p-3 w-full md:w-1/3 bg-teal-300 rounded-md font-medium text-[#414E5F]">Login as Tasker</button>
+                className="p-3 w-full md:w-1/3 bg-teal-300 rounded-md font-medium text-[#414E5F]">
+                        {
+                            isArabicSelected 
+                            ? "تسجيل الدخول كعامل"
+                            : "Connectez-vous en tant que ouvrier"
+                        }
+                </button>
         </div>
-
-        <p className="cursor-pointer mt-6 text-sm underline">The Best Way to Regester</p>
     </>
   )
 }

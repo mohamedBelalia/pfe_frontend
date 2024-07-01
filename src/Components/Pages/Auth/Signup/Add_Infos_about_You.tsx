@@ -27,7 +27,7 @@ const Add_Infos_about_You = ({ userImage, description, updateFields }: UserFormP
 
     return (
 
-        <div className='flex  w-full flex-col mt-18 mt-4 md:mt-10 h-[70vh] items-center  '>
+        <div className='flex w-full flex-col mt-18 mt-4 md:mt-10 h-[70vh] items-center  '>
             <div className="text-center ">
                 <h1 className="text-blue-500 text-xl md:text-3xl font-semibold">
                     {`${!isArabic ? "Informations supplémentaires sur vous" : "معلومات إضافية عنك"}`}

@@ -13,7 +13,7 @@ type topWorkersType = {
 
 
 const BestWorkers = ({getWorkerId}:topWorkersType) => {
-    const test : number[] = [1 , 2 , 3 , 4 , 5 , 6]
+    const test : number[] = [64 , 65 , 63 , 62 , 70 , 71]
     // state of the best Workers 
     const [workers , setWorkers] = useState<IWorkerInfromation[]>()
 
@@ -99,7 +99,7 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
             <h1 className="text-center text-4xl font-bold text-[#349292]">
             {
                 isArabicSelected 
-                ? `${geolocationName} فضل 6 عمال تقييمًا في`
+                ? `${geolocationName} أفضل 6 عمال تقييمًا في`
                 : `Les 6 meilleurs artisans évalués dans ${geolocationName}`
             }
             </h1>
@@ -133,7 +133,7 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
         <h1 className="text-center text-3xl font-bold text-[#349292]">
             {
                 isArabicSelected 
-                ? `${geolocationName} فضل 6 عمال تقييمًا في`
+                ? `${geolocationName} أفضل 6 عمال تقييمًا في`
                 : `Les 6 meilleurs artisans évalués dans ${geolocationName}`
             }
             
@@ -191,7 +191,8 @@ const BestWorkers = ({getWorkerId}:topWorkersType) => {
                                 nbrCommentair : worker.nbrCommentair ,
                                 avgEtoile : worker.avgEtoile,
                                 ville_AR : worker.ville_AR ,
-                                ville_FR : worker.ville_FR
+                                ville_FR : worker.ville_FR,
+                                experience : worker.experience
                             }} />
                 ))
             }

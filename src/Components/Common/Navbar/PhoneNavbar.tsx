@@ -47,11 +47,11 @@ const PhoneNavbar = ({getTheBecomeATaskerBox , isTheBecomeATaskerBoxClicked}:Pho
             <IoSearch className="text-2xl"/>
             <p className="text-sm font-bold select-none">Recherche</p>
         </div>
-
+{/* 
         <div onClick={()=>navigateTo('/search')} className="text-gray-500 w-[80px] h-[80%]  flex flex-col justify-between items-center rounded-md">
             <RiLoginCircleLine className="text-2xl"/>
-            <p className="text-sm font-bold select-none">Temp</p>
-        </div>
+            <p className="text-sm font-bold select-none">Profile</p>
+        </div> */}
 
         <div onClick={()=>getTheBecomeATaskerBox(!isTheBecomeATaskerBoxClicked)} 
             className="text-gray-500 flex w-[80px] h-[80%] flex-col justify-between items-center rounded-md relative">

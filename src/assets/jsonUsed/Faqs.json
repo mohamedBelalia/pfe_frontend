@@ -2,28 +2,17 @@
     "faQuestions": [
         {
             "id": "Q1",
-            "question": "Est-ce que votre service est entièrement gratuit ?",
-            "answer": "Oui, notre service est totalement gratuit, et nous ne prenons aucune commission sur le montant des travaux effectués."
+            "question_FR": "Est-ce que votre service est entièrement gratuit ?",
+            "question_AR" : "هل خدمتك مجانية بالكامل؟" ,
+            "answer_FR": "Oui, notre service est totalement gratuit, et nous ne prenons aucune commission sur le montant des travaux effectués.",
+            "answer_AR" : "نعم، خدمتنا مجانية بالكامل، ولا نأخذ أي عمولة على حجم العمل الذي يتم تنفيذه."
         },
         {
             "id": "Q2",
-            "question": "Comment contacter un travailleur ?",
-            "answer": "le contact avec un travailleur se fait par numéro de téléphone , tous les travailleurs de notre plateforme proposent leurs numéros de téléphone"
-        },
-        {
-            "id": "Q3",
-            "question": "Ce qui distingue nos constructeurs?",
-            "answer": "Notre engagement envers l'artisanat de qualité, l'attention aux détails et le service clientèle exceptionnel."
-        },
-        {
-            "id": "Q4",
-            "question": "Structure tarifaire?",
-            "answer": "Transparence dans la tarification, avec des estimations détaillées des coûts de main-d'œuvre, matériaux et permis."
-        },
-        {
-            "id": "Q5",
-            "question": "Gestion des permis et approbations?",
-            "answer": "Oui, notre équipe s'occupe de tous les permis et approbations nécessaires pour se conformer aux réglementations locales."
+            "question_FR": "Comment contacter un travailleur ?",
+            "question_AR" : "كيفية الاتصال بالعامل ؟" ,
+            "answer_FR": "le contact avec un travailleur se fait par numéro de téléphone , tous les travailleurs de notre plateforme proposent leurs numéros de téléphone",
+            "answer_AR" : "يتم الاتصال بالعامل عن طريق رقم الهاتف، وجميع العاملين على منصتنا يقدمون أرقام هواتفهم"
         }
     ]
 }

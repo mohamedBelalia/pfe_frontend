@@ -66,7 +66,9 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
                     {/* on clicking on this btn we display the worker profile pop-up */}
                     <button 
                         onClick={()=>getClickedWorkerId(workerInfo.idOuvrier)}
-                        className="px-5 py-1 font-bold text-white rounded-lg bg-[#349292] hidden md:block">Profile</button>
+                        className="px-5 py-1 font-bold text-white rounded-lg bg-[#349292] hidden md:block">{
+                            isArabicSelected ? "نبذة" : "Bref"
+                        }</button>
                 </div>
                 
             </div>

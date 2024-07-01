@@ -6,7 +6,7 @@ import Api from "../../../../api/Api";
 
 interface PROPSPopUp {
   close: () => void;
-  id: number;
+  id: string;
 }
 
 interface Worker {
@@ -42,28 +42,7 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
     setPassVisible(!passVisible);
   };
 
-  // const onsubmit = async (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   // Create form data object to be sent to the API
-  //   const formData = {
-  //     nomOuvrier: worker[0]?.nomOuvrier,
-  //     prenomOuvrier: worker[0]?.prenomOuvrier,
-  //     phone: worker[0]?.phone,
-  //     description_ouvrier: worker[0]?.description_ouvrier,
-  //     ville: inputValue || cityWorker?.ville_FR,
-  //     badge: badge,
-  //     // Add any other data fields as required
-  //   };
-
-  //   try {
-  //     await Api.put(`workers/${worker[0].idOuvrier}`, formData);
-  //     close();
-  //   } catch (error) {
-  //     console.error("Error updating worker:", error);
-  //   }
-  // };
-
-  // Bring worker info
+  
   useEffect(() => {
     const fetchWorker = async () => {
       try {
@@ -98,20 +77,6 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
     fetchCities();
   }, []);
 
-  // // Bring city of worker
-  // useEffect(() => {
-  //   const fetchCityWorker = async () => {
-  //     if (worker[0]?.ville) {
-  //       try {
-         
-  //       } catch (error) {
-  //         console.error("Error fetching city of worker:", error);
-  //       }
-  //     }
-  //   };
-
-  //   fetchCityWorker();
-  // }, [worker]);
 
   const handleInputCity = (data: string) => {
     setInputValue(data);
@@ -128,7 +93,7 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
   });
 
   return (
-    <form className="flex relative h-[70vh] mt-0 flex-col rounded-sm w-full">
+    <form className="flex relative h-[70vh] flex-col rounded-sm w-full mt-10">
       <div className="relative h-full">
         <div className="flex items-center flex-col">
           <label htmlFor="profileImg" className="group items-center flex flex-col relative">
@@ -192,7 +157,8 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
             </div>
           </div>
           <div className="md:flex md:justify-around sm:w-[90%] w-[95%] m-auto md:w-full">
-            <div className="relative md:w-[45%] py-2">
+            
+            <div className="relative ml-9 md:w-[45%] py-2">
               <label htmlFor="ville" className={`${isArabic ? "flex justify-end" : ""} after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
                 {isArabic ? "المدينة" : "Ville"}
               </label>
@@ -223,39 +189,7 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
                 )}
               </div>
             </div>
-            <div className="md:w-[45%] py-2">
-              <label htmlFor="badge" className={`${isArabic ? "flex justify-end" : ""} after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
-                {isArabic ? "الشارة" : "Badge"}
-              </label>
-              <select
-                value={badge}
-                dir={`${isArabic ? "rtl" : ""}`}
-                name="badge"
-                id="badge"
-                className="w-full h-[50px] px-4 focus:outline-blue-500 border-teal500 rounded-xl border-2 bg-transparent"
-                onChange={(e) => setBadge(e.target.value)}
-              >
-                <option value="1">Maalem</option>
-                <option value="2">Kheddam</option>
-              </select>
-            </div>
-          </div>
-          <div className={`flex flex-col items-center m-auto sm:w-[95%] w-full`}>
-            <label htmlFor="description" className={`${isArabic ? "flex justify-end" : ""} w-full after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
-              {isArabic ? "نبذة عنك" : "À ProPos de vous"}
-            </label>
-            <textarea
-              dir={`${isArabic ? "rtl" : ""}`}
-              placeholder={`Description`}
-              className="border-2 w-[95%] md:w-full p-3 focus:outline-blue-500 md:h-38 rounded-xl border-teal500"
-              name="description"
-              id="description"
-              cols={50}
-              rows={4}
-              value={worker[0]?.description_ouvrier || ""}
-            />
-          </div>
-          <div className="mx-6 w-[95%] m-auto py-2">
+            <div className="w-[45%] m-auto py-2">
             <label htmlFor="password" className={`${isArabic ? "flex justify-end" : ""} w-full after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
               {isArabic ? "كلمة السر" : "Mot de Passe"}
             </label>
@@ -273,6 +207,57 @@ const EditPopUp = ({ close, id }: PROPSPopUp) => {
               )}
             </div>
           </div>
+
+            {/* <div className="md:w-[45%] py-2">
+              <label htmlFor="badge" className={`${isArabic ? "flex justify-end" : ""} after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
+                {isArabic ? "الشارة" : "Badge"}
+              </label>
+              <select
+                value={badge}
+                dir={`${isArabic ? "rtl" : ""}`}
+                name="badge"
+                id="badge"
+                className="w-full h-[50px] px-4 focus:outline-blue-500 border-teal500 rounded-xl border-2 bg-transparent"
+                onChange={(e) => setBadge(e.target.value)}
+              >
+                <option value="1">Maalem</option>
+                <option value="2">Kheddam</option>
+              </select>
+            </div> */}
+          </div>
+          <div className={`flex flex-col items-center m-auto sm:w-[95%] w-full`}>
+            <label htmlFor="description" className={`${isArabic ? "flex justify-end" : ""} w-full after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
+              {isArabic ? "نبذة عنك" : "À ProPos de vous"}
+            </label>
+            <textarea
+              dir={`${isArabic ? "rtl" : ""}`}
+              placeholder={`Description`}
+              className="border-2 w-[95%] md:w-full p-3 focus:outline-blue-500 md:h-38 rounded-xl border-teal500"
+              name="description"
+              id="description"
+              cols={50}
+              rows={4}
+              value={worker[0]?.description_ouvrier || ""}
+            />
+          </div>
+          {/* <div className="mx-6 w-[95%] m-auto py-2">
+            <label htmlFor="password" className={`${isArabic ? "flex justify-end" : ""} w-full after:text-red-500 mb-1 text-sm md:text-md flex text-teal500 font-semibold`}>
+              {isArabic ? "كلمة السر" : "Mot de Passe"}
+            </label>
+            <div className={`relative border-teal500 flex rounded-xl border-2`}>
+              <input
+                type={passVisible ? "text" : "password"}
+                dir={`${isArabic ? "rtl" : ""}`}
+                className="w-full h-[50px] px-4 focus:outline-blue-500 rounded-xl bg-transparent"
+                id="password"
+              />
+              {passVisible ? (
+                <MdVisibilityOff onClick={handlePassVisibility} className={`${isArabic ? "left-4" : "right-4"} absolute top-1/3 text-xl text-teal500`} />
+              ) : (
+                <MdVisibility onClick={handlePassVisibility} className={`${isArabic ? "left-4" : "right-4"} absolute top-1/3 text-xl text-teal500`} />
+              )}
+            </div>
+          </div> */}
         </div>
         <div className="mt-10 flex md:justify-end m-auto w-[95%] justify-between md:mx-6 pb-10">
           <button type="button" className="px-14 py-[10px] mr-4 rounded-md bg-red-900 opacity-75 text-sm text-white border" onClick={close}>

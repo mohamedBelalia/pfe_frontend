@@ -7,6 +7,7 @@ import WhereWeAre from "./whereWeAre/WhereWeAre"
 import Faqs from "./Faqs/Faqs"
 import Navbar from "../../Common/Navbar/Navbar"
 import BestWorkers from "./DemandedJobs/BestWorkers"
+import WhatIsItThis from "./whatIsItMoqef/WhatIsItThis"
 
 const Home = () => {
 
@@ -18,9 +19,10 @@ const Home = () => {
     <Navbar/>
     <div className="bg-white mb-20">
         <LandingPage getTheCoosenJob={setChoosenJob}/>
-        <JobsDetails idJob={choosenJob}/>
-        <HowWeWork/>
+        {/* <JobsDetails idJob={choosenJob}/> */}
         <BestWorkers/>
+        {/* <WhatIsItThis/> */}
+        <HowWeWork/>
         <WhereWeAre/>
         <Faqs/>
     </div>

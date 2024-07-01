@@ -17,10 +17,14 @@ const Faqs = () => {
             {isArabicSelected ? "الأسئلة الشائعة" : "Les Questions Fréquentes"}
         </h1>
 
-        <div className="mt-11 flex flex-col gap-5">
+        <div className="mt-11 flex flex-col gap-5"  dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
             {
                 faQuestions.map((faq,_)=>(
-                    <Question key={faq.id} setClick={setClickedId} id={faq.id} question={faq.question} answer={faq.answer} clickedId={clickedId} />
+                    <Question key={faq.id} setClick={setClickedId} id={faq.id} question={
+                        isArabicSelected ? faq.question_AR : faq.question_FR
+                    } answer={
+                        isArabicSelected ? faq.answer_AR : faq.answer_FR
+                    } clickedId={clickedId} />
                 ))
             }
         </div>

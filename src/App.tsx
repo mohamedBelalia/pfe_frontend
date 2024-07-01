@@ -30,7 +30,6 @@ function App() {
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/ajouter-projet" element={<AddProject />} />
             <Route path="/ouvres/:idWorker" element={<WorkerProfile />} />
-            <Route path="*" element={<UpdateProject idProject='1'/>} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Forms" element={<Forms />} /> {/*should removed*/}
             <Route path="/Dashboard" element={<Dashboard />} />

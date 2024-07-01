@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Api from "../../../../api/Api";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../Store/store";
 
 type RatingRangesOfProps = {
   ratingOf: "respect_delais" | "quality_travail" | "prix_qualite";
@@ -22,7 +24,10 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
   const [count_Excellent, setCount_Excellent] = useState<number>(0);
   const [totalRate, setTotalRate] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const isArabic = true; // Assume this value might be derived from some context or props
+  const [isNoComment , setIsNoComment] = useState<boolean>(true)
+
+  // The Slice For Change The Language
+  const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
 
   const widthOf = (count: number, sum: number) => {
     return Math.round((count * 100) / sum);
@@ -31,7 +36,13 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const response = await Api.get<Commentaire[]>(`/comments?workerId=${workerId}`);
+        const response = await Api.get(`/comments?workerId=${workerId}`);
+        if(response.data.status == "no_comments"){
+          setIsNoComment(true)
+        }
+        else{
+          setIsNoComment(false)
+        }
         setRatingRanges(response.data);
       } catch (error) {
         console.error("Error fetching rating:", error);
@@ -64,16 +75,26 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
     return <div>No data available</div>;
   }
 
+  if(isNoComment){
+    return <div className="w-full h-[100px] flex justify-center items-center rounded-md border-2 border-teal-600 bg-teal-50 mt-3">
+      {
+        isArabicSelected
+        ? "لم يقم أحد بتقييم هذا الشخص"
+        : "Personne n'a évalué cette personne"
+      }
+      </div>
+  }
+
   return (
-    <div dir={isArabic ? "rtl" : "ltr"} className="flex w-full flex-col">
+    <div dir={isArabicSelected ? "rtl" : "ltr"} className="flex w-full flex-col">
       <table className="h-[160px] w-full md:mx-6">
         <tbody>
           <tr className="w-full">
             <td className="font-semibold flex md:flex-row flex-col mt-3 text-[18px] w-[12%]">
-              {isArabic ? "جيد" : "Bien"}
+              {isArabicSelected ? "جيد" : "Bien"}
             </td>
             <td className="w-full flex justify-center flex-col">
-              <div className="h-[35px] md:w-[430px] w-full relative">
+              <div className="h-[40px] w-full relative">
                 <div
                   style={{ width: count_Bien === 0 ? `10%` : `${widthOf(count_Bien, totalRate)}%` }}
                   className={`${
@@ -88,10 +109,10 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
           </tr>
           <tr>
             <td className="font-semibold flex md:block mt-3 flex-col text-[18px]">
-              {isArabic ? "جيد جدًا" : "Très Bien"}
+              {isArabicSelected ? "جيد جدًا" : "Très Bien"}
             </td>
             <td className="w-full flex justify-center flex-col">
-              <div className="h-[35px] md:w-[430px] relative">
+              <div className="h-[40px] relative">
                 <div
                   style={{ width: count_Tres_Bien === 0 ? `10%` : `${widthOf(count_Tres_Bien, totalRate)}%` }}
                   className={`${
@@ -106,10 +127,10 @@ const RatingRangesOf = ({ workerId, ratingOf }: RatingRangesOfProps) => {
           </tr>
           <tr>
             <td className="font-semibold mt-3 flex flex-col text-[18px] w-[12%]">
-              {isArabic ? "ممتاز" : "Excellent"}
+              {isArabicSelected ? "ممتاز" : "Excellent"}
             </td>
             <td className="w-full flex justify-center flex-col">
-              <div className="h-[35px] md:w-[430px] relative">
+              <div className="h-[40px] relative">
                 <div
                   style={{ width: count_Excellent === 0 ? `10%` : `${widthOf(count_Excellent, totalRate)}%` }}
                   className={`${

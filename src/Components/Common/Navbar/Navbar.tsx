@@ -98,7 +98,7 @@ const Navbar = () => {
                     <div className="flex md:justify-between justify-end items-center">
                         <div onClick={() => goTo("/")} className="gap-2 items-center hidden md:flex cursor-pointer">
                             <RxFramerLogo className="text-4xl text-green-700" />
-                            <p className="text-xl text-green-700">Tasker</p>
+                            <p className="text-xl text-green-700 font-semibold">LMOQEF</p>
                         </div>
 
                         <div className="flex items-center gap-6">
@@ -130,7 +130,7 @@ const Navbar = () => {
                                                 <span>
                                                     <img src="/public/imgUsed/taskerAuth.png" className="w-[40px]" />
                                                 </span>
-                                                <span>{isArabicSelected ? "حرفي" : "Artisan"}</span>
+                                                <span>{isArabicSelected ? "حرفي" : "Ouvrier"}</span>
                                             </button>
                                         </div>
                                         :
@@ -138,14 +138,14 @@ const Navbar = () => {
                                             {
                                                 isArabicSelected ? "أضف مشروعا" : "Ajouter un Projet"
                                             }
-                                            <TbLayoutGridAdd className="text-xl"/>
+                                            <TbLayoutGridAdd className="text-xl" />
                                         </Link>
-                                        // <button className="flex gap-2 items-center bg-red-300 py-2 px-3 mx-6 rounded-md">
-                                        //     {
-                                        //         isArabicSelected ? "تسجيل الخروج" : "Se déconnecter"
-                                        //     }
-                                        //     <HiOutlineLogout className="text-xl"/>
-                                        // </button>
+                                    // <button className="flex gap-2 items-center bg-red-300 py-2 px-3 mx-6 rounded-md">
+                                    //     {
+                                    //         isArabicSelected ? "تسجيل الخروج" : "Se déconnecter"
+                                    //     }
+                                    //     <HiOutlineLogout className="text-xl"/>
+                                    // </button>
                                 }
 
 
@@ -176,12 +176,12 @@ const Navbar = () => {
 
                             {
                                 isAuth
-                                && <div className="md:block hidden relative">
+                                && <Link to={"/Dashboard"} className="md:block hidden relative" >
                                     <div className="-top-2 left-7 w-[20px] h-[20px] rounded-full bg-red-600 absolute ">
 
                                     </div>
                                     <UserProfile />
-                                </div>
+                                </Link>
                             }
 
                             {/* <div className="bg-[#d0d3dab6] p-2 rounded-md md:flex hidden cursor-pointer md:static absolute right-3"

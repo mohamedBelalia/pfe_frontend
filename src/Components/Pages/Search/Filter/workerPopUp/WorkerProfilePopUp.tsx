@@ -103,9 +103,9 @@ const WorkerProfilePopUp = ({idWorker}:workerPopUpTypes) => {
                     <div className="flex gap-2">
                         <p className="font-bold text-lg text-teal500">{workerDetails.prenomOuvrier} {workerDetails.nomOuvrier}</p> 
                     </div>
-                    <div className="flex items-center gap-1 text-gray700 font-semibold ">   
+                    {/* <div className="flex items-center gap-1 text-gray700 font-semibold ">   
                         <IoIosStar/> {workerDetails.avgEtoile} <span className="text-xs">({workerDetails.nbrCommentair} reviews)</span>
-                    </div>
+                    </div> */}
 
                     <Link to={`/ouvres/${workerDetails.idOuvrier}`} className="px-10 py-1 bg-teal500 text-white rounded-md">
                         Voir Le Profil

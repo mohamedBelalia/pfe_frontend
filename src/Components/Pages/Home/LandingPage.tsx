@@ -74,8 +74,11 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
     }
 
     const clicked = (id : string) => {
-        setJobClicked(id)
-        getTheCoosenJob(id)
+      window.scrollTo(0,0)
+        dispatch(setSelectedJobName({selectedTask : id}))
+        navigate("/search/step_one")
+        // setJobClicked(id)
+        // getTheCoosenJob(id)
       }
     
       useEffect(()=>{
@@ -115,7 +118,7 @@ const LandingPage = ({getTheCoosenJob}:LandingPageTypes) => {
                     className="h-[55px] md:h-[75px] w-full md:w-[40%] rounded-l-full px-9 outline-none border-2 focus:border-[#199AFF]"
                     type="text" 
                     value={professionName}
-                    placeholder={isArabicSelected ? "البحث حسب اسم المهمة" : "Rechercher par nom de tâche"}/>
+                    placeholder={isArabicSelected ? "البحث حسب اسم المهمة" : "Rechercher par nom de metier"}/>
                   <button onClick={searchBtn} className="rounded-r-full bg-[#199AFF] flex justify-center items-center w-[90px]">
                     <IoSearchSharp className="text-3xl text-white"/>
                   </button>
@@ -238,7 +241,7 @@ const JobsCarousel = ({jobBtns , clicked , jobClicked , isArabicSelected}:IJobsC
 
     {
       jobs.map((job , _)=>(
-        <div onClick={()=>clicked(job.id)} key={job.id} className="w-[200px]">
+        <div onClick={()=>clicked(job.nameEn)} key={job.id} className="w-[200px]">
           <JobBtn imgPath={job.imgPath} Icon={job.Icon} name={isArabicSelected ? `${job.nameAr}` : `${job.nameEn}`} id={job.id} clickedId={jobClicked}/>
         </div>
       ))

@@ -1,21 +1,26 @@
 {
-    "btnsExplain": [
-      {
-        "id": "1",
-        "title" : "Choose a Tasker by price,skills, and reviews.",
-        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
-      },
-      {
-        "id": "2",
-        "title" : "Schedule a Tasker as early as today.",
-        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
-      },
-      {
-        "id": "3",
-        "title" : "Chat, pay, tip, and review all in one place",
-        "description" : "Assemble or disassemble furniture items by unboxing, building, and any cleanup"
-      }
-      
-    ]
-  }
-  
+  "btnsExplain": [
+    {
+      "id": "1",
+      "titleAr" : "مشاركة أعمال الحرفيين",
+      "titleFr" : "Partage des œuvres d'artisans",
+      "descriptionAr" : "يُمكن للحرفيين مشاركة صور لأعمالهم السابقة لتعزيز فرصهم في الحصول على مشاريع مستقبلية عبر منصتنا.",
+      "descriptionFr" : "Les artisans peuvent partager des photos de leurs travaux précédents pour augmenter leurs chances d'obtenir des projets futurs sur notre plateforme."
+    },
+    {
+      "id": "2",
+      "titleAr" : "سهولة البحث و الاختيار",
+      "titleFr" : "Facilité de recherche et de sélection",
+      "descriptionAr" : "بسهولة يمكنك البحث عن الحرفيين الذين يتقنون الحرفة التي تبحث عنها عبر خطوات بسيطة وسهلة على منصتنا.",
+      "descriptionFr" : "Il est facile de rechercher les artisans qui maîtrisent le métier que vous recherchez grâce à des étapes simples et faciles sur notre plateforme."
+    },
+    {
+      "id": "3",
+      "titleAr" : "فضاء سهل الاستعمال",
+      "titleFr" : "Transparence et Fiabilité:",
+      "descriptionAr" : "نقدم فضاء سهل الاستخدام للحرفيين والزبائن يُسهّل عملية التواصل والتفاعل مع منصتنا",
+      "descriptionFr" : "Nous garantissons la transparence totale en affichant clairement les évaluations des clients et les historiques de projets des travailleurs,"
+    }
+    
+  ]
+}

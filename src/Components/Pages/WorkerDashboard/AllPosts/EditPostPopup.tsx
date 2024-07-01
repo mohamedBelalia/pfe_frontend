@@ -67,7 +67,7 @@ const EditPostPopup = ({ onClose, data }: PropsPopup) => {
                             <label className="md:w-auto w-[20%] h-full pt-1 flex md:flex" htmlFor="img">
                                 <div className='border-[1.5px] w-full aspect-h-1 md:hidden shadow-lg md:h-[250px] overflow-hidden md:w-[270px] rounded-md flex items-center justify-center bg-gray-100 border-blue-400'>
                                     <img src={`uploads/Projects${data.imageProjet}` || "icons/userIcon.png"} alt="Selected" className="w-full aspect-h-1 object-cover" />
-                                    <p>mmmm {data.imageProjet}</p>
+                                    {/* <p>{data.imageProjet}</p> */}
                                     <input type="file" id="img" hidden onChange={handleImageChange} />
                                 </div>
                             </label>
