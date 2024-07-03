@@ -82,7 +82,7 @@ const CriteriaOne = ({workerName}:RateingProcessProps) => {
                 Est-ce que <span className="text-teal-500">{workerName}</span> respecte les délais ? 
             </h1>
 
-            <audio ref={audioRef} controls src="/quran/beslaah.mp3" className="hidden"/>
+            <audio ref={audioRef} controls src="/quran/beslaah.mp4a" className="hidden"/>
    
             <div className="p-2 border-2 active:shadow-none shadow-[-3px_3px_1px_2px_#38b2ac] border-[#2f6b69]  rounded-md cursor-pointer" onClick={handleAudio}>
                 {
