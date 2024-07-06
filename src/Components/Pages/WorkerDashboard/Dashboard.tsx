@@ -21,7 +21,7 @@ return (
             </div>
             <p className="md:hidden"><Progress num={4} /></p>
            <Card />
-           <ComplateAcount />
+           <ComplateAcount idWorker="15" />
          </div>
          <div className="flex  md:w-[800px] md:mx-10 flex-col">
          <PaginationPage />

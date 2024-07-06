@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import EditPopUp from "../PopUps/EditPopUp.tsx";
 import Api from "../../../../api/Api.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../Store/store.ts";
 
 interface Worker {
     idOuvrier: string;
@@ -23,9 +25,13 @@ interface Profession {
     labelleProfession_AR: string;
     labelleProfession_FR: string;
 }
+interface idWorkerProps {
+    idWorker:string
+}
 
-const CompleteAcount = () => {
-    const isArabic = false;
+const CompleteAcount = ({idWorker}:idWorkerProps) => {
+    
+    const isArabicSelected : boolean = useSelector((state:RootStateState)=> state.selectedLanguageSlice.isArabicSelectedSelected)
     
     const [professions, setProfessions] = useState<Profession[]>([]);
 
@@ -61,7 +67,7 @@ const CompleteAcount = () => {
     useEffect(() => {
         const fetchWorker = async () => {
             try {
-                const response = await Api.get<Worker[]>("workers?id=3");
+                const response = await Api.get<Worker[]>(`workers?id=${idWorker}`);
                 const workerData = response.data[0];
                 setFormData(workerData);
             } catch (error) {
@@ -70,7 +76,7 @@ const CompleteAcount = () => {
         };
 
         fetchWorker();
-    }, []);
+    });
 
     const [isopen, setIsOpen] = useState<boolean>(false);
     const onClose = () => {
@@ -84,68 +90,68 @@ const CompleteAcount = () => {
     return (
         <div className='border z-50 p-6 m-auto sm:w-[70%] md:w-[400px] mb-4 md:mb-0 rounded-md'>
             <PopupParent id={2} isOpen={isopen} onClose={onClose} />
-            <div onClick={() => setOpen(true)} className={`${isArabic ? "justify-end " : "justify-end flex-row-reverse"} flex items-center cursor-pointer hover:text-blue-700 flex-nowrap font-bold text-blue500`}>
-                <div className='text-md mr-2 md:text-lg'>{isArabic ? "أكمل حسابك" : "Complétez votre compte"}</div>
+            <div onClick={() => setOpen(true)} className={`${isArabicSelected ? "justify-end " : "justify-end flex-row-reverse"} flex items-center cursor-pointer hover:text-blue-700 flex-nowrap font-bold text-blue500`}>
+                <div className='text-md mr-2 md:text-lg'>{isArabicSelected ? "أكمل حسابك" : "Complétez votre compte"}</div>
                 <BsFillPersonCheckFill className="text-3xl mr-2 font-semibold" />
             </div>
-            <div className={`${isArabic ? "items-end flex-row-reverse" : ""} px-4 flex flex-col py-4`}>
+            <div className={`${isArabicSelected ? "items-end flex-row-reverse" : ""} px-4 flex flex-col py-4`}>
                 {formData.imgProfile !== '' ?
-                    <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
-                       <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "صورة تعريفية" : "Image d'introduction"}</p>
+                    <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
+                       <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "صورة تعريفية" : "Image d'introduction"}</p>
                         <IoIosCheckmarkCircle className="text-xl font-700" />
                     </div>
-                    : <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
-                         <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "صورة تعريفية" : "Image d'introduction"}</p>
+                    : <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
+                         <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "صورة تعريفية" : "Image d'introduction"}</p>
                         <RiCloseCircleFill className="text-xl font-700" />
                     </div>}
                 {
                     formData.ville_FR !== "" ?
-                        <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
-                            <p className="md:text-lg mx-2 text-md font-semibold -mt-1">{isArabic ? "المدينة أو المنطقة" : "Ville ou région"}</p>
+                        <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
+                            <p className="md:text-lg mx-2 text-md font-semibold -mt-1">{isArabicSelected ? "المدينة أو المنطقة" : "Ville ou région"}</p>
                             <IoIosCheckmarkCircle className="text-xl font-700" />
                         </div>
-                        : <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
-                             <p className="md:text-lg mx-2 text-md font-semibold -mt-1">{isArabic ? "المدينة أو المنطقة" : "Ville ou région"}</p>
+                        : <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
+                             <p className="md:text-lg mx-2 text-md font-semibold -mt-1">{isArabicSelected ? "المدينة أو المنطقة" : "Ville ou région"}</p>
                             <RiCloseCircleFill className="text-xl font-700" />
                         </div>
                 }
 
                 {professions.length !== 0 ?
-                    <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "المهن" : "Les professions"}</p>
+                    <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "المهن" : "Les professions"}</p>
                            <RiCloseCircleFill className="text-xl font-700" />
                     </div>
-                    : <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "المهن" : "Les professions"}</p>
+                    : <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "المهن" : "Les professions"}</p>
                         <IoIosCheckmarkCircle className="text-xl font-700" />
                     </div>}
 
                 {formData.experience === '' ?
-                    <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "الخبرة" : "L'expérience"}</p>
+                    <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "الخبرة" : "L'expérience"}</p>
                         <RiCloseCircleFill className="text-xl font-700" />
                     </div>
-                    : <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "الخبرة" : "L'expérience"}</p>
+                    : <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "الخبرة" : "L'expérience"}</p>
                         {formData.experience}     <IoIosCheckmarkCircle className="text-xl font-700" />
                     </div>}
 
                 {formData.description_ouvrier !== '' ?
-                    <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "وصف العامل" : "Description de l'ouvrier"}</p>
+                    <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "وصف العامل" : "Description de l'ouvrier"}</p>
                         <RiCloseCircleFill className="text-xl font-700" />
                     </div>
-                    : <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "وصف العامل" : "Description de l'ouvrier"}</p>
+                    : <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "وصف العامل" : "Description de l'ouvrier"}</p>
                         <IoIosCheckmarkCircle className="text-xl font-700" />
                     </div>}
                 {formData.idBadge === '' ?
-                    <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "الشارة" : "Badge"}</p>
+                    <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-red-500`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "الشارة" : "Badge"}</p>
                         <RiCloseCircleFill className="text-xl font-700" />
                     </div>
-                    : <div className={`${isArabic ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
-                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabic ? "الشارة" : "Badge"}</p>
+                    : <div className={`${isArabicSelected ? "" : "flex-row-reverse justify-end"} flex font-700 items-center text-teal-700`}>
+                        <p className="text-md md:text-lg mx-2 -mt-1 font-semibold">{isArabicSelected ? "الشارة" : "Badge"}</p>
                         <IoIosCheckmarkCircle className="text-xl font-700" />
                     </div>}
             </div>
