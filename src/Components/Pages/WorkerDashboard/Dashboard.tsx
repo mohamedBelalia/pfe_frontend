@@ -16,7 +16,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 
 
 
-const Dashboard = () => {
+const DashboardTT = () => {
 
   const token = getCookie("auth_token");
   const navigate = useNavigate()
@@ -98,4 +98,4 @@ const Dashboard = () => {
 
 }
 
-export default Dashboard
+export default DashboardTT

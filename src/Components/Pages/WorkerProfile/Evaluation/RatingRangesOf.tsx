@@ -95,7 +95,7 @@ const RatingRangesOf = ({ ratingOf, workerId, getIsNoComment }: RatingRangesOfPr
                     </div>
                 </div>
             </div>
-
+            
             {/* ###### Excellent ####### */}
             <div className="flex flex-col md:flex-row justify-between">
                 <p className="font-semibold text-[18px] w-[12%]">Excellent</p>

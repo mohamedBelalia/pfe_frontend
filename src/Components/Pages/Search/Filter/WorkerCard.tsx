@@ -15,7 +15,6 @@ export interface workerDataProps {
     rate: number;
     price: number;
     description: string;
-    badge: string;
 }
 
 
@@ -57,8 +56,8 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
                         <SlBadge className="text-xl"/>
                         {
                             isArabicSelected
-                            ? workerInfo.labelleBadge_AR
-                            : workerInfo.labelleBadge_FR
+                            ? "15 ans"
+                            : "15 ans"
                         }
                     </div>
                     <p className="text-sm font-bold text-gray-500 text-center block md:hidden">{"Marrakech"}</p>
@@ -124,8 +123,8 @@ const WorkerCard = ({workerInfo , getClickedWorkerId}:workerCardProps) => {
                             <SlBadge className="text-xl"/>
                             {
                             isArabicSelected
-                            ? workerInfo.labelleBadge_AR
-                            : workerInfo.labelleBadge_FR
+                            ? "20 ans"
+                            : "20 ans"
                             }
                         </div>
                         <p className="text-sm font-bold text-gray-500">{"Marrakech"}</p>

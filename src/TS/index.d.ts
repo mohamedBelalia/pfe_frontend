@@ -12,10 +12,10 @@ export interface IVideoPlayerTools {
 
 // profile worker
 export interface IProfileWorker {
-    firstName : string
-    id : string
-    imgPath : string
-    phoneNumber : string
+    firstName: string
+    id: string
+    imgPath: string
+    phoneNumber: string
 }
 
 // for the Best Workers incoming data
@@ -25,16 +25,17 @@ export interface IWorkerInfromation {
     prenomOuvrier: string,
     imgProfile: string,
     phone: string,
-    idBadge: string,
-    labelleBadge_AR: string,
-    labelleBadge_FR: string,
-    nbrCommentair: string,
-    avgEtoile: string
+    // idBadge: string,
+    // labelleBadge_AR: string,
+    // labelleBadge_FR: string,
+    nbrCommentair: string, //
+    avgEtoile: string //
     description_ouvrier?: string,
     ville_AR: string,
     ville_FR: string,
     experience?: string
 }
+
 export interface ISingleWorker {
     singleWorker: IWorkerInfromation
 }

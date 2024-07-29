@@ -24,7 +24,7 @@ const UserProfile = () => {
             const response = await Api.get(`/profile?token=${token}`)
             try {
                 if(response.data.status == "not_valid"){
-                    console.log("logout !!");
+                    console.log("logout !!"); // TODO test and logout here
                 }
                 else{
                     setUserProfile(response.data)

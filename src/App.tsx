@@ -30,6 +30,7 @@ function App() {
             <Route path="/ouvres/:idWorker" element={<WorkerProfile />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Forms" element={<Forms />} /> {/*should removed*/}
+            {/* <Route path="/Dashboard" element={<DashboardTT />} /> */}
             <Route path="/Dashboard" element={<Dashboard />} />
           </Routes>
         <Footer/>

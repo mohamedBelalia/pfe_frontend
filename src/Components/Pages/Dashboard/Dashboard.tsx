@@ -6,12 +6,14 @@ import { ComplateAcc } from "./ComplateAcc";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { Warnning } from "./Warnning";
 import CountRates from "./CountRates";
+import RatingDashboard from "./RatingDashboard";
+import ProjetsDashboard from "./ProjetsDashboard";
 
 
 const Dashboard = () => {
 
   const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
-  const tempId = "1";
+  const tempId = "78";
 
   return (
     <div className="border" >
@@ -37,9 +39,12 @@ const Dashboard = () => {
             <div className="w-full">
                   <Warnning workerId={tempId}/>
                   <CountRates workerID={tempId}/>
+                  <RatingDashboard workerID={tempId}/>
             </div>
 
         </div>
+        {/* Les Projets */}
+        <ProjetsDashboard workerID={tempId}/>
     </div>
   )
 }
