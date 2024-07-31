@@ -8,13 +8,14 @@ import { SearchedCityDiv } from "../../Pages/Search/Process/ProcessStepOne";
 
 type SearchCityPorps = {
     getCityId : (idCity : string) => void
-    isValidateCity : boolean | null
+    isValidateCity : boolean | null,
+    initCityName ?: string
 }
 
 // Arabic regex
 const arabicRegex = /[\u0600-\u06FF]/;
 
-const SearchCity = ({getCityId , isValidateCity}:SearchCityPorps) => {
+const SearchCity = ({getCityId , isValidateCity , initCityName}:SearchCityPorps) => {
     // The Slice For Change The Language
     const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
 
@@ -42,6 +43,10 @@ const SearchCity = ({getCityId , isValidateCity}:SearchCityPorps) => {
         }
 
         fetchCities()
+
+        if(initCityName){
+            setCityName(initCityName)
+        }
 
     }, [])
 

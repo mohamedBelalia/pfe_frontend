@@ -10,10 +10,11 @@ import Api from "../../../api/Api";
 type ProfessionsMulltiSelectProps = {
     getProfessionsIDs : (professiosIDs : string[]) => void
     professiosIDs : string[]
-    isValidateOccupation : boolean | null
+    isValidateOccupation : boolean | null ,
+    initProfessions ?: IProfessionsType[]
 }
 
-const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidateOccupation}:ProfessionsMulltiSelectProps) => {
+const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidateOccupation , initProfessions}:ProfessionsMulltiSelectProps) => {
 
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [choosedOccupations, setChoosedOccupations] = useState<string[]>([]);
@@ -31,7 +32,22 @@ const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidate
             setProfessions(response.data)
         }
         fetchProfessions()
-    },[])    
+
+        if(initProfessions){
+            console.log(initProfessions);
+            let oldProfessions: string[] = [] ;
+            initProfessions.map((prf , _)=>{
+                if(isArabicSelected){
+                    oldProfessions.push(prf.labelleProfession_AR)
+                }
+                else{
+                    oldProfessions.push(prf.labelleProfession_FR)
+                }
+            })
+            setChoosedOccupations(oldProfessions)
+        }
+
+    },[])
 
     const handleClickedOccupations = (index: string, Occup: string | undefined) => {
         if (Occup && cmp.length < 3 && !choosedOccupations.includes(Occup)) {
@@ -91,7 +107,7 @@ const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidate
                     <div
                         key={profession.idProfession}
                         onClick={() => handleClickedOccupations(profession.idProfession, isArabicSelected ? profession.labelleProfession_AR : profession.labelleProfession_FR)}
-                        className={`${cmp.includes(profession.idProfession) ? 'bg-teal-400 text-white' : ''} md:h-[38px] cursor-pointer hover:bg-blue-400 hover:text-white w-full border-b-2 flex justify-start items-center  px-8  border-gray-100 `}
+                        className={`${cmp.includes(profession.idProfession) ? 'bg-teal-400 text-white' : ''} md:h-[38px] cursor-pointer hover:bg-blue-400 hover:text-white w-full border-b-2 flex justify-start items-center px-8 border-gray-100 `}
                     >
                         {isArabicSelected ? profession.labelleProfession_AR : profession.labelleProfession_FR}
                     </div>

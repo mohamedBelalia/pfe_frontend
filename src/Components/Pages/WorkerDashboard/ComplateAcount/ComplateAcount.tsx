@@ -1,8 +1,5 @@
 import { BsFillPersonCheckFill } from "react-icons/bs";
-import PopupParent from "./PopupParent.tsx";
-import { IoIosCheckmarkCircle } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { RiCloseCircleFill } from "react-icons/ri";
 import EditPopUp from "../PopUps/EditPopUp.tsx";
 import Api from "../../../../api/Api.ts";
 import { useSelector } from "react-redux";
@@ -67,7 +64,7 @@ const CompleteAcount = ({idWorker}:idWorkerProps) => {
     useEffect(() => {
         const fetchWorker = async () => {
             try {
-                const response = await Api.get<Worker[]>(`workers?id=${idWorker}`);
+                const response = await Api.get(`workers?id=${idWorker}`);
                 const workerData = response.data[0];
                 setFormData(workerData);
             } catch (error) {
@@ -78,10 +75,6 @@ const CompleteAcount = ({idWorker}:idWorkerProps) => {
         fetchWorker();
     });
 
-    const [isopen, setIsOpen] = useState<boolean>(false);
-    const onClose = () => {
-        setIsOpen(false);
-    }
     const [open, setOpen] = useState<boolean>(false);
     const onCloseComp = () => {
         setOpen(false);
@@ -89,15 +82,13 @@ const CompleteAcount = ({idWorker}:idWorkerProps) => {
 
     return (
         <div className="relative">
-            <PopupParent id={2} isOpen={isopen} onClose={onClose} />
             <div 
                 onClick={() => setOpen(true)} 
                 className={`${isArabicSelected ? "justify-end " : "justify-end flex-row-reverse"} flex items-center cursor-pointer rounded-md border-2 border-teal-600 bg-teal-50 h-[55px] p-3 hover:text-blue-700 flex-nowrap font-bold text-blue500`}>
                 <div className='text-md mr-2 md:text-lg'>{isArabicSelected ? "أكمل حسابك" : "Complétez votre compte"}</div>
                 <BsFillPersonCheckFill className="text-3xl mr-2 font-semibold" />
             </div>
-            <div className="-top-1 left-96 w-[20px] h-[20px] rounded-full bg-red-600 absolute "></div>
-
+            
             {open ?
                 <div className="fixed z-40 flex flex-col inset-0 items-center justify-center bg-black bg-opacity-70">
                     <div className='flex overflow-auto scrollbar-thin bg-white rounded-xl tab:w-[70%] h-[90vh] py-4 w-[95%] flex-col'>
