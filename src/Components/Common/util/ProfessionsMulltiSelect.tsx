@@ -9,12 +9,17 @@ import Api from "../../../api/Api";
 
 type ProfessionsMulltiSelectProps = {
     getProfessionsIDs : (professiosIDs : string[]) => void
-    professiosIDs : string[]
+    professiosIDs : string[] ,
     isValidateOccupation : boolean | null ,
-    initProfessions ?: IProfessionsType[]
+    initProfessions ?: IProfessionsType[] ,
+    // ctr
+    addCtr? : (nbr : number) => void ,
+    ctrPourMiseJour?: number
 }
 
-const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidateOccupation , initProfessions}:ProfessionsMulltiSelectProps) => {
+const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidateOccupation , initProfessions , ctrPourMiseJour}:ProfessionsMulltiSelectProps) => {
+
+    const [isInit , setIsInit] = useState<boolean>(true)
 
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [choosedOccupations, setChoosedOccupations] = useState<string[]>([]);
@@ -32,22 +37,25 @@ const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidate
             setProfessions(response.data)
         }
         fetchProfessions()
-
-        if(initProfessions){
-            console.log(initProfessions);
-            let oldProfessions: string[] = [] ;
-            initProfessions.map((prf , _)=>{
-                if(isArabicSelected){
-                    oldProfessions.push(prf.labelleProfession_AR)
-                }
-                else{
-                    oldProfessions.push(prf.labelleProfession_FR)
-                }
-            })
-            setChoosedOccupations(oldProfessions)
-        }
-
     },[])
+
+    useEffect(() => {  
+        if(initProfessions){
+            let oldProfessionsIDs: string[] = [];
+            initProfessions.map((prf , _)=>{
+                oldProfessionsIDs.push(prf.idProfession)
+            })
+            
+            let oldProfessionsNames: string[] = [] ;
+            initProfessions.map((prf , _)=>{
+                oldProfessionsNames.push(isArabicSelected ? prf.labelleProfession_AR : prf.labelleProfession_FR)
+            })
+            setCmp(oldProfessionsIDs)
+            setChoosedOccupations(oldProfessionsNames)
+            getProfessionsIDs(oldProfessionsIDs)
+        }
+    }, [initProfessions?.length]);
+
 
     const handleClickedOccupations = (index: string, Occup: string | undefined) => {
         if (Occup && cmp.length < 3 && !choosedOccupations.includes(Occup)) {
@@ -65,9 +73,7 @@ const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidate
     
         setChoosedOccupations(prevItems => {
             // Create a new array without the item at the specified index
-            const updateOccup = prevItems.filter((_, index) => index !== indexToDelete);
             return prevItems.filter((_, index) => index !== indexToDelete);
-
         });
     
         setCmp(prevItems => {
@@ -80,9 +86,9 @@ const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidate
   return (
     <div className="relative">
          <div onClick={() => setIsClicked(!isClicked)}
-                className={`${!isArabicSelected? "" : "flex-row-reverse "} ${ isValidateOccupation == false ? "border-red-600" : "border-teal500 "} rounded-lg h-[50px] justify-between border-2 flex items-center cursor-pointer select-none `}>
+                className={`${!isArabicSelected? "" : "flex-row-reverse "} ${ isValidateOccupation == false ? "border-red-600" : "border-teal500 "} rounded-lg h-[50px] justify-between border-2 flex items-center cursor-pointer select-none`}>
 
-                <div className='flex ml-5 overflow-x-auto justify-center overflow-hidden'>
+                <div className='flex ml-2 overflow-x-scroll hideScrollBar justify-center overflow-hidden'>
                     {
                         choosedOccupations && choosedOccupations.length !== 0 ?
                             choosedOccupations.map((o, i) => {
@@ -96,10 +102,9 @@ const ProfessionsMulltiSelect = ({getProfessionsIDs , professiosIDs , isValidate
                                 )
                             })
                             : `${!isArabicSelected? "Cliquez pour sélectionner" : "انقر للتحديد"}`
-
                     }
                 </div>
-                <IoIosArrowDown className="text-[#414E5F] mr-3 text-2xl" />
+                <IoIosArrowDown className="text-[#414e5f] mr-3 text-2xl" />
             </div>
             <div className={`${isClicked ? 'max-h-[300px] pb-4 mt-1 overflow-y-scroll border border-teal500 absolute w-full' : 'h-0'}
              bg-gray-50 rounded-md shadow-lg transition-all ease-in-out duration-150 overflow-hidden`}>

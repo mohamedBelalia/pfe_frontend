@@ -1,76 +1,68 @@
 import { useState, useEffect, useRef } from "react";
 import SearchCity from "../../Common/util/SearchCity";
-import ProfessionsMulltiSelect from "../../Common/util/ProfessionsMulltiSelect";
 import Api from "../../../api/Api";
 import LoadingPage from "../../Common/Loading/LoadingPage";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
-import { IProfessionsType } from "../../../TS";
+import { Config } from "../WorkerDashboard/Local_Variables";
 
 type updateFormType = {
     workerID: string,
     getIsUpdateInfo: (isUpdate: boolean) => void
 }
 
+const phoneRegex = /^[567]\d{8}$/;
+
 const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
 
     const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
 
-    const [villeId, setVilleId] = useState<string>("");
+    //  ############## pour la validation ##############
     const [isValideVille, setIsValideVille] = useState<boolean | null>(null);
-    const [professions, setProfessions] = useState<string[]>([]);
-    const [isValidePofessions, setIsValidePofessions] = useState<boolean | null>(null)
-    const [oldCityName , setOldCityName] = useState<string>("")
+    const [isPrenomEmpty, setIsPrenomEmpty] = useState<boolean | null>(null)
+    const [isExpEmpty, setIsExpEmpty] = useState<boolean | null>(null)
+    const [isValidePhone, setIsValidePhone] = useState<boolean | null>(null)
 
-    const [oldProfessions , setOldProfessions] = useState<IProfessionsType[]>()
+    const [villeId, setVilleId] = useState<string>("");
+    const [oldCityName, setOldCityName] = useState<string>("")
+    const [oldImg, setOldImg] = useState<string>("defaultUserImage.png")
 
+
+    // loading
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     // new info
     const prenomRef = useRef<HTMLInputElement>(null)
     const nomRef = useRef<HTMLInputElement>(null)
-    const experienceRef  = useRef<HTMLInputElement>(null)
+    const experienceRef = useRef<HTMLInputElement>(null)
     const telephoneRef = useRef<HTMLInputElement>(null)
-    const villeRef = useRef<HTMLInputElement>(null)
-    const newProfessionsRef = useRef<HTMLInputElement>(null)
     const descriptionRef = useRef<HTMLTextAreaElement>(null)
-
-    useEffect(()=>{
-        const fetchOldProfessions = async () => {
-            const response = await Api.get(`/professions?workerId=${workerID}`)
-            try{
-                setOldProfessions(response.data)
-            }catch(error){
-                console.log(error);
-            }
-        }
-
-        fetchOldProfessions()
-    },[])    
 
     useEffect(() => {
         const fetchOldUserInfo = async () => {
             const response = await Api.get(`/workers?id=${workerID}`)
+
             try {
+                setOldImg(response.data[0].imgProfile)
+
                 if (prenomRef.current) {
-                    prenomRef.current.value = response.data[0].prenomOuvrier;                    
+                    prenomRef.current.value = response.data[0].prenomOuvrier;
                 }
-                if(nomRef.current){
-                    nomRef.current.value = response.data[0].nomOuvrier;  
+                if (nomRef.current) {
+                    nomRef.current.value = response.data[0].nomOuvrier;
                 }
-                if(experienceRef.current){
-                    experienceRef.current.value = response.data[0].experience;  
+                if (experienceRef.current) {
+                    experienceRef.current.value = response.data[0].experience;
                 }
-                if(telephoneRef.current){
-                    telephoneRef.current.value = response.data[0].phone;  
+                if (telephoneRef.current) {
+                    telephoneRef.current.value = response.data[0].phone.substring(4);
                 }
-                if(descriptionRef.current){
-                    descriptionRef.current.value = response.data[0].description_ouvrier;  
+                if (descriptionRef.current) {
+                    descriptionRef.current.value = response.data[0].description_ouvrier;
                 }
 
                 setOldCityName(isArabicSelected ? response.data[0].ville_AR : response.data[0].ville_FR)
 
-                console.log(response.data)
             } catch (error) {
                 console.log(error);
             }
@@ -80,7 +72,7 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
         }
 
         fetchOldUserInfo()
-        
+
     }, [])
 
 
@@ -89,32 +81,76 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
             <LoadingPage />
         </div>
     }
-    
+
 
     const isValideInputs = () => {
-        if (villeId.length === 0) {
-            setIsValideVille(false);
-        } else {
-            setIsValideVille(true);
-        }
 
-        if (professions.length === 0) {
-            setIsValidePofessions(false)
+        let isValid = true
+
+        // Prenom 
+        if (prenomRef.current && prenomRef.current.value.trim().length > 0) {
+            setIsPrenomEmpty(false)
         }
         else {
-            setIsValidePofessions(true)
+            setIsPrenomEmpty(true)
+            isValid = false
         }
+
+        // Experience
+        if (experienceRef.current && experienceRef.current.value.trim().length > 0) {
+            setIsExpEmpty(false)
+        }
+        else {
+            setIsExpEmpty(true)
+            isValid = false
+        }
+
+        // Téléphone
+        if (telephoneRef.current && phoneRegex.test(telephoneRef.current.value)) {
+            setIsValidePhone(true)
+        }
+        else {
+            setIsValidePhone(false)
+            isValid = false
+        }
+
+        return isValid
     }
 
     const updateInfo = () => {
-        console.log(professions);
+
+        let isValid = isValideInputs()
+
+        if (isValid) {
+            const updatedData = { // TODO update the image profile
+                "prenomOuvrier": prenomRef.current?.value,
+                "nomOuvrier": nomRef.current?.value,
+                "experience": experienceRef.current?.value,
+                "phone": "+212" + telephoneRef.current?.value,
+                "villeId": villeId,
+                "description": descriptionRef.current?.value
+            }
+
+            updateWorkerInfoFromDB(updatedData);
+        }
+
+        console.log(isPrenomEmpty);
     }
+
+    const updateWorkerInfoFromDB = async (updatedData : any) => {
+        const respons = await Api.put(`/workers?id=${workerID}` , updatedData)
+        if(respons.data.status == "updated successfully"){
+            location.reload()
+        }
+        console.log(respons);
+        
+    }  
 
     return (
         <div className="w-[60%] px-8 py-4 bg-white rounded-md mt-16">
             <div className="flex justify-center">
                 <img
-                    src="http://localhost/pfeApi/api/uploads/profiles/pic15.jpg"
+                    src={Config.BaseImagesPath_Profiles + oldImg}
                     className="w-[80px] h-[80px] rounded-full border-2 border-teal-700"
                 />
             </div>
@@ -122,40 +158,63 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                 <div className="w-1/2">
                     <label className="font-semibold text-teal-700">Prenom</label>
                     <input
-                        ref={prenomRef} 
-                        type="text" 
-                        placeholder="votre Prenom" 
-                        className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" />
+                        ref={prenomRef}
+                        type="text"
+                        placeholder="votre Prenom"
+                        className={`w-full py-2 px-2 border-2 ${isPrenomEmpty ? "border-red-700" : "border-teal500"} rounded-lg focus:outline-none focus:border-blue-700`} />
+                    {
+                        isPrenomEmpty && <small className="text-red-600">Prenom est obligatoir</small>
+                    }
                 </div>
                 <div className="w-1/2">
                     <label className="font-semibold text-teal-700">Nom</label>
-                    <input 
+                    <input
                         ref={nomRef}
-                        type="text" 
-                        placeholder="votre Nom" 
+                        type="text"
+                        placeholder="votre Nom"
                         className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" />
                 </div>
             </div>
             <div className="flex justify-between gap-10 mt-4">
                 <div className="w-1/2">
                     <label className="font-semibold text-teal-700">Experience</label>
-                    <input 
+                    <input
                         ref={experienceRef}
-                        type="number" 
-                        min={0} max={70} 
-                        placeholder="Experience" 
-                        className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" />
+                        type="number"
+                        min={0} max={70}
+                        placeholder="Experience"
+                        className={`w-full py-2 px-2 border-2 ${isExpEmpty ? "border-red-700" : "border-teal500"} rounded-lg focus:outline-none focus:border-blue-700`} />
+                        {
+                            isExpEmpty && <small className="text-red-600">Experience est obligatoir</small>
+                        }
                 </div>
                 <div className="w-1/2">
                     <label className="font-semibold text-teal-700">Téléphone</label>
-                    <input 
-                        ref={telephoneRef}
-                        type="text" 
-                        placeholder="votre téléphone" 
-                        className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" />
+                    <div className="relative">
+                        <input
+                            ref={telephoneRef}
+                            type="text"
+                            placeholder="votre téléphone"
+                            dir="ltr"
+                            className={`w-full py-2 px-2 pl-[50px] border-2 rounded-lg focus:outline-none focus:border-blue-70 ${isValidePhone == false ? "border-red-600" : "border-teal500 "}`}
+                        />
+                        <span className="absolute left-3 pr-3 top-[10px] text-gray-800 font-semibold pointer-events-none" dir="ltr">+212 {" "}</span>
+                        {
+                            isValidePhone == false && <small className="text-red-600">Saisier Une Numero de Téléphone Correct</small>
+                        }
+                    </div>
+
                 </div>
             </div>
             <div className="flex justify-between gap-10 mt-4">
+                <div className="w-1/2">
+                    <label className="font-semibold text-teal-700">Description</label>
+                    <textarea
+                        ref={descriptionRef}
+                        rows={3}
+                        placeholder="Votre Description"
+                        className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" id=""></textarea>
+                </div>
                 <div className="w-1/2">
                     <label className="text-md md:text-md text-teal-700 font-semibold">
                         Ville
@@ -170,10 +229,11 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                         </p>
                     }
                 </div>
-                <div className="w-1/2">
+
+                {/* <div className="w-1/2">
                     <label className="text-md md:text-md text-teal-700 font-semibold">Votre Professions</label>
 
-                    <ProfessionsMulltiSelect initProfessions={oldProfessions} getProfessionsIDs={setProfessions} professiosIDs={professions} isValidateOccupation={isValidePofessions} />
+                    <ProfessionsMulltiSelect initProfessions={oldProfessions} getProfessionsIDs={setProfessions} professiosIDs={professions} isValidateOccupation={isValidePofessions} ctrPourMiseJour={ctrProfessions} />
                     {
                         isValidePofessions == false &&
                         <p className="-mt-1 text-red-600">
@@ -182,16 +242,9 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                             }
                         </p>
                     }
-                </div>
+                </div> */}
             </div>
-            <div className="mt-4">
-                <label className="font-semibold text-teal-700">Description</label>
-                <textarea 
-                    ref={descriptionRef}
-                    rows={3} 
-                    placeholder="Votre Description" 
-                    className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" id=""></textarea>
-            </div>
+
             <div className="flex justify-end gap-4 mt-2">
                 <button onClick={() => getIsUpdateInfo(false)} className="px-14 py-2 rounded-md text-white bg-red-700">Annuler</button>
                 <button onClick={updateInfo} className="px-14 py-2 rounded-md text-white bg-teal-700">Modifier</button>

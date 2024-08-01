@@ -31,9 +31,10 @@ export interface IWorkerInfromation {
     nbrCommentair: string, //
     avgEtoile: string //
     description_ouvrier?: string,
+    ville?: string, // the id of the city
     ville_AR: string,
     ville_FR: string,
-    experience?: string
+    experience?: string,
 }
 
 export interface ISingleWorker {

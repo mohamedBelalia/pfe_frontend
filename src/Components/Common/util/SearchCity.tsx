@@ -90,7 +90,7 @@ const SearchCity = ({getCityId , isValidateCity , initCityName}:SearchCityPorps)
 
     /* to clear the filtred array when clicking on a "city name"
     it's just passed in the "SearchedCityDiv" component
-*/
+    */
     const clearCitiesBox = () => {
         setSearchedCities([]);
     }

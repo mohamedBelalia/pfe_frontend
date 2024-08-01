@@ -32,7 +32,7 @@ const SideInfo = ({ workerId }: SideInfoProps) => {
                     console.log("logout"); // TODO logout here also
                 }
                 else{
-                    setUserInfo(response.data);
+                    setUserInfo(response.data);                    
                 }
             }
             catch(e){
@@ -86,7 +86,7 @@ const SideInfo = ({ workerId }: SideInfoProps) => {
             <div className="mt-5 flex flex-col gap-4">
                 {/* Experince */}
                 {
-                    userInfo?.experience != null ??
+                    userInfo?.experience != null &&
                 <div>
                     <p className="font-semibold text-blue-600">{isArabicSelected ? "الخبرة" : "Expérience"}</p>
                     <p className="text-lg font-semibold text-teal-700">{isArabicSelected ? `${userInfo?.experience} سنة` : `${userInfo?.experience} ans`}</p>

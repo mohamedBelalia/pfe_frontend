@@ -36,7 +36,7 @@ const WorkerProjects = ({idOuvrier} : workerProjectsProps) => {
             const fetchWorkerProjects = async() => {
                 try{
                     const response = await Api.get(`/projects?workerId=${idOuvrier}`)
-                    if(response.data.status == "not found"){
+                    if(response.data.status == "not_found"){
                         setIsProjectsExist(false)
                     }
                     else{
@@ -90,7 +90,7 @@ const WorkerProjects = ({idOuvrier} : workerProjectsProps) => {
             cardsContainerRef.current.scrollLeft += 390
         }
     }
-
+    
     if(projects == undefined || !isProjectsExist){
         return <div className="w-full py-5 flex flex-col justify-center opacity-75 items-center gap-4 bg-slate-200 m-3 text-xl font-semibold rounded-md">
             <img src="/imgUsed/construction.png" alt="project" className="w-[150px]" />

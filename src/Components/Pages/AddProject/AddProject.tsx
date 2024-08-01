@@ -64,8 +64,6 @@ const AddProject = () => {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     setSelectedImages((prev) => [...prev, reader.result as string]);
-                    console.log(reader.result as string);
-
                 };
                 reader.readAsDataURL(file);
             }
