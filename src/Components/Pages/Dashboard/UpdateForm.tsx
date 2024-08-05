@@ -147,15 +147,15 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
     }  
 
     return (
-        <div className="w-[60%] px-8 py-4 bg-white rounded-md mt-16">
+        <div className="md:w-[60%] w-[95%] px-8 md:py-4 py-7 bg-white rounded-md md:mt-16">
             <div className="flex justify-center">
                 <img
                     src={Config.BaseImagesPath_Profiles + oldImg}
                     className="w-[80px] h-[80px] rounded-full border-2 border-teal-700"
                 />
             </div>
-            <div className="flex justify-between gap-10 mt-4">
-                <div className="w-1/2">
+            <div className="flex flex-col md:flex-row justify-between md:gap-10 gap-5 mt-4">
+                <div className="md:w-1/2 w-full">
                     <label className="font-semibold text-teal-700">Prenom</label>
                     <input
                         ref={prenomRef}
@@ -166,7 +166,7 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                         isPrenomEmpty && <small className="text-red-600">Prenom est obligatoir</small>
                     }
                 </div>
-                <div className="w-1/2">
+                <div className="md:w-1/2 w-full">
                     <label className="font-semibold text-teal-700">Nom</label>
                     <input
                         ref={nomRef}
@@ -175,8 +175,8 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                         className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" />
                 </div>
             </div>
-            <div className="flex justify-between gap-10 mt-4">
-                <div className="w-1/2">
+            <div className="flex flex-col md:flex-row justify-between md:gap-10 gap-5 mt-4">
+                <div className="md:w-1/2 w-full">
                     <label className="font-semibold text-teal-700">Experience</label>
                     <input
                         ref={experienceRef}
@@ -188,7 +188,7 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                             isExpEmpty && <small className="text-red-600">Experience est obligatoir</small>
                         }
                 </div>
-                <div className="w-1/2">
+                <div className="md:w-1/2 w-full">
                     <label className="font-semibold text-teal-700">Téléphone</label>
                     <div className="relative">
                         <input
@@ -198,7 +198,7 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                             dir="ltr"
                             className={`w-full py-2 px-2 pl-[50px] border-2 rounded-lg focus:outline-none focus:border-blue-70 ${isValidePhone == false ? "border-red-600" : "border-teal500 "}`}
                         />
-                        <span className="absolute left-3 pr-3 top-[10px] text-gray-800 font-semibold pointer-events-none" dir="ltr">+212 {" "}</span>
+                        <span className="absolute left-3 pr-3 top-[9.5px] text-gray-800 font-semibold pointer-events-none" dir="ltr">+212 {" "}</span>
                         {
                             isValidePhone == false && <small className="text-red-600">Saisier Une Numero de Téléphone Correct</small>
                         }
@@ -206,8 +206,8 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
 
                 </div>
             </div>
-            <div className="flex justify-between gap-10 mt-4">
-                <div className="w-1/2">
+            <div className="flex flex-col md:flex-row justify-between md:gap-10 gap-5 mt-4">
+                <div className="md:w-1/2 w-full">
                     <label className="font-semibold text-teal-700">Description</label>
                     <textarea
                         ref={descriptionRef}
@@ -215,7 +215,7 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                         placeholder="Votre Description"
                         className="w-full py-2 px-2 border-2 border-teal500 rounded-lg focus:outline-none focus:border-blue-700" id=""></textarea>
                 </div>
-                <div className="w-1/2">
+                <div className="md:w-1/2 w-full -mt-3 md:mt-0">
                     <label className="text-md md:text-md text-teal-700 font-semibold">
                         Ville
                     </label>
@@ -245,9 +245,9 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
                 </div> */}
             </div>
 
-            <div className="flex justify-end gap-4 mt-2">
-                <button onClick={() => getIsUpdateInfo(false)} className="px-14 py-2 rounded-md text-white bg-red-700">Annuler</button>
-                <button onClick={updateInfo} className="px-14 py-2 rounded-md text-white bg-teal-700">Modifier</button>
+            <div className="flex md:justify-end justify-center gap-4 md:mt-2 mt-4">
+                <button onClick={() => getIsUpdateInfo(false)} className="md:px-14 px-10 py-2 rounded-md text-white bg-red-700">Annuler</button>
+                <button onClick={updateInfo} className="md:px-14 px-10 py-2 rounded-md text-white bg-teal-700">Modifier</button>
             </div>
         </div>
     );

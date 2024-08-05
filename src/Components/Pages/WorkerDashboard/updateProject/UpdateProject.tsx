@@ -184,7 +184,7 @@ const UpdateProject = ({ idProject , cancelIt }: UpdateProjectProps) => {
 
     return (
         <div className="w-full h-[800px] flex justify-center items-center">
-            <div className="bg-white w-[80%] rounded-lg md:px-6 px-3 py-10">
+            <div className="bg-white md:w-[80%] rounded-lg md:px-6 px-3 py-10">
                 <div className="w-full flex gap-10 flex-col items-start md:flex-row">
                     <div className="md:w-1/2 w-full bg-[#f5f5f5c9] rounded-md border border-[#8f8e8e] flex flex-col gap-7 px-4 md:px-8 md:py-8 py-6" dir={isArabicSelected ? "rtl" : "ltr"}>
                         <div className="flex flex-col ">

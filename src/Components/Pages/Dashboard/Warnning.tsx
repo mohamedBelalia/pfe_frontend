@@ -34,7 +34,7 @@ export const Warnning = ({workerId}:WarnningProps) => {
 
   return (
     unComplatedInfo.length > 0 ?
-    <div className="w-[80%] p-3 border-2 border-red-800 bg-red-300 rounded-md flex justify-center items-center font-semibold mx-auto text-red-900">
+    <div className="md:w-[80%] text-center p-3 border-2 border-red-800 bg-red-300 rounded-md flex justify-center items-center font-semibold mx-auto text-red-900">
         {
             isArabicSelected 
             ? "أكمل معلومات ملفك الشخصي للحصول على عملاء"

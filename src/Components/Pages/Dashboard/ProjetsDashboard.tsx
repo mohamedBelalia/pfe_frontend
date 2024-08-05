@@ -8,10 +8,12 @@ import { IProjectWorker } from "../../../TS"
 import LoadingPage from "../../Common/Loading/LoadingPage"
 
 type prjectsProps = {
-    workerID: string
+    workerID: string,
+    getClickedProject : (projectID : string) => void ,
+    getUpdatedProjectID : (projectId : string) => void
 }
 
-const ProjetsDashboard = ({ workerID }: prjectsProps) => {
+const ProjetsDashboard = ({ workerID , getClickedProject , getUpdatedProjectID}: prjectsProps) => {
 
 
     const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
@@ -21,6 +23,13 @@ const ProjetsDashboard = ({ workerID }: prjectsProps) => {
     const [isError, setIsError] = useState<boolean | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [projects, setProjects] = useState<IProjectWorker[]>([])
+
+    const [clickedProjectID , setClickedProjectID] = useState<string>("")
+    const [isCompUpdated , setIsCompUpdated] = useState<boolean>(false)
+
+    // updating project
+    const [updatedProjectIdClicked , setUpdateProjectIdClicked] = useState<string>("")
+    const [isUpdateChange , setIsUpdateChange] = useState<boolean>(false)
 
     useEffect(() => {
         const fetchWorkerProjects = async () => {
@@ -43,6 +52,14 @@ const ProjetsDashboard = ({ workerID }: prjectsProps) => {
         fetchWorkerProjects()
 
     }, []);
+
+    useEffect(()=>{
+        getClickedProject(clickedProjectID);        
+    },[clickedProjectID , isCompUpdated])
+
+    useEffect(()=>{
+        getUpdatedProjectID(updatedProjectIdClicked);
+    },[updatedProjectIdClicked , isUpdateChange])
 
 
     if(isLoading) {
@@ -75,7 +92,7 @@ const ProjetsDashboard = ({ workerID }: prjectsProps) => {
     }
 
     return (
-        <div className="w-[80%] mx-auto my-5 p-2" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
+        <div className="md:w-[80%] mx-auto my-5 p-2" dir={`${!isArabicSelected ? "ltr" : "rtl"}`}>
             <h1 className="font-bold text-2xl text-blue-500 flex items-center gap-4">
                 {
                     isArabicSelected
@@ -88,7 +105,7 @@ const ProjetsDashboard = ({ workerID }: prjectsProps) => {
             <div ref={cardsContainerRef} className="flex gap-10 overflow-x-scroll no-scrollbar scroll-smooth mt-4">
                 {
                     projects.map((project , _)=>(
-                        <WorkerProjectCardDashboard key={project.idProjet} project={project}/>
+                        <WorkerProjectCardDashboard key={project.idProjet} project={project} getClickedProjectID={setClickedProjectID} getIsCompUpdated={setIsCompUpdated} getUpdatedProjectId={setUpdateProjectIdClicked} getIsUpdateProjectChange={setIsUpdateChange}/>
                     ))
                 }
             </div>
