@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+## <div align="center"> Home Page </div>
+![landing_page](captures/home_1.png)
+![landing_page](captures/home_2.png)
+![landing_page](captures/home_3.png)
+![landing_page](captures/home_4.png)
+![landing_page](captures/home_5.png)
+![landing_page](captures/home_6.png)
+![landing_page](captures/home_ar.png)
+![landing_page](captures/home_resp.png)
+![landing_page](captures/home_AR.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## <div align="center"> Login Page </div>
+![landing_page](captures/login_1.png)
+![landing_page](captures/login_1.png)
 
-Currently, two official plugins are available:
+## <div align="center"> Signup Page </div>
+![landing_page](captures/signup_1.png)
+![landing_page](captures/signup_2.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## <div align="center"> Profile Page </div>
+![landing_page](captures/profile_1.png)
+![landing_page](captures/profile_2.png)
+![landing_page](captures/profile_3.png)
+![landing_page](captures/profile_4.png)
+![landing_page](captures/profile_5.png)
+![landing_page](captures/profile_6.png)
+![landing_page](captures/profile_7.png)
+![landing_page](captures/profile_8.png)
+![landing_page](captures/prof_resp.png)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## <div align="center"> Search </div>
+![landing_page](captures/search.png)
+![landing_page](captures/search_stepOne_1.png)
+![landing_page](captures/search_stepOne_2.png)
+![landing_page](captures/search_pat_resp.png)
+![landing_page](captures/search_resp.png)
