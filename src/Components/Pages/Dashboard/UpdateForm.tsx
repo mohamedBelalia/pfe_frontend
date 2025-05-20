@@ -150,7 +150,7 @@ const UpdateForm = ({ workerID, getIsUpdateInfo }: updateFormType) => {
         <div className="md:w-[60%] w-[95%] px-8 md:py-4 py-7 bg-white rounded-md md:mt-16">
             <div className="flex justify-center">
                 <img
-                    src={Config.BaseImagesPath_Profiles + oldImg}
+                    src="http://localhost/pfeApi/api/uploads/profiles/pic14.jpeg"
                     className="w-[80px] h-[80px] rounded-full border-2 border-teal-700"
                 />
             </div>

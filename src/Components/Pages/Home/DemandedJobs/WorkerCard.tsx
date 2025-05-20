@@ -1,5 +1,3 @@
-import { IoIosStar } from "react-icons/io"
-import BadgeWorker from "../../../Common/Badge/BadgeWorker"
 import { FaHammer, FaPhoneAlt } from "react-icons/fa"
 import { IBestWorkers, IProfessionsType } from "../../../../TS"
 import { useEffect, useState } from "react"
@@ -17,16 +15,9 @@ interface JobCardTypes extends IBestWorkers {
 const BASE_IMAGE_PATH_Profile = Config.BaseImagesPath_Profiles;
 
 const WorkerCard = ({ workerInfo, getClickedWorkerId }: JobCardTypes) => {
-
-  // The Slice For Change The Language
   const isArabicSelected: boolean = useSelector((state: RootState) => state.selectedLanguageSlice.isArabicSelected)
-
-  // state to store the professions
   const [professions, setProfessions] = useState<IProfessionsType[]>();
-
-  // to know if the worker had professions or not
   const [hadProfessions, setHadPorfessions] = useState<boolean>(true)
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -39,137 +30,101 @@ const WorkerCard = ({ workerInfo, getClickedWorkerId }: JobCardTypes) => {
         else {
           setProfessions(response.data)
         }
-
       } catch (AxiosError) {
         console.log("404");
       }
     }
-
     fetchProfessions()
-
   }, [])
-
 
   const gotoWorkerProfile = (workerId: string) => {
     window.scrollTo(0, 0)
     navigate(`/ouvres/${workerId}`)
   }
 
-
-
   return (
     <div className="md:col-span-4">
-      <div className="p-4 py-6 flex gap-9 flex-col md:flex-1 w-[350px] md:w-full bg-[#ffffff] shadow-xl rounded-xl overflow-hidden border-2 border-teal-600">
-
-        {/* Head Card (image , name , badge) */}
-        <div className="flex gap-4">
-          <div className="w-[80px] h-[80px] overflow-hidden">
-            <img className="w-full h-full rounded-full border border-teal-600"
-              // src="./imgUsed/workerImagePlaceholder.png"
-              src={BASE_IMAGE_PATH_Profile + workerInfo.imgProfile}
-              alt={workerInfo.nomOuvrier + ' ' + workerInfo.prenomOuvrier} />
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-lg font-semibold text-neutral-700">{workerInfo.prenomOuvrier} {workerInfo.nomOuvrier}</p>
-            <div className="border-dashed gap-2 border border-[#2d61fea1] rounded-md bg-gray-300 font-bold text-[#2b4b64] p-1 w-full flex items-center justify-around">
-              <SlBadge className="text-xl" />
-              <span>
-                {
-                  isArabicSelected
-                    ? `الخبرة ${workerInfo.experience} سنة `
-                    : `experience ${workerInfo.experience} annee`
-                }
-              </span>
-              {/* {badgeName} */}
+      <div className="bg-white rounded-lg border-2 border-teal-500 shadow-sm hover:shadow-md transition-all duration-200">
+        {/* Profile Section */}
+        <div className="p-5 bg-teal-50">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-teal-500">
+              <img 
+                className="w-full h-full object-cover"
+                src={BASE_IMAGE_PATH_Profile + workerInfo.imgProfile}
+                alt={workerInfo.nomOuvrier + ' ' + workerInfo.prenomOuvrier} 
+              />
             </div>
-            {/* <BadgeWorker 
-                  badgeName={
-                    workerInfo.experience 
-                  }/> */}
-          </div>
-        </div>
-
-        {/* Skills */}
-        <div
-        // className={`flex ${isArabicSelected && 'flex-row-reverse text-end'}`}
-        >
-          <div>
-            <p className="font-medium">
-              {
-                isArabicSelected
-                  ? "المهن الرئيسية"
-                  : "Principales Professions"
-              }
-            </p>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {
-                hadProfessions
-                  ?
-                  professions?.map((profession, _) => (
-                    <div className="px-4 py-1 rounded-md bg-blue-500 text-white" key={profession.idProfession}>
-                      {
-                        isArabicSelected
-                          ? profession.labelleProfession_AR
-                          : profession.labelleProfession_FR}
-                    </div>
-                  ))
-                  :
-                  <div className="px-4 py-1 rounded-md bg-gray-500 text-white">
-                    {
-                      isArabicSelected
-                        ? "بدون مهنة"
-                        : "Sans Profession"
-                    }
-                  </div>
-              }
-            </div>
-          </div>
-        </div>
-        {/* Rate and contact */}
-
-        <div className="flex justify-center items-center ">
-          {/* <div>
-            <div className="flex gap-2 items-center text-gray-600">
-              <IoIosStar className="text-2xl" />
-              <p className="font-semibold text-lg">{workerInfo.avgEtoile}
-                <span className="text-xs"> ( {workerInfo.nbrCommentair}
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold text-teal-800">
+                {workerInfo.prenomOuvrier} {workerInfo.nomOuvrier}
+              </h2>
+              <div className="flex items-center gap-2 mt-1">
+                <SlBadge className="text-teal-600" />
+                <span className="text-sm text-teal-700">
                   {isArabicSelected
-                    ? " تقييمات "
-                    : " Avis"
-                  } )
+                    ? `الخبرة ${workerInfo.experience} سنة`
+                    : `Experience ${workerInfo.experience} annee`}
                 </span>
-              </p>
+              </div>
             </div>
-          </div> */}
-          <div title={`${workerInfo.prenomOuvrier} رقم هاتف السيد `} className="text-[#2d7d7d] text-lg font-bold">
-            {workerInfo.phone}
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="flex gap-2 ">
-
-          <a
-            title={`${workerInfo.prenomOuvrier} إتصل بالسيد`}
-            href={`tel:${workerInfo.phone}`}
-            className="flex justify-center items-center w-1/2 bg-teal-50 hover:bg-teal-200 border-2 border-teal-500 h-[40px] rounded-md">
-            <FaPhoneAlt />
-          </a>
-
-          <button
-            onClick={() => gotoWorkerProfile(workerInfo.idOuvrier)}
-            title={`بروفايل السيد  ${workerInfo.prenomOuvrier} `}
-            className="w-1/2 border-2 border-blue-500 hover:bg-blue-50 h-[40px] rounded-md flex items-center justify-center gap-3">
-
-            {
-              isArabicSelected
-                ? "الملف الشخصي"
-                : "Profil"
-            }
-            <FaHammer className="text-lg" />
-          </button>
+        {/* Professions Section */}
+        <div className="p-5 border-b border-teal-100">
+          <h3 className="text-sm font-medium text-teal-700 mb-3">
+            {isArabicSelected ? "المهن الرئيسية" : "Principales Professions"}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {hadProfessions ? (
+              professions?.map((profession) => (
+                <span
+                  key={profession.idProfession}
+                  className="px-3 py-1 bg-teal-100 text-teal-700 rounded text-sm"
+                >
+                  {isArabicSelected
+                    ? profession.labelleProfession_AR
+                    : profession.labelleProfession_FR}
+                </span>
+              ))
+            ) : (
+              <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded text-sm">
+                {isArabicSelected ? "بدون مهنة" : "Sans Profession"}
+              </span>
+            )}
+          </div>
         </div>
 
+        {/* Contact and Actions Section */}
+        <div className="p-5">
+          <div className="mb-4 text-center">
+            <span className="text-teal-700 font-medium">
+              {workerInfo.phone}
+            </span>
+          </div>
+          
+          <div className="flex gap-3">
+            <a
+              href={`tel:${workerInfo.phone}`}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition-colors duration-200"
+            >
+              <FaPhoneAlt />
+              <span className="text-sm font-medium">
+                {isArabicSelected ? "اتصل" : "Appeler"}
+              </span>
+            </a>
+            <button
+              onClick={() => gotoWorkerProfile(workerInfo.idOuvrier)}
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
+            >
+              <FaHammer />
+              <span className="text-sm font-medium">
+                {isArabicSelected ? "الملف الشخصي" : "Profil"}
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )

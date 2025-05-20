@@ -11,30 +11,24 @@ import AddProject from './Components/Pages/AddProject/AddProject'
 import SignupForm from './Components/Pages/Auth/Signup/SignupForm'
 import Forms from './Components/Pages/Auth/Signup/Forms'
 import LoginForm from './Components/Pages/Auth/login/LoginForm'
-import Login from './Components/Pages/Auth/login/Login'
 
 function App() {
-
   return (
-
-      <Router>
-          <Routes>
-             <Route path='/' element={<Home/>}/>
-            <Route path='/search' element={<SearchPage/>}/>
-            <Route path='/search/step_one' element={<ProcessStepOne/>}/>
-            <Route path='/search/filter' element={<Filter/>}/>
-            <Route path="/Login" element={<LoginForm />} />
-            <Route path="/Signup" element={<SignupForm />} /> 
-            <Route path="/SignupForms" element={<Forms/>} /> 
-            <Route path="/ajouter-projet" element={<AddProject />} />
-            <Route path="/ouvres/:idWorker" element={<WorkerProfile />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Forms" element={<Forms />} /> {/*should removed*/}
-            {/* <Route path="/Dashboard" element={<DashboardTT />} /> */}
-            <Route path="/Dashboard" element={<Dashboard />} />
-          </Routes>
-        <Footer/>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/search' element={<SearchPage/>}/>
+        <Route path='/search/step_one' element={<ProcessStepOne/>}/>
+        <Route path='/search/filter' element={<Filter/>}/>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} /> 
+        <Route path="/signup/forms" element={<Forms/>} /> 
+        <Route path="/ajouter-projet" element={<AddProject />} />
+        <Route path="/ouvres/:idWorker" element={<WorkerProfile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+      <Footer/>
+    </Router>
   )
 }
 

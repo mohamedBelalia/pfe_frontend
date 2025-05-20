@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL : "http://localhost/pfeApi/api"
+    baseURL : "http://localhost/lmoqef-api/api"
 })
